@@ -3,120 +3,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecture Portfolio</title>
+    <title>Sutthiwit Sriyotha — Developer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', 'Prompt', sans-serif; }
+        :root {
+            --bg:       #0d0f14;
+            --surface:  #13161e;
+            --border:   #1f2330;
+            --muted:    #3a3f52;
+            --text-dim: #7a8099;
+            --text:     #e2e6f0;
+            --accent:   #6c63ff;
+            --accent2:  #00d4aa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none; z-index: 0;
+        }
+        /* NAV */
+        #navbar {
+            position: fixed; width: 100%; z-index: 100;
+            background: transparent;
+            transition: background 0.4s, border-color 0.4s;
+            border-bottom: 1px solid transparent;
+        }
+        #navbar.scrolled {
+            background: rgba(13,15,20,0.92);
+            backdrop-filter: blur(16px);
+            border-color: var(--border);
+        }
+        .nav-link {
+            position: relative; font-size: 0.75rem; letter-spacing: 0.1em;
+            color: var(--text-dim); text-decoration: none; transition: color 0.3s; padding-bottom: 2px;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 1px; background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .nav-link:hover { color: var(--text); }
+        .nav-link:hover::after { width: 100%; }
+        /* Cursor blink */
+        .cursor {
+            display: inline-block; width: 3px; height: 1em;
+            background: var(--accent2); vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        /* Hero animations */
+        .hero-word {
+            display: inline-block; opacity: 0; transform: translateY(30px);
+            animation: wordUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+        .fade-up {
+            opacity: 0; transform: translateY(20px);
+            animation: wordUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+        @keyframes wordUp { to { opacity: 1; transform: translateY(0); } }
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0; transform: translateY(36px);
+            transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .rd1 { transition-delay: 0.08s; } .rd2 { transition-delay: 0.16s; }
+        .rd3 { transition-delay: 0.24s; } .rd4 { transition-delay: 0.32s; }
+        /* Pills */
+        .pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 12px; border-radius: 999px; font-size: 0.68rem; font-weight: 500;
+            border: 1px solid var(--border); color: var(--text-dim); background: var(--surface);
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .pill:hover { border-color: var(--accent); color: var(--text); }
+        .pill-p { border-color: rgba(108,99,255,0.4); color: #a89fff; background: rgba(108,99,255,0.08); }
+        .pill-g { border-color: rgba(0,212,170,0.35); color: #00d4aa; background: rgba(0,212,170,0.07); }
+        /* Card */
+        .card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+            transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+        }
+        .card:hover {
+            border-color: rgba(108,99,255,0.45); transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(108,99,255,0.12);
+        }
+        /* Project image */
+        .proj-wrap { overflow: hidden; border-radius: 8px; }
+        .proj-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+            filter: brightness(0.9) saturate(0.9);
+        }
+        .card:hover .proj-wrap img { transform: scale(1.04); filter: brightness(1) saturate(1); }
+        /* Buttons */
+        .btn-p {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+            color: #fff; border-radius: 6px; text-decoration: none; overflow: hidden;
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            transition: box-shadow 0.35s, transform 0.25s;
+        }
+        .btn-p:hover { box-shadow: 0 8px 32px rgba(108,99,255,0.45); transform: translateY(-2px); }
+        .btn-o {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 11px 26px; font-size: 0.8rem; font-weight: 500;
+            color: var(--text-dim); border: 1px solid var(--border);
+            border-radius: 6px; text-decoration: none;
+            transition: border-color 0.3s, color 0.3s, background 0.3s;
+        }
+        .btn-o:hover { border-color: var(--accent); color: var(--text); background: rgba(108,99,255,0.07); }
+        /* Skill bar */
+        .bar-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+        .bar-fill {
+            height: 100%; border-radius: 2px; width: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+        }
+        /* Section label */
+        .sec-lbl {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+        }
+        .sec-lbl::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+        /* Gradient text */
+        .grad { background: linear-gradient(135deg,#a89fff 0%,#00d4aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        /* Orb */
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+        /* Timeline */
+        .tl-line { position: absolute; left: 7px; top: 28px; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
+        .tl-dot { width: 15px; height: 15px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); flex-shrink: 0; margin-top: 4px; }
+        /* Status dot */
+        .sdot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); animation: pdot 2s ease-in-out infinite; }
+        @keyframes pdot { 0%,100%{box-shadow:0 0 0 0 rgba(0,212,170,0.5)} 50%{box-shadow:0 0 0 5px rgba(0,212,170,0)} }
+        /* Input */
+        .inp {
+            width: 100%; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 6px; padding: 12px 16px; font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem; color: var(--text); outline: none; transition: border-color 0.3s;
+        }
+        .inp:focus { border-color: var(--accent); }
+        .inp::placeholder { color: var(--muted); }
+        /* Mobile menu */
+        #mobile-menu { display: none; background: rgba(13,15,20,0.97); border-top: 1px solid var(--border); padding: 20px 24px; flex-direction: column; gap: 18px; }
+        #mobile-menu.open { display: flex; }
+        @keyframes scrollPulse { 0%,100%{opacity:0.2} 50%{opacity:1} }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="#home" class="text-xl font-semibold tracking-widest uppercase">Arch<span class="text-gray-400">Port.</span></a>
-                <div class="hidden md:flex space-x-8 text-sm uppercase tracking-wide">
-                    <a href="#home" class="hover:text-gray-500 transition">Home</a>
-                    <a href="#about" class="hover:text-gray-500 transition">About</a>
-                    <a href="#work" class="hover:text-gray-500 transition">Work</a>
-                    <a href="#contact" class="hover:text-gray-500 transition">Contact</a>
+<!-- NAV -->
+<nav id="navbar">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <a href="#home" class="mono text-sm font-medium" style="color:var(--accent2)">&lt;SW /&gt;</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about"   class="nav-link">About</a>
+                <a href="#work"    class="nav-link">Projects</a>
+                <a href="#skills"  class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full" style="background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.25)">
+                <div class="sdot"></div>
+                <span class="text-xs" style="color:var(--accent2)">Open to Internship</span>
+            </div>
+            <button id="menu-btn" class="md:hidden p-1" aria-label="menu">
+                <div id="bar1" class="w-5 h-px mb-1.5 transition-all duration-300" style="background:var(--text)"></div>
+                <div id="bar2" class="w-5 h-px mb-1.5 transition-all duration-300" style="background:var(--text)"></div>
+                <div id="bar3" class="w-3 h-px ml-auto transition-all duration-300" style="background:var(--text)"></div>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu">
+        <a href="#about"   class="nav-link py-1" onclick="closeMM()">About</a>
+        <a href="#work"    class="nav-link py-1" onclick="closeMM()">Projects</a>
+        <a href="#skills"  class="nav-link py-1" onclick="closeMM()">Skills</a>
+        <a href="#contact" class="nav-link py-1" onclick="closeMM()">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="orb" style="width:500px;height:500px;background:rgba(108,99,255,0.12);top:-100px;left:-150px;"></div>
+    <div class="orb" style="width:400px;height:400px;background:rgba(0,212,170,0.08);bottom:-80px;right:-100px;"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <div class="fade-up mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full"
+             style="background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.3);animation-delay:0.1s">
+            <div class="sdot"></div>
+            <span class="mono text-xs" style="color:#a89fff">Seeking Internship · Jun 8 – Sep 25, 2026</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4">
+            <span class="hero-word" style="animation-delay:0.2s">Hi, I'm </span>
+            <span class="hero-word grad" style="animation-delay:0.32s">Sutthiwit</span><br/>
+            <span class="hero-word" style="color:var(--text-dim);font-weight:300;font-size:0.75em;animation-delay:0.44s">Software </span>
+            <span class="hero-word" style="font-weight:300;font-size:0.75em;animation-delay:0.54s">Engineer</span>
+            <span class="cursor" style="font-size:0.7em"></span>
+        </h1>
+        <p class="fade-up max-w-xl mx-auto text-sm leading-relaxed mb-10"
+           style="color:var(--text-dim);animation-delay:0.7s">
+            นักศึกษา Software Engineering จาก ม.พะเยา มีประสบการณ์พัฒนา Web App แบบ Full-Stack ด้วย Next.js, TypeScript และ NestJS — มองหาโอกาสฝึกงานเพื่อเติบโตในสายอาชีพ
+        </p>
+        <div class="fade-up flex flex-wrap items-center justify-center gap-4" style="animation-delay:0.85s">
+            <a href="#work" class="btn-p">View Projects ↓</a>
+            <a href="mailto:sutthiwitsriyotha@gmail.com" class="btn-o">✉ Get in Touch</a>
+        </div>
+        <div class="fade-up mt-14 flex flex-wrap justify-center gap-2" style="animation-delay:1s">
+            <span class="pill pill-p">TypeScript</span><span class="pill pill-p">Next.js</span>
+            <span class="pill pill-p">React.js</span><span class="pill pill-p">Node.js</span>
+            <span class="pill pill-p">NestJS</span><span class="pill">Tailwind CSS</span>
+            <span class="pill">MongoDB</span><span class="pill">Docker</span>
+        </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+        <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="relative py-28 overflow-hidden">
+    <div class="orb" style="width:350px;height:350px;background:rgba(0,212,170,0.06);top:50px;right:-80px;"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8">
+        <div class="reveal mb-14">
+            <div class="sec-lbl">About Me</div>
+            <h2 class="text-3xl md:text-4xl font-bold">The Developer Behind the Code</h2>
+        </div>
+        <div class="grid md:grid-cols-5 gap-12 items-start">
+            <!-- Avatar side -->
+            <div class="md:col-span-2 reveal rd1">
+                <div class="relative">
+                    <div class="aspect-square rounded-2xl overflow-hidden" style="background:var(--surface);border:1px solid var(--border)">
+                        <div class="w-full h-full flex items-center justify-center" style="background:linear-gradient(135deg,rgba(108,99,255,0.15),rgba(0,212,170,0.1))">
+                            <div class="w-28 h-28 rounded-full flex items-center justify-center text-4xl font-bold" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff">SW</div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 px-4 py-2 rounded-xl text-xs font-semibold" style="background:var(--surface);border:1px solid var(--border);color:var(--accent2)">GPA 3.29 ⭐</div>
+                </div>
+                <div class="mt-10 space-y-3">
+                    <a href="mailto:sutthiwitsriyotha@gmail.com" class="flex items-center gap-3 text-sm transition-colors hover:text-white" style="color:var(--text-dim)">
+                        ✉ sutthiwitsriyotha@gmail.com
+                    </a>
+                    <a href="tel:+66934918615" class="flex items-center gap-3 text-sm transition-colors hover:text-white" style="color:var(--text-dim)">
+                        ☎ 093-491-8615
+                    </a>
+                    <a href="https://github.com/SutthiwitSriyotha" target="_blank" class="flex items-center gap-3 text-sm transition-colors hover:text-white" style="color:var(--text-dim)">
+                        ⌥ SutthiwitSriyotha
+                    </a>
+                </div>
+            </div>
+            <!-- Text side -->
+            <div class="md:col-span-3 reveal rd2">
+                <div class="mono text-xs mb-6 px-4 py-3 rounded-lg" style="background:var(--surface);border:1px solid var(--border);color:var(--text-dim);line-height:1.8">
+                    <span style="color:var(--accent2)">const</span> <span style="color:#a89fff">developer</span> = {<br/>
+                    &nbsp;&nbsp;<span style="color:var(--accent2)">name:</span> <span style="color:#ffd700">"Sutthiwit Sriyotha"</span>,<br/>
+                    &nbsp;&nbsp;<span style="color:var(--accent2)">university:</span> <span style="color:#ffd700">"University of Phayao"</span>,<br/>
+                    &nbsp;&nbsp;<span style="color:var(--accent2)">major:</span> <span style="color:#ffd700">"Software Engineering"</span>,<br/>
+                    &nbsp;&nbsp;<span style="color:var(--accent2)">status:</span> <span style="color:#00d4aa">"Open to Internship 2026"</span><br/>
+                    }
+                </div>
+                <div class="space-y-4 text-sm leading-relaxed" style="color:var(--text-dim)">
+                    <p>นักศึกษาวิศวกรรมซอฟต์แวร์ ชั้นปีที่ 4 มหาวิทยาลัยพะเยา สนใจการพัฒนา Web Application แบบ Full-Stack ตั้งแต่ออกแบบ UI/UX ด้วย Figma จนถึงเขียน Backend API ด้วย NestJS</p>
+                    <p>ผ่านการฝึกงานจริงที่ Division of Educational Services มหาวิทยาลัยพะเยา พัฒนาระบบ UP-PSF Digital Assessment System แบบ Paperless ในกระบวนการ Agile Scrum</p>
+                    <p>กำลังมองหาโอกาสฝึกงาน <span style="color:var(--text)">ตั้งแต่ 8 มิถุนายน – 25 กันยายน 2026</span> เพื่อเติบโตในสายงานพัฒนาซอฟต์แวร์</p>
+                </div>
+                <div class="mt-8 p-5 rounded-xl" style="background:var(--surface);border:1px solid var(--border)">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background:rgba(108,99,255,0.15)">🎓</div>
+                        <div>
+                            <p class="font-semibold text-sm">Bachelor of Engineering (Software Engineering)</p>
+                            <p class="text-xs mt-1" style="color:var(--text-dim)">University of Phayao · 2022 – 2026</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="pill pill-g text-xs">GPA 3.29</span>
+                                <span class="pill text-xs">Graduating 2026</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Home Section -->
-    <section id="home" class="h-screen flex items-center justify-center bg-white">
-        <div class="text-center px-4">
-            <p class="text-sm uppercase tracking-[0.3em] text-gray-500 mb-4">Selected Works</p>
-            <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight">Architecture<br/><span class="font-semibold">Portfolio</span></h1>
-            <p class="max-w-lg mx-auto text-gray-500 mb-8 font-light">นำเสนอแนวคิด การออกแบบ และผลงานทางสถาปัตยกรรมที่เน้นความเรียบง่ายและการใช้พื้นที่อย่างยั่งยืน</p>
-            <a href="#work" class="inline-block border border-gray-900 text-gray-900 px-8 py-3 text-sm uppercase tracking-widest hover:bg-gray-900 hover:text-white transition duration-300">View Projects</a>
+<!-- PROJECTS -->
+<section id="work" class="relative py-28 overflow-hidden" style="background:rgba(19,22,30,0.6);">
+    <div class="orb" style="width:400px;height:400px;background:rgba(108,99,255,0.07);bottom:-60px;left:-100px;"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="reveal flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+            <div>
+                <div class="sec-lbl">Projects</div>
+                <h2 class="text-3xl md:text-4xl font-bold">Selected Works</h2>
+            </div>
+            <p class="text-sm max-w-xs" style="color:var(--text-dim)">ผลงานจากการฝึกงานและ Academic Projects ปี 2024–2026</p>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl font-semibold mb-8 border-b pb-4">About Me</h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="bg-gray-200 aspect-square rounded-sm shadow-inner flex items-center justify-center">
-                    <span class="text-gray-400">[ Your Profile Image ]</span>
+        <!-- UP-PSF Featured -->
+        <div class="card reveal p-6 mb-6">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="proj-wrap" style="aspect-ratio:16/10;">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop&q=80"
+                         alt="UP-PSF Digital Assessment System"
+                         id="img-uppsf"/>
                 </div>
                 <div>
-                    <h3 class="text-xl font-medium mb-4">นักออกแบบสถาปัตยกรรม</h3>
-                    <p class="text-gray-600 mb-4 font-light leading-relaxed">
-                        มีความสนใจในการออกแบบที่ผสมผสานระหว่างฟังก์ชันการใช้งาน สภาพแวดล้อม และสุนทรียศาสตร์ มุ่งเน้นการสร้างสเปซที่ตอบสนองต่อผู้ใช้งานและบริบทโดยรอบ
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="pill pill-p text-xs">Internship · Nov 2025 – Feb 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">UP-PSF Digital Assessment System</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:var(--text-dim)">
+                        ระบบประเมินอาจารย์แบบ Paperless สำหรับมหาวิทยาลัยพะเยา ในตำแหน่ง Frontend Developer Intern ที่ Division of Educational Services รองรับ Role-Based Access Control, Status-Driven Workflow และ Document Routing
                     </p>
-                    <p class="text-gray-600 font-light leading-relaxed">
-                        I believe architecture is not just about buildings, but about creating environments that inspire and elevate human experiences.
-                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="pill text-xs">Next.js</span><span class="pill text-xs">TypeScript</span>
+                        <span class="pill text-xs">Tailwind CSS</span><span class="pill text-xs">NestJS API</span>
+                        <span class="pill text-xs">MinIO</span><span class="pill text-xs">Agile Scrum</span>
+                    </div>
+                    <div class="space-y-1.5 text-xs" style="color:var(--text-dim)">
+                        <div class="flex items-start gap-2"><span style="color:var(--accent2)">✓</span><span>ออกแบบ Status-driven workflow สำหรับ Document routing และ Task assignment</span></div>
+                        <div class="flex items-start gap-2"><span style="color:var(--accent2)">✓</span><span>สร้างระบบ RBAC แบบ Dynamic รองรับ Multi-role assignments</span></div>
+                        <div class="flex items-start gap-2"><span style="color:var(--accent2)">✓</span><span>Integrate Front-end กับ NestJS REST APIs และ Secure file upload ด้วย MinIO</span></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Work Section -->
-    <section id="work" class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl font-semibold mb-12 text-center">Selected Works</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="group cursor-pointer">
-                    <div class="bg-gray-200 aspect-[4/3] mb-4 overflow-hidden rounded-sm flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300"></div>
-                        <span class="text-gray-400">[ Project Image 1 ]</span>
-                    </div>
-                    <h3 class="text-lg font-medium">Urban Residence</h3>
-                    <p class="text-sm text-gray-500 uppercase tracking-wider">Residential Design</p>
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Restaurant -->
+            <div class="card reveal rd1 p-6 flex flex-col">
+                <div class="proj-wrap mb-5" style="aspect-ratio:16/10;">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop&q=80"
+                         alt="Restaurant Management Web App" id="img-restaurant"/>
                 </div>
-                <!-- Project 2 -->
-                <div class="group cursor-pointer">
-                    <div class="bg-gray-200 aspect-[4/3] mb-4 overflow-hidden rounded-sm flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300"></div>
-                        <span class="text-gray-400">[ Project Image 2 ]</span>
-                    </div>
-                    <h3 class="text-lg font-medium">Eco Community Center</h3>
-                    <p class="text-sm text-gray-500 uppercase tracking-wider">Public Space</p>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="pill text-xs">Academic Project</span><span class="pill text-xs">2025</span>
                 </div>
-                <!-- Project 3 -->
-                <div class="group cursor-pointer">
-                    <div class="bg-gray-200 aspect-[4/3] mb-4 overflow-hidden rounded-sm flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300"></div>
-                        <span class="text-gray-400">[ Project Image 3 ]</span>
-                    </div>
-                    <h3 class="text-lg font-medium">Minimalist Pavilion</h3>
-                    <p class="text-sm text-gray-500 uppercase tracking-wider">Exhibition</p>
+                <h3 class="text-lg font-bold mb-2">Restaurant Management Web App</h3>
+                <p class="text-sm leading-relaxed flex-grow mb-4" style="color:var(--text-dim)">
+                    ระบบจัดการร้านอาหาร "ร้านลุงแชมป์ข้าวแกง" แบบ QR-Based มี Real-time Order Tracking, Dashboard สำหรับ Payment Confirmation และ Export ยอดขายเป็น Excel
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="pill text-xs">Full-Stack</span><span class="pill text-xs">MongoDB</span>
+                    <span class="pill text-xs">QR System</span><span class="pill text-xs">Excel Export</span>
                 </div>
-                <!-- Project 4 -->
-                <div class="group cursor-pointer">
-                    <div class="bg-gray-200 aspect-[4/3] mb-4 overflow-hidden rounded-sm flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300"></div>
-                        <span class="text-gray-400">[ Project Image 4 ]</span>
-                    </div>
-                    <h3 class="text-lg font-medium">Modern Office Interior</h3>
-                    <p class="text-sm text-gray-500 uppercase tracking-wider">Interior Design</p>
+            </div>
+            <!-- Plant Store -->
+            <div class="card reveal rd2 p-6 flex flex-col">
+                <div class="proj-wrap mb-5" style="aspect-ratio:16/10;">
+                    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&auto=format&fit=crop&q=80"
+                         alt="TAMROI Online Plant Store" id="img-plant"/>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="pill text-xs">Academic Project</span><span class="pill text-xs">2024</span>
+                </div>
+                <h3 class="text-lg font-bold mb-2">TAMROI — Online Plant Store</h3>
+                <p class="text-sm leading-relaxed flex-grow mb-4" style="color:var(--text-dim)">
+                    ร้านค้าออนไลน์สำหรับขายต้นไม้ "Tamroi Tree Tam" เริ่มจาก User Interview, Wireframe และ High-fidelity Prototype ด้วย Figma จนถึง Responsive Front-end
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="pill text-xs">UX Research</span><span class="pill text-xs">Figma</span>
+                    <span class="pill text-xs">Responsive UI</span><span class="pill text-xs">E-Commerce</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-gray-900 text-white text-center">
-        <div class="max-w-2xl mx-auto px-4">
-            <h2 class="text-3xl font-light mb-6 tracking-wide">Let's Work Together</h2>
-            <p class="text-gray-400 mb-10 font-light">หากสนใจพูดคุยเรื่องโปรเจกต์ หรือต้องการดู Portfolio ฉบับเต็ม สามารถติดต่อได้เลยครับ</p>
-            <div class="space-y-4 font-light tracking-wide">
-                <p>Email: <a href="mailto:hello@example.com" class="hover:text-gray-300 transition">hello@example.com</a></p>
-                <p>Phone: <a href="tel:+66812345678" class="hover:text-gray-300 transition">+66 81 234 5678</a></p>
+<!-- SKILLS -->
+<section id="skills" class="relative py-28 overflow-hidden">
+    <div class="orb" style="width:450px;height:450px;background:rgba(0,212,170,0.06);top:-50px;right:-120px;"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8">
+        <div class="reveal mb-14">
+            <div class="sec-lbl">Skills &amp; Tools</div>
+            <h2 class="text-3xl md:text-4xl font-bold">Technical Expertise</h2>
+        </div>
+        
+        <!-- Icon Skills Grid -->
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Frontend -->
+            <div class="card reveal rd1 p-6">
+                <h3 class="text-sm font-semibold uppercase tracking-widest mb-8 text-center" style="color:var(--text-dim)">Frontend</h3>
+                <div class="grid grid-cols-3 gap-y-6 gap-x-4">
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">TypeScript</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js" class="w-10 h-10 invert opacity-90 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Next.js</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">React.js</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Tailwind</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">HTML5</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">CSS3</span>
+                    </div>
+                </div>
             </div>
-            <div class="mt-12 text-sm text-gray-600">
-                &copy; 2026 Architecture Portfolio. All rights reserved.
+
+            <!-- Backend & DB -->
+            <div class="card reveal rd2 p-6">
+                <h3 class="text-sm font-semibold uppercase tracking-widest mb-8 text-center" style="color:var(--text-dim)">Backend &amp; DB</h3>
+                <div class="grid grid-cols-3 gap-y-6 gap-x-4">
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Node.js</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="NestJS" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">NestJS</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg" alt="Prisma" class="w-10 h-10 invert opacity-90 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Prisma</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">MongoDB</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">MySQL</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="Redis" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Redis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Infra -->
+            <div class="card reveal rd3 p-6">
+                <h3 class="text-sm font-semibold uppercase tracking-widest mb-8 text-center" style="color:var(--text-dim)">Tools &amp; Infra</h3>
+                <div class="grid grid-cols-3 gap-y-6 gap-x-4">
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Docker</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Git</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" class="w-10 h-10 invert opacity-90 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">GitHub</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Figma</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Jira</span>
+                    </div>
+                    <!-- Empty slot for grid balance if needed, or add one more tool -->
+                    <div class="flex flex-col items-center gap-2 group cursor-default">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg" alt="NPM" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
+                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">NPM</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
+        <!-- Timeline -->
+        <div class="mt-20">
+            <div class="reveal mb-10"><h3 class="text-xl font-bold">Experience Timeline</h3></div>
+            <div class="relative pl-8 space-y-10">
+                <div class="tl-line"></div>
+                <div class="reveal rd1 relative flex gap-5">
+                    <div class="tl-dot flex-shrink-0"></div>
+                    <div class="card p-5 flex-grow">
+                        <div class="flex flex-wrap items-center gap-3 mb-2">
+                            <span class="font-semibold text-sm">Frontend Developer Intern</span>
+                            <span class="pill pill-p text-xs">Nov 2025 – Feb 2026</span>
+                        </div>
+                        <p class="text-xs mb-3" style="color:var(--text-dim)">Division of Educational Services, University of Phayao — UP-PSF Digital Assessment System</p>
+                        <p class="text-xs leading-relaxed" style="color:var(--text-dim)">พัฒนาระบบ Paperless ด้วย Next.js, TypeScript, Tailwind CSS ใน Agile Scrum รวมถึง RBAC, Workflow System และ Integrate กับ NestJS REST APIs + MinIO</p>
+                    </div>
+                </div>
+                <div class="reveal rd2 relative flex gap-5">
+                    <div class="tl-dot flex-shrink-0" style="border-color:var(--accent2)"></div>
+                    <div class="card p-5 flex-grow">
+                        <div class="flex flex-wrap items-center gap-3 mb-2">
+                            <span class="font-semibold text-sm">Restaurant Management Web App</span>
+                            <span class="pill pill-g text-xs">Academic · 2025</span>
+                        </div>
+                        <p class="text-xs leading-relaxed" style="color:var(--text-dim)">Full-Stack QR-Based Restaurant System — Real-time order tracking, Store dashboard + Excel export ด้วย MongoDB</p>
+                    </div>
+                </div>
+                <div class="reveal rd3 relative flex gap-5">
+                    <div class="tl-dot flex-shrink-0" style="border-color:var(--accent2)"></div>
+                    <div class="card p-5 flex-grow">
+                        <div class="flex flex-wrap items-center gap-3 mb-2">
+                            <span class="font-semibold text-sm">TAMROI Online Plant Store</span>
+                            <span class="pill pill-g text-xs">Academic · 2024</span>
+                        </div>
+                        <p class="text-xs leading-relaxed" style="color:var(--text-dim)">User Research → Figma Prototype → Responsive Front-end — ดำเนิน User Interview และออกแบบ High-fidelity Prototype</p>
+                    </div>
+                </div>
+                <div class="reveal rd4 relative flex gap-5">
+                    <div class="tl-dot flex-shrink-0" style="border-color:var(--muted)"></div>
+                    <div class="p-5">
+                        <div class="flex flex-wrap items-center gap-3 mb-1">
+                            <span class="font-semibold text-sm">เริ่มศึกษา Software Engineering</span>
+                            <span class="pill text-xs">2022</span>
+                        </div>
+                        <p class="text-xs" style="color:var(--text-dim)">University of Phayao — ปัจจุบัน GPA 3.29</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="relative py-28 overflow-hidden" style="background:rgba(19,22,30,0.7);">
+    <div class="orb" style="width:500px;height:500px;background:rgba(108,99,255,0.1);top:-80px;right:-150px;"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8">
+        <div class="reveal text-center mb-14">
+            <div class="sec-lbl justify-center">Contact</div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-3">Let's Work Together</h2>
+            <p class="text-sm max-w-lg mx-auto" style="color:var(--text-dim)">
+                กำลังมองหาโอกาสฝึกงาน <span style="color:var(--text)">8 มิถุนายน – 25 กันยายน 2026</span><br/>หากสนใจพูดคุย สามารถติดต่อได้เลยครับ
+            </p>
+        </div>
+        <div class="grid md:grid-cols-5 gap-8">
+            <div class="md:col-span-2 reveal rd1 space-y-4">
+                <div class="card p-5">
+                    <p class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-dim)">Email</p>
+                    <a href="mailto:sutthiwitsriyotha@gmail.com" class="text-sm transition-colors hover:text-white" style="color:var(--accent)">sutthiwitsriyotha@gmail.com</a>
+                </div>
+                <div class="card p-5">
+                    <p class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-dim)">Phone</p>
+                    <a href="tel:+66934918615" class="text-sm transition-colors hover:text-white" style="color:var(--accent)">093-491-8615</a>
+                </div>
+                <div class="card p-5">
+                    <p class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-dim)">GitHub</p>
+                    <a href="https://github.com/SutthiwitSriyotha" target="_blank" class="text-sm transition-colors hover:text-white" style="color:var(--accent)">SutthiwitSriyotha</a>
+                </div>
+                <div class="card p-5 flex items-center gap-3">
+                    <div class="sdot"></div>
+                    <div>
+                        <p class="text-xs font-semibold" style="color:var(--accent2)">Available for Internship</p>
+                        <p class="text-xs mt-0.5" style="color:var(--text-dim)">June 8 – Sep 25, 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-3 reveal rd2">
+                <div class="card p-6 space-y-4">
+                    <h3 class="font-semibold text-sm mb-2">ส่งข้อความ</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="ชื่อของคุณ" class="inp col-span-2 md:col-span-1"/>
+                        <input type="email" placeholder="อีเมล" class="inp col-span-2 md:col-span-1"/>
+                    </div>
+                    <input type="text" placeholder="เรื่อง" class="inp"/>
+                    <textarea placeholder="ข้อความ..." rows="4" class="inp resize-none"></textarea>
+                    <a href="mailto:sutthiwitsriyotha@gmail.com" class="btn-p w-full justify-center" style="display:flex">ส่งข้อความ →</a>
+                    <p class="text-xs text-center" style="color:var(--muted)">หรือส่ง Email โดยตรงที่ sutthiwitsriyotha@gmail.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-16 pt-8 text-center text-xs" style="border-top:1px solid var(--border);color:var(--muted)">
+            <p>© 2026 Sutthiwit Sriyotha — Software Engineering, University of Phayao</p>
+            <p class="mt-1 mono" style="color:var(--border)">Built with HTML · Tailwind CSS · ♥</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const b1 = document.getElementById('bar1'), b2 = document.getElementById('bar2'), b3 = document.getElementById('bar3');
+    let open = false;
+    menuBtn.addEventListener('click', () => {
+        open = !open;
+        mobileMenu.classList.toggle('open', open);
+        b1.style.transform = open ? 'translateY(6px) rotate(45deg)' : '';
+        b2.style.opacity = open ? '0' : '1';
+        b3.style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
+        b3.style.width = open ? '20px' : '12px';
+    });
+    function closeMM() {
+        open = false; mobileMenu.classList.remove('open');
+        b1.style.transform = ''; b2.style.opacity = '1';
+        b3.style.transform = ''; b3.style.width = '12px';
+    }
+
+    // Scroll reveal
+    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Skill bars
+    const barObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.style.width = e.target.getAttribute('data-w') + '%'; barObs.unobserve(e.target); } }), { threshold: 0.3 });
+    document.querySelectorAll('.bar-fill').forEach(el => barObs.observe(el));
+
+    // Try to load uploaded screenshots as project images
+    // (will gracefully keep Unsplash fallbacks if local paths unavailable)
+    const imgMap = {
+        'img-uppsf':      '/mnt/user-data/uploads/UP-PSF_Digital_Assessment_System.png',
+        'img-restaurant': '/mnt/user-data/uploads/Restaurant_Management_Web_App.png',
+        'img-plant':      '/mnt/user-data/uploads/Online_Plant_Store_.png'
+    };
+    Object.entries(imgMap).forEach(([id, src]) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const test = new Image();
+        test.onload = () => { el.src = src; };
+        test.src = src;
+    });
+</script>
 </body>
 </html>
