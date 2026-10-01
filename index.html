@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="description" content="Sutthiwit Sriyotha — Portfolio of Sutthiwit Sriyotha, a software engineering graduate with experience in business analysis, quality assurance, web development, data validation, and enterprise systems."/>
-<title>Sutthiwit Sriyotha — Software Engineering Portfolio</title>
+<meta name="description" content="Sutthiwit Sriyotha — BA / QA Tester with a software engineering background. Experience in requirements analysis, SRS, test case design, manual and automated testing, API testing, and database validation."/>
+<title>Sutthiwit Sriyotha — BA / QA Tester Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -366,7 +366,7 @@ html[data-theme="light"] .case-dialog-content::-webkit-scrollbar-thumb:hover{bac
 .case-dialog-grid section{min-width:0}
 .case-dialog-content ul{padding-left:18px;margin:0;display:grid;gap:7px}
 .case-dialog-content li::marker{color:var(--purple)}
-.case-bottom{grid-template-columns:1fr 1fr}
+.case-bottom{grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr)}
 .case-bottom .tags{margin:0}
 .case-visual{margin-top:25px;padding-top:20px;border-top:1px solid var(--line)}
 .case-visual img{display:block;max-width:100%;max-height:550px;height:auto;width:auto;margin:auto;border-radius:11px;border:1px solid var(--line);background:#fff}
@@ -436,6 +436,18 @@ section{padding:65px 0}
 }
 @media(prefers-reduced-motion:reduce){.featured-project:hover,.secondary-project:hover,.tool-tile:hover{transform:none}}
 
+
+/* Project thumbnails are keyboard-accessible case study buttons. */
+.case-media-trigger{appearance:none;-webkit-appearance:none;display:block;width:100%;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;padding:0}
+.featured-media.case-media-trigger{display:block;height:260px;flex:0 0 auto}
+.secondary-media.case-media-trigger{display:flex;height:195px;padding:31px 12px 12px}
+.case-media-trigger:focus-visible{outline:3px solid var(--cyan);outline-offset:-4px;z-index:4}
+.media-view{position:absolute;z-index:4;right:12px;bottom:12px;display:inline-flex;align-items:center;justify-content:center;padding:7px 9px;border-radius:9px;background:rgba(8,12,22,.86);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:10px;font-weight:700;line-height:1.2;pointer-events:none;backdrop-filter:blur(8px);transition:background .2s,transform .2s}
+.case-media-trigger:hover .media-view,.case-media-trigger:focus-visible .media-view{background:rgba(87,73,168,.94);transform:translateY(-2px)}
+@media(max-width:1100px){.featured-media.case-media-trigger{height:225px}}
+@media(max-width:980px){.featured-media.case-media-trigger{height:210px}}
+@media(max-width:670px){.featured-media.case-media-trigger{height:255px}.secondary-media.case-media-trigger{height:220px}}
+@media(max-width:390px){.featured-media.case-media-trigger{height:215px}}
 </style>
 </head>
 <body>
@@ -453,13 +465,13 @@ section{padding:65px 0}
 
 <header class="hero" id="home"><div class="wrap hero-grid">
 <div>
-<div class="kicker reveal">Junior BA / QA Tester · Software Engineering</div>
+<div class="kicker reveal">BA / QA Tester</div>
 <h1 class="reveal">Sutthiwit<br><span class="gradient">Sriyotha</span></h1>
-<p class="reveal">Software engineering graduate with hands-on experience in requirements analysis, SRS documentation, UI design, test case development, manual and automated testing, and database validation for enterprise HR and ITSM systems.</p>
+<p class="reveal">BA / QA Tester with a software engineering background. Experienced in requirements gathering, SRS documentation, UI design, test case development, manual and automated testing, API testing, and database validation for enterprise HR and ITSM systems.</p>
 
 <div class="hero-points reveal"><span>Requirements &amp; SRS</span><span>Manual &amp; automated QA</span><span>API &amp; database validation</span></div>
 <div class="actions reveal"><a class="btn primary" href="#work">View Projects <span aria-hidden="true">↘</span></a><a class="btn btn-outline" href="mailto:sutthiwitsriyotha@gmail.com?subject=Resume%20request" aria-label="Request a copy of my resume by email">Request Resume <span aria-hidden="true">↗</span></a><a class="btn btn-text" href="#contact">Contact <span aria-hidden="true">→</span></a></div>
-<div class="hero-availability reveal"><span class="dot" aria-hidden="true"></span>Open to Junior BA, QA Tester &amp; related opportunities</div>
+<div class="hero-availability reveal"><span class="dot" aria-hidden="true"></span>Open to BA / QA Tester opportunities</div>
 </div>
 <div class="visual reveal" id="heroVisual"><svg class="hero-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900">
 <defs>
@@ -516,7 +528,7 @@ section{padding:65px 0}
 <div class="section-head reveal"><div><div class="eyebrow">02 / Selected Projects</div><h2>Work that shows how I think.</h2></div><p>Five projects across BA/QA, software development, and UX. Explore my responsibilities and process in each case study.</p></div>
 <div class="featured-heading reveal"><span>FEATURED · BA / QA</span><span>Enterprise project experience</span></div>
 <div class="featured-grid"><article id="project-joins" class="featured-project reveal">
-<div class="featured-media joins-media"><div class="media-topline"><span class="media-index">01 / ENTERPRISE HR · FEATURED</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+<button type="button" class="featured-media joins-media case-media-trigger" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study"><div class="media-topline"><span class="media-index">01 / ENTERPRISE HR · FEATURED</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
 <defs><linearGradient id="joins-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9fbff"/><stop offset="1" stop-color="#e7efff"/></linearGradient><linearGradient id="joins-blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4d7cff"/><stop offset="1" stop-color="#55d7c4"/></linearGradient><filter id="joins-s"><feDropShadow dx="0" dy="18" stdDeviation="25" flood-opacity=".18"/></filter></defs>
 <rect width="1200" height="760" rx="44" fill="url(#joins-bg)"/><circle cx="1020" cy="110" r="170" fill="#91a7ff" opacity=".15"/>
 <g filter="url(#joins-s)"><rect x="80" y="80" width="1040" height="590" rx="32" fill="#fff"/><rect x="80" y="80" width="210" height="590" rx="32" fill="#13233f"/><text x="126" y="145" font-size="34" fill="#fff" font-family="Arial" font-weight="700">JOiNS+</text><text x="126" y="180" font-size="18" fill="#99a9c4" font-family="Arial">HR Portal</text>
@@ -529,11 +541,11 @@ section{padding:65px 0}
 <g fill="#86a5ff"><rect x="370" y="470" width="28" height="80" rx="7"/><rect x="418" y="430" width="28" height="120" rx="7"/><rect x="466" y="390" width="28" height="160" rx="7"/><rect x="514" y="445" width="28" height="105" rx="7"/><rect x="562" y="405" width="28" height="145" rx="7"/><rect x="610" y="365" width="28" height="185" rx="7"/></g>
 <rect x="830" y="275" width="245" height="150" rx="24" fill="#f8faff"/><text x="860" y="315" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Database & Migration</text><circle cx="880" cy="360" r="23" fill="#557cff"/><g fill="#34bfa3"><circle cx="944" cy="345" r="6"/><circle cx="944" cy="375" r="6"/><circle cx="944" cy="405" r="6"/></g><g fill="#667085"><rect x="960" y="338" width="85" height="10" rx="5"/><rect x="960" y="368" width="70" height="10" rx="5"/><rect x="960" y="398" width="92" height="10" rx="5"/></g>
 <rect x="830" y="450" width="245" height="145" rx="24" fill="#f8faff"/><text x="860" y="492" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Approval Workflow</text><path d="M870 535 H1035" stroke="#d4dbea" stroke-width="8" stroke-linecap="round"/><circle cx="895" cy="535" r="15" fill="#557cff"/><circle cx="955" cy="535" r="15" fill="#34bfa3"/><circle cx="1015" cy="535" r="15" fill="#ff9e7a"/></g>
-</svg><span class="concept-caption">Conceptual illustration · No production data</span></div>
+</svg><span class="concept-caption">Conceptual illustration · No production data</span><span class="media-view" aria-hidden="true">View case study ↗</span></button>
 <div class="featured-copy"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Double P Enterprise</span></div><h3>Business rules, approvals &amp; data integrity</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Enterprise HR workflows for leave requests, approvals, and employee records.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements and documented SRS; contributed to UI and workflow design.</li><li>Designed test cases for leave calculations, approval routing, RBAC, and edge cases.</li><li>Validated legacy leave-balance imports and maintained automated regression checks.</li></ul>
 <div class="tags"><span class="tag">Requirements</span><span class="tag">SRS</span><span class="tag">Test cases</span><span class="tag">PostgreSQL</span><span class="tag">Vitest</span><span class="tag">CI/CD</span></div><button type="button" class="open-case" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-mega" class="featured-project reveal">
-<div class="featured-media mega-media"><div class="media-topline"><span class="media-index">02 / ENTERPRISE ITSM · FEATURED</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+<button type="button" class="featured-media mega-media case-media-trigger" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study"><div class="media-topline"><span class="media-index">02 / ENTERPRISE ITSM · FEATURED</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
 <defs><linearGradient id="mega-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0e15"/><stop offset="1" stop-color="#111827"/></linearGradient><linearGradient id="mega-orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff875f"/><stop offset="1" stop-color="#8b7cff"/></linearGradient><filter id="mega-s"><feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#000" flood-opacity=".5"/></filter></defs>
 <rect width="1200" height="760" rx="44" fill="url(#mega-bg)"/><circle cx="1040" cy="110" r="190" fill="#ff875f" opacity=".08"/>
 <g filter="url(#mega-s)"><rect x="72" y="76" width="1055" height="610" rx="32" fill="#101722" stroke="#2c3547"/><rect x="72" y="76" width="205" height="610" rx="32" fill="#0c111b"/><text x="118" y="142" font-size="36" font-family="Arial" font-weight="700" fill="#fff">MEGA-T</text><text x="118" y="178" font-size="18" font-family="Arial" fill="#8d99ad">IT Service Management</text>
@@ -546,18 +558,18 @@ section{padding:65px 0}
 <rect x="315" y="255" width="510" height="235" rx="24" fill="#151e2d"/><text x="345" y="300" font-size="19" font-family="Arial" fill="#e9edf5" font-weight="700">Tickets Overview</text><path d="M355 420 C420 355 490 445 555 375 S675 430 765 340" fill="none" stroke="#4d7cff" stroke-width="6"/><path d="M355 440 C430 410 500 455 575 420 S690 460 775 395" fill="none" stroke="#45e0c2" stroke-width="5"/>
 <rect x="850" y="255" width="230" height="235" rx="24" fill="#151e2d"/><text x="880" y="300" font-size="19" font-family="Arial" fill="#e9edf5" font-weight="700">Priority Distribution</text><circle cx="965" cy="390" r="62" fill="none" stroke="#283245" stroke-width="20"/><path d="M965 328 A62 62 0 1 1 918 430" fill="none" stroke="url(#mega-orange)" stroke-width="20" stroke-linecap="round"/>
 <rect x="315" y="525" width="765" height="120" rx="24" fill="#151e2d"/><text x="345" y="565" font-size="18" font-family="Arial" fill="#e9edf5" font-weight="700">Automation & Testing</text><g fill="#45e0c2"><circle cx="355" cy="605" r="8"/><circle cx="525" cy="605" r="8"/><circle cx="695" cy="605" r="8"/><circle cx="865" cy="605" r="8"/></g><g fill="#98a2b3"><text x="375" y="612" font-size="16" font-family="Arial">Playwright</text><text x="545" y="612" font-size="16" font-family="Arial">API Tests</text><text x="715" y="612" font-size="16" font-family="Arial">RBAC</text><text x="885" y="612" font-size="16" font-family="Arial">CI/CD</text></g></g>
-</svg><span class="concept-caption">Conceptual illustration · No production data</span></div>
+</svg><span class="concept-caption">Conceptual illustration · No production data</span><span class="media-view" aria-hidden="true">View case study ↗</span></button>
 <div class="featured-copy"><div class="project-meta"><span>MEGA-T ITSM Platform</span><span>Double P Enterprise</span></div><h3>SLA testing, automation &amp; tenant isolation</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Multi-tenant IT service management for tickets, priorities, SLAs, and support workflows.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements, contributed to UI design, and wrote test cases.</li><li>Developed automated UI and API tests for workflows, SLAs, RBAC, and data isolation.</li><li>Investigated defects using API payloads, PostgreSQL records, and server logs.</li></ul>
 <div class="tags"><span class="tag">Playwright</span><span class="tag">Vitest</span><span class="tag">API testing</span><span class="tag">SLA</span><span class="tag">PostgreSQL</span><span class="tag">RBAC</span></div><button type="button" class="open-case" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study">View Case Study <span aria-hidden="true">↗</span></button></div></article></div>
 <div class="secondary-heading reveal"><div><div class="eyebrow">More experience &amp; projects</div><h3>Development &amp; design work.</h3></div><p>Real project screenshots · Select a case study for details.</p></div>
 <div class="secondary-grid"><article id="project-uppsf" class="secondary-project reveal">
-<a class="secondary-media" href="./assets/images/up-psf-digital-assessment-system.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot of UP-PSF Digital Assessment System"><span class="secondary-index">03 / INTERNSHIP · SOFTWARE DEVELOPMENT</span><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System screenshot" loading="lazy" decoding="async" width="900" height="540"></a>
+<button type="button" class="secondary-media case-media-trigger" data-case="uppsf" aria-haspopup="dialog" aria-label="View UP-PSF Digital Assessment System case study"><span class="secondary-index">03 / INTERNSHIP · SOFTWARE DEVELOPMENT</span><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System screenshot" loading="lazy" decoding="async" width="900" height="540"><span class="media-view" aria-hidden="true">View case study ↗</span></button>
 <div class="secondary-copy"><div class="project-type">INTERNSHIP · SOFTWARE DEVELOPMENT</div><h3>UP-PSF Digital Assessment System</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> Software Developer Intern · University of Phayao</div><p>Paperless faculty assessment and evaluation workflows.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Built responsive assessment forms with multiple editing modes.</li><li>Implemented role-based UI access, REST API integration, and UAT fixes.</li></ul><div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">MinIO</span></div><button type="button" class="open-case" data-case="uppsf" aria-haspopup="dialog" aria-label="View UP-PSF Digital Assessment System case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-restaurant" class="secondary-project reveal">
-<a class="secondary-media" href="./assets/images/restaurant-management-web-app.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot of Restaurant Management Web App"><span class="secondary-index">04 / DEVELOPMENT PROJECT</span><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App screenshot" loading="lazy" decoding="async" width="900" height="540"></a>
+<button type="button" class="secondary-media case-media-trigger" data-case="restaurant" aria-haspopup="dialog" aria-label="View Restaurant Management Web App case study"><span class="secondary-index">04 / DEVELOPMENT PROJECT</span><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App screenshot" loading="lazy" decoding="async" width="900" height="540"><span class="media-view" aria-hidden="true">View case study ↗</span></button>
 <div class="secondary-copy"><div class="project-type">DEVELOPMENT PROJECT</div><h3>Restaurant Management Web App</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> Full-stack development</div><p>QR ordering and operational workflows for restaurant staff.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Built QR-based ordering and real-time order tracking.</li><li>Developed a store dashboard, payment confirmation, and Excel reporting.</li></ul><div class="tags"><span class="tag">QR ordering</span><span class="tag">Dashboard</span><span class="tag">REST API</span><span class="tag">Excel</span></div><button type="button" class="open-case" data-case="restaurant" aria-haspopup="dialog" aria-label="View Restaurant Management Web App case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-tamroi" class="secondary-project reveal">
-<a class="secondary-media" href="./assets/images/online-plant-store.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot of TAMROI Online Plant Store"><span class="secondary-index">05 / UX/UI & FRONT-END</span><img src="./assets/images/online-plant-store.png" alt="TAMROI Online Plant Store screenshot" loading="lazy" decoding="async" width="900" height="540"></a>
+<button type="button" class="secondary-media case-media-trigger" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study"><span class="secondary-index">05 / UX/UI & FRONT-END</span><img src="./assets/images/online-plant-store.png" alt="TAMROI Online Plant Store screenshot" loading="lazy" decoding="async" width="900" height="540"><span class="media-view" aria-hidden="true">View case study ↗</span></button>
 <div class="secondary-copy"><div class="project-type">UX/UI & FRONT-END</div><h3>TAMROI Online Plant Store</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> UX/UI & front-end design</div><p>Responsive e-commerce experience for browsing and buying plants.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Conducted user research and created Figma prototypes.</li><li>Worked on responsive shopping interface design.</li></ul><div class="tags"><span class="tag">User research</span><span class="tag">Figma</span><span class="tag">UX/UI</span><span class="tag">Responsive UI</span></div><button type="button" class="open-case" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study">View Case Study <span aria-hidden="true">↗</span></button></div></article></div>
 </div></section>
 
@@ -578,9 +590,9 @@ section{padding:65px 0}
 <div class="experience-card reveal"><div><div class="date mono">2022 — 2026</div><h3>B.Eng. Software Engineering</h3><div class="company">University of Phayao</div></div><div><p>GPA: 3.29 · Coursework and projects covered software engineering, web development, databases, system design, UX/UI, and collaborative product development.</p></div></div>
 </div></section>
 
-<section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Let's work together.</h2><p>Open to junior roles in business analysis, quality assurance, software testing, software engineering, and related fields.</p></div><div class="contact-links"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me <span aria-hidden="true">↗</span></a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com?subject=Resume%20request">Request Resume <span aria-hidden="true">↗</span></a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></div></div></section>
+<section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Let's work together.</h2><p>Open to BA / QA Tester opportunities. My software engineering background supports collaboration with developers and technical problem-solving.</p></div><div class="contact-links"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me <span aria-hidden="true">↗</span></a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com?subject=Resume%20request">Request Resume <span aria-hidden="true">↗</span></a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></div></div></section>
 
-<footer><div class="wrap">© 2026 Sutthiwit Sriyotha · Software Engineering Portfolio</div></footer>
+<footer><div class="wrap">© 2026 Sutthiwit Sriyotha · BA / QA Tester Portfolio</div></footer>
 
 <dialog id="caseDialog" aria-labelledby="modalTitle" aria-describedby="modalContext"><div class="case-dialog">
 <div class="case-dialog-head"><div><div class="eyebrow" id="modalType">Case study</div><h2 id="modalTitle"></h2><p id="modalSubtitle"></p></div><button class="close" type="button" id="closeDialog" aria-label="Close case study">×</button></div>
