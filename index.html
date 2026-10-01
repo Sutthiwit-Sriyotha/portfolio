@@ -474,6 +474,13 @@ section{padding:65px 0}
 .concept-caption{bottom:8px;right:9px;left:auto;max-width:calc(100% - 18px);text-align:right;color:#c9d1de;opacity:.85;font-size:8px;border-color:rgba(255,255,255,.1);padding:5px 7px}
 @media(max-width:670px){.placeholder-scene{inset:12px 15px}.placeholder-identity{left:16px;bottom:32px}.placeholder-identity strong{font-size:23px}.placeholder-kicker{font-size:8px}.concept-caption{font-size:8px}}
 @media(max-width:390px){.placeholder-identity strong{font-size:20px}.placeholder-panels i{height:39px}}
+
+/* Hero artwork: restrained dark product UI with no overlapping floating badges. */
+.hero .visual{width:100%;padding:9px;background:linear-gradient(145deg,rgba(141,124,255,.13),rgba(69,224,194,.05));border:1px solid rgba(148,137,230,.22);border-radius:27px;box-shadow:0 26px 82px rgba(0,0,0,.24);overflow:hidden;transform-style:flat}
+.hero .hero-system-art{width:100%;height:auto;display:block;border-radius:19px}
+.hero .visual:hover{border-color:rgba(141,124,255,.36)}
+@media(max-width:980px){.hero .visual{max-width:720px}}
+@media(max-width:670px){.hero .visual{padding:6px;border-radius:19px}.hero .hero-system-art{border-radius:13px}}
 </style>
 </head>
 <body>
@@ -499,36 +506,66 @@ section{padding:65px 0}
 <div class="actions reveal"><a class="btn primary" href="#work">View Projects <span aria-hidden="true">↘</span></a><a class="btn btn-outline" href="mailto:sutthiwitsriyotha@gmail.com?subject=Resume%20request" aria-label="Request a copy of my resume by email">Request Resume <span aria-hidden="true">↗</span></a><a class="btn btn-text" href="#contact">Contact <span aria-hidden="true">→</span></a></div>
 <div class="hero-availability reveal"><span class="dot" aria-hidden="true"></span>Open to BA / QA Tester opportunities</div>
 </div>
-<div class="visual reveal" id="heroVisual"><svg class="hero-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900">
+<div class="visual reveal" id="heroVisual">
+<svg class="hero-inline-art hero-system-art" role="img" aria-label="Illustration of the BA and QA workflow, from requirements and SRS to test cases, API checks, and verified delivery." xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" preserveAspectRatio="xMidYMid meet">
 <defs>
- <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7f8ff"/><stop offset=".45" stop-color="#ece8ff"/><stop offset="1" stop-color="#dff8f3"/></linearGradient>
- <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8b7cff"/><stop offset="1" stop-color="#45e0c2"/></linearGradient>
- <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9e7a"/><stop offset="1" stop-color="#8b7cff"/></linearGradient>
- <filter id="shadow"><feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#6d63b8" flood-opacity=".22"/></filter>
+<linearGradient id="hero-frame" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#192037"/><stop offset=".52" stop-color="#101727"/><stop offset="1" stop-color="#101c27"/></linearGradient>
+<linearGradient id="hero-accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9d8dff"/><stop offset="1" stop-color="#49decb"/></linearGradient>
+<linearGradient id="hero-chart" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a295ff" stop-opacity=".24"/><stop offset="1" stop-color="#49decb" stop-opacity=".01"/></linearGradient>
+<filter id="hero-soft-shadow"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#000" flood-opacity=".24"/></filter>
 </defs>
-<rect width="1400" height="900" rx="48" fill="url(#bg)"/>
-<circle cx="1180" cy="140" r="210" fill="#8b7cff" opacity=".12"/><circle cx="1060" cy="710" r="250" fill="#45e0c2" opacity=".11"/>
-<g filter="url(#shadow)">
- <rect x="540" y="105" width="700" height="520" rx="34" fill="#111827"/>
- <rect x="570" y="135" width="640" height="56" rx="16" fill="#20283a"/>
- <circle cx="602" cy="163" r="7" fill="#ff7c75"/><circle cx="625" cy="163" r="7" fill="#ffd166"/><circle cx="648" cy="163" r="7" fill="#45e0c2"/>
- <rect x="575" y="215" width="135" height="365" rx="18" fill="#171d2a"/>
- <g fill="#6e7890"><rect x="598" y="245" width="76" height="11" rx="5"/><rect x="598" y="285" width="84" height="11" rx="5"/><rect x="598" y="325" width="70" height="11" rx="5"/><rect x="598" y="365" width="88" height="11" rx="5"/><rect x="598" y="405" width="60" height="11" rx="5"/></g>
- <rect x="735" y="215" width="205" height="125" rx="20" fill="#f9fbff"/><rect x="960" y="215" width="245" height="125" rx="20" fill="#f9fbff"/>
- <path d="M765 306 C805 255 855 315 900 260" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round"/>
- <g fill="#d7dcf8"><rect x="990" y="278" width="26" height="34" rx="7"/><rect x="1028" y="254" width="26" height="58" rx="7"/><rect x="1066" y="238" width="26" height="74" rx="7"/><rect x="1104" y="266" width="26" height="46" rx="7"/></g>
- <rect x="735" y="365" width="470" height="215" rx="24" fill="#f9fbff"/>
- <circle cx="825" cy="470" r="55" fill="none" stroke="#e5e9f6" stroke-width="20"/><path d="M825 415 A55 55 0 1 1 775 500" fill="none" stroke="url(#g2)" stroke-width="20" stroke-linecap="round"/>
- <g fill="#69748c"><rect x="930" y="415" width="210" height="12" rx="6"/><rect x="930" y="450" width="170" height="12" rx="6"/><rect x="930" y="485" width="195" height="12" rx="6"/><rect x="930" y="520" width="135" height="12" rx="6"/></g>
-</g>
-<g filter="url(#shadow)">
- <rect x="110" y="130" width="320" height="150" rx="28" fill="#ffffff" fill-opacity=".88" stroke="#d8d8ff"/><circle cx="155" cy="175" r="20" fill="#8b7cff"/><text x="190" y="182" font-size="28" font-family="Arial" font-weight="700" fill="#182033">Business Analysis</text><text x="140" y="225" font-size="18" font-family="Arial" fill="#667085">Requirements · Rules · User Stories</text>
- <rect x="160" y="325" width="320" height="150" rx="28" fill="#ffffff" fill-opacity=".88" stroke="#cceee8"/><circle cx="205" cy="370" r="20" fill="#45e0c2"/><text x="240" y="377" font-size="28" font-family="Arial" font-weight="700" fill="#182033">QA & Testing</text><text x="190" y="420" font-size="18" font-family="Arial" fill="#667085">API · Regression · Automation</text>
- <rect x="100" y="520" width="340" height="150" rx="28" fill="#ffffff" fill-opacity=".88" stroke="#ffd8cf"/><circle cx="145" cy="565" r="20" fill="#ff9e7a"/><text x="180" y="572" font-size="28" font-family="Arial" font-weight="700" fill="#182033">Data & Migration</text><text x="130" y="615" font-size="18" font-family="Arial" fill="#667085">PostgreSQL · Validation · Reconcile</text>
-</g>
-<text x="110" y="780" font-size="52" font-family="Arial" font-weight="700" fill="#172033">Turning ideas into reliable systems.</text>
-<text x="112" y="825" font-size="22" font-family="Arial" fill="#667085">BA · QA · Development · Data · Automation</text>
-</svg><span class="float f1">BA · Requirements</span><span class="float f2">QA · Automation</span><span class="float f3">PostgreSQL · Migration</span></div>
+<rect width="1100" height="780" rx="35" fill="#0c111c"/>
+<rect x="2" y="2" width="1096" height="776" rx="34" fill="url(#hero-frame)" stroke="#39415a" stroke-width="3"/>
+<rect x="0" y="0" width="1100" height="78" rx="35" fill="#1a2235"/>
+<path d="M0 52H1100V78H0Z" fill="#1a2235"/><path d="M0 78H1100" stroke="#343d57" stroke-width="2"/>
+<circle cx="37" cy="40" r="8" fill="#ff8a88"/><circle cx="65" cy="40" r="8" fill="#ffce7e"/><circle cx="93" cy="40" r="8" fill="#49decb"/>
+<text x="143" y="47" font-family="Inter,Arial,sans-serif" font-size="24" fill="#e9eafa" font-weight="700" letter-spacing="1.6">WORKFLOW / BA + QA</text>
+<rect x="887" y="23" width="178" height="34" rx="17" fill="#17392f" stroke="#286658"/>
+<circle cx="912" cy="40" r="6" fill="#45e0c2"/><text x="928" y="46" font-family="Inter,Arial,sans-serif" font-size="18" fill="#98f1dc" font-weight="600">IN PROGRESS</text>
+<text x="49" y="132" font-family="Inter,Arial,sans-serif" font-size="20" letter-spacing="2" font-weight="700" fill="#8e9ab5">PROCESS OVERVIEW</text>
+<rect x="39" y="161" width="428" height="144" rx="20" fill="#222341" stroke="#544a87" stroke-width="2"/>
+<rect x="57" y="180" width="46" height="46" rx="13" fill="#6c61bd"/><path d="M71 195h18v19H71Zm4 5h10m-10 5h10" stroke="#fff" stroke-width="2.3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="121" y="205" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#f4f3ff">01  Discover</text>
+<text x="121" y="238" font-family="Inter,Arial,sans-serif" font-size="19" fill="#adb0d0">Requirements · SRS · UI flows</text>
+<rect x="121" y="257" width="112" height="26" rx="13" fill="#353159"/><text x="141" y="276" font-family="Inter,Arial,sans-serif" font-size="14" fill="#c6bfff" font-weight="600">ANALYSIS</text>
+<path d="M252 305V330" stroke="#5b527f" stroke-width="3" stroke-dasharray="5 6" stroke-linecap="round"/>
+<rect x="39" y="331" width="428" height="144" rx="20" fill="#182a35" stroke="#306769" stroke-width="2"/>
+<rect x="57" y="350" width="46" height="46" rx="13" fill="#246f70"/><path d="m68 373 9 9 17-20" fill="none" stroke="#b5ffed" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="121" y="375" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#edfffb">02  Validate</text>
+<text x="121" y="408" font-family="Inter,Arial,sans-serif" font-size="19" fill="#a8d0ca">Test cases · API · Regression</text>
+<rect x="121" y="427" width="94" height="26" rx="13" fill="#245349"/><text x="141" y="446" font-family="Inter,Arial,sans-serif" font-size="14" fill="#a7f8e6" font-weight="600">TESTING</text>
+<path d="M252 475V500" stroke="#47706f" stroke-width="3" stroke-dasharray="5 6" stroke-linecap="round"/>
+<rect x="39" y="501" width="428" height="144" rx="20" fill="#1f273a" stroke="#445571" stroke-width="2"/>
+<rect x="57" y="520" width="46" height="46" rx="13" fill="#405a87"/><path d="m69 544 11 11 18-21m-29 24h29" stroke="#cce4ff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="121" y="545" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#f3f5ff">03  Deliver</text>
+<text x="121" y="578" font-family="Inter,Arial,sans-serif" font-size="19" fill="#b7c2d7">Database · Automation · CI/CD</text>
+<rect x="121" y="597" width="114" height="26" rx="13" fill="#2b3b59"/><text x="140" y="616" font-family="Inter,Arial,sans-serif" font-size="14" fill="#c2daff" font-weight="600">VALIDATION</text>
+<g filter="url(#hero-soft-shadow)">
+<rect x="492" y="160" width="570" height="485" rx="22" fill="#111826" stroke="#414860" stroke-width="2"/>
+<rect x="492" y="160" width="570" height="59" rx="22" fill="#242940"/><path d="M492 196H1062V219H492Z" fill="#242940"/>
+<text x="517" y="198" font-family="Inter,Arial,sans-serif" font-size="21" fill="#e0e5f5" font-weight="700">Test execution</text>
+<rect x="909" y="174" width="123" height="31" rx="15" fill="#25463e"/><circle cx="927" cy="190" r="5" fill="#5be9c7"/><text x="942" y="197" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" fill="#aaf8e6">VERIFIED</text>
+<rect x="516" y="241" width="236" height="122" rx="15" fill="#1c2437" stroke="#303a52"/>
+<text x="535" y="269" font-family="Inter,Arial,sans-serif" font-size="16" fill="#adb8d0">Test scenarios</text>
+<text x="535" y="327" font-family="Inter,Arial,sans-serif" font-size="46" font-weight="800" fill="#f4f5ff">QA</text>
+<rect x="626" y="307" width="99" height="25" rx="12" fill="#383159"/><text x="646" y="325" font-family="Inter,Arial,sans-serif" font-size="13" fill="#c5bcff" font-weight="700">TEST PLAN</text>
+<rect x="770" y="241" width="267" height="122" rx="15" fill="#1c2437" stroke="#303a52"/>
+<text x="788" y="269" font-family="Inter,Arial,sans-serif" font-size="16" fill="#adb8d0">Validation flow</text>
+<path d="M794 324H1014" stroke="#39445f" stroke-width="2" stroke-linecap="round"/>
+<path d="M794 319L832 297L869 307L910 282L955 294L1014 274" stroke="url(#hero-accent)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="832" cy="297" r="4.5" fill="#9d8dff"/><circle cx="910" cy="282" r="4.5" fill="#9d8dff"/><circle cx="1014" cy="274" r="4.5" fill="#45e0c2"/>
+<rect x="516" y="380" width="521" height="235" rx="15" fill="#1c2437" stroke="#303a52"/>
+<text x="537" y="414" font-family="Inter,Arial,sans-serif" font-size="18" fill="#e9ecf8" font-weight="700">Quality checks</text>
+<path d="M538 436H1015" stroke="#323b51"/>
+<g font-family="Inter,Arial,sans-serif" font-size="18" fill="#c1c9dd">
+<circle cx="552" cy="472" r="12" fill="#21584d"/><path d="m545 472 5 5 9-11" fill="none" stroke="#6af6d5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><text x="579" y="478">Requirements coverage</text>
+<circle cx="552" cy="519" r="12" fill="#21584d"/><path d="m545 519 5 5 9-11" fill="none" stroke="#6af6d5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><text x="579" y="525">API &amp; business rules</text>
+<circle cx="552" cy="566" r="12" fill="#21584d"/><path d="m545 566 5 5 9-11" fill="none" stroke="#6af6d5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><text x="579" y="572">Data integrity</text>
+</g></g>
+<path d="M40 687H1060" stroke="#303a50" stroke-width="2"/>
+<circle cx="54" cy="718" r="6" fill="#9d8dff"/><text x="72" y="726" font-family="Inter,Arial,sans-serif" font-size="21" font-weight="600" fill="#c7cade">From requirements to reliable releases.</text>
+<text x="1055" y="725" text-anchor="end" font-family="Inter,Arial,sans-serif" font-size="16" fill="#6f8b9a" letter-spacing=".8">ANALYZE / TEST / VERIFY</text>
+</svg></div>
 </div></header>
 
 <section id="experience" class="experience-section"><div class="wrap">
@@ -647,7 +684,7 @@ function updateActiveNav(){let current='home';for(const section of sections){if(
 let scrollScheduled=false;
 function onScroll(){if(scrollScheduled)return;scrollScheduled=true;requestAnimationFrame(()=>{nav.classList.toggle('scrolled',scrollY>24);const distance=document.documentElement.scrollHeight-innerHeight;progress.style.width=(distance?Math.min(100,scrollY/distance*100):0)+'%';updateActiveNav();scrollScheduled=false;});}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
-if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){addEventListener('pointermove',event=>{glow.style.left=event.clientX+'px';glow.style.top=event.clientY+'px';},{passive:true});const heroVisual=document.getElementById('heroVisual');if(heroVisual){heroVisual.addEventListener('pointermove',event=>{const b=heroVisual.getBoundingClientRect();const x=(event.clientX-b.left)/b.width-.5,y=(event.clientY-b.top)/b.height-.5;heroVisual.style.transform=`perspective(1000px) rotateX(${-y*3}deg) rotateY(${x*4}deg)`;});heroVisual.addEventListener('pointerleave',()=>heroVisual.style.transform='');}}else glow.style.display='none';
+if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){addEventListener('pointermove',event=>{glow.style.left=event.clientX+'px';glow.style.top=event.clientY+'px';},{passive:true});}else glow.style.display='none';
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion:reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target);}}),{threshold:.08,rootMargin:'0px 0px 25px 0px'});document.querySelectorAll('.reveal').forEach(element=>observer.observe(element));}else document.querySelectorAll('.reveal').forEach(element=>element.classList.add('show'));
 const cases={
 joins:{
