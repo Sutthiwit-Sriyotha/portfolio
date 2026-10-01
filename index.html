@@ -448,6 +448,32 @@ section{padding:65px 0}
 @media(max-width:980px){.featured-media.case-media-trigger{height:210px}}
 @media(max-width:670px){.featured-media.case-media-trigger{height:255px}.secondary-media.case-media-trigger{height:220px}}
 @media(max-width:390px){.featured-media.case-media-trigger{height:215px}}
+
+/* Clearly labeled, non-functional visual placeholders for confidential project screens. */
+.featured-media.case-media-trigger{isolation:isolate}
+.joins-media.case-media-trigger{background:linear-gradient(137deg,#161d36,#121a2c 53%,#142b2c)}
+.mega-media.case-media-trigger{background:linear-gradient(139deg,#1e1936,#161b30 53%,#202338)}
+.placeholder-scene{display:block;position:absolute;inset:13px 22px 13px;pointer-events:none;overflow:hidden;opacity:.83;mask-image:linear-gradient(to bottom,#000 47%,transparent 98%)}
+.placeholder-browser{position:absolute;inset:0;border:1px solid rgba(154,163,193,.2);border-radius:18px;background:rgba(12,16,26,.86);display:block;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.17)}
+.placeholder-window{height:37px;border-bottom:1px solid rgba(154,163,193,.16);display:flex;align-items:center;gap:6px;padding:0 15px}
+.placeholder-window i{width:7px;height:7px;border-radius:50%;background:#697085;opacity:.7}
+.placeholder-layout{display:flex;height:calc(100% - 37px)}
+.placeholder-sidebar{width:22%;max-width:104px;border-right:1px solid rgba(154,163,193,.13);padding:13px 11px;display:flex;flex-direction:column;gap:8px}
+.placeholder-sidebar i{height:7px;width:90%;background:rgba(149,157,181,.22);border-radius:999px}
+.placeholder-sidebar i:nth-child(even){width:68%}
+.placeholder-workspace{display:flex;flex:1;min-width:0;flex-direction:column;gap:9px;padding:18px}
+.placeholder-skeleton-line{display:block;height:8px;width:100%;border-radius:99px;background:rgba(149,157,181,.21)}
+.placeholder-skeleton-line.short{width:40%}
+.placeholder-skeleton-line.medium{width:75%}
+.placeholder-panels{display:flex;gap:8px;margin:2px 0}
+.placeholder-panels i{flex:1;min-width:0;height:58px;border-radius:9px;background:rgba(149,157,181,.11);border:1px solid rgba(149,157,181,.13)}
+.placeholder-identity{position:absolute;z-index:2;left:20px;right:20px;bottom:34px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;pointer-events:none;text-shadow:0 2px 16px rgba(0,0,0,.65)}
+.placeholder-kicker{font:600 9px "JetBrains Mono",monospace;letter-spacing:.09em;color:#9bdacb}
+.mega-media .placeholder-kicker{color:#c7b6ff}
+.placeholder-identity strong{font-size:clamp(20px,2vw,28px);line-height:1.1;letter-spacing:-.045em;color:#f5f7fc}
+.concept-caption{bottom:8px;right:9px;left:auto;max-width:calc(100% - 18px);text-align:right;color:#c9d1de;opacity:.85;font-size:8px;border-color:rgba(255,255,255,.1);padding:5px 7px}
+@media(max-width:670px){.placeholder-scene{inset:12px 15px}.placeholder-identity{left:16px;bottom:32px}.placeholder-identity strong{font-size:23px}.placeholder-kicker{font-size:8px}.concept-caption{font-size:8px}}
+@media(max-width:390px){.placeholder-identity strong{font-size:20px}.placeholder-panels i{height:39px}}
 </style>
 </head>
 <body>
@@ -528,37 +554,35 @@ section{padding:65px 0}
 <div class="section-head reveal"><div><div class="eyebrow">02 / Selected Projects</div><h2>Work that shows how I think.</h2></div><p>Five projects across BA/QA, software development, and UX. Explore my responsibilities and process in each case study.</p></div>
 <div class="featured-heading reveal"><span>FEATURED · BA / QA</span><span>Enterprise project experience</span></div>
 <div class="featured-grid"><article id="project-joins" class="featured-project reveal">
-<button type="button" class="featured-media joins-media case-media-trigger" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study"><div class="media-topline"><span class="media-index">01 / ENTERPRISE HR · FEATURED</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
-<defs><linearGradient id="joins-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9fbff"/><stop offset="1" stop-color="#e7efff"/></linearGradient><linearGradient id="joins-blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4d7cff"/><stop offset="1" stop-color="#55d7c4"/></linearGradient><filter id="joins-s"><feDropShadow dx="0" dy="18" stdDeviation="25" flood-opacity=".18"/></filter></defs>
-<rect width="1200" height="760" rx="44" fill="url(#joins-bg)"/><circle cx="1020" cy="110" r="170" fill="#91a7ff" opacity=".15"/>
-<g filter="url(#joins-s)"><rect x="80" y="80" width="1040" height="590" rx="32" fill="#fff"/><rect x="80" y="80" width="210" height="590" rx="32" fill="#13233f"/><text x="126" y="145" font-size="34" fill="#fff" font-family="Arial" font-weight="700">JOiNS+</text><text x="126" y="180" font-size="18" fill="#99a9c4" font-family="Arial">HR Portal</text>
-<g fill="#7f91ad"><rect x="125" y="235" width="92" height="13" rx="6"/><rect x="125" y="285" width="112" height="13" rx="6"/><rect x="125" y="335" width="85" height="13" rx="6"/><rect x="125" y="385" width="106" height="13" rx="6"/><rect x="125" y="435" width="80" height="13" rx="6"/></g>
-<rect x="330" y="120" width="220" height="120" rx="22" fill="#f3f7ff"/><rect x="575" y="120" width="220" height="120" rx="22" fill="#f3f7ff"/><rect x="820" y="120" width="255" height="120" rx="22" fill="#f3f7ff"/>
-<text x="355" y="157" font-size="17" fill="#667085" font-family="Arial">Total Employees</text><text x="355" y="205" font-size="44" fill="#12213f" font-family="Arial" font-weight="700">—</text>
-<text x="600" y="157" font-size="17" fill="#667085" font-family="Arial">Leave Requests</text><text x="600" y="205" font-size="44" fill="#12213f" font-family="Arial" font-weight="700">—</text>
-<circle cx="960" cy="182" r="42" fill="none" stroke="#dde5f6" stroke-width="14"/><path d="M960 140 A42 42 0 1 1 925 205" fill="none" stroke="url(#joins-blue)" stroke-width="14"/>
-<rect x="330" y="275" width="470" height="320" rx="24" fill="#f8faff"/><text x="360" y="320" font-size="19" fill="#24314d" font-family="Arial" font-weight="700">Leave Overview</text>
-<g fill="#86a5ff"><rect x="370" y="470" width="28" height="80" rx="7"/><rect x="418" y="430" width="28" height="120" rx="7"/><rect x="466" y="390" width="28" height="160" rx="7"/><rect x="514" y="445" width="28" height="105" rx="7"/><rect x="562" y="405" width="28" height="145" rx="7"/><rect x="610" y="365" width="28" height="185" rx="7"/></g>
-<rect x="830" y="275" width="245" height="150" rx="24" fill="#f8faff"/><text x="860" y="315" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Database & Migration</text><circle cx="880" cy="360" r="23" fill="#557cff"/><g fill="#34bfa3"><circle cx="944" cy="345" r="6"/><circle cx="944" cy="375" r="6"/><circle cx="944" cy="405" r="6"/></g><g fill="#667085"><rect x="960" y="338" width="85" height="10" rx="5"/><rect x="960" y="368" width="70" height="10" rx="5"/><rect x="960" y="398" width="92" height="10" rx="5"/></g>
-<rect x="830" y="450" width="245" height="145" rx="24" fill="#f8faff"/><text x="860" y="492" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Approval Workflow</text><path d="M870 535 H1035" stroke="#d4dbea" stroke-width="8" stroke-linecap="round"/><circle cx="895" cy="535" r="15" fill="#557cff"/><circle cx="955" cy="535" r="15" fill="#34bfa3"/><circle cx="1015" cy="535" r="15" fill="#ff9e7a"/></g>
-</svg><span class="concept-caption">Conceptual illustration · No production data</span></button>
+<button type="button" class="featured-media joins-media case-media-trigger" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study"><div class="media-topline"><span class="media-index">01 / ENTERPRISE HR · FEATURED</span></div><span class="placeholder-scene" aria-hidden="true">
+<span class="placeholder-browser">
+<span class="placeholder-window"><i></i><i></i><i></i></span>
+<span class="placeholder-layout">
+<span class="placeholder-sidebar"><i></i><i></i><i></i><i></i></span>
+<span class="placeholder-workspace">
+<span class="placeholder-skeleton-line short"></span>
+<span class="placeholder-skeleton-line medium"></span>
+<span class="placeholder-panels"><i></i><i></i><i></i></span>
+<span class="placeholder-skeleton-line"></span>
+<span class="placeholder-skeleton-line medium"></span>
+</span></span></span></span>
+<span class="placeholder-identity" aria-hidden="true"><span class="placeholder-kicker">ENTERPRISE HR · SCREENSHOT NOT PUBLIC</span><strong>JOiNS+ HR Portal</strong></span><span class="concept-caption">Visual placeholder · No production screenshot</span></button>
 <div class="featured-copy"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Double P Enterprise</span></div><h3>Business rules, approvals &amp; data integrity</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Enterprise HR workflows for leave requests, approvals, and employee records.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements and documented SRS; contributed to UI and workflow design.</li><li>Designed test cases for leave calculations, approval routing, RBAC, and edge cases.</li><li>Validated legacy leave-balance imports and maintained automated regression checks.</li></ul>
 <div class="tags"><span class="tag">Requirements</span><span class="tag">SRS</span><span class="tag">Test cases</span><span class="tag">PostgreSQL</span><span class="tag">Vitest</span><span class="tag">CI/CD</span></div><button type="button" class="open-case" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-mega" class="featured-project reveal">
-<button type="button" class="featured-media mega-media case-media-trigger" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study"><div class="media-topline"><span class="media-index">02 / ENTERPRISE ITSM · FEATURED</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
-<defs><linearGradient id="mega-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0e15"/><stop offset="1" stop-color="#111827"/></linearGradient><linearGradient id="mega-orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff875f"/><stop offset="1" stop-color="#8b7cff"/></linearGradient><filter id="mega-s"><feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#000" flood-opacity=".5"/></filter></defs>
-<rect width="1200" height="760" rx="44" fill="url(#mega-bg)"/><circle cx="1040" cy="110" r="190" fill="#ff875f" opacity=".08"/>
-<g filter="url(#mega-s)"><rect x="72" y="76" width="1055" height="610" rx="32" fill="#101722" stroke="#2c3547"/><rect x="72" y="76" width="205" height="610" rx="32" fill="#0c111b"/><text x="118" y="142" font-size="36" font-family="Arial" font-weight="700" fill="#fff">MEGA-T</text><text x="118" y="178" font-size="18" font-family="Arial" fill="#8d99ad">IT Service Management</text>
-<g fill="#59657a"><rect x="120" y="230" width="90" height="12" rx="6"/><rect x="120" y="280" width="108" height="12" rx="6"/><rect x="120" y="330" width="76" height="12" rx="6"/><rect x="120" y="380" width="100" height="12" rx="6"/><rect x="120" y="430" width="82" height="12" rx="6"/></g>
-<rect x="315" y="116" width="180" height="105" rx="20" fill="#151e2d"/><rect x="515" y="116" width="180" height="105" rx="20" fill="#151e2d"/><rect x="715" y="116" width="180" height="105" rx="20" fill="#151e2d"/><rect x="915" y="116" width="165" height="105" rx="20" fill="#151e2d"/>
-<text x="340" y="151" font-size="15" font-family="Arial" fill="#8793a8">Open Tickets</text><text x="340" y="194" font-size="36" font-family="Arial" font-weight="700" fill="#fff">—</text>
-<text x="540" y="151" font-size="15" font-family="Arial" fill="#8793a8">In Progress</text><text x="540" y="194" font-size="36" font-family="Arial" font-weight="700" fill="#fff">—</text>
-<text x="740" y="151" font-size="15" font-family="Arial" fill="#8793a8">Overdue</text><text x="740" y="194" font-size="36" font-family="Arial" font-weight="700" fill="#ff6d6d">—</text>
-<text x="940" y="151" font-size="15" font-family="Arial" fill="#8793a8">SLA Met</text><text x="940" y="194" font-size="36" font-family="Arial" font-weight="700" fill="#45e0c2">—</text>
-<rect x="315" y="255" width="510" height="235" rx="24" fill="#151e2d"/><text x="345" y="300" font-size="19" font-family="Arial" fill="#e9edf5" font-weight="700">Tickets Overview</text><path d="M355 420 C420 355 490 445 555 375 S675 430 765 340" fill="none" stroke="#4d7cff" stroke-width="6"/><path d="M355 440 C430 410 500 455 575 420 S690 460 775 395" fill="none" stroke="#45e0c2" stroke-width="5"/>
-<rect x="850" y="255" width="230" height="235" rx="24" fill="#151e2d"/><text x="880" y="300" font-size="19" font-family="Arial" fill="#e9edf5" font-weight="700">Priority Distribution</text><circle cx="965" cy="390" r="62" fill="none" stroke="#283245" stroke-width="20"/><path d="M965 328 A62 62 0 1 1 918 430" fill="none" stroke="url(#mega-orange)" stroke-width="20" stroke-linecap="round"/>
-<rect x="315" y="525" width="765" height="120" rx="24" fill="#151e2d"/><text x="345" y="565" font-size="18" font-family="Arial" fill="#e9edf5" font-weight="700">Automation & Testing</text><g fill="#45e0c2"><circle cx="355" cy="605" r="8"/><circle cx="525" cy="605" r="8"/><circle cx="695" cy="605" r="8"/><circle cx="865" cy="605" r="8"/></g><g fill="#98a2b3"><text x="375" y="612" font-size="16" font-family="Arial">Playwright</text><text x="545" y="612" font-size="16" font-family="Arial">API Tests</text><text x="715" y="612" font-size="16" font-family="Arial">RBAC</text><text x="885" y="612" font-size="16" font-family="Arial">CI/CD</text></g></g>
-</svg><span class="concept-caption">Conceptual illustration · No production data</span></button>
+<button type="button" class="featured-media mega-media case-media-trigger" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study"><div class="media-topline"><span class="media-index">02 / ENTERPRISE ITSM · FEATURED</span></div><span class="placeholder-scene" aria-hidden="true">
+<span class="placeholder-browser">
+<span class="placeholder-window"><i></i><i></i><i></i></span>
+<span class="placeholder-layout">
+<span class="placeholder-sidebar"><i></i><i></i><i></i><i></i></span>
+<span class="placeholder-workspace">
+<span class="placeholder-skeleton-line short"></span>
+<span class="placeholder-skeleton-line medium"></span>
+<span class="placeholder-panels"><i></i><i></i><i></i></span>
+<span class="placeholder-skeleton-line"></span>
+<span class="placeholder-skeleton-line medium"></span>
+</span></span></span></span>
+<span class="placeholder-identity" aria-hidden="true"><span class="placeholder-kicker">ENTERPRISE ITSM · SCREENSHOT NOT PUBLIC</span><strong>MEGA-T ITSM Platform</strong></span><span class="concept-caption">Visual placeholder · No production screenshot</span></button>
 <div class="featured-copy"><div class="project-meta"><span>MEGA-T ITSM Platform</span><span>Double P Enterprise</span></div><h3>SLA testing, automation &amp; tenant isolation</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Multi-tenant IT service management for tickets, priorities, SLAs, and support workflows.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements, contributed to UI design, and wrote test cases.</li><li>Developed automated UI and API tests for workflows, SLAs, RBAC, and data isolation.</li><li>Investigated defects using API payloads, PostgreSQL records, and server logs.</li></ul>
 <div class="tags"><span class="tag">Playwright</span><span class="tag">Vitest</span><span class="tag">API testing</span><span class="tag">SLA</span><span class="tag">PostgreSQL</span><span class="tag">RBAC</span></div><button type="button" class="open-case" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study">View Case Study <span aria-hidden="true">↗</span></button></div></article></div>
 <div class="secondary-heading reveal"><div><div class="eyebrow">More experience &amp; projects</div><h3>Development &amp; design work.</h3></div><p>Real project screenshots · Select a case study for details.</p></div>
