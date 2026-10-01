@@ -32,7 +32,6 @@ nav.scrolled{background:rgba(8,10,15,.78);backdrop-filter:blur(18px);border-bott
 h1{font-size:clamp(48px,7.5vw,96px);line-height:.95;letter-spacing:-.065em;margin:0 0 24px}
 .gradient{background:linear-gradient(100deg,#fff 0%,#bfb7ff 42%,#63e6cd 100%);-webkit-background-clip:text;color:transparent}
 .hero p{font-size:17px;line-height:1.7;color:var(--muted);max-width:620px}
-.role-line{margin-top:18px;color:#d7dbea;font-size:15px}.role{color:var(--cyan)}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px;border:1px solid var(--line);transition:.25s}
 .btn.primary{background:white;color:#0b0d12;border-color:white}.btn:hover{transform:translateY(-2px)}
 .visual{position:relative;border-radius:30px;padding:14px;background:linear-gradient(145deg,rgba(139,124,255,.16),rgba(69,224,194,.05));border:1px solid rgba(255,255,255,.09);box-shadow:0 35px 120px rgba(0,0,0,.45);transform-style:preserve-3d}
@@ -69,7 +68,7 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius
 <div class="kicker reveal">Software Engineering Portfolio</div>
 <h1 class="reveal">Sutthiwit<br><span class="gradient">Sriyotha</span></h1>
 <p class="reveal">Software Engineering graduate with hands-on experience across business analysis, software testing, full-stack development, PostgreSQL, data migration, automation, and enterprise systems.</p>
-<div class="role-line reveal">I work across <span class="role" id="role">Business Analysis</span></div>
+
 <div class="actions reveal"><a class="btn primary" href="#work">Explore my work ↘</a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com">Get in touch</a></div>
 </div>
 <div class="visual reveal" id="heroVisual" style="min-height:430px;display:flex;align-items:center;justify-content:center;overflow:hidden">
@@ -153,11 +152,11 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius
 <div class="skill-group reveal"><h4>Delivery & Tools</h4><p>Git / GitHub<br>GitHub Actions<br>Docker<br>Caddy<br>Figma / Jira</p></div>
 </div>
 
-<div class="section-head reveal" style="margin-top:85px"><div><div class="eyebrow">05 / Timeline</div><h2 style="font-size:42px">How I got here.</h2></div></div>
+<div class="section-head reveal" style="margin-top:85px"><div><div class="eyebrow">05 / Background</div><h2 style="font-size:42px">Experience & education.</h2></div></div>
 <div class="timeline">
-<div class="event reveal"><small class="mono">2026</small><h4>BA & QA Tester Intern — Double P Enterprise</h4><p>Enterprise HR and ITSM systems: business rules, testing, PostgreSQL, migration, automation and delivery support.</p></div>
-<div class="event reveal"><small class="mono">2025–2026</small><h4>Frontend Developer Intern — University of Phayao</h4><p>UP-PSF Digital Assessment System: paperless workflow, frontend implementation, RBAC and API integration.</p></div>
-<div class="event reveal"><small class="mono">2024–2025</small><h4>Academic Product Projects</h4><p>Restaurant management and e-commerce projects combining UX, development and system thinking.</p></div>
+<div class="event reveal"><small class="mono">2026</small><h4>BA & QA Tester — Double P Enterprise</h4><p>Internship experience on enterprise HR and ITSM systems covering business rules, testing, PostgreSQL, migration, automation and delivery support.</p></div>
+<div class="event reveal"><small class="mono">2025–2026</small><h4>Frontend Development — University of Phayao</h4><p>Internship experience on the UP-PSF Digital Assessment System: paperless workflows, frontend implementation, RBAC and REST API integration.</p></div>
+<div class="event reveal"><small class="mono">2024–2025</small><h4>Selected Product Projects</h4><p>Restaurant management and e-commerce projects combining UX, development and system thinking.</p></div>
 <div class="event reveal"><small class="mono">2022–2026</small><h4>B.Eng. Software Engineering — University of Phayao</h4><p>GPA 3.29</p></div>
 </div>
 </div></section>
@@ -173,7 +172,7 @@ const nav=document.getElementById('nav'),progress=document.getElementById('progr
 addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>30);const d=document.documentElement.scrollHeight-innerHeight;progress.style.width=(d?scrollY/d*100:0)+'%'},{passive:true});
 if(matchMedia('(pointer:fine)').matches)addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});else glow.style.display='none';
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
-const roles=['Business Analysis','Quality Assurance','Full-stack Development','Database & Migration','Automation & Delivery'];let ri=0,r=document.getElementById('role');setInterval(()=>{r.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-6px)'}],{duration:180,fill:'forwards'}).onfinish=()=>{ri=(ri+1)%roles.length;r.textContent=roles[ri];r.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:220,fill:'forwards'})}},2200);
+
 
 
 const cases={
