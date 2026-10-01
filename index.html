@@ -50,30 +50,19 @@ h1{font:800 clamp(56px,8.5vw,118px)/.92 "Manrope";letter-spacing:-.07em;margin:1
 .section-head h2{font:800 clamp(38px,5vw,66px)/1 "Manrope";letter-spacing:-.055em;margin:6px 0 0}
 .section-head p{margin:4px 0 0;color:var(--muted);line-height:1.7;max-width:560px}
 
-.work-stack{display:grid;gap:22px}
-.featured-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.project-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.media-slot{min-height:330px;display:flex;align-items:flex-end;padding:26px;position:relative;overflow:hidden}
-.media-slot.light{background:linear-gradient(135deg,var(--slot-light-1),var(--slot-light-2))}
-.media-slot.dark{background:linear-gradient(135deg,#1b2030,#151720);color:white}
-.media-slot:before{content:"";position:absolute;inset:18px;border:1px dashed rgba(17,19,24,.22);border-radius:18px}
-.media-slot.dark:before{border-color:rgba(255,255,255,.25)}
-.media-slot .slot-copy{position:relative;z-index:1}.slot-copy small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;opacity:.65;margin-bottom:8px}.slot-copy strong{font:800 28px "Manrope";letter-spacing:-.03em}
-.project-body{padding:26px}.project-top{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:12px}
+.work-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.project-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;min-height:100%}
+.project-media-uniform{height:300px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--slot-light-1),var(--slot-light-2));display:flex;align-items:flex-end;padding:26px}
+.project-media-uniform.dark{background:linear-gradient(135deg,#1b2030,#151720);color:white}
+.project-media-uniform:before{content:"";position:absolute;inset:18px;border:1px dashed rgba(17,19,24,.22);border-radius:18px}
+.project-media-uniform.dark:before{border-color:rgba(255,255,255,.25)}
+.project-media-uniform img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.project-media-uniform .slot-copy{position:relative;z-index:1}.slot-copy small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;opacity:.65;margin-bottom:8px}.slot-copy strong{font:800 28px "Manrope";letter-spacing:-.03em}
+.project-body{padding:26px;display:flex;flex-direction:column;flex:1}.project-top{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:12px}
 .project-body h3{font:800 26px/1.15 "Manrope";letter-spacing:-.035em;margin:14px 0 10px}
 .project-body p{margin:0;color:var(--muted);line-height:1.7;font-size:14px}
 .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}.tag{border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:11px;color:#5d626c}
-.case-btn{margin-top:18px;border:0;background:none;padding:0;font-weight:700;cursor:pointer;color:var(--ink)}
-
-.up-psf{display:grid;grid-template-columns:1.05fr .95fr;min-height:430px}
-.up-psf img{width:100%;height:100%;object-fit:cover;min-height:430px}
-.up-copy{padding:34px;display:flex;flex-direction:column;justify-content:center}
-.up-copy h3{font:800 34px/1.08 "Manrope";letter-spacing:-.045em;margin:12px 0}
-.up-copy p{color:var(--muted);line-height:1.7}
-.small-projects{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.small-card{display:grid;grid-template-columns:.8fr 1.2fr;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden}
-.small-card img{width:100%;height:100%;min-height:210px;object-fit:cover}
-.small-card div{padding:22px}.small-card h4{font:800 20px "Manrope";margin:8px 0}.small-card p{color:var(--muted);font-size:13px;line-height:1.6;margin:0}
+.case-btn{margin-top:auto;padding-top:18px;border:0;background:none;text-align:left;font-weight:700;cursor:pointer;color:var(--ink)}
 
 .experience{display:grid;grid-template-columns:.75fr 1.25fr;gap:48px}
 .exp-title h3{font:800 32px "Manrope";letter-spacing:-.04em;margin:10px 0}.exp-title .date{color:var(--blue);font-size:12px;font-weight:700}.exp-title p{color:var(--muted);line-height:1.7}
@@ -98,11 +87,13 @@ footer{padding:0 0 42px;color:#777b84;font-size:12px}
 dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;background:var(--paper);color:var(--ink);box-shadow:0 28px 100px rgba(0,0,0,.24)}dialog::backdrop{background:rgba(17,19,24,.58);backdrop-filter:blur(5px)}.modal{padding:30px}.modal-top{display:flex;justify-content:space-between;gap:20px}.close{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:white;cursor:pointer}.modal h3{font:800 34px "Manrope";margin:8px 0}.modal p,.modal li{color:var(--muted);line-height:1.65}.modal ul{padding-left:20px}
 
 @media(max-width:900px){
-  .links{display:none}.hero-grid,.section-head,.experience,.contact-box,.up-psf{grid-template-columns:1fr}.featured-row,.small-projects,.background-grid{grid-template-columns:1fr}
-  .hero{padding-top:70px}.hero-side{margin-top:10px}.media-slot{min-height:280px}.up-psf img{min-height:300px;height:300px}.exp-row{grid-template-columns:140px 1fr}.cap-row{grid-template-columns:50px 210px 1fr}
+  .links{display:none}.hero-grid,.section-head,.experience,.contact-box{grid-template-columns:1fr}.work-stack,.background-grid{grid-template-columns:1fr}
+  .hero{padding-top:70px}.hero-side{margin-top:10px}.exp-row{grid-template-columns:140px 1fr}.cap-row{grid-template-columns:50px 210px 1fr}.project-media-uniform{height:280px}
 }
 @media(max-width:620px){
   .wrap{width:min(var(--max),calc(100% - 28px))}.availability{display:none}.hero{padding:58px 0}.quick{grid-template-columns:1fr}.section{padding:68px 0}
+  .exp-row,.cap-row{grid-template-columns:1fr;gap:8px}.contact-box{padding:30px}.project-media-uniform{height:230px}
+}.availability{display:none}.hero{padding:58px 0}.quick{grid-template-columns:1fr}.section{padding:68px 0}
   .small-card{grid-template-columns:1fr}.small-card img{height:210px}.exp-row,.cap-row{grid-template-columns:1fr;gap:8px}.contact-box{padding:30px}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
@@ -141,54 +132,62 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
   <div class="wrap">
     <div class="section-head reveal">
       <div><div class="eyebrow">01 / Selected Work</div><h2>Projects first.</h2></div>
-      <p>The portfolio starts with the work itself: two enterprise systems from my latest experience, followed by the development projects that built my foundation.</p>
+      <p>All projects use the same visual weight and are arranged from the most recent work to earlier projects, so the progression is easy to scan.</p>
     </div>
 
     <div class="work-stack">
-      <div class="featured-row">
-        <article class="project-card reveal">
-          <div class="media-slot light"><div class="slot-copy"><small>Image placeholder</small><strong>JOiNS+ HR Portal</strong></div></div>
-          <div class="project-body">
-            <div class="project-top"><span>Enterprise HR</span><span>2026</span></div>
-            <h3>Leave workflows, approvals & data migration</h3>
-            <p>Worked with leave calculations, approval policies, backdated records, authorization, cancellation rules, reporting, PostgreSQL validation and legacy balance migration.</p>
-            <div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div>
-            <button class="case-btn" data-case="joins">View case study →</button>
-          </div>
-        </article>
+      <article class="project-card reveal">
+        <div class="project-media-uniform"><div class="slot-copy"><small>Image placeholder</small><strong>JOiNS+ HR Portal</strong></div></div>
+        <div class="project-body">
+          <div class="project-top"><span>Enterprise HR · Double P Enterprise</span><span>2026</span></div>
+          <h3>JOiNS+ HR Portal</h3>
+          <p>Leave workflows, approval policies, backdated records, authorization, cancellation rules, PostgreSQL validation and legacy balance migration.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span></div>
+          <button class="case-btn" data-case="joins">View case study →</button>
+        </div>
+      </article>
 
-        <article class="project-card reveal">
-          <div class="media-slot dark"><div class="slot-copy"><small>Image placeholder</small><strong>MEGA-T ITSM</strong></div></div>
-          <div class="project-body">
-            <div class="project-top"><span>Enterprise ITSM</span><span>2026</span></div>
-            <h3>Ticket lifecycle, SLA & multi-tenant controls</h3>
-            <p>Worked with ticket workflows, priority handling, SLA calculations, RBAC, tenant isolation, API/database investigation and automated validation.</p>
-            <div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span><span class="tag">Docker</span></div>
-            <button class="case-btn" data-case="mega">View case study →</button>
-          </div>
-        </article>
-      </div>
+      <article class="project-card reveal">
+        <div class="project-media-uniform dark"><div class="slot-copy"><small>Image placeholder</small><strong>MEGA-T ITSM</strong></div></div>
+        <div class="project-body">
+          <div class="project-top"><span>Enterprise ITSM · Double P Enterprise</span><span>2026</span></div>
+          <h3>MEGA-T ITSM Platform</h3>
+          <p>Ticket lifecycle, priority handling, SLA calculations, RBAC, tenant isolation, API/database investigation and automated validation.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span></div>
+          <button class="case-btn" data-case="mega">View case study →</button>
+        </div>
+      </article>
 
-      <article class="project-card up-psf reveal">
-        <img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System">
-        <div class="up-copy">
-          <div class="project-top"><span>Internship Project</span><span>2025–2026</span></div>
+      <article class="project-card reveal">
+        <div class="project-media-uniform"><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System"></div>
+        <div class="project-body">
+          <div class="project-top"><span>Internship Project · University of Phayao</span><span>2025–2026</span></div>
           <h3>UP-PSF Digital Assessment System</h3>
-          <p>Paperless assessment workflow built with Next.js and TypeScript, including RBAC, workflow handling and REST API integration. It represents my hands-on development foundation before moving deeper into BA, QA and enterprise systems.</p>
+          <p>Paperless assessment workflow with Next.js, TypeScript, RBAC, workflow handling and REST API integration.</p>
           <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">REST API</span></div>
         </div>
       </article>
 
-      <div class="small-projects">
-        <article class="small-card reveal">
-          <img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App">
-          <div><div class="eyebrow">Academic Project</div><h4>Restaurant Management Web App</h4><p>QR ordering, real-time workflow, operational dashboard and export features.</p></div>
-        </article>
-        <article class="small-card reveal">
-          <img src="./assets/images/online-plant-store.png" alt="Online Plant Store">
-          <div><div class="eyebrow">Academic Project</div><h4>TAMROI Online Plant Store</h4><p>User research, Figma prototyping and responsive e-commerce front-end design.</p></div>
-        </article>
-      </div>
+      <article class="project-card reveal">
+        <div class="project-media-uniform"><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App"></div>
+        <div class="project-body">
+          <div class="project-top"><span>Academic Project</span><span>2025</span></div>
+          <h3>Restaurant Management Web App</h3>
+          <p>QR ordering, real-time workflow, operational dashboard and export features.</p>
+          <div class="tags"><span class="tag">Web App</span><span class="tag">QR Ordering</span><span class="tag">Dashboard</span></div>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-media-uniform"><img src="./assets/images/online-plant-store.png" alt="Online Plant Store"></div>
+        <div class="project-body">
+          <div class="project-top"><span>Academic Project</span><span>2024</span></div>
+          <h3>TAMROI Online Plant Store</h3>
+          <p>User research, Figma prototyping and responsive e-commerce front-end design.</p>
+          <div class="tags"><span class="tag">Figma</span><span class="tag">UX/UI</span><span class="tag">Responsive Web</span></div>
+        </div>
+      </article>
+    </div>
     </div>
   </div>
 </section>
