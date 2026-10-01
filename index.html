@@ -50,7 +50,8 @@ h1{font-size:clamp(48px,7.5vw,96px);line-height:.95;letter-spacing:-.065em;margi
 .stack-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .stack-item{min-height:62px;border:1px solid var(--line);border-radius:14px;background:var(--surface);display:flex;align-items:center;gap:10px;padding:12px;transition:.22s}
 .stack-item:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--purple) 42%,var(--line))}
-.stack-icon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--surface2);color:var(--cyan);font:700 9px "JetBrains Mono"}
+.stack-icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);flex:0 0 auto}
+.stack-icon img{width:23px;height:23px;object-fit:contain;display:block}
 .stack-item b{display:block;font-size:11px}.stack-item small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
 .theme-toggle{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer}
 .theme-toggle svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.theme-sun{display:none}html[data-theme="light"] .theme-sun{display:block}html[data-theme="light"] .theme-moon{display:none}
@@ -64,15 +65,22 @@ section{position:relative;z-index:2;padding:110px 0}.section-head{display:flex;j
 .card .num{font:500 11px "JetBrains Mono";color:#6f7990}.card h3{font-size:22px;margin:24px 0 10px}.card p{color:var(--muted);line-height:1.65;font-size:14px}.card .accent{position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;bottom:-65px;filter:blur(8px);opacity:.22}
 .projects{background:#0a0d13}.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.project{border:1px solid var(--line);border-radius:28px;overflow:hidden;background:var(--surface);transition:.32s;box-shadow:0 18px 60px rgba(0,0,0,.08)}.project:hover{transform:translateY(-5px);border-color:#3b4660}.project-media{height:320px;overflow:hidden;position:relative;background:#0b1018}.project-media img,.project-inline-art{width:100%;height:100%;object-fit:cover;display:block;transition:.6s}.project:hover .project-media img,.project:hover .project-inline-art{transform:scale(1.025)}.project-body{padding:26px}.project-meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}.project h3{font-size:27px;margin:13px 0 10px}.project p{color:var(--muted);line-height:1.65}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.tag{font-size:11px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:#b7c0d1}.open-case{margin-top:22px;background:transparent;color:var(--text);border:0;padding:0;font-weight:700;cursor:pointer}
 .academic{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.academic article{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface)}.academic img{width:100%;height:185px;object-fit:cover}.academic div{padding:18px}.academic h4{margin:0 0 8px}.academic p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.skill-group{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface)}.skill-group h4{margin:0 0 14px;font-size:13px;color:#dfe4ef}.skill-group p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.skill-group{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface)}.skill-group h4{margin:0 0 14px;font-size:13px;color:var(--text)}.skill-group p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.core-skills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.core-skill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:11px;color:var(--muted)}
+.tools-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px}
+.tool-item{min-height:104px;border:1px solid var(--line);border-radius:18px;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 8px;text-align:center;transition:.22s}
+.tool-item:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--purple) 45%,var(--line));background:var(--surface2)}
+.tool-logo{width:42px;height:42px;border-radius:12px;background:#fff;display:grid;place-items:center;border:1px solid #e8eaf0}
+.tool-logo img{width:27px;height:27px;object-fit:contain;display:block}
+.tool-item span{font-size:11px;font-weight:600;color:var(--text);line-height:1.25}
 .timeline{border-left:1px solid var(--line);margin-left:8px;padding-left:30px;display:grid;gap:28px}.event{position:relative}.event:before{content:"";position:absolute;left:-36px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--purple)}.event h4{margin:0 0 6px}.event small{color:var(--cyan)}.event p{color:var(--muted);line-height:1.6;margin:9px 0 0}
 .contact-card{padding:42px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,#111625,#0c1117);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.contact-card h2{font-size:clamp(32px,5vw,58px);margin:0 0 12px;letter-spacing:-.05em}.contact-card p{color:var(--muted);margin:0}.contact-links{display:flex;gap:10px;flex-wrap:wrap}
 footer{padding:30px 0 50px;color:#677186;font-size:12px}
 .reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.75,.2,1)}.reveal.show{opacity:1;transform:none}
 dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-radius:24px;background:var(--surface);color:var(--text);padding:0;box-shadow:0 40px 140px #000}dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(7px)}.modal{padding:30px}.modal-top{display:flex;justify-content:space-between;gap:20px}.close{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:10px;width:36px;height:36px;cursor:pointer}.modal h3{font-size:34px;margin:5px 0 10px}.modal p,.modal li{color:var(--muted);line-height:1.65}.modal ul{padding-left:20px}
-@media(max-width:1100px){.stack-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1100px){.stack-grid{grid-template-columns:repeat(3,1fr)}.tools-grid{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:900px){.links{display:none}.hero-grid,.experience-card,.contact-card{grid-template-columns:1fr}.hero{padding-top:130px}.visual{margin-top:10px}.f1,.f2,.f3{display:none}.c6,.c4,.c8{grid-column:span 12}.project-grid,.skills-grid{grid-template-columns:1fr 1fr}.academic{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.project-media{height:260px}}
-@media(max-width:600px){.stack-inner{grid-template-columns:1fr;gap:12px}.stack-grid{grid-template-columns:repeat(2,1fr)}.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}}
+@media(max-width:600px){.stack-inner{grid-template-columns:1fr;gap:12px}.stack-grid{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(3,1fr)}.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.glow{display:none}}
 .hero-inline-art{width:100%;height:100%;display:block;object-fit:cover}
 </style>
@@ -124,12 +132,12 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-ra
 <div class="stack-strip"><div class="wrap stack-inner">
 <div class="stack-label">Working stack / 2026</div>
 <div class="stack-grid">
-<div class="stack-item"><span class="stack-icon">BA</span><span><b>Business Analysis</b><small>Rules & workflows</small></span></div>
-<div class="stack-item"><span class="stack-icon">QA</span><span><b>Testing</b><small>API · E2E · Regression</small></span></div>
-<div class="stack-item"><span class="stack-icon">TS</span><span><b>TypeScript</b><small>Next.js · React</small></span></div>
-<div class="stack-item"><span class="stack-icon">PG</span><span><b>PostgreSQL</b><small>Migration · Validation</small></span></div>
-<div class="stack-item"><span class="stack-icon">PW</span><span><b>Automation</b><small>Playwright · Vitest</small></span></div>
-<div class="stack-item"><span class="stack-icon">CI</span><span><b>Delivery</b><small>Docker · GitHub Actions</small></span></div>
+<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira"></span><span><b>Jira</b><small>Requirements · tracking</small></span></div>
+<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg" alt="Playwright"></span><span><b>Playwright</b><small>E2E · regression</small></span></div>
+<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript"></span><span><b>TypeScript</b><small>Next.js · React</small></span></div>
+<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></span><span><b>PostgreSQL</b><small>Migration · validation</small></span></div>
+<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg" alt="Vitest"></span><span><b>Vitest</b><small>Automated testing</small></span></div>
+<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"></span><span><b>GitHub Actions</b><small>CI/CD · delivery</small></span></div>
 </div></div></div>
 
 <section id="experience"><div class="wrap">
@@ -193,12 +201,37 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-ra
 </div></section>
 
 <section id="skills"><div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">04 / Skills</div><h2>Tools I can work with.</h2></div><p>Grouped by how I actually use them rather than showing a wall of logos.</p></div>
-<div class="skills-grid">
-<div class="skill-group reveal"><h4>Analysis & QA</h4><p>Requirements Analysis<br>Test Scenario Design<br>Functional / Regression<br>API / E2E Testing<br>Defect Investigation</p></div>
-<div class="skill-group reveal"><h4>Frontend / Backend</h4><p>TypeScript<br>Next.js / React<br>NestJS / Node.js<br>REST APIs<br>Prisma ORM</p></div>
-<div class="skill-group reveal"><h4>Data & Automation</h4><p>PostgreSQL<br>Data Migration<br>Data Reconciliation<br>Playwright<br>Vitest</p></div>
-<div class="skill-group reveal"><h4>Delivery & Tools</h4><p>Git / GitHub<br>GitHub Actions<br>Docker<br>Caddy<br>Figma / Jira</p></div>
+<div class="section-head reveal"><div><div class="eyebrow">04 / Skills & Tools</div><h2>What I use to get the work done.</h2></div><p>Core BA/QA capabilities first, followed by the actual tools and technologies I have worked with.</p></div>
+
+<div class="core-skills reveal">
+<span class="core-skill">Requirements Analysis</span>
+<span class="core-skill">Business Rules</span>
+<span class="core-skill">Test Scenario Design</span>
+<span class="core-skill">Functional Testing</span>
+<span class="core-skill">Regression Testing</span>
+<span class="core-skill">API / E2E Testing</span>
+<span class="core-skill">Defect Investigation</span>
+<span class="core-skill">Data Migration</span>
+<span class="core-skill">Data Reconciliation</span>
+</div>
+
+<div class="tools-grid">
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira"></div><span>Jira</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma"></div><span>Figma</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript"></div><span>TypeScript</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React"></div><span>React</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js"></div><span>Next.js</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js"></div><span>Node.js</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="NestJS"></div><span>NestJS</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg" alt="Prisma"></div><span>Prisma</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></div><span>PostgreSQL</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg" alt="Playwright"></div><span>Playwright</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg" alt="Vitest"></div><span>Vitest</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"></div><span>Git</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub"></div><span>GitHub</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"></div><span>GitHub Actions</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"></div><span>Docker</span></div>
+<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.simpleicons.org/caddy/1F88C0" alt="Caddy"></div><span>Caddy</span></div>
 </div>
 
 <div class="section-head reveal" style="margin-top:85px"><div><div class="eyebrow">05 / Education</div><h2 style="font-size:42px">Education.</h2></div><p>Academic foundation behind my software engineering, product, data and testing work.</p></div>
