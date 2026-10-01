@@ -64,6 +64,21 @@
             card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
         });
     });
+
+    // Visual parallax for generated portfolio artwork
+    const conceptStage = document.getElementById('concept-stage');
+    const conceptVisual = document.getElementById('concept-visual');
+    if (conceptStage && conceptVisual && window.matchMedia('(pointer:fine)').matches) {
+        conceptStage.addEventListener('pointermove', e => {
+            const r = conceptStage.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - .5;
+            const y = (e.clientY - r.top) / r.height - .5;
+            conceptVisual.style.transform = `scale(1.035) translate(${x*8}px,${y*8}px)`;
+        });
+        conceptStage.addEventListener('pointerleave', () => {
+            conceptVisual.style.transform = '';
+        });
+    }
 </script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -279,6 +294,62 @@
             *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
             #mouse-glow { display:none; }
         }
+    
+        .concept-frame {
+            position: relative;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 24px;
+            overflow: hidden;
+            background: linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
+            box-shadow: 0 30px 100px rgba(0,0,0,.35);
+        }
+        .concept-frame::after {
+            content:""; position:absolute; inset:0; pointer-events:none;
+            background: linear-gradient(115deg,transparent 25%,rgba(255,255,255,.08) 45%,transparent 65%);
+            transform: translateX(-120%);
+            animation: sheen 7s ease-in-out infinite;
+        }
+        .concept-visual {
+            display:block; width:100%; height:auto;
+            transform: scale(1.015);
+            transition: transform .8s cubic-bezier(.22,1,.36,1), filter .5s ease;
+            filter: saturate(.95) contrast(1.02);
+        }
+        .concept-frame:hover .concept-visual { transform: scale(1.035); filter: saturate(1.05) contrast(1.04); }
+        .float-badge {
+            position:absolute; z-index:3; padding:9px 13px; border-radius:999px;
+            font-size:.66rem; letter-spacing:.04em; color:var(--text);
+            border:1px solid rgba(255,255,255,.11);
+            background:rgba(13,15,20,.72); backdrop-filter:blur(12px);
+            box-shadow:0 14px 36px rgba(0,0,0,.22);
+            animation: badgeFloat 5.5s ease-in-out infinite;
+        }
+        .float-badge.b2 { animation-delay:-1.8s; }
+        .float-badge.b3 { animation-delay:-3.3s; }
+        .visual-grid {
+            display:grid; grid-template-columns: 1.2fr .8fr; gap:18px;
+        }
+        .visual-crop {
+            position:relative; min-height:230px; overflow:hidden; border-radius:20px;
+            border:1px solid rgba(255,255,255,.08); background:var(--surface);
+        }
+        .visual-crop img {
+            position:absolute; width:190%; max-width:none; transition: transform .8s cubic-bezier(.22,1,.36,1);
+        }
+        .visual-crop.joins img { left:-2%; top:-46%; }
+        .visual-crop.mega img { right:-4%; top:-44%; }
+        .visual-crop:hover img { transform:scale(1.035); }
+        .visual-overlay {
+            position:absolute; inset:auto 0 0 0; padding:22px 20px 18px;
+            background:linear-gradient(to top,rgba(7,9,14,.96),rgba(7,9,14,.72),transparent);
+        }
+        @keyframes badgeFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        @keyframes sheen { 0%,62%{transform:translateX(-120%)} 82%,100%{transform:translateX(120%)} }
+        @media (max-width: 900px) {
+            .visual-grid { grid-template-columns:1fr; }
+            .float-badge { display:none; }
+            .visual-crop { min-height:210px; }
+        }
     </style>
 </head>
 <body>
@@ -365,6 +436,18 @@
         <span class="marquee-item">GitHub Actions</span><span class="marquee-item">API Testing</span><span class="marquee-item">Data Migration</span>
     </div>
 </div>
+
+
+<section class="relative py-10 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="concept-frame reveal" id="concept-stage">
+            <img src="./assets/portfolio-concept.svg" alt="Interactive visual overview of Sutthiwit's software engineering experience" class="concept-visual" id="concept-visual"/>
+            <span class="float-badge" style="left:5%;top:8%">Business Analysis</span>
+            <span class="float-badge b2" style="right:6%;top:12%">QA & Automation</span>
+            <span class="float-badge b3" style="left:42%;bottom:7%">Data Migration · PostgreSQL</span>
+        </div>
+    </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about" class="relative py-28 overflow-hidden">
@@ -556,6 +639,28 @@
                 <div class="flex flex-wrap gap-2">
                     <span class="pill text-xs">UX Research</span><span class="pill text-xs">Figma</span>
                     <span class="pill text-xs">Responsive UI</span><span class="pill text-xs">E-Commerce</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="relative pb-20 overflow-hidden" style="background:rgba(19,22,30,.6)">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="visual-grid">
+            <div class="visual-crop joins reveal rd1">
+                <img src="./assets/portfolio-concept.svg" alt="JOiNS+ HR Portal visual concept"/>
+                <div class="visual-overlay">
+                    <span class="pill pill-p text-xs mb-2">JOiNS+ HR Portal</span>
+                    <p class="text-xs leading-relaxed" style="color:var(--text-dim)">Leave management · Approval workflow · Data migration · PostgreSQL</p>
+                </div>
+            </div>
+            <div class="visual-crop mega reveal rd2">
+                <img src="./assets/portfolio-concept.svg" alt="MEGA-T ITSM visual concept"/>
+                <div class="visual-overlay">
+                    <span class="pill pill-g text-xs mb-2">MEGA-T ITSM</span>
+                    <p class="text-xs leading-relaxed" style="color:var(--text-dim)">Ticket lifecycle · SLA · RBAC · Multi-tenant · Testing</p>
                 </div>
             </div>
         </div>
