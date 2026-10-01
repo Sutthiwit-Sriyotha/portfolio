@@ -11,17 +11,23 @@
 <style>
 :root{
   --bg:#f4f2ed;--paper:#fbfaf7;--ink:#111318;--muted:#696d76;--line:#d9d5cc;
-  --blue:#315efb;--blue-soft:#e7ecff;--green:#1d8f72;--max:1240px;--r:28px
+  --blue:#315efb;--blue-soft:#e7ecff;--green:#1d8f72;--nav:rgba(244,242,237,.88);
+  --slot-light-1:#eef2ff;--slot-light-2:#e4f4ef;--contact:#111318;--max:1240px;--r:28px
+}
+html[data-theme="dark"]{
+  --bg:#0d0f13;--paper:#14171d;--ink:#f3f5f8;--muted:#9da5b1;--line:#2a3039;
+  --blue:#8ea6ff;--blue-soft:#1a2447;--green:#55c9a8;--nav:rgba(13,15,19,.88);
+  --slot-light-1:#18213b;--slot-light-2:#142923;--contact:#050609
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;transition:background .28s ease,color .28s ease}
 a{color:inherit}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
-nav{position:sticky;top:0;z-index:40;background:rgba(244,242,237,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(17,19,24,.08)}
+nav{position:sticky;top:0;z-index:40;background:var(--nav);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:background .28s ease,border-color .28s ease}
 .navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{font:800 17px "Manrope";text-decoration:none;letter-spacing:-.03em}
 .links{display:flex;gap:26px}.links a{text-decoration:none;color:var(--muted);font-size:13px}.links a:hover{color:var(--ink)}
-.availability{font-size:12px;border:1px solid #b9c3ff;background:var(--blue-soft);padding:8px 12px;border-radius:999px;color:#2447c8;font-weight:600}
+.nav-actions{display:flex;align-items:center;gap:10px}.availability{font-size:12px;border:1px solid var(--line);background:var(--blue-soft);padding:8px 12px;border-radius:999px;color:var(--blue);font-weight:700}.theme-toggle{width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:.2s}.theme-toggle:hover{transform:translateY(-1px)}.theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.icon-sun{display:none}html[data-theme="dark"] .icon-sun{display:block}html[data-theme="dark"] .icon-moon{display:none}
 .hero{padding:92px 0 74px}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:end}
 .eyebrow{font:700 11px "Manrope";letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
@@ -30,7 +36,10 @@ h1{font:800 clamp(56px,8.5vw,118px)/.92 "Manrope";letter-spacing:-.07em;margin:1
 .hero-side{border-top:1px solid var(--ink);padding-top:18px}
 .hero-side p{margin:0 0 22px;color:var(--muted);line-height:1.65;font-size:14px}
 .quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.quick div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:15px}
+.quick div{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px;transition:.22s}
+.quick div:hover{transform:translateY(-2px);border-color:var(--blue)}
+.quick-icon{width:32px;height:32px;border-radius:10px;background:var(--blue-soft);display:grid;place-items:center;color:var(--blue);margin-bottom:12px}
+.quick-icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .quick strong{display:block;font:700 13px "Manrope";margin-bottom:5px}.quick span{font-size:12px;color:var(--muted)}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:12px;border:1px solid var(--ink);text-decoration:none;font-size:13px;font-weight:700}
@@ -45,7 +54,7 @@ h1{font:800 clamp(56px,8.5vw,118px)/.92 "Manrope";letter-spacing:-.07em;margin:1
 .featured-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .project-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .media-slot{min-height:330px;display:flex;align-items:flex-end;padding:26px;position:relative;overflow:hidden}
-.media-slot.light{background:linear-gradient(135deg,#eef2ff,#e4f4ef)}
+.media-slot.light{background:linear-gradient(135deg,var(--slot-light-1),var(--slot-light-2))}
 .media-slot.dark{background:linear-gradient(135deg,#1b2030,#151720);color:white}
 .media-slot:before{content:"";position:absolute;inset:18px;border:1px dashed rgba(17,19,24,.22);border-radius:18px}
 .media-slot.dark:before{border-color:rgba(255,255,255,.25)}
@@ -80,9 +89,9 @@ h1{font:800 clamp(56px,8.5vw,118px)/.92 "Manrope";letter-spacing:-.07em;margin:1
 .bg-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:26px}
 .bg-card small{color:var(--blue);font-weight:700}.bg-card h4{font:800 22px "Manrope";margin:10px 0}.bg-card p{color:var(--muted);margin:0;line-height:1.65;font-size:14px}
 
-.contact{padding:92px 0 110px}.contact-box{background:var(--ink);color:white;border-radius:34px;padding:48px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.tool-ribbon{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.tool-pill{display:inline-flex;align-items:center;gap:9px;padding:9px 12px;border:1px solid var(--line);background:var(--paper);border-radius:12px;font-size:12px;font-weight:700;color:var(--ink)}.tool-pill svg{width:16px;height:16px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.contact{padding:92px 0 110px}.contact-box{background:var(--contact);color:white;border-radius:34px;padding:48px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
 .contact-box h2{font:800 clamp(42px,6vw,76px)/.98 "Manrope";letter-spacing:-.055em;margin:10px 0 18px}.contact-box p{margin:0;color:#b9bdc7;line-height:1.65}
-.contact-box .btn{border-color:#fff;color:#fff}.contact-box .btn.primary{background:#fff;color:var(--ink)}
+.contact-box .btn{border-color:#fff;color:#fff}.contact-box .btn.primary{background:#fff;color:#111318}
 footer{padding:0 0 42px;color:#777b84;font-size:12px}
 
 .reveal{opacity:0;transform:translateY(16px);transition:.6s ease}.reveal.show{opacity:1;transform:none}
@@ -104,7 +113,7 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
   <div class="wrap navin">
     <a class="brand" href="#top">SUTTHIWIT SRIYOTHA</a>
     <div class="links"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#capabilities">Capabilities</a><a href="#contact">Contact</a></div>
-    <div class="availability">Open to full-time opportunities</div>
+    <div class="nav-actions"><div class="availability">Open to full-time opportunities</div><button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle light / dark theme"><svg class="icon-moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8 8 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg><svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg></button></div>
   </div>
 </nav>
 
@@ -119,10 +128,10 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
     <aside class="hero-side reveal">
       <p>I work best where product logic, data and implementation meet — understanding the rule, checking the behavior, and helping the system ship with confidence.</p>
       <div class="quick">
-        <div><strong>BA / QA</strong><span>Requirements, workflows, validation</span></div>
-        <div><strong>Development</strong><span>Next.js, React, NestJS</span></div>
-        <div><strong>Data</strong><span>PostgreSQL, migration, reconciliation</span></div>
-        <div><strong>Delivery</strong><span>Playwright, Vitest, CI/CD</span></div>
+        <div><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><path d="M5 4h14v16H5z"/></svg></span><strong>BA / QA</strong><span>Requirements, workflows, validation</span></div>
+        <div><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M14 5l-4 14"/></svg></span><strong>Development</strong><span>Next.js, React, NestJS</span></div>
+        <div><span class="quick-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></span><strong>Data</strong><span>PostgreSQL, migration, reconciliation</span></div>
+        <div><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 17h16M6 17V7h12v10M9 10h6M9 13h6"/></svg></span><strong>Delivery</strong><span>Playwright, Vitest, CI/CD</span></div>
       </div>
     </aside>
   </div>
@@ -217,6 +226,18 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
       <div class="cap-row reveal"><div class="n">02</div><h4>Validate the behavior</h4><p>Functional, regression, API and E2E testing, database validation, defect reproduction and root-cause investigation.</p></div>
       <div class="cap-row reveal"><div class="n">03</div><h4>Work close to implementation</h4><p>Next.js, React, NestJS, Prisma, PostgreSQL, data migration, Playwright, Vitest, Docker and GitHub Actions.</p></div>
     </div>
+    <div class="tool-ribbon reveal" aria-label="Technology tools">
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><path d="M5 3h14v18H5zM8 7h8M8 11h5"/></svg>TypeScript</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 8l8 8M16 8l-8 8"/></svg>Next.js</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="3"/><ellipse cx="12" cy="12" rx="9" ry="3" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3" transform="rotate(120 12 12)"/></svg>React</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v12c0 1.7 3.1 3 7 3s7-1.3 7-3V5"/></svg>PostgreSQL</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4zM8 3v4M16 3v4M8 21v-4M16 21v-4"/></svg>Prisma</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></svg>Playwright</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 16l3-9 4 6 3-4"/></svg>Vitest</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><path d="M4 17h16M6 17V9h12v8M9 6h6"/></svg>Docker</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>GitHub Actions</span>
+      <span class="tool-pill"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg>Figma</span>
+    </div>
   </div>
 </section>
 
@@ -247,6 +268,14 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
 <dialog id="caseDialog"><div class="modal"><div class="modal-top"><div><div class="eyebrow" id="modalType">Case study</div><h3 id="modalTitle"></h3></div><button class="close" id="closeDialog">×</button></div><p id="modalIntro"></p><ul id="modalList"></ul><div class="tags" id="modalTags"></div></div></dialog>
 
 <script>
+const root=document.documentElement,themeToggle=document.getElementById('themeToggle');
+const savedTheme=localStorage.getItem('portfolio-theme');
+const preferredDark=matchMedia('(prefers-color-scheme: dark)').matches;
+root.dataset.theme=savedTheme || (preferredDark?'dark':'light');
+themeToggle.addEventListener('click',()=>{
+  root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';
+  localStorage.setItem('portfolio-theme',root.dataset.theme);
+});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
 
