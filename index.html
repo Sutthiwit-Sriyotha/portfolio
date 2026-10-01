@@ -199,6 +199,19 @@ nav.menu-open .links{display:grid}
 .project-tamroi .academic-project-media{background:linear-gradient(135deg,#172c2b,#172836 70%,#29334b)}
 @media(max-width:980px){.project-grid>.project,.project-grid>.project:nth-child(even){display:grid;grid-template-columns:minmax(0,1fr)}.project-grid>.project:nth-child(even) .project-media{order:0}.academic-project-media{padding:54px 19px 20px}.academic-project-media img{max-height:285px}}
 @media(max-width:600px){.project-grid{gap:18px}.project-grid>.project .project-media{height:265px;min-height:265px}.academic-project-media{padding:48px 12px 12px}.academic-project-media img{max-height:205px}.project-grid>.project .project-body{padding:23px}.project-grid>.project .media-topline{gap:5px}.project-grid>.project .media-type{max-width:100%;white-space:normal}}
+
+/* Two placements and five equal-sized project cases: scope versus own work. */
+.experience-list{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.project-body{justify-content:flex-start}
+.project-role{margin:8px 0 14px;color:var(--purple);font-size:12px;font-weight:700;line-height:1.55}
+.project-details{display:grid;gap:16px;width:100%}
+.project-label{display:block;font:600 10px "JetBrains Mono",monospace;letter-spacing:.1em;color:var(--cyan);margin-bottom:9px}
+.project-block p{font-size:13px;line-height:1.7;margin:0}
+.contribution-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.contribution-list li{position:relative;padding-left:17px;color:var(--muted);font-size:13px;line-height:1.65}
+.contribution-list li::before{content:"";position:absolute;left:0;top:.63em;width:6px;height:6px;border-radius:50%;background:var(--purple)}
+.project-body .tags{margin-top:20px}.project-body .open-case{margin-top:17px}
+@media(max-width:670px){.experience-list{gap:15px}.project-role{font-size:11px}.contribution-list li{font-size:12px}}
 </style>
 </head>
 <body>
@@ -255,12 +268,15 @@ nav.menu-open .links{display:grid}
 </div></header>
 
 <section id="experience"><div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">01 / Experience</div><h2>Practical experience with enterprise systems.</h2></div><p>Hands-on experience across requirements analysis, documentation, UI design, and manual and automated testing for enterprise HR and ITSM systems.</p></div>
-<div class="experience-card reveal">
+<div class="section-head reveal"><div><div class="eyebrow">01 / Experience</div><h2>Experience across two internships.</h2></div><p>My roles across enterprise BA/QA and university web development, with project details below.</p></div>
+<div class="experience-list"><div class="experience-card reveal">
 <div><div class="date mono">JUN 2026 — SEP 2026</div><h3>BA & QA Tester Intern</h3><div class="company">Double P Enterprise Co., Ltd., Bangkok</div></div>
 <div><p>Gathered and documented requirements, prepared software requirements specifications (SRS), contributed to UI design, and wrote test cases for enterprise workflows. Tested the JOiNS+ HR Portal and MEGA-T ITSM Platform through functional, regression, API, and database testing; investigated defects, validated data migration, and developed or maintained automated tests.</p><div class="mini-grid" style="margin-top:20px"><div class="mini"><strong>Business Analysis</strong><span>Requirements · SRS · workflows</span></div><div class="mini"><strong>Quality Assurance</strong><span>Test cases · API · regression</span></div><div class="mini"><strong>Data</strong><span>PostgreSQL · migration · reconciliation</span></div><div class="mini"><strong>Automation & Delivery</strong><span>Playwright · Vitest · GitHub Actions</span></div></div></div>
 </div>
-</div></section>
+<div class="experience-card reveal"><div><div class="date mono">UNIVERSITY INTERNSHIP</div><h3>Web Application Development</h3><div class="company">Division of Educational Services, University of Phayao</div></div>
+<div><p>Worked on the UP-PSF Digital Assessment System during my internship at the Division of Educational Services, University of Phayao. Contributed to web application development using Next.js and TypeScript, including role-based access control (RBAC) and REST API integration.</p>
+<div class="mini-grid" style="margin-top:20px"><div class="mini"><strong>Web Development</strong><span>Next.js · TypeScript</span></div><div class="mini"><strong>System Integration</strong><span>REST APIs · RBAC</span></div></div></div></div>
+</div></div></section>
 
 <section id="capabilities"><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">02 / Capabilities</div><h2>From requirements to release.</h2></div><p>I combine BA documentation and UI design with test planning, automation, database validation, and defect investigation.</p></div>
@@ -289,7 +305,7 @@ nav.menu-open .links{display:grid}
 <g fill="#86a5ff"><rect x="370" y="470" width="28" height="80" rx="7"/><rect x="418" y="430" width="28" height="120" rx="7"/><rect x="466" y="390" width="28" height="160" rx="7"/><rect x="514" y="445" width="28" height="105" rx="7"/><rect x="562" y="405" width="28" height="145" rx="7"/><rect x="610" y="365" width="28" height="185" rx="7"/></g>
 <rect x="830" y="275" width="245" height="150" rx="24" fill="#f8faff"/><text x="860" y="315" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Database & Migration</text><circle cx="880" cy="360" r="23" fill="#557cff"/><g fill="#34bfa3"><circle cx="944" cy="345" r="6"/><circle cx="944" cy="375" r="6"/><circle cx="944" cy="405" r="6"/></g><g fill="#667085"><rect x="960" y="338" width="85" height="10" rx="5"/><rect x="960" y="368" width="70" height="10" rx="5"/><rect x="960" y="398" width="92" height="10" rx="5"/></g>
 <rect x="830" y="450" width="245" height="145" rx="24" fill="#f8faff"/><text x="860" y="492" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Approval Workflow</text><path d="M870 535 H1035" stroke="#d4dbea" stroke-width="8" stroke-linecap="round"/><circle cx="895" cy="535" r="15" fill="#557cff"/><circle cx="955" cy="535" r="15" fill="#34bfa3"/><circle cx="1015" cy="535" r="15" fill="#ff9e7a"/></g>
-</svg></div><div class="project-body"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Enterprise HR</span></div><h3>Leave management, approvals &amp; data migration</h3><p>Validated HR business rules, including leave-day recalculation, approval routing, access permissions, and edge cases. Verified legacy leave-balance migration through dry runs, reconciliation, duplicate checks, and database validation; maintained automated regression tests in GitHub Actions.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div><button class="open-case" data-case="joins">View case study →</button></div></article>
+</svg></div><div class="project-body"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Enterprise HR</span></div><h3>Leave management, approvals &amp; data migration</h3><div class="project-role">BA / QA Tester · Double P Enterprise</div><div class="project-details"><div class="project-block"><span class="project-label">THE SYSTEM</span><p>An enterprise HR portal for leave management, approval workflows, employee data, and reporting.</p></div><div class="project-block"><span class="project-label">MY CONTRIBUTIONS</span><ul class="contribution-list"><li>Gathered requirements, prepared SRS documentation, and contributed to UI and workflow design as part of the BA/QA team.</li><li>Designed test cases and validated leave calculations, approval workflows, access permissions, and edge cases.</li><li>Validated the migration of legacy leave balances through dry runs, reconciliation, duplicate checks, and PostgreSQL queries; maintained regression tests in GitHub Actions.</li></ul></div></div><div class="tags"><span class="tag">Requirements</span><span class="tag">SRS</span><span class="tag">Test Cases</span><span class="tag">PostgreSQL</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div><button class="open-case" data-case="joins">View case study →</button></div></article>
 <article class="project reveal"><div class="project-media mega-media"><div class="media-topline"><span class="media-index">02 / ENTERPRISE PROJECT</span><span class="media-type">IT SERVICE MANAGEMENT</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
 <defs><linearGradient id="mega-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0e15"/><stop offset="1" stop-color="#111827"/></linearGradient><linearGradient id="mega-orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff875f"/><stop offset="1" stop-color="#8b7cff"/></linearGradient><filter id="mega-s"><feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#000" flood-opacity=".5"/></filter></defs>
 <rect width="1200" height="760" rx="44" fill="url(#mega-bg)"/><circle cx="1040" cy="110" r="190" fill="#ff875f" opacity=".08"/>
@@ -303,7 +319,7 @@ nav.menu-open .links{display:grid}
 <rect x="315" y="255" width="510" height="235" rx="24" fill="#151e2d"/><text x="345" y="300" font-size="19" font-family="Arial" fill="#e9edf5" font-weight="700">Tickets Overview</text><path d="M355 420 C420 355 490 445 555 375 S675 430 765 340" fill="none" stroke="#4d7cff" stroke-width="6"/><path d="M355 440 C430 410 500 455 575 420 S690 460 775 395" fill="none" stroke="#45e0c2" stroke-width="5"/>
 <rect x="850" y="255" width="230" height="235" rx="24" fill="#151e2d"/><text x="880" y="300" font-size="19" font-family="Arial" fill="#e9edf5" font-weight="700">Priority Distribution</text><circle cx="965" cy="390" r="62" fill="none" stroke="#283245" stroke-width="20"/><path d="M965 328 A62 62 0 1 1 918 430" fill="none" stroke="url(#mega-orange)" stroke-width="20" stroke-linecap="round"/>
 <rect x="315" y="525" width="765" height="120" rx="24" fill="#151e2d"/><text x="345" y="565" font-size="18" font-family="Arial" fill="#e9edf5" font-weight="700">Automation & Testing</text><g fill="#45e0c2"><circle cx="355" cy="605" r="8"/><circle cx="525" cy="605" r="8"/><circle cx="695" cy="605" r="8"/><circle cx="865" cy="605" r="8"/></g><g fill="#98a2b3"><text x="375" y="612" font-size="16" font-family="Arial">Playwright</text><text x="545" y="612" font-size="16" font-family="Arial">API Tests</text><text x="715" y="612" font-size="16" font-family="Arial">RBAC</text><text x="885" y="612" font-size="16" font-family="Arial">CI/CD</text></g></g>
-</svg></div><div class="project-body"><div class="project-meta"><span>Tag Me In Track Me Out (MEGA-T)</span><span>Enterprise ITSM</span></div><h3>Ticket lifecycles, SLAs &amp; multi-tenant access</h3><p>Developed automated UI and API tests using Playwright and Vitest to validate ITSM workflows and SLA calculations. Verified role-based access control and cross-project data isolation, and investigated defects using API payloads, PostgreSQL records, and server logs.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span><span class="tag">Docker</span></div><button class="open-case" data-case="mega">View case study →</button></div></article>
+</svg></div><div class="project-body"><div class="project-meta"><span>Tag Me In Track Me Out (MEGA-T)</span><span>Enterprise ITSM</span></div><h3>Ticket lifecycles, SLAs &amp; multi-tenant access</h3><div class="project-role">BA / QA Tester · Double P Enterprise</div><div class="project-details"><div class="project-block"><span class="project-label">THE SYSTEM</span><p>A multi-tenant ITSM platform covering tickets, priorities, service-level agreements, and support workflows.</p></div><div class="project-block"><span class="project-label">MY CONTRIBUTIONS</span><ul class="contribution-list"><li>Gathered and documented requirements, contributed to UI design, and wrote test cases as part of the BA/QA team.</li><li>Developed automated UI and API tests with Playwright and Vitest to validate ITSM workflows, SLAs, RBAC, and cross-project data isolation.</li><li>Investigated defects using API payloads, PostgreSQL records, and server logs to identify root causes.</li></ul></div></div><div class="tags"><span class="tag">Requirements</span><span class="tag">Test Cases</span><span class="tag">Playwright</span><span class="tag">Vitest</span><span class="tag">PostgreSQL</span><span class="tag">RBAC</span></div><button class="open-case" data-case="mega">View case study →</button></div></article>
 <article class="project reveal project-uppsf">
 <div class="project-media academic-project-media">
 <div class="media-topline"><span class="media-index">03 / INTERNSHIP PROJECT</span><span class="media-type">DIGITAL ASSESSMENT</span></div>
@@ -311,10 +327,7 @@ nav.menu-open .links{display:grid}
 </div><div class="project-body">
 <div class="project-meta"><span>UP-PSF Digital Assessment System</span><span>Division of Educational Services, University of Phayao · Internship</span></div>
 <h3>Paperless digital assessment</h3>
-<p>During my internship at the Division of Educational Services, University of Phayao, I worked on the UP-PSF digital assessment system, which supports paperless assessment workflows. My work involved Next.js, TypeScript, role-based access control (RBAC), and REST API integration.</p>
-<div class="tags"><span class="tag">Internship</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">REST API</span></div>
-<button class="open-case" data-case="uppsf">View case study →</button>
-</div></article>
+<div class="project-role">Web Application Development · Division of Educational Services, University of Phayao</div><div class="project-details"><div class="project-block"><span class="project-label">THE SYSTEM</span><p>A digital assessment system that supports paperless evaluation workflows.</p></div><div class="project-block"><span class="project-label">MY CONTRIBUTIONS</span><ul class="contribution-list"><li>Worked on the UP-PSF system during my internship at the Division of Educational Services, University of Phayao.</li><li>Contributed to application development using Next.js and TypeScript.</li><li>Worked with role-based access control (RBAC) and REST API integration.</li></ul></div></div><div class="tags"><span class="tag">Internship</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">REST API</span></div><button class="open-case" data-case="uppsf">View case study →</button></div></article>
 <article class="project reveal project-restaurant">
 <div class="project-media academic-project-media">
 <div class="media-topline"><span class="media-index">04 / DEVELOPMENT PROJECT</span><span class="media-type">RESTAURANT MANAGEMENT</span></div>
@@ -322,10 +335,7 @@ nav.menu-open .links{display:grid}
 </div><div class="project-body">
 <div class="project-meta"><span>Restaurant Management Web App</span><span>Web development project</span></div>
 <h3>QR ordering &amp; restaurant operations</h3>
-<p>Developed a web application with QR-based ordering, an operations dashboard, real-time workflows, and data export features to support restaurant management.</p>
-<div class="tags"><span class="tag">Web Application</span><span class="tag">QR Ordering</span><span class="tag">Dashboard</span></div>
-<button class="open-case" data-case="restaurant">View case study →</button>
-</div></article>
+<div class="project-role">Web Development Project</div><div class="project-details"><div class="project-block"><span class="project-label">THE SYSTEM</span><p>A web application for QR-based ordering and day-to-day restaurant operations.</p></div><div class="project-block"><span class="project-label">MY CONTRIBUTIONS</span><ul class="contribution-list"><li>Developed the QR-based ordering workflow.</li><li>Worked on the restaurant operations dashboard and real-time workflows.</li><li>Implemented data export features for restaurant management.</li></ul></div></div><div class="tags"><span class="tag">Web Application</span><span class="tag">QR Ordering</span><span class="tag">Dashboard</span><span class="tag">Data Export</span></div><button class="open-case" data-case="restaurant">View case study →</button></div></article>
 <article class="project reveal project-tamroi">
 <div class="project-media academic-project-media">
 <div class="media-topline"><span class="media-index">05 / DESIGN PROJECT</span><span class="media-type">UX &amp; E-COMMERCE</span></div>
@@ -333,10 +343,7 @@ nav.menu-open .links{display:grid}
 </div><div class="project-body">
 <div class="project-meta"><span>TAMROI Online Plant Store</span><span>UX/UI &amp; front-end project</span></div>
 <h3>User-centered online plant shopping</h3>
-<p>Explored a responsive e-commerce experience through user research, Figma prototyping, and front-end interface design.</p>
-<div class="tags"><span class="tag">User Research</span><span class="tag">Figma</span><span class="tag">Responsive Design</span></div>
-<button class="open-case" data-case="tamroi">View case study →</button>
-</div></article>
+<div class="project-role">UX/UI & Front-end Project</div><div class="project-details"><div class="project-block"><span class="project-label">THE SYSTEM</span><p>A responsive online plant store designed around the e-commerce shopping experience.</p></div><div class="project-block"><span class="project-label">MY CONTRIBUTIONS</span><ul class="contribution-list"><li>Conducted user research to inform the shopping experience.</li><li>Created interface prototypes in Figma.</li><li>Worked on responsive e-commerce front-end design.</li></ul></div></div><div class="tags"><span class="tag">User Research</span><span class="tag">Figma</span><span class="tag">UX/UI</span><span class="tag">Responsive Design</span></div><button class="open-case" data-case="tamroi">View case study →</button></div></article>
 </div>
 </div></section>
 
