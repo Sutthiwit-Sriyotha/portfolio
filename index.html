@@ -4,7 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sutthiwit Sriyotha — Software Engineering Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+    // Scroll progress
+    const progress = document.getElementById('scroll-progress');
+    const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive:true });
+    updateProgress();
+
+    // Cursor spotlight
+    const glow = document.getElementById('mouse-glow');
+    if (window.matchMedia('(pointer:fine)').matches) {
+        window.addEventListener('pointermove', e => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        }, { passive:true });
+    } else {
+        glow.style.display = 'none';
+    }
+
+    // Rotating expertise text
+    const roleRotator = document.getElementById('role-rotator');
+    const roles = ['Software Engineering', 'Business Analysis', 'Quality Assurance', 'Full-stack Development', 'Data & Automation'];
+    let roleIndex = 0;
+    setInterval(() => {
+        if (!roleRotator) return;
+        roleRotator.animate(
+            [{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-8px)'}],
+            {duration:220,fill:'forwards'}
+        ).onfinish = () => {
+            roleIndex = (roleIndex + 1) % roles.length;
+            roleRotator.textContent = roles[roleIndex];
+            roleRotator.animate(
+                [{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],
+                {duration:260,fill:'forwards'}
+            );
+        };
+    }, 2200);
+
+    // Gentle 3D tilt on featured cards
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('pointermove', e => {
+            if (!window.matchMedia('(pointer:fine)').matches) return;
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - .5;
+            const y = (e.clientY - r.top) / r.height - .5;
+            card.style.transform = `perspective(900px) rotateX(${-y*3}deg) rotateY(${x*4}deg) translateY(-4px)`;
+        });
+        card.addEventListener('pointerleave', () => card.style.transform = '');
+    });
+
+    // Interactive light inside stat cards
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.addEventListener('pointermove', e => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+            card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+        });
+    });
+</script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -166,9 +226,64 @@
         #mobile-menu { display: none; background: rgba(13,15,20,0.97); border-top: 1px solid var(--border); padding: 20px 24px; flex-direction: column; gap: 18px; }
         #mobile-menu.open { display: flex; }
         @keyframes scrollPulse { 0%,100%{opacity:0.2} 50%{opacity:1} }
+    
+        /* Modern interaction layer */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 2px; width: 0;
+            background: linear-gradient(90deg,var(--accent),var(--accent2));
+            z-index: 999; box-shadow: 0 0 16px rgba(108,99,255,.55);
+        }
+        #mouse-glow {
+            position: fixed; width: 420px; height: 420px; border-radius: 50%;
+            pointer-events: none; z-index: 1; opacity: .22;
+            background: radial-gradient(circle,rgba(108,99,255,.28),rgba(0,212,170,.08) 38%,transparent 70%);
+            transform: translate(-50%,-50%); filter: blur(18px);
+            transition: opacity .3s ease;
+        }
+        .stat-card {
+            position: relative; overflow: hidden; padding: 16px 12px;
+            border: 1px solid rgba(255,255,255,.07); border-radius: 14px;
+            background: linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+            backdrop-filter: blur(12px); text-align: left;
+        }
+        .stat-card::before {
+            content:""; position:absolute; inset:0; opacity:0;
+            background: radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(108,99,255,.18),transparent 50%);
+            transition: opacity .3s;
+        }
+        .stat-card:hover::before { opacity:1; }
+        .stat-card strong { display:block; font-size:1rem; color:var(--text); position:relative; }
+        .stat-card span { display:block; margin-top:3px; font-size:.62rem; color:var(--text-dim); position:relative; }
+        .card[data-tilt] { transform-style: preserve-3d; will-change: transform; }
+        .card[data-tilt]:hover { box-shadow: 0 24px 70px rgba(108,99,255,.15); }
+        .marquee-shell {
+            overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+            background:rgba(19,22,30,.45); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+        }
+        .marquee-track {
+            display:flex; width:max-content; gap:12px; padding:14px 0;
+            animation: marquee 24s linear infinite;
+        }
+        .marquee-shell:hover .marquee-track { animation-play-state:paused; }
+        .marquee-item {
+            white-space:nowrap; border:1px solid var(--border); background:rgba(13,15,20,.7);
+            color:var(--text-dim); border-radius:999px; padding:7px 14px; font-size:.7rem;
+        }
+        @keyframes marquee { to { transform:translateX(-50%); } }
+        .experience-banner {
+            border:1px solid rgba(108,99,255,.3);
+            background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.06));
+            box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+            #mouse-glow { display:none; }
+        }
     </style>
 </head>
 <body>
+<div id="scroll-progress"></div>
+<div id="mouse-glow"></div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -236,6 +351,20 @@
         <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite"></div>
     </div>
 </section>
+
+
+<div class="marquee-shell relative z-10">
+    <div class="marquee-track" aria-label="Technology stack">
+        <span class="marquee-item">TypeScript</span><span class="marquee-item">Next.js</span><span class="marquee-item">React</span>
+        <span class="marquee-item">NestJS</span><span class="marquee-item">PostgreSQL</span><span class="marquee-item">Prisma</span>
+        <span class="marquee-item">Playwright</span><span class="marquee-item">Vitest</span><span class="marquee-item">Docker</span>
+        <span class="marquee-item">GitHub Actions</span><span class="marquee-item">API Testing</span><span class="marquee-item">Data Migration</span>
+        <span class="marquee-item">TypeScript</span><span class="marquee-item">Next.js</span><span class="marquee-item">React</span>
+        <span class="marquee-item">NestJS</span><span class="marquee-item">PostgreSQL</span><span class="marquee-item">Prisma</span>
+        <span class="marquee-item">Playwright</span><span class="marquee-item">Vitest</span><span class="marquee-item">Docker</span>
+        <span class="marquee-item">GitHub Actions</span><span class="marquee-item">API Testing</span><span class="marquee-item">Data Migration</span>
+    </div>
+</div>
 
 <!-- ABOUT -->
 <section id="about" class="relative py-28 overflow-hidden">
@@ -316,7 +445,7 @@
 
         <!-- Enterprise Experience -->
         <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <div class="card reveal rd1 p-6">
+            <div class="card reveal rd1 p-6" data-tilt>
                 <div class="flex items-center gap-3 mb-4">
                     <span class="pill pill-p text-xs">Enterprise · 2026</span>
                     <span class="pill text-xs">HR Platform</span>
@@ -338,7 +467,7 @@
                 </div>
             </div>
 
-            <div class="card reveal rd2 p-6">
+            <div class="card reveal rd2 p-6" data-tilt>
                 <div class="flex items-center gap-3 mb-4">
                     <span class="pill pill-g text-xs">Enterprise · 2026</span>
                     <span class="pill text-xs">ITSM Platform</span>
@@ -547,9 +676,9 @@
 
                 <div class="reveal rd1 relative flex gap-5">
                     <div class="tl-dot flex-shrink-0"></div>
-                    <div class="card p-5 flex-grow">
+                    <div class="card experience-banner p-5 flex-grow" data-tilt>
                         <div class="flex flex-wrap items-center gap-3 mb-2">
-                            <span class="font-semibold text-sm">Software Engineering / QA Intern</span>
+                            <span class="font-semibold text-sm">BA & QA Tester Intern</span>
                             <span class="pill pill-p text-xs">Jun 2026 – Sep 2026</span>
                         </div>
                         <p class="text-xs mb-3" style="color:var(--text-dim)">Double P Enterprise Co., Ltd. — JOiNS+ HR Portal & MEGA-T ITSM Platform</p>
