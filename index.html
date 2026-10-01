@@ -483,13 +483,16 @@ section{padding:65px 0}
 .hero-float-dot{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#a394ff;box-shadow:0 0 12px rgba(163,148,255,.35)}
 .hero-float-qa .hero-float-dot{background:#58ded0;box-shadow:0 0 12px rgba(88,222,208,.32)}
 .hero-float-data .hero-float-dot{background:#89adff;box-shadow:0 0 12px rgba(137,173,255,.35)}
-.hero-float-ba{left:-46px;top:31%}
-.hero-float-qa{right:-18px;top:-14px}
-.hero-float-data{right:14%;bottom:-16px}
-@media(max-width:1200px) and (min-width:981px){.hero-float-ba{left:-18px;top:-15px}.hero-float-qa{right:-14px;top:12%}.hero-float-data{right:8%;bottom:-14px}.hero-float{font-size:10px;padding:9px 11px}}
-@media(max-width:980px){.hero .visual{max-width:720px}.hero-float-ba{left:-12px;top:-15px}.hero-float-qa{right:-12px;top:-15px}.hero-float-data{right:8%;bottom:-15px}}
-@media(max-width:670px){.hero .visual{padding:6px;border-radius:19px;display:flex;flex-wrap:wrap;gap:7px}.hero .hero-system-art{border-radius:13px;flex:0 0 100%}.hero-float{position:static;white-space:normal;max-width:100%;font-size:10px;padding:8px 10px;box-shadow:0 5px 16px rgba(0,0,0,.15)}.hero-float-data{margin-right:auto}}
-@media(prefers-reduced-motion:reduce){.hero-float{transition:none}}
+/* Floating chips: visible independent movement and unobstructed workflow cards. */
+@keyframes hero-chip-float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-17px,0)}}
+.hero .hero-float{animation:hero-chip-float 3.6s ease-in-out infinite;will-change:transform}
+.hero .hero-float-ba{left:5%;top:-17px;animation-delay:0s}
+.hero .hero-float-qa{right:-22px;top:16%;animation-delay:-1.2s}
+.hero .hero-float-data{right:11%;bottom:-18px;animation-delay:-2.4s}
+@media(max-width:1200px) and (min-width:981px){.hero .hero-float-ba{left:4%;top:-16px}.hero .hero-float-qa{right:-12px;top:15%}.hero .hero-float-data{right:9%;bottom:-17px}.hero .hero-float{font-size:10px;padding:9px 11px}}
+@media(max-width:980px){.hero .visual{max-width:720px}.hero .hero-float-ba{left:5%;top:-15px}.hero .hero-float-qa{right:-11px;top:15%}.hero .hero-float-data{right:10%;bottom:-16px}}
+@media(max-width:670px){.hero .visual{padding:6px;border-radius:19px;display:flex;flex-wrap:wrap;gap:7px}.hero .hero-system-art{border-radius:13px;flex:0 0 100%}.hero .hero-float{position:static;animation:none;white-space:normal;max-width:100%;font-size:10px;padding:8px 10px;box-shadow:0 5px 16px rgba(0,0,0,.15)}.hero .hero-float-data{margin-right:auto}}
+@media(prefers-reduced-motion:reduce){.hero .hero-float{animation:none;will-change:auto}}
 
 /* Keep all five numbered case-study sections on the same left edge on phones. */
 @media(max-width:670px){
@@ -546,19 +549,19 @@ section{padding:65px 0}
 <circle cx="912" cy="40" r="6" fill="#45e0c2"/><text x="928" y="46" font-family="Inter,Arial,sans-serif" font-size="18" fill="#98f1dc" font-weight="600">IN PROGRESS</text>
 <text x="49" y="132" font-family="Inter,Arial,sans-serif" font-size="20" letter-spacing="2" font-weight="700" fill="#8e9ab5">PROCESS OVERVIEW</text>
 <rect x="39" y="161" width="428" height="144" rx="20" fill="#222341" stroke="#544a87" stroke-width="2"/>
-<rect x="57" y="180" width="46" height="46" rx="13" fill="#6c61bd"/><path d="M71 195h18v19H71Zm4 5h10m-10 5h10" stroke="#fff" stroke-width="2.3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="57" y="180" width="46" height="46" rx="13" fill="#2d2b51" stroke="#6e62b1" stroke-width="1.5"/><g fill="none" stroke="#e0dcff" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"><rect x="69" y="190" width="22" height="26" rx="3"/><path d="M75 197h10m-10 6h10m-10 6h6"/></g>
 <text x="121" y="205" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#f4f3ff">01  Discover</text>
 <text x="121" y="238" font-family="Inter,Arial,sans-serif" font-size="19" fill="#adb0d0">Requirements · SRS · UI flows</text>
 <rect x="121" y="257" width="112" height="26" rx="13" fill="#353159"/><text x="141" y="276" font-family="Inter,Arial,sans-serif" font-size="14" fill="#c6bfff" font-weight="600">ANALYSIS</text>
 <path d="M252 305V330" stroke="#5b527f" stroke-width="3" stroke-dasharray="5 6" stroke-linecap="round"/>
 <rect x="39" y="331" width="428" height="144" rx="20" fill="#182a35" stroke="#306769" stroke-width="2"/>
-<rect x="57" y="350" width="46" height="46" rx="13" fill="#246f70"/><path d="m68 373 9 9 17-20" fill="none" stroke="#b5ffed" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="57" y="350" width="46" height="46" rx="13" fill="#1d3b42" stroke="#398b83" stroke-width="1.5"/><g fill="none" stroke="#a8fff0" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"><rect x="69" y="360" width="22" height="26" rx="3"/><path d="m74 373 5 5 9-11"/></g>
 <text x="121" y="375" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#edfffb">02  Validate</text>
 <text x="121" y="408" font-family="Inter,Arial,sans-serif" font-size="19" fill="#a8d0ca">Test cases · API · Regression</text>
 <rect x="121" y="427" width="94" height="26" rx="13" fill="#245349"/><text x="141" y="446" font-family="Inter,Arial,sans-serif" font-size="14" fill="#a7f8e6" font-weight="600">TESTING</text>
 <path d="M252 475V500" stroke="#47706f" stroke-width="3" stroke-dasharray="5 6" stroke-linecap="round"/>
 <rect x="39" y="501" width="428" height="144" rx="20" fill="#1f273a" stroke="#445571" stroke-width="2"/>
-<rect x="57" y="520" width="46" height="46" rx="13" fill="#405a87"/><path d="m69 544 11 11 18-21m-29 24h29" stroke="#cce4ff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="57" y="520" width="46" height="46" rx="13" fill="#273955" stroke="#6483b2" stroke-width="1.5"/><g fill="none" stroke="#cce4ff" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"><rect x="69" y="530" width="22" height="26" rx="3"/><path d="m74 541 5 5 9-11m-14 17h12"/></g>
 <text x="121" y="545" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#f3f5ff">03  Deliver</text>
 <text x="121" y="578" font-family="Inter,Arial,sans-serif" font-size="19" fill="#b7c2d7">Database · Automation · CI/CD</text>
 <rect x="121" y="597" width="114" height="26" rx="13" fill="#2b3b59"/><text x="140" y="616" font-family="Inter,Arial,sans-serif" font-size="14" fill="#c2daff" font-weight="600">VALIDATION</text>
