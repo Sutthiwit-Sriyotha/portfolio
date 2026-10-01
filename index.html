@@ -48,15 +48,15 @@ section{position:relative;z-index:2;padding:110px 0}.section-head{display:flex;j
 .bento .card:hover{border-color:#39445e;transform:translateY(-4px)}.c6{grid-column:span 6}.c4{grid-column:span 4}.c8{grid-column:span 8}
 .card .num{font:500 11px "JetBrains Mono";color:#6f7990}.card h3{font-size:22px;margin:24px 0 10px}.card p{color:var(--muted);line-height:1.65;font-size:14px}.card .accent{position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;bottom:-65px;filter:blur(8px);opacity:.22}
 .projects{background:#0a0d13}.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.project{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:var(--surface);transition:.35s}.project:hover{transform:translateY(-5px);border-color:#3b4660}.project-media{height:320px;overflow:hidden;position:relative;background:#0b1018}.project-media img{width:100%;height:100%;object-fit:cover;transition:.6s}.project:hover .project-media img{transform:scale(1.035)}.project-body{padding:26px}.project-meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}.project h3{font-size:27px;margin:13px 0 10px}.project p{color:var(--muted);line-height:1.65}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.tag{font-size:11px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:#b7c0d1}.open-case{margin-top:22px;background:transparent;color:white;border:0;padding:0;font-weight:700;cursor:pointer}
-.academic{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.academic article{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface)}.academic img{width:100%;height:185px;object-fit:cover}.academic div{padding:18px}.academic h4{margin:0 0 8px}.academic p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+.academic{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;margin-top:18px}.academic-main,.academic-side article{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface);transition:.3s}.academic-main:hover,.academic-side article:hover{transform:translateY(-4px);border-color:#39445e}.academic-main img{width:100%;height:360px;object-fit:cover}.academic-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}.academic-side img{width:100%;height:165px;object-fit:cover}.academic-copy{padding:22px}.academic h4{margin:0 0 8px;font-size:18px}.academic-main h4{font-size:26px}.academic p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
 .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.skill-group{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface)}.skill-group h4{margin:0 0 14px;font-size:13px;color:#dfe4ef}.skill-group p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
 .timeline{border-left:1px solid var(--line);margin-left:8px;padding-left:30px;display:grid;gap:28px}.event{position:relative}.event:before{content:"";position:absolute;left:-36px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--purple)}.event h4{margin:0 0 6px}.event small{color:var(--cyan)}.event p{color:var(--muted);line-height:1.6;margin:9px 0 0}
 .contact-card{padding:42px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,#111625,#0c1117);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.contact-card h2{font-size:clamp(32px,5vw,58px);margin:0 0 12px;letter-spacing:-.05em}.contact-card p{color:var(--muted);margin:0}.contact-links{display:flex;gap:10px;flex-wrap:wrap}
 footer{padding:30px 0 50px;color:#677186;font-size:12px}
 .reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.75,.2,1)}.reveal.show{opacity:1;transform:none}
 dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius:24px;background:#0d1119;color:white;padding:0;box-shadow:0 40px 140px #000}dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(7px)}.modal{padding:30px}.modal-top{display:flex;justify-content:space-between;gap:20px}.close{border:1px solid var(--line);background:#121722;color:white;border-radius:10px;width:36px;height:36px;cursor:pointer}.modal h3{font-size:34px;margin:5px 0 10px}.modal p,.modal li{color:var(--muted);line-height:1.65}.modal ul{padding-left:20px}
-@media(max-width:900px){.links{display:none}.hero-grid,.experience-card,.contact-card{grid-template-columns:1fr}.hero{padding-top:130px}.visual{margin-top:10px}.f1,.f2,.f3{display:none}.c6,.c4,.c8{grid-column:span 12}.project-grid,.skills-grid{grid-template-columns:1fr 1fr}.academic{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.project-media{height:260px}}
-@media(max-width:600px){.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}}
+@media(max-width:900px){.links{display:none}.hero-grid,.experience-card,.contact-card{grid-template-columns:1fr}.hero{padding-top:130px}.visual{margin-top:10px}.f1,.f2,.f3{display:none}.c6,.c4,.c8{grid-column:span 12}.project-grid,.skills-grid{grid-template-columns:1fr 1fr}.academic{grid-template-columns:1fr}.academic-main img{height:300px}.academic-side{grid-template-columns:1fr 1fr;grid-template-rows:none}.academic-side img{height:190px}.section-head{align-items:start;flex-direction:column}.project-media{height:260px}}
+@media(max-width:600px){.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid,.academic-side{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}.academic-main img{height:230px}.academic-side img{height:210px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.glow{display:none}}
 </style>
 </head>
@@ -112,11 +112,35 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius
 <article class="project reveal"><div class="project-media" style="display:flex;align-items:end;padding:28px;background:linear-gradient(135deg,#131824,#221b2f);color:#fff"><div><div class="eyebrow" style="color:#ff986f">Image slot</div><strong style="font-size:28px">MEGA-T ITSM</strong><div style="font-size:13px;margin-top:8px;color:#9aa4b6">Waiting for the project visual you choose</div></div></div><div class="project-body"><div class="project-meta"><span>MEGA-T</span><span>Enterprise ITSM</span></div><h3>Ticket lifecycle, SLA & multi-tenant controls</h3><p>Worked with ticket workflows, priority handling, SLA calculations, RBAC, tenant isolation, API/database investigation and automated validation.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span><span class="tag">Docker</span></div><button class="open-case" data-case="mega">View case study →</button></div></article>
 </div>
 
-<div class="section-head reveal" style="margin-top:70px"><div><div class="eyebrow">Earlier Work</div><h2 style="font-size:36px">Development foundations.</h2></div></div>
+<div class="section-head reveal" style="margin-top:78px"><div><div class="eyebrow">Earlier Experience & Projects</div><h2 style="font-size:40px">Development foundations that still matter.</h2></div><p>These projects show the development and product foundation behind my current BA, QA and enterprise-system experience.</p></div>
 <div class="academic">
-<article class="reveal"><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System"><div><h4>UP-PSF Digital Assessment System</h4><p>Paperless assessment workflow with Next.js, TypeScript, RBAC and REST API integration.</p></div></article>
-<article class="reveal"><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App"><div><h4>Restaurant Management Web App</h4><p>QR-based ordering, operational dashboard, real-time workflow and export features.</p></div></article>
-<article class="reveal"><img src="./assets/images/online-plant-store.png" alt="Online Plant Store"><div><h4>TAMROI Online Plant Store</h4><p>User research, Figma prototyping and responsive e-commerce front-end design.</p></div></article>
+  <article class="academic-main reveal">
+    <img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System">
+    <div class="academic-copy">
+      <div class="project-meta"><span>Internship Project</span><span>2025–2026</span></div>
+      <h4>UP-PSF Digital Assessment System</h4>
+      <p>Paperless assessment workflow built with Next.js and TypeScript, including RBAC, workflow handling and REST API integration. This project reflects my earlier hands-on development experience before moving deeper into BA and QA work.</p>
+      <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">REST API</span></div>
+    </div>
+  </article>
+  <div class="academic-side">
+    <article class="reveal">
+      <img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App">
+      <div class="academic-copy">
+        <div class="project-meta"><span>Academic Project</span><span>2025</span></div>
+        <h4>Restaurant Management Web App</h4>
+        <p>QR-based ordering with real-time workflow, store dashboard and operational export features.</p>
+      </div>
+    </article>
+    <article class="reveal">
+      <img src="./assets/images/online-plant-store.png" alt="Online Plant Store">
+      <div class="academic-copy">
+        <div class="project-meta"><span>Academic Project</span><span>2024</span></div>
+        <h4>TAMROI Online Plant Store</h4>
+        <p>User research, Figma prototyping and responsive e-commerce front-end design.</p>
+      </div>
+    </article>
+  </div>
 </div>
 </div></section>
 
