@@ -83,11 +83,112 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-ra
 @media(max-width:600px){.stack-inner{grid-template-columns:1fr;gap:12px}.stack-grid{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(3,1fr)}.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.glow{display:none}}
 .hero-inline-art{width:100%;height:100%;display:block;object-fit:cover}
+
+/* Portfolio navigation, case-study gallery and structured tool system */
+header[id],section[id]{scroll-margin-top:88px}
+.navin{gap:20px}
+.links{gap:17px;white-space:nowrap;margin-left:auto}
+.links a{font-size:12px;font-weight:600;position:relative;padding:10px 0;transition:color .2s}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;border-radius:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.links a:hover,.links a.active{color:var(--text)}
+.links a.active::after,.links a:hover::after{transform:scaleX(1)}
+.status{color:var(--cyan)}
+.nav-menu-toggle{display:none;width:40px;height:40px;border:1px solid var(--line);background:var(--surface);border-radius:11px;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer}
+.nav-menu-toggle span{width:17px;height:2px;border-radius:4px;background:var(--text);transition:transform .25s,opacity .25s}
+nav.menu-open .nav-menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+nav.menu-open .nav-menu-toggle span:nth-child(2){opacity:0}
+nav.menu-open .nav-menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.kicker,.eyebrow{color:var(--purple)}
+.gradient{background:linear-gradient(100deg,var(--text),var(--purple) 52%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.company{color:var(--text)}
+.mini{background:var(--surface)}
+.projects{background:linear-gradient(180deg,var(--bg),color-mix(in srgb,var(--surface2) 45%,var(--bg)) 45%,var(--bg))}
+.project-grid{grid-template-columns:1fr;gap:26px}
+.project{display:grid;grid-template-columns:1.06fr .94fr;min-height:390px;isolation:isolate;border-color:var(--line);box-shadow:0 24px 85px rgba(0,0,0,.15)}
+.project:nth-child(even){grid-template-columns:.94fr 1.06fr}
+.project:nth-child(even) .project-media{order:2}
+.project:hover{border-color:var(--purple);transform:translateY(-4px);box-shadow:0 32px 90px rgba(0,0,0,.22)}
+.project-media{position:relative;min-height:390px;height:auto;isolation:isolate}
+.project-media .project-inline-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.joins-media{background:linear-gradient(135deg,#dce9ff,#f7f8ff)}
+.mega-media{background:linear-gradient(135deg,#171d31,#11141b)}
+.media-topline{position:absolute;top:21px;left:21px;right:21px;display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center;z-index:3;pointer-events:none}
+.media-index,.media-type{display:inline-flex;align-items:center;border-radius:999px;padding:9px 12px;font:600 10px "JetBrains Mono",monospace;letter-spacing:.04em;backdrop-filter:blur(14px);background:rgba(10,14,26,.78);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.media-type{background:rgba(255,255,255,.9);color:#26304c;border-color:rgba(12,24,49,.13)}
+.project-body{padding:clamp(25px,3vw,46px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.project-meta{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+.project h3{font-size:clamp(25px,2.6vw,34px);line-height:1.17;letter-spacing:-.035em;margin:17px 0 7px}
+.project p{font-size:14px;line-height:1.8}
+.tag{color:var(--muted);background:var(--surface2)}
+.open-case{display:inline-flex;align-items:center;gap:16px;padding:12px 15px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);font-size:12px;transition:background .2s,border-color .2s,transform .2s}
+.open-case:hover{background:color-mix(in srgb,var(--purple) 14%,var(--surface));border-color:var(--purple);transform:translateX(3px)}
+.academic{gap:18px}
+.academic article{border-radius:23px;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
+.academic article:hover{transform:translateY(-5px);border-color:var(--purple);box-shadow:0 22px 60px rgba(0,0,0,.14)}
+.academic .academic-media{position:relative;padding:34px 14px 14px;background:linear-gradient(145deg,rgba(139,124,255,.14),rgba(69,224,194,.065));border-bottom:1px solid var(--line)}
+.academic .academic-media img{display:block;width:100%;height:205px;object-fit:contain;object-position:center;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:0 14px 28px rgba(0,0,0,.14);transition:transform .35s}
+.academic article:hover img{transform:translateY(-3px)}
+.academic-index{position:absolute;left:17px;top:12px;color:var(--muted);font:500 10px "JetBrains Mono",monospace;letter-spacing:.05em}
+.academic .academic-copy{padding:22px}
+.academic h4{font-size:15px;line-height:1.45;margin:0 0 10px}
+.academic p{font-size:12px;line-height:1.7}
+.tools-categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.tool-group{border:1px solid var(--line);border-radius:24px;background:var(--surface);padding:24px;transition:border-color .25s,box-shadow .25s;overflow:hidden}
+.tool-group:hover{border-color:color-mix(in srgb,var(--purple) 45%,var(--line));box-shadow:0 20px 65px rgba(0,0,0,.1)}
+.tool-group-head{display:flex;gap:14px;align-items:flex-start;min-height:78px}
+.tool-group-no{color:var(--cyan);font-size:12px;padding-top:4px}
+.tool-group-head h3{font-size:19px;letter-spacing:-.025em;margin:0 0 6px}
+.tool-group-head p{font-size:12px;line-height:1.5;color:var(--muted);margin:0}
+.tool-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.tool-tile{min-height:108px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line);background:var(--surface2);border-radius:16px;padding:13px 8px;transition:transform .22s,background .22s,border-color .22s}
+.tool-tile:hover{transform:translateY(-4px);background:color-mix(in srgb,var(--purple) 9%,var(--surface));border-color:var(--purple)}
+.tool-logo{width:48px;height:48px;display:grid;place-items:center;background:#fff;border:1px solid #e4e7ef;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.tool-logo img{width:30px;height:30px;object-fit:contain}
+.tool-tile>span{color:var(--text);font-weight:600;font-size:11px;text-align:center;line-height:1.25}
+.contact-card{background:linear-gradient(135deg,var(--surface2),var(--surface))}
+@media(max-width:1120px){.links{gap:12px}.links a{font-size:11px}.status{display:none}}
+@media(max-width:980px){
+nav{padding:12px 0}
+.nav-menu-toggle{display:flex}
+.links{display:none;position:absolute;top:100%;left:14px;right:14px;margin:0;padding:13px;border:1px solid var(--line);border-radius:18px;box-shadow:0 25px 70px rgba(0,0,0,.3);background:var(--surface);grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;max-height:calc(100dvh - 82px);overflow-y:auto;white-space:normal}
+nav.menu-open{background:var(--nav);backdrop-filter:blur(18px)}
+nav.menu-open .links{display:grid}
+.links a{font-size:13px;padding:14px;border-radius:11px}
+.links a.active,.links a:hover{background:var(--surface2)}
+.links a::after{display:none}
+.project,.project:nth-child(even){grid-template-columns:1fr}
+.project:nth-child(even) .project-media{order:0}
+.project-media{height:330px;min-height:330px}
+.project-body{padding:29px}
+.tools-categories{grid-template-columns:1fr 1fr}
+}
+@media(max-width:670px){
+.tools-categories{grid-template-columns:1fr}
+.tool-group{padding:19px}
+.tool-group-head{min-height:auto}
+.tool-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+.academic .academic-media img{height:225px}
+.project-media{height:260px;min-height:260px}
+.media-topline{top:12px;left:12px;right:12px}
+.media-index,.media-type{font-size:9px;padding:7px 9px}
+}
+@media(max-width:370px){.links{grid-template-columns:1fr}.tool-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 </style>
 </head>
 <body>
 <div class="progress" id="progress"></div><div class="noise"></div><div class="glow" id="glow"></div>
-<nav id="nav"><div class="wrap navin"><a class="brand" href="#home">SUTTHIWIT<span style="color:var(--cyan)">.</span></a><div class="links"><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div><div class="nav-actions"><div class="status"><span class="dot"></span>Open to full-time opportunities</div><button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme"><svg class="theme-moon" viewBox="0 0 24 24"><path d="M20 15a8 8 0 0 1-11-11 8.5 8.5 0 1 0 11 11Z"/></svg><svg class="theme-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div></div></nav>
+<nav id="nav"><div class="wrap navin">
+<a class="brand" href="#home" aria-label="Sutthiwit — Home">SUTTHIWIT<span style="color:var(--cyan)">.</span></a>
+<div class="links" id="navLinks">
+<a href="#home">Home</a><a href="#experience">Experience</a><a href="#capabilities">Capabilities</a><a href="#work">Projects</a><a href="#skills">Skills &amp; Tools</a><a href="#education">Education</a><a href="#contact">Contact</a>
+</div>
+<div class="nav-actions">
+<div class="status"><span class="dot"></span>Open to opportunities</div>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Change color theme"><svg class="theme-moon" viewBox="0 0 24 24"><path d="M20 15a8 8 0 0 1-11-11 8.5 8.5 0 1 0 11 11Z"/></svg><svg class="theme-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l-1.4 1.4"/></svg></button>
+<button class="nav-menu-toggle" id="navMenuToggle" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></div></nav>
 
 <header class="hero" id="home"><div class="wrap hero-grid">
 <div>
@@ -129,17 +230,6 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-ra
 </svg><span class="float f1">BA · Requirements</span><span class="float f2">QA · Automation</span><span class="float f3">PostgreSQL · Migration</span></div>
 </div></header>
 
-<div class="stack-strip"><div class="wrap stack-inner">
-<div class="stack-label">Working stack / 2026</div>
-<div class="stack-grid">
-<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira"></span><span><b>Jira</b><small>Requirements · tracking</small></span></div>
-<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg" alt="Playwright"></span><span><b>Playwright</b><small>E2E · regression</small></span></div>
-<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript"></span><span><b>TypeScript</b><small>Next.js · React</small></span></div>
-<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></span><span><b>PostgreSQL</b><small>Migration · validation</small></span></div>
-<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg" alt="Vitest"></span><span><b>Vitest</b><small>Automated testing</small></span></div>
-<div class="stack-item"><span class="stack-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"></span><span><b>GitHub Actions</b><small>CI/CD · delivery</small></span></div>
-</div></div></div>
-
 <section id="experience"><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">01 / Experience</div><h2>Real systems, real constraints.</h2></div><p>My strongest experience comes from working with enterprise workflows where business rules, permissions, data quality and release confidence matter.</p></div>
 <div class="experience-card reveal">
@@ -148,7 +238,7 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-ra
 </div>
 </div></section>
 
-<section><div class="wrap">
+<section id="capabilities"><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">02 / Capabilities</div><h2>More than one lane.</h2></div><p>I can move between understanding the business, checking system behavior, reading data, and working with implementation details.</p></div>
 <div class="bento">
 <div class="card c6 reveal"><div class="num">01</div><h3>Business Analysis</h3><p>Translate operational rules into clear system behavior, workflows, permissions, conditions and testable acceptance scenarios.</p><div class="accent" style="background:var(--purple)"></div></div>
@@ -162,7 +252,7 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-ra
 <section class="projects" id="work"><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">03 / Featured Work</div><h2>Enterprise projects.</h2></div><p>Two systems that best show how I work across product rules, testing, data, implementation detail and delivery.</p></div>
 <div class="project-grid">
-<article class="project reveal"><div class="project-media"><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+<article class="project reveal"><div class="project-media joins-media"><div class="media-topline"><span class="media-index">01 / FEATURED CASE STUDY</span><span class="media-type">HR SYSTEM</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
 <defs><linearGradient id="joins-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9fbff"/><stop offset="1" stop-color="#e7efff"/></linearGradient><linearGradient id="joins-blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4d7cff"/><stop offset="1" stop-color="#55d7c4"/></linearGradient><filter id="joins-s"><feDropShadow dx="0" dy="18" stdDeviation="25" flood-opacity=".18"/></filter></defs>
 <rect width="1200" height="760" rx="44" fill="url(#joins-bg)"/><circle cx="1020" cy="110" r="170" fill="#91a7ff" opacity=".15"/>
 <g filter="url(#joins-s)"><rect x="80" y="80" width="1040" height="590" rx="32" fill="#fff"/><rect x="80" y="80" width="210" height="590" rx="32" fill="#13233f"/><text x="126" y="145" font-size="34" fill="#fff" font-family="Arial" font-weight="700">JOiNS+</text><text x="126" y="180" font-size="18" fill="#99a9c4" font-family="Arial">HR Portal</text>
@@ -176,7 +266,7 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-ra
 <rect x="830" y="275" width="245" height="150" rx="24" fill="#f8faff"/><text x="860" y="315" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Database & Migration</text><circle cx="880" cy="360" r="23" fill="#557cff"/><g fill="#34bfa3"><circle cx="944" cy="345" r="6"/><circle cx="944" cy="375" r="6"/><circle cx="944" cy="405" r="6"/></g><g fill="#667085"><rect x="960" y="338" width="85" height="10" rx="5"/><rect x="960" y="368" width="70" height="10" rx="5"/><rect x="960" y="398" width="92" height="10" rx="5"/></g>
 <rect x="830" y="450" width="245" height="145" rx="24" fill="#f8faff"/><text x="860" y="492" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Approval Workflow</text><path d="M870 535 H1035" stroke="#d4dbea" stroke-width="8" stroke-linecap="round"/><circle cx="895" cy="535" r="15" fill="#557cff"/><circle cx="955" cy="535" r="15" fill="#34bfa3"/><circle cx="1015" cy="535" r="15" fill="#ff9e7a"/></g>
 </svg></div><div class="project-body"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Enterprise HR</span></div><h3>Leave workflows, approvals & data migration</h3><p>Worked with leave calculations, approval policies, backdated records, authorization, cancellation rules, reporting, PostgreSQL validation and legacy balance migration.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div><button class="open-case" data-case="joins">View case study →</button></div></article>
-<article class="project reveal"><div class="project-media"><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+<article class="project reveal"><div class="project-media mega-media"><div class="media-topline"><span class="media-index">02 / FEATURED CASE STUDY</span><span class="media-type">IT SERVICE MANAGEMENT</span></div><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
 <defs><linearGradient id="mega-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0e15"/><stop offset="1" stop-color="#111827"/></linearGradient><linearGradient id="mega-orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff875f"/><stop offset="1" stop-color="#8b7cff"/></linearGradient><filter id="mega-s"><feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#000" flood-opacity=".5"/></filter></defs>
 <rect width="1200" height="760" rx="44" fill="url(#mega-bg)"/><circle cx="1040" cy="110" r="190" fill="#ff875f" opacity=".08"/>
 <g filter="url(#mega-s)"><rect x="72" y="76" width="1055" height="610" rx="32" fill="#101722" stroke="#2c3547"/><rect x="72" y="76" width="205" height="610" rx="32" fill="#0c111b"/><text x="118" y="142" font-size="36" font-family="Arial" font-weight="700" fill="#fff">MEGA-T</text><text x="118" y="178" font-size="18" font-family="Arial" fill="#8d99ad">IT Service Management</text>
@@ -194,47 +284,23 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-ra
 
 <div class="section-head reveal" style="margin-top:70px"><div><div class="eyebrow">Earlier Work</div><h2 style="font-size:36px">Development foundations.</h2></div></div>
 <div class="academic">
-<article class="reveal"><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System"><div><h4>UP-PSF Digital Assessment System</h4><p>Paperless assessment workflow with Next.js, TypeScript, RBAC and REST API integration.</p></div></article>
-<article class="reveal"><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App"><div><h4>Restaurant Management Web App</h4><p>QR-based ordering, operational dashboard, real-time workflow and export features.</p></div></article>
-<article class="reveal"><img src="./assets/images/online-plant-store.png" alt="Online Plant Store"><div><h4>TAMROI Online Plant Store</h4><p>User research, Figma prototyping and responsive e-commerce front-end design.</p></div></article>
+<article class="reveal"><div class="academic-media"><span class="academic-index">01 / WEB APPLICATION</span><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System interface" loading="lazy" decoding="async"></div><div class="academic-copy"><h4>UP-PSF Digital Assessment System</h4><p>Paperless assessment workflow with Next.js, TypeScript, RBAC and REST API integration.</p></div></article>
+<article class="reveal"><div class="academic-media"><span class="academic-index">02 / FULL-STACK PROJECT</span><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant management application interface" loading="lazy" decoding="async"></div><div class="academic-copy"><h4>Restaurant Management Web App</h4><p>QR-based ordering, operational dashboard, real-time workflow and export features.</p></div></article>
+<article class="reveal"><div class="academic-media"><span class="academic-index">03 / UX & E-COMMERCE</span><img src="./assets/images/online-plant-store.png" alt="TAMROI Online Plant Store interface" loading="lazy" decoding="async"></div><div class="academic-copy"><h4>TAMROI Online Plant Store</h4><p>User research, Figma prototyping and responsive e-commerce front-end design.</p></div></article>
 </div>
 </div></section>
 
 <section id="skills"><div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">04 / Skills & Tools</div><h2>What I use to get the work done.</h2></div><p>Core BA/QA capabilities first, followed by the actual tools and technologies I have worked with.</p></div>
+<div class="section-head reveal"><div><div class="eyebrow">04 / Skills &amp; Tools</div><h2>Tools behind the work.</h2></div><p>My capabilities are shown above. Here are the actual tools and technologies, grouped by the kind of work they support.</p></div>
+<div class="tools-categories">
+<div class="tool-group reveal"><div class="tool-group-head"><span class="tool-group-no mono">01</span><div><h3>Analysis & Design</h3><p>Plan workflows and collaborate on requirements.</p></div></div><div class="tool-tiles"><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira logo" loading="lazy" decoding="async"></div><span>Jira</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma logo" loading="lazy" decoding="async"></div><span>Figma</span></div></div></div>
+<div class="tool-group reveal"><div class="tool-group-head"><span class="tool-group-no mono">02</span><div><h3>Development</h3><p>Build and work with modern web applications.</p></div></div><div class="tool-tiles"><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript logo" loading="lazy" decoding="async"></div><span>TypeScript</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React logo" loading="lazy" decoding="async"></div><span>React</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js logo" loading="lazy" decoding="async"></div><span>Next.js</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js logo" loading="lazy" decoding="async"></div><span>Node.js</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="NestJS logo" loading="lazy" decoding="async"></div><span>NestJS</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg" alt="Prisma logo" loading="lazy" decoding="async"></div><span>Prisma</span></div></div></div>
+<div class="tool-group reveal"><div class="tool-group-head"><span class="tool-group-no mono">03</span><div><h3>Quality & Data</h3><p>Test system behavior, automate checks and validate data.</p></div></div><div class="tool-tiles"><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL logo" loading="lazy" decoding="async"></div><span>PostgreSQL</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg" alt="Playwright logo" loading="lazy" decoding="async"></div><span>Playwright</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg" alt="Vitest logo" loading="lazy" decoding="async"></div><span>Vitest</span></div></div></div>
+<div class="tool-group reveal"><div class="tool-group-head"><span class="tool-group-no mono">04</span><div><h3>Delivery & Collaboration</h3><p>Version control, CI/CD and deployment workflows.</p></div></div><div class="tool-tiles"><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git logo" loading="lazy" decoding="async"></div><span>Git</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub logo" loading="lazy" decoding="async"></div><span>GitHub</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions logo" loading="lazy" decoding="async"></div><span>GitHub Actions</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker logo" loading="lazy" decoding="async"></div><span>Docker</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.simpleicons.org/caddy/1F88C0" alt="Caddy logo" loading="lazy" decoding="async"></div><span>Caddy</span></div></div></div>
+</div></div></section>
 
-<div class="core-skills reveal">
-<span class="core-skill">Requirements Analysis</span>
-<span class="core-skill">Business Rules</span>
-<span class="core-skill">Test Scenario Design</span>
-<span class="core-skill">Functional Testing</span>
-<span class="core-skill">Regression Testing</span>
-<span class="core-skill">API / E2E Testing</span>
-<span class="core-skill">Defect Investigation</span>
-<span class="core-skill">Data Migration</span>
-<span class="core-skill">Data Reconciliation</span>
-</div>
-
-<div class="tools-grid">
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira"></div><span>Jira</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma"></div><span>Figma</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript"></div><span>TypeScript</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React"></div><span>React</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js"></div><span>Next.js</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js"></div><span>Node.js</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="NestJS"></div><span>NestJS</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg" alt="Prisma"></div><span>Prisma</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></div><span>PostgreSQL</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg" alt="Playwright"></div><span>Playwright</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg" alt="Vitest"></div><span>Vitest</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"></div><span>Git</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub"></div><span>GitHub</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"></div><span>GitHub Actions</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"></div><span>Docker</span></div>
-<div class="tool-item reveal"><div class="tool-logo"><img src="https://cdn.simpleicons.org/caddy/1F88C0" alt="Caddy"></div><span>Caddy</span></div>
-</div>
-
-<div class="section-head reveal" style="margin-top:85px"><div><div class="eyebrow">05 / Education</div><h2 style="font-size:42px">Education.</h2></div><p>Academic foundation behind my software engineering, product, data and testing work.</p></div>
+<section id="education"><div class="wrap">
+<div class="section-head reveal"><div><div class="eyebrow">05 / Education</div><h2 style="font-size:42px">Education.</h2></div><p>Academic foundation behind my software engineering, product, data and testing work.</p></div>
 <div class="experience-card reveal"><div><div class="date mono">2022 — 2026</div><h3>B.Eng. Software Engineering</h3><div class="company">University of Phayao</div></div><div><p>GPA 3.29 · Coursework and projects covered software engineering, web development, databases, system design, UX/UI and team-based product development.</p></div></div>
 </div></section>
 
@@ -249,6 +315,17 @@ const root=document.documentElement,themeToggle=document.getElementById('themeTo
 root.dataset.theme=localStorage.getItem('portfolio-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
 themeToggle.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('portfolio-theme',root.dataset.theme)});
 const nav=document.getElementById('nav'),progress=document.getElementById('progress'),glow=document.getElementById('glow');
+const menuToggle=document.getElementById('navMenuToggle');
+function closeMenu(){nav.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open navigation menu');}
+menuToggle.addEventListener('click',()=>{const open=nav.classList.toggle('menu-open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu')});
+document.querySelectorAll('#navLinks a').forEach(link=>link.addEventListener('click',closeMenu));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+document.addEventListener('click',e=>{if(nav.classList.contains('menu-open')&&!nav.contains(e.target))closeMenu()});
+addEventListener('resize',()=>{if(innerWidth>980)closeMenu()},{passive:true});
+const sections=Array.from(document.querySelectorAll('header[id],section[id]'));
+const navAnchors=Array.from(document.querySelectorAll('#navLinks a'));
+function updateActiveNav(){let current='home';for(const s of sections){if(s.getBoundingClientRect().top<=160)current=s.id}navAnchors.forEach(a=>{const active=a.getAttribute('href')==='#'+current;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}
+addEventListener('scroll',updateActiveNav,{passive:true});updateActiveNav();
 addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>30);const d=document.documentElement.scrollHeight-innerHeight;progress.style.width=(d?scrollY/d*100:0)+'%'},{passive:true});
 if(matchMedia('(pointer:fine)').matches)addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});else glow.style.display='none';
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
