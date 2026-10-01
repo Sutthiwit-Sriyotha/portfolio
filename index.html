@@ -22,10 +22,11 @@ html[data-theme="dark"]{
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;transition:background .28s ease,color .28s ease;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:
-url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%238b93a5' stroke-opacity='.08'%3E%3Cpath d='M0 70h140M70 0v140'/%3E%3Ccircle cx='70' cy='70' r='28'/%3E%3C/g%3E%3C/svg%3E") center/140px 140px repeat}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background-image:radial-gradient(color-mix(in srgb,var(--muted) 14%,transparent) .65px,transparent .65px);background-size:18px 18px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.45),transparent 72%)}
 .progress{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--green));z-index:100;box-shadow:0 0 18px color-mix(in srgb,var(--blue) 35%,transparent)}
-.cursor-glow{position:fixed;width:360px;height:360px;border-radius:50%;pointer-events:none;z-index:-1;transform:translate(-50%,-50%);background:radial-gradient(circle,color-mix(in srgb,var(--blue) 14%,transparent),transparent 68%);filter:blur(10px);opacity:.9}
+.cursor-glow{position:fixed;width:220px;height:220px;border-radius:50%;pointer-events:none;z-index:-1;transform:translate(-50%,-50%);background:radial-gradient(circle,color-mix(in srgb,var(--blue) 9%,transparent),transparent 72%);filter:blur(14px);opacity:.75}
+.project-cursor{position:fixed;z-index:120;pointer-events:none;width:82px;height:82px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);font:700 11px "Manrope";letter-spacing:.02em;opacity:0;transform:translate(-50%,-50%) scale(.7);transition:opacity .16s ease,transform .16s ease}
+.project-cursor.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
 a{color:inherit}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
 nav{position:sticky;top:0;z-index:40;background:var(--nav);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:background .28s ease,border-color .28s ease}
@@ -61,9 +62,19 @@ h1{font:800 clamp(56px,8.5vw,118px)/.92 "Manrope";letter-spacing:-.07em;margin:1
 .project-card .project-body,.project-card .project-media-uniform{transform:translateZ(10px)}
 .project-media-uniform{height:300px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--slot-light-1),var(--slot-light-2));display:flex;align-items:flex-end;padding:26px}
 .project-media-uniform.dark{background:linear-gradient(135deg,#1b2030,#151720);color:white}
-.project-media-uniform:before{content:"";position:absolute;inset:18px;border:1px dashed rgba(17,19,24,.22);border-radius:18px}
-.project-media-uniform.dark:before{border-color:rgba(255,255,255,.25)}
-.project-media-uniform img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.project-media-uniform img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.project-card:hover .project-media-uniform img{transform:scale(1.035)}
+.ui-preview{position:absolute;inset:28px;border:1px solid color-mix(in srgb,var(--ink) 13%,transparent);border-radius:18px;background:color-mix(in srgb,var(--paper) 84%,transparent);box-shadow:0 18px 50px rgba(0,0,0,.09);overflow:hidden;backdrop-filter:blur(12px)}
+.dark .ui-preview{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14)}
+.ui-top{height:38px;border-bottom:1px solid color-mix(in srgb,var(--ink) 12%,transparent);display:flex;align-items:center;gap:6px;padding:0 12px}.dark .ui-top{border-color:rgba(255,255,255,.14)}
+.ui-dot{width:7px;height:7px;border-radius:50%;background:color-mix(in srgb,var(--muted) 45%,transparent)}
+.ui-body{display:grid;grid-template-columns:72px 1fr;height:calc(100% - 38px)}
+.ui-side{border-right:1px solid color-mix(in srgb,var(--ink) 10%,transparent);padding:12px 9px}.dark .ui-side{border-color:rgba(255,255,255,.12)}
+.ui-side i,.ui-line,.ui-card{display:block;background:color-mix(in srgb,var(--muted) 16%,transparent);border-radius:7px}
+.ui-side i{height:7px;margin:0 0 10px}.ui-content{padding:16px}.ui-line{height:9px;margin-bottom:10px}.ui-line.short{width:38%}.ui-line.mid{width:66%}
+.ui-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.ui-card{height:64px;border:1px solid color-mix(in srgb,var(--ink) 8%,transparent);background:color-mix(in srgb,var(--blue) 8%,var(--paper))}
+.dark .ui-card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08)}
+
 .project-media-uniform .slot-copy{position:relative;z-index:1}.slot-copy small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;opacity:.65;margin-bottom:8px}.slot-copy strong{font:800 28px "Manrope";letter-spacing:-.03em}
 .project-body{padding:26px;display:flex;flex-direction:column;flex:1}.project-top{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:12px}
 .project-body h3{font:800 26px/1.15 "Manrope";letter-spacing:-.035em;margin:14px 0 10px}
@@ -104,12 +115,12 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
 }.availability{display:none}.hero{padding:58px 0}.quick{grid-template-columns:1fr}.section{padding:68px 0}
   .small-card{grid-template-columns:1fr}.small-card img{height:210px}.exp-row,.cap-row{grid-template-columns:1fr;gap:8px}.contact-box{padding:30px}
 }
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.cursor-glow,.project-cursor{display:none!important}}
 </style>
 </head>
 <body>
 <div class="progress" id="scrollProgress"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-glow" id="cursorGlow"></div><div class="project-cursor" id="projectCursor">View ↗</div>
 <nav>
   <div class="wrap navin">
     <a class="brand" href="#top">SUTTHIWIT SRIYOTHA</a>
@@ -118,13 +129,7 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
   </div>
 </nav>
 
-<header class="hero" id="top" style="position:relative">
-  <svg aria-hidden="true" viewBox="0 0 220 220" style="position:absolute;right:-30px;top:40px;width:220px;height:220px;opacity:.16;pointer-events:none">
-    <defs><linearGradient id="orb" x1="0" x2="1"><stop stop-color="#315efb"/><stop offset="1" stop-color="#1d8f72"/></linearGradient></defs>
-    <circle cx="110" cy="110" r="82" fill="none" stroke="url(#orb)" stroke-width="2"/>
-    <circle cx="110" cy="110" r="48" fill="none" stroke="url(#orb)" stroke-width="1.5" stroke-dasharray="8 10"/>
-    <path d="M30 110h160M110 30v160" stroke="url(#orb)" stroke-width="1"/>
-  </svg>
+<header class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow reveal">Software Engineering Portfolio</div>
@@ -144,11 +149,7 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
   </div>
 </header>
 
-<section class="section" id="work" style="position:relative">
-  <svg aria-hidden="true" viewBox="0 0 180 180" style="position:absolute;left:-35px;top:90px;width:180px;height:180px;opacity:.09;pointer-events:none">
-    <path d="M20 90h140M90 20v140M42 42l96 96M138 42l-96 96" fill="none" stroke="currentColor" stroke-width="1.2"/>
-    <circle cx="90" cy="90" r="56" fill="none" stroke="currentColor" stroke-width="1.2"/>
-  </svg>
+<section class="section" id="work">
   <div class="wrap">
     <div class="section-head reveal">
       <div><div class="eyebrow">01 / Selected Work</div><h2>Projects first.</h2></div>
@@ -157,7 +158,7 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
 
     <div class="work-stack">
       <article class="project-card reveal">
-        <div class="project-media-uniform"><div class="slot-copy"><small>Image placeholder</small><strong>JOiNS+ HR Portal</strong></div></div>
+        <div class="project-media-uniform"><div class="ui-preview" aria-hidden="true"><div class="ui-top"><span class="ui-dot"></span><span class="ui-dot"></span><span class="ui-dot"></span></div><div class="ui-body"><div class="ui-side"><i></i><i></i><i></i><i></i></div><div class="ui-content"><span class="ui-line short"></span><span class="ui-line mid"></span><div class="ui-grid"><span class="ui-card"></span><span class="ui-card"></span><span class="ui-card"></span></div><span class="ui-line" style="margin-top:14px"></span><span class="ui-line mid"></span></div></div></div><div class="slot-copy"><small>Image placeholder</small><strong>JOiNS+ HR Portal</strong></div></div>
         <div class="project-body">
           <div class="project-top"><span>Enterprise HR · Double P Enterprise</span><span>2026</span></div>
           <h3>JOiNS+ HR Portal</h3>
@@ -168,7 +169,7 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
       </article>
 
       <article class="project-card reveal">
-        <div class="project-media-uniform dark"><div class="slot-copy"><small>Image placeholder</small><strong>MEGA-T ITSM</strong></div></div>
+        <div class="project-media-uniform dark"><div class="ui-preview" aria-hidden="true"><div class="ui-top"><span class="ui-dot"></span><span class="ui-dot"></span><span class="ui-dot"></span></div><div class="ui-body"><div class="ui-side"><i></i><i></i><i></i><i></i></div><div class="ui-content"><span class="ui-line short"></span><span class="ui-line mid"></span><div class="ui-grid"><span class="ui-card"></span><span class="ui-card"></span><span class="ui-card"></span></div><span class="ui-line" style="margin-top:14px"></span><span class="ui-line mid"></span></div></div></div><div class="slot-copy"><small>Image placeholder</small><strong>MEGA-T ITSM</strong></div></div>
         <div class="project-body">
           <div class="project-top"><span>Enterprise ITSM · Double P Enterprise</span><span>2026</span></div>
           <h3>MEGA-T ITSM Platform</h3>
@@ -291,17 +292,19 @@ const progress=document.getElementById('scrollProgress');
 const cursorGlow=document.getElementById('cursorGlow');
 addEventListener('scroll',()=>{const d=document.documentElement.scrollHeight-innerHeight;progress.style.width=(d?scrollY/d*100:0)+'%'},{passive:true});
 if(matchMedia('(pointer:fine)').matches){
-  addEventListener('pointermove',e=>{cursorGlow.style.left=e.clientX+'px';cursorGlow.style.top=e.clientY+'px'},{passive:true});
+  const projectCursor=document.getElementById('projectCursor');
+  addEventListener('pointermove',e=>{cursorGlow.style.left=e.clientX+'px';cursorGlow.style.top=e.clientY+'px';projectCursor.style.left=e.clientX+'px';projectCursor.style.top=e.clientY+'px'},{passive:true});
   document.querySelectorAll('.project-card').forEach(card=>{
     card.addEventListener('pointermove',e=>{
       const r=card.getBoundingClientRect();
       const x=(e.clientX-r.left)/r.width-.5;
       const y=(e.clientY-r.top)/r.height-.5;
-      card.style.transform=`perspective(900px) rotateX(${-y*3.5}deg) rotateY(${x*4.5}deg) translateY(-2px)`;
+      card.style.transform=`perspective(1100px) rotateX(${-y*1.6}deg) rotateY(${x*2}deg) translateY(-3px)`;
     });
-    card.addEventListener('pointerleave',()=>card.style.transform='');
+    card.addEventListener('pointerenter',()=>{if(card.querySelector('[data-case]'))projectCursor.classList.add('show')});
+    card.addEventListener('pointerleave',()=>{card.style.transform='';projectCursor.classList.remove('show')});
   });
-}else{cursorGlow.style.display='none'}
+}else{cursorGlow.style.display='none';document.getElementById('projectCursor').style.display='none'}
 const root=document.documentElement,themeToggle=document.getElementById('themeToggle');
 const savedTheme=localStorage.getItem('portfolio-theme');
 const preferredDark=matchMedia('(prefers-color-scheme: dark)').matches;
