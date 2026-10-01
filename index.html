@@ -12,7 +12,12 @@
 :root{
   --bg:#080a0f;--surface:#0f131c;--surface2:#141925;--line:#222a3a;
   --text:#f4f7fb;--muted:#9aa4b6;--purple:#8b7cff;--cyan:#45e0c2;--orange:#ff875f;
-  --max:1180px;--radius:24px
+  --nav:rgba(8,10,15,.78);--max:1180px;--radius:24px
+}
+html[data-theme="light"]{
+  --bg:#f4f5f7;--surface:#ffffff;--surface2:#edf0f4;--line:#dce1e8;
+  --text:#11141a;--muted:#687181;--purple:#6957e8;--cyan:#118f7a;--orange:#cf6e42;
+  --nav:rgba(244,245,247,.82)
 }
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;overflow-x:hidden}
 a{color:inherit}.mono{font-family:"JetBrains Mono",monospace}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
@@ -20,9 +25,9 @@ a{color:inherit}.mono{font-family:"JetBrains Mono",monospace}.wrap{width:min(var
 .noise{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.26;background-image:radial-gradient(rgba(255,255,255,.055) .7px,transparent .7px);background-size:14px 14px;mask-image:linear-gradient(to bottom,black,transparent 72%)}
 .glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(139,124,255,.15),transparent 68%);transform:translate(-50%,-50%);filter:blur(12px)}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:.3s}
-nav.scrolled{background:rgba(8,10,15,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+nav.scrolled{background:var(--nav);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
 .navin{display:flex;align-items:center;justify-content:space-between}.brand{text-decoration:none;font-weight:800;letter-spacing:-.04em}
-.links{display:flex;gap:28px;align-items:center}.links a{text-decoration:none;color:var(--muted);font-size:13px}.links a:hover{color:white}
+.links{display:flex;gap:28px;align-items:center}.links a{text-decoration:none;color:var(--muted);font-size:13px}.links a:hover{color:var(--text)}
 .status{display:flex;align-items:center;gap:8px;border:1px solid rgba(69,224,194,.25);padding:7px 11px;border-radius:999px;font-size:12px;color:#bdf8ec;background:rgba(69,224,194,.06)}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 70px;z-index:2}
@@ -34,12 +39,22 @@ h1{font-size:clamp(48px,7.5vw,96px);line-height:.95;letter-spacing:-.065em;margi
 .hero p{font-size:17px;line-height:1.7;color:var(--muted);max-width:620px}
 .role-line{margin-top:18px;color:#d7dbea;font-size:15px}.role{color:var(--cyan)}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px;border:1px solid var(--line);transition:.25s}
-.btn.primary{background:white;color:#0b0d12;border-color:white}.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}.btn:hover{transform:translateY(-2px)}
 .visual{position:relative;border-radius:30px;padding:14px;background:linear-gradient(145deg,rgba(139,124,255,.16),rgba(69,224,194,.05));border:1px solid rgba(255,255,255,.09);box-shadow:0 35px 120px rgba(0,0,0,.45);transform-style:preserve-3d}
 .visual img{width:100%;display:block;border-radius:20px;transform:translateZ(24px)}
 .float{position:absolute;padding:9px 12px;border-radius:999px;background:rgba(12,15,22,.76);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);font-size:11px;box-shadow:0 14px 30px rgba(0,0,0,.25);animation:float 5s ease-in-out infinite}
 .f1{left:-24px;top:18%}.f2{right:-18px;top:12%;animation-delay:-1.6s}.f3{right:10%;bottom:-15px;animation-delay:-3s}@keyframes float{50%{transform:translateY(-9px)}}
-.marquee{border-block:1px solid var(--line);overflow:hidden;position:relative;z-index:2;background:#0b0e14}.marquee-track{display:flex;width:max-content;gap:11px;padding:14px 0;animation:marq 28s linear infinite}.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:#aeb7c8;font-size:12px;background:#0f131c}@keyframes marq{to{transform:translateX(-50%)}}
+.stack-strip{position:relative;z-index:2;border-block:1px solid var(--line);background:color-mix(in srgb,var(--surface) 72%,transparent)}
+.stack-inner{display:grid;grid-template-columns:170px 1fr;gap:28px;align-items:center;padding:20px 0}
+.stack-label{font:500 11px "JetBrains Mono";letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.stack-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.stack-item{min-height:62px;border:1px solid var(--line);border-radius:14px;background:var(--surface);display:flex;align-items:center;gap:10px;padding:12px;transition:.22s}
+.stack-item:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--purple) 42%,var(--line))}
+.stack-icon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--surface2);color:var(--cyan);font:700 9px "JetBrains Mono"}
+.stack-item b{display:block;font-size:11px}.stack-item small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.theme-toggle{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer}
+.theme-toggle svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.theme-sun{display:none}html[data-theme="light"] .theme-sun{display:block}html[data-theme="light"] .theme-moon{display:none}
+.nav-actions{display:flex;align-items:center;gap:10px}
 section{position:relative;z-index:2;padding:110px 0}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}.eyebrow{color:#a99fff;font:500 12px "JetBrains Mono";letter-spacing:.12em;text-transform:uppercase}.section-head h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.05em;margin:8px 0 0}.section-head p{color:var(--muted);max-width:440px;line-height:1.6}
 .experience-card{display:grid;grid-template-columns:.75fr 1.25fr;gap:30px;padding:32px;border:1px solid rgba(139,124,255,.23);border-radius:var(--radius);background:linear-gradient(135deg,rgba(139,124,255,.11),rgba(69,224,194,.035))}
 .experience-card h3{font-size:26px;margin:6px 0}.company{color:#d8dcec}.date{color:var(--cyan);font-size:12px}.experience-card p{color:var(--muted);line-height:1.7;margin:0}
@@ -47,23 +62,24 @@ section{position:relative;z-index:2;padding:110px 0}.section-head{display:flex;j
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.bento .card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:26px;min-height:210px;overflow:hidden;position:relative;transition:.3s}
 .bento .card:hover{border-color:#39445e;transform:translateY(-4px)}.c6{grid-column:span 6}.c4{grid-column:span 4}.c8{grid-column:span 8}
 .card .num{font:500 11px "JetBrains Mono";color:#6f7990}.card h3{font-size:22px;margin:24px 0 10px}.card p{color:var(--muted);line-height:1.65;font-size:14px}.card .accent{position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;bottom:-65px;filter:blur(8px);opacity:.22}
-.projects{background:#0a0d13}.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.project{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:var(--surface);transition:.35s}.project:hover{transform:translateY(-5px);border-color:#3b4660}.project-media{height:320px;overflow:hidden;position:relative;background:#0b1018}.project-media img{width:100%;height:100%;object-fit:cover;transition:.6s}.project:hover .project-media img{transform:scale(1.035)}.project-body{padding:26px}.project-meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}.project h3{font-size:27px;margin:13px 0 10px}.project p{color:var(--muted);line-height:1.65}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.tag{font-size:11px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:#b7c0d1}.open-case{margin-top:22px;background:transparent;color:white;border:0;padding:0;font-weight:700;cursor:pointer}
+.projects{background:#0a0d13}.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.project{border:1px solid var(--line);border-radius:28px;overflow:hidden;background:var(--surface);transition:.32s;box-shadow:0 18px 60px rgba(0,0,0,.08)}.project:hover{transform:translateY(-5px);border-color:#3b4660}.project-media{height:320px;overflow:hidden;position:relative;background:#0b1018}.project-media img,.project-inline-art{width:100%;height:100%;object-fit:cover;display:block;transition:.6s}.project:hover .project-media img,.project:hover .project-inline-art{transform:scale(1.025)}.project-body{padding:26px}.project-meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}.project h3{font-size:27px;margin:13px 0 10px}.project p{color:var(--muted);line-height:1.65}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.tag{font-size:11px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:#b7c0d1}.open-case{margin-top:22px;background:transparent;color:var(--text);border:0;padding:0;font-weight:700;cursor:pointer}
 .academic{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.academic article{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface)}.academic img{width:100%;height:185px;object-fit:cover}.academic div{padding:18px}.academic h4{margin:0 0 8px}.academic p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
 .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.skill-group{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface)}.skill-group h4{margin:0 0 14px;font-size:13px;color:#dfe4ef}.skill-group p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
 .timeline{border-left:1px solid var(--line);margin-left:8px;padding-left:30px;display:grid;gap:28px}.event{position:relative}.event:before{content:"";position:absolute;left:-36px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--purple)}.event h4{margin:0 0 6px}.event small{color:var(--cyan)}.event p{color:var(--muted);line-height:1.6;margin:9px 0 0}
 .contact-card{padding:42px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,#111625,#0c1117);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.contact-card h2{font-size:clamp(32px,5vw,58px);margin:0 0 12px;letter-spacing:-.05em}.contact-card p{color:var(--muted);margin:0}.contact-links{display:flex;gap:10px;flex-wrap:wrap}
 footer{padding:30px 0 50px;color:#677186;font-size:12px}
 .reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.75,.2,1)}.reveal.show{opacity:1;transform:none}
-dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius:24px;background:#0d1119;color:white;padding:0;box-shadow:0 40px 140px #000}dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(7px)}.modal{padding:30px}.modal-top{display:flex;justify-content:space-between;gap:20px}.close{border:1px solid var(--line);background:#121722;color:white;border-radius:10px;width:36px;height:36px;cursor:pointer}.modal h3{font-size:34px;margin:5px 0 10px}.modal p,.modal li{color:var(--muted);line-height:1.65}.modal ul{padding-left:20px}
+dialog{width:min(760px,calc(100% - 30px));border:1px solid var(--line);border-radius:24px;background:var(--surface);color:var(--text);padding:0;box-shadow:0 40px 140px #000}dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(7px)}.modal{padding:30px}.modal-top{display:flex;justify-content:space-between;gap:20px}.close{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:10px;width:36px;height:36px;cursor:pointer}.modal h3{font-size:34px;margin:5px 0 10px}.modal p,.modal li{color:var(--muted);line-height:1.65}.modal ul{padding-left:20px}
+@media(max-width:1100px){.stack-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){.links{display:none}.hero-grid,.experience-card,.contact-card{grid-template-columns:1fr}.hero{padding-top:130px}.visual{margin-top:10px}.f1,.f2,.f3{display:none}.c6,.c4,.c8{grid-column:span 12}.project-grid,.skills-grid{grid-template-columns:1fr 1fr}.academic{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.project-media{height:260px}}
-@media(max-width:600px){.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}}
+@media(max-width:600px){.stack-inner{grid-template-columns:1fr;gap:12px}.stack-grid{grid-template-columns:repeat(2,1fr)}.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.glow{display:none}}
 .hero-inline-art{width:100%;height:100%;display:block;object-fit:cover}
 </style>
 </head>
 <body>
 <div class="progress" id="progress"></div><div class="noise"></div><div class="glow" id="glow"></div>
-<nav id="nav"><div class="wrap navin"><a class="brand" href="#home">SUTTHIWIT<span style="color:var(--cyan)">.</span></a><div class="links"><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div><div class="status"><span class="dot"></span>Open to full-time opportunities</div></div></nav>
+<nav id="nav"><div class="wrap navin"><a class="brand" href="#home">SUTTHIWIT<span style="color:var(--cyan)">.</span></a><div class="links"><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div><div class="nav-actions"><div class="status"><span class="dot"></span>Open to full-time opportunities</div><button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme"><svg class="theme-moon" viewBox="0 0 24 24"><path d="M20 15a8 8 0 0 1-11-11 8.5 8.5 0 1 0 11 11Z"/></svg><svg class="theme-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div></div></nav>
 
 <header class="hero" id="home"><div class="wrap hero-grid">
 <div>
@@ -105,9 +121,16 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius
 </svg><span class="float f1">BA · Requirements</span><span class="float f2">QA · Automation</span><span class="float f3">PostgreSQL · Migration</span></div>
 </div></header>
 
-<div class="marquee"><div class="marquee-track">
-<span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">NestJS</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Playwright</span><span class="chip">Vitest</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Business Analysis</span><span class="chip">API Testing</span><span class="chip">Data Migration</span><span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">NestJS</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Playwright</span><span class="chip">Vitest</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Business Analysis</span><span class="chip">API Testing</span><span class="chip">Data Migration</span>
-</div></div>
+<div class="stack-strip"><div class="wrap stack-inner">
+<div class="stack-label">Working stack / 2026</div>
+<div class="stack-grid">
+<div class="stack-item"><span class="stack-icon">BA</span><span><b>Business Analysis</b><small>Rules & workflows</small></span></div>
+<div class="stack-item"><span class="stack-icon">QA</span><span><b>Testing</b><small>API · E2E · Regression</small></span></div>
+<div class="stack-item"><span class="stack-icon">TS</span><span><b>TypeScript</b><small>Next.js · React</small></span></div>
+<div class="stack-item"><span class="stack-icon">PG</span><span><b>PostgreSQL</b><small>Migration · Validation</small></span></div>
+<div class="stack-item"><span class="stack-icon">PW</span><span><b>Automation</b><small>Playwright · Vitest</small></span></div>
+<div class="stack-item"><span class="stack-icon">CI</span><span><b>Delivery</b><small>Docker · GitHub Actions</small></span></div>
+</div></div></div>
 
 <section id="experience"><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">01 / Experience</div><h2>Real systems, real constraints.</h2></div><p>My strongest experience comes from working with enterprise workflows where business rules, permissions, data quality and release confidence matter.</p></div>
@@ -131,8 +154,34 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius
 <section class="projects" id="work"><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">03 / Featured Work</div><h2>Enterprise projects.</h2></div><p>Two systems that best show how I work across product rules, testing, data, implementation detail and delivery.</p></div>
 <div class="project-grid">
-<article class="project reveal"><div class="project-media"><img src="./assets/joins-generated.svg?v=2" alt="JOiNS+ HR Portal concept"></div><div class="project-body"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Enterprise HR</span></div><h3>Leave workflows, approvals & data migration</h3><p>Worked with leave calculations, approval policies, backdated records, authorization, cancellation rules, reporting, PostgreSQL validation and legacy balance migration.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div><button class="open-case" data-case="joins">View case study →</button></div></article>
-<article class="project reveal"><div class="project-media"><img src="./assets/joins-generated.svg?v=2" alt="JOiNS+ HR Portal visual"></div><div class="project-body"><div class="project-meta"><span>MEGA-T</span><span>Enterprise ITSM</span></div><h3>Ticket lifecycle, SLA & multi-tenant controls</h3><p>Worked with ticket workflows, priority handling, SLA calculations, RBAC, tenant isolation, API/database investigation and automated validation.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span><span class="tag">Docker</span></div><button class="open-case" data-case="mega">View case study →</button></div></article>
+<article class="project reveal"><div class="project-media"><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+<defs><linearGradient id="joins-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9fbff"/><stop offset="1" stop-color="#e7efff"/></linearGradient><linearGradient id="joins-blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4d7cff"/><stop offset="1" stop-color="#55d7c4"/></linearGradient><filter id="joins-s"><feDropShadow dx="0" dy="18" stdDeviation="25" flood-opacity=".18"/></filter></defs>
+<rect width="1200" height="760" rx="44" fill="url(#joins-bg)"/><circle cx="1020" cy="110" r="170" fill="#91a7ff" opacity=".15"/>
+<g filter="url(#joins-s)"><rect x="80" y="80" width="1040" height="590" rx="32" fill="#fff"/><rect x="80" y="80" width="210" height="590" rx="32" fill="#13233f"/><text x="126" y="145" font-size="34" fill="#fff" font-family="Arial" font-weight="700">JOiNS+</text><text x="126" y="180" font-size="18" fill="#99a9c4" font-family="Arial">HR Portal</text>
+<g fill="#7f91ad"><rect x="125" y="235" width="92" height="13" rx="6"/><rect x="125" y="285" width="112" height="13" rx="6"/><rect x="125" y="335" width="85" height="13" rx="6"/><rect x="125" y="385" width="106" height="13" rx="6"/><rect x="125" y="435" width="80" height="13" rx="6"/></g>
+<rect x="330" y="120" width="220" height="120" rx="22" fill="#f3f7ff"/><rect x="575" y="120" width="220" height="120" rx="22" fill="#f3f7ff"/><rect x="820" y="120" width="255" height="120" rx="22" fill="#f3f7ff"/>
+<text x="355" y="157" font-size="17" fill="#667085" font-family="Arial">Total Employees</text><text x="355" y="205" font-size="44" fill="#12213f" font-family="Arial" font-weight="700">248</text>
+<text x="600" y="157" font-size="17" fill="#667085" font-family="Arial">Leave Requests</text><text x="600" y="205" font-size="44" fill="#12213f" font-family="Arial" font-weight="700">12</text>
+<circle cx="960" cy="182" r="42" fill="none" stroke="#dde5f6" stroke-width="14"/><path d="M960 140 A42 42 0 1 1 925 205" fill="none" stroke="url(#joins-blue)" stroke-width="14"/>
+<rect x="330" y="275" width="470" height="320" rx="24" fill="#f8faff"/><text x="360" y="320" font-size="19" fill="#24314d" font-family="Arial" font-weight="700">Leave Overview</text>
+<g fill="#86a5ff"><rect x="370" y="470" width="28" height="80" rx="7"/><rect x="418" y="430" width="28" height="120" rx="7"/><rect x="466" y="390" width="28" height="160" rx="7"/><rect x="514" y="445" width="28" height="105" rx="7"/><rect x="562" y="405" width="28" height="145" rx="7"/><rect x="610" y="365" width="28" height="185" rx="7"/></g>
+<rect x="830" y="275" width="245" height="150" rx="24" fill="#f8faff"/><text x="860" y="315" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Database & Migration</text><circle cx="880" cy="360" r="23" fill="#557cff"/><g fill="#34bfa3"><circle cx="944" cy="345" r="6"/><circle cx="944" cy="375" r="6"/><circle cx="944" cy="405" r="6"/></g><g fill="#667085"><rect x="960" y="338" width="85" height="10" rx="5"/><rect x="960" y="368" width="70" height="10" rx="5"/><rect x="960" y="398" width="92" height="10" rx="5"/></g>
+<rect x="830" y="450" width="245" height="145" rx="24" fill="#f8faff"/><text x="860" y="492" font-size="18" fill="#24314d" font-family="Arial" font-weight="700">Approval Workflow</text><path d="M870 535 H1035" stroke="#d4dbea" stroke-width="8" stroke-linecap="round"/><circle cx="895" cy="535" r="15" fill="#557cff"/><circle cx="955" cy="535" r="15" fill="#34bfa3"/><circle cx="1015" cy="535" r="15" fill="#ff9e7a"/></g>
+</svg></div><div class="project-body"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Enterprise HR</span></div><h3>Leave workflows, approvals & data migration</h3><p>Worked with leave calculations, approval policies, backdated records, authorization, cancellation rules, reporting, PostgreSQL validation and legacy balance migration.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div><button class="open-case" data-case="joins">View case study →</button></div></article>
+<article class="project reveal"><div class="project-media"><svg class="project-inline-art" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+<defs><linearGradient id="mega-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0e15"/><stop offset="1" stop-color="#111827"/></linearGradient><linearGradient id="mega-orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff875f"/><stop offset="1" stop-color="#8b7cff"/></linearGradient><filter id="mega-s"><feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect width="1200" height="760" rx="44" fill="url(#mega-bg)"/><circle cx="1040" cy="110" r="190" fill="#ff875f" opacity=".08"/>
+<g filter="url(#mega-s)"><rect x="72" y="76" width="1055" height="610" rx="32" fill="#101722" stroke="#2c3547"/><rect x="72" y="76" width="205" height="610" rx="32" fill="#0c111b"/><text x="118" y="142" font-size="36" font-family="Arial" font-weight="700" fill="#fff">MEGA-T</text><text x="118" y="178" font-size="18" font-family="Arial" fill="#8d99ad">IT Service Management</text>
+<g fill="#59657a"><rect x="120" y="230" width="90" height="12" rx="6"/><rect x="120" y="280" width="108" height="12" rx="6"/><rect x="120" y="330" width="76" height="12" rx="6"/><rect x="120" y="380" width="100" height="12" rx="6"/><rect x="120" y="430" width="82" height="12" rx="6"/></g>
+<rect x="315" y="116" width="180" height="105" rx="20" fill="#151e2d"/><rect x="515" y="116" width="180" height="105" rx="20" fill="#151e2d"/><rect x="715" y="116" width="180" height="105" rx="20" fill="#151e2d"/><rect x="915" y="116" width="165" height="105" rx="20" fill="#151e2d"/>
+<text x="340" y="151" font-size="15" font-family="Arial" fill="#8793a8">Open Tickets</text><text x="340" y="194" font-size="36" font-family="Arial" font-weight="700" fill="#fff">28</text>
+<text x="540" y="151" font-size="15" font-family="Arial" fill="#8793a8">In Progress</text><text x="540" y="194" font-size="36" font-family="Arial" font-weight="700" fill="#fff">16</text>
+<text x="740" y="151" font-size="15" font-family="Arial" fill="#8793a8">Overdue</text><text x="740" y="194" font-size="36" font-family="Arial" font-weight="700" fill="#ff6d6d">5</text>
+<text x="940" y="151" font-size="15" font-family="Arial" fill="#8793a8">SLA Met</text><text x="940" y="194" font-size="36" font-family="Arial" font-weight="700" fill="#45e0c2">92%</text>
+<rect x="315" y="255" width="510" height="235" rx="24" fill="#151e2d"/><text x="345" y="300" font-size="19" font-family="Arial" fill="#e9edf5" font-weight="700">Tickets Overview</text><path d="M355 420 C420 355 490 445 555 375 S675 430 765 340" fill="none" stroke="#4d7cff" stroke-width="6"/><path d="M355 440 C430 410 500 455 575 420 S690 460 775 395" fill="none" stroke="#45e0c2" stroke-width="5"/>
+<rect x="850" y="255" width="230" height="235" rx="24" fill="#151e2d"/><text x="880" y="300" font-size="19" font-family="Arial" fill="#e9edf5" font-weight="700">Priority Distribution</text><circle cx="965" cy="390" r="62" fill="none" stroke="#283245" stroke-width="20"/><path d="M965 328 A62 62 0 1 1 918 430" fill="none" stroke="url(#mega-orange)" stroke-width="20" stroke-linecap="round"/>
+<rect x="315" y="525" width="765" height="120" rx="24" fill="#151e2d"/><text x="345" y="565" font-size="18" font-family="Arial" fill="#e9edf5" font-weight="700">Automation & Testing</text><g fill="#45e0c2"><circle cx="355" cy="605" r="8"/><circle cx="525" cy="605" r="8"/><circle cx="695" cy="605" r="8"/><circle cx="865" cy="605" r="8"/></g><g fill="#98a2b3"><text x="375" y="612" font-size="16" font-family="Arial">Playwright</text><text x="545" y="612" font-size="16" font-family="Arial">API Tests</text><text x="715" y="612" font-size="16" font-family="Arial">RBAC</text><text x="885" y="612" font-size="16" font-family="Arial">CI/CD</text></g></g>
+</svg></div><div class="project-body"><div class="project-meta"><span>MEGA-T</span><span>Enterprise ITSM</span></div><h3>Ticket lifecycle, SLA & multi-tenant controls</h3><p>Worked with ticket workflows, priority handling, SLA calculations, RBAC, tenant isolation, API/database investigation and automated validation.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span><span class="tag">Docker</span></div><button class="open-case" data-case="mega">View case study →</button></div></article>
 </div>
 
 <div class="section-head reveal" style="margin-top:70px"><div><div class="eyebrow">Earlier Work</div><h2 style="font-size:36px">Development foundations.</h2></div></div>
@@ -152,13 +201,8 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius
 <div class="skill-group reveal"><h4>Delivery & Tools</h4><p>Git / GitHub<br>GitHub Actions<br>Docker<br>Caddy<br>Figma / Jira</p></div>
 </div>
 
-<div class="section-head reveal" style="margin-top:85px"><div><div class="eyebrow">05 / Timeline</div><h2 style="font-size:42px">How I got here.</h2></div></div>
-<div class="timeline">
-<div class="event reveal"><small class="mono">2026</small><h4>BA & QA Tester Intern — Double P Enterprise</h4><p>Enterprise HR and ITSM systems: business rules, testing, PostgreSQL, migration, automation and delivery support.</p></div>
-<div class="event reveal"><small class="mono">2025–2026</small><h4>Frontend Developer Intern — University of Phayao</h4><p>UP-PSF Digital Assessment System: paperless workflow, frontend implementation, RBAC and API integration.</p></div>
-<div class="event reveal"><small class="mono">2024–2025</small><h4>Academic Product Projects</h4><p>Restaurant management and e-commerce projects combining UX, development and system thinking.</p></div>
-<div class="event reveal"><small class="mono">2022–2026</small><h4>B.Eng. Software Engineering — University of Phayao</h4><p>GPA 3.29</p></div>
-</div>
+<div class="section-head reveal" style="margin-top:85px"><div><div class="eyebrow">05 / Education</div><h2 style="font-size:42px">Education.</h2></div><p>Academic foundation behind my software engineering, product, data and testing work.</p></div>
+<div class="experience-card reveal"><div><div class="date mono">2022 — 2026</div><h3>B.Eng. Software Engineering</h3><div class="company">University of Phayao</div></div><div><p>GPA 3.29 · Coursework and projects covered software engineering, web development, databases, system design, UX/UI and team-based product development.</p></div></div>
 </div></section>
 
 <section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Interested in what I can bring to your team?</h2><p>Open to Software Engineering, BA, QA/Testing and related technology roles.</p></div><div class="contact-links"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me</a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></div></section>
@@ -168,6 +212,9 @@ dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius
 <dialog id="caseDialog"><div class="modal"><div class="modal-top"><div><div class="eyebrow" id="modalType">Case study</div><h3 id="modalTitle"></h3></div><button class="close" id="closeDialog">×</button></div><p id="modalIntro"></p><ul id="modalList"></ul><div class="tags" id="modalTags"></div></div></dialog>
 
 <script>
+const root=document.documentElement,themeToggle=document.getElementById('themeToggle');
+root.dataset.theme=localStorage.getItem('portfolio-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+themeToggle.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('portfolio-theme',root.dataset.theme)});
 const nav=document.getElementById('nav'),progress=document.getElementById('progress'),glow=document.getElementById('glow');
 addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>30);const d=document.documentElement.scrollHeight-innerHeight;progress.style.width=(d?scrollY/d*100:0)+'%'},{passive:true});
 if(matchMedia('(pointer:fine)').matches)addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});else glow.style.display='none';
