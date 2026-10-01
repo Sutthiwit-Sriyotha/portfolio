@@ -3,183 +3,261 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="description" content="Sutthiwit Sriyotha — Software Engineering portfolio spanning business analysis, QA, development, databases, automation, and enterprise systems."/>
+<meta name="description" content="Sutthiwit Sriyotha — Software Engineering portfolio spanning business analysis, QA, development, databases, automation and enterprise systems."/>
 <title>Sutthiwit Sriyotha — Software Engineering Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#080a0f;--surface:#0f131c;--surface2:#141925;--line:#222a3a;
-  --text:#f4f7fb;--muted:#9aa4b6;--purple:#8b7cff;--cyan:#45e0c2;--orange:#ff875f;
-  --max:1180px;--radius:24px
+  --bg:#f4f2ed;--paper:#fbfaf7;--ink:#111318;--muted:#696d76;--line:#d9d5cc;
+  --blue:#315efb;--blue-soft:#e7ecff;--green:#1d8f72;--max:1240px;--r:28px
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;overflow-x:hidden}
-a{color:inherit}.mono{font-family:"JetBrains Mono",monospace}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
-.progress{position:fixed;z-index:1000;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
-.noise{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.26;background-image:radial-gradient(rgba(255,255,255,.055) .7px,transparent .7px);background-size:14px 14px;mask-image:linear-gradient(to bottom,black,transparent 72%)}
-.glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(139,124,255,.15),transparent 68%);transform:translate(-50%,-50%);filter:blur(12px)}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:.3s}
-nav.scrolled{background:rgba(8,10,15,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
-.navin{display:flex;align-items:center;justify-content:space-between}.brand{text-decoration:none;font-weight:800;letter-spacing:-.04em}
-.links{display:flex;gap:28px;align-items:center}.links a{text-decoration:none;color:var(--muted);font-size:13px}.links a:hover{color:white}
-.status{display:flex;align-items:center;gap:8px;border:1px solid rgba(69,224,194,.25);padding:7px 11px;border-radius:999px;font-size:12px;color:#bdf8ec;background:rgba(69,224,194,.06)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 70px;z-index:2}
-.hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:54px;align-items:center}
-.kicker{display:inline-flex;align-items:center;gap:10px;color:#c8c1ff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px}
-.kicker:before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
-h1{font-size:clamp(48px,7.5vw,96px);line-height:.95;letter-spacing:-.065em;margin:0 0 24px}
-.gradient{background:linear-gradient(100deg,#fff 0%,#bfb7ff 42%,#63e6cd 100%);-webkit-background-clip:text;color:transparent}
-.hero p{font-size:17px;line-height:1.7;color:var(--muted);max-width:620px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px;border:1px solid var(--line);transition:.25s}
-.btn.primary{background:white;color:#0b0d12;border-color:white}.btn:hover{transform:translateY(-2px)}
-.visual{position:relative;border-radius:30px;padding:14px;background:linear-gradient(145deg,rgba(139,124,255,.16),rgba(69,224,194,.05));border:1px solid rgba(255,255,255,.09);box-shadow:0 35px 120px rgba(0,0,0,.45);transform-style:preserve-3d}
-.visual img{width:100%;display:block;border-radius:20px;transform:translateZ(24px)}
-.float{position:absolute;padding:9px 12px;border-radius:999px;background:rgba(12,15,22,.76);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);font-size:11px;box-shadow:0 14px 30px rgba(0,0,0,.25);animation:float 5s ease-in-out infinite}
-.f1{left:-24px;top:18%}.f2{right:-18px;top:12%;animation-delay:-1.6s}.f3{right:10%;bottom:-15px;animation-delay:-3s}@keyframes float{50%{transform:translateY(-9px)}}
-.marquee{border-block:1px solid var(--line);overflow:hidden;position:relative;z-index:2;background:#0b0e14}.marquee-track{display:flex;width:max-content;gap:11px;padding:14px 0;animation:marq 28s linear infinite}.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:#aeb7c8;font-size:12px;background:#0f131c}@keyframes marq{to{transform:translateX(-50%)}}
-section{position:relative;z-index:2;padding:110px 0}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}.eyebrow{color:#a99fff;font:500 12px "JetBrains Mono";letter-spacing:.12em;text-transform:uppercase}.section-head h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.05em;margin:8px 0 0}.section-head p{color:var(--muted);max-width:440px;line-height:1.6}
-.experience-card{display:grid;grid-template-columns:.75fr 1.25fr;gap:30px;padding:32px;border:1px solid rgba(139,124,255,.23);border-radius:var(--radius);background:linear-gradient(135deg,rgba(139,124,255,.11),rgba(69,224,194,.035))}
-.experience-card h3{font-size:26px;margin:6px 0}.company{color:#d8dcec}.date{color:var(--cyan);font-size:12px}.experience-card p{color:var(--muted);line-height:1.7;margin:0}
-.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.mini{padding:18px;border-radius:16px;border:1px solid var(--line);background:rgba(8,10,15,.45)}.mini strong{font-size:14px}.mini span{display:block;color:var(--muted);font-size:12px;margin-top:6px}
-.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.bento .card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:26px;min-height:210px;overflow:hidden;position:relative;transition:.3s}
-.bento .card:hover{border-color:#39445e;transform:translateY(-4px)}.c6{grid-column:span 6}.c4{grid-column:span 4}.c8{grid-column:span 8}
-.card .num{font:500 11px "JetBrains Mono";color:#6f7990}.card h3{font-size:22px;margin:24px 0 10px}.card p{color:var(--muted);line-height:1.65;font-size:14px}.card .accent{position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;bottom:-65px;filter:blur(8px);opacity:.22}
-.projects{background:#0a0d13}.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.project{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:var(--surface);transition:.35s}.project:hover{transform:translateY(-5px);border-color:#3b4660}.project-media{height:320px;overflow:hidden;position:relative;background:#0b1018}.project-media img{width:100%;height:100%;object-fit:cover;transition:.6s}.project:hover .project-media img{transform:scale(1.035)}.project-body{padding:26px}.project-meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}.project h3{font-size:27px;margin:13px 0 10px}.project p{color:var(--muted);line-height:1.65}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.tag{font-size:11px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:#b7c0d1}.open-case{margin-top:22px;background:transparent;color:white;border:0;padding:0;font-weight:700;cursor:pointer}
-.academic{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;margin-top:18px}.academic-main,.academic-side article{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface);transition:.3s}.academic-main:hover,.academic-side article:hover{transform:translateY(-4px);border-color:#39445e}.academic-main img{width:100%;height:360px;object-fit:cover}.academic-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}.academic-side img{width:100%;height:165px;object-fit:cover}.academic-copy{padding:22px}.academic h4{margin:0 0 8px;font-size:18px}.academic-main h4{font-size:26px}.academic p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.skill-group{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface)}.skill-group h4{margin:0 0 14px;font-size:13px;color:#dfe4ef}.skill-group p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
-.timeline{border-left:1px solid var(--line);margin-left:8px;padding-left:30px;display:grid;gap:28px}.event{position:relative}.event:before{content:"";position:absolute;left:-36px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--purple)}.event h4{margin:0 0 6px}.event small{color:var(--cyan)}.event p{color:var(--muted);line-height:1.6;margin:9px 0 0}
-.contact-card{padding:42px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,#111625,#0c1117);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.contact-card h2{font-size:clamp(32px,5vw,58px);margin:0 0 12px;letter-spacing:-.05em}.contact-card p{color:var(--muted);margin:0}.contact-links{display:flex;gap:10px;flex-wrap:wrap}
-footer{padding:30px 0 50px;color:#677186;font-size:12px}
-.reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.75,.2,1)}.reveal.show{opacity:1;transform:none}
-dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius:24px;background:#0d1119;color:white;padding:0;box-shadow:0 40px 140px #000}dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(7px)}.modal{padding:30px}.modal-top{display:flex;justify-content:space-between;gap:20px}.close{border:1px solid var(--line);background:#121722;color:white;border-radius:10px;width:36px;height:36px;cursor:pointer}.modal h3{font-size:34px;margin:5px 0 10px}.modal p,.modal li{color:var(--muted);line-height:1.65}.modal ul{padding-left:20px}
-@media(max-width:900px){.links{display:none}.hero-grid,.experience-card,.contact-card{grid-template-columns:1fr}.hero{padding-top:130px}.visual{margin-top:10px}.f1,.f2,.f3{display:none}.c6,.c4,.c8{grid-column:span 12}.project-grid,.skills-grid{grid-template-columns:1fr 1fr}.academic{grid-template-columns:1fr}.academic-main img{height:300px}.academic-side{grid-template-columns:1fr 1fr;grid-template-rows:none}.academic-side img{height:190px}.section-head{align-items:start;flex-direction:column}.project-media{height:260px}}
-@media(max-width:600px){.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid,.academic-side{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}.academic-main img{height:230px}.academic-side img{height:210px}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.glow{display:none}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif}
+a{color:inherit}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+nav{position:sticky;top:0;z-index:40;background:rgba(244,242,237,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(17,19,24,.08)}
+.navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font:800 17px "Manrope";text-decoration:none;letter-spacing:-.03em}
+.links{display:flex;gap:26px}.links a{text-decoration:none;color:var(--muted);font-size:13px}.links a:hover{color:var(--ink)}
+.availability{font-size:12px;border:1px solid #b9c3ff;background:var(--blue-soft);padding:8px 12px;border-radius:999px;color:#2447c8;font-weight:600}
+.hero{padding:92px 0 74px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:end}
+.eyebrow{font:700 11px "Manrope";letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+h1{font:800 clamp(56px,8.5vw,118px)/.92 "Manrope";letter-spacing:-.07em;margin:12px 0 28px}
+.hero-copy{font-size:18px;line-height:1.7;color:var(--muted);max-width:720px}
+.hero-side{border-top:1px solid var(--ink);padding-top:18px}
+.hero-side p{margin:0 0 22px;color:var(--muted);line-height:1.65;font-size:14px}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:15px}
+.quick strong{display:block;font:700 13px "Manrope";margin-bottom:5px}.quick span{font-size:12px;color:var(--muted)}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:12px;border:1px solid var(--ink);text-decoration:none;font-size:13px;font-weight:700}
+.btn.primary{background:var(--ink);color:#fff}.btn:hover{transform:translateY(-1px)}
+
+.section{padding:88px 0}.section + .section{border-top:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:.65fr 1.35fr;gap:40px;margin-bottom:34px;align-items:start}
+.section-head h2{font:800 clamp(38px,5vw,66px)/1 "Manrope";letter-spacing:-.055em;margin:6px 0 0}
+.section-head p{margin:4px 0 0;color:var(--muted);line-height:1.7;max-width:560px}
+
+.work-stack{display:grid;gap:22px}
+.featured-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.project-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.media-slot{min-height:330px;display:flex;align-items:flex-end;padding:26px;position:relative;overflow:hidden}
+.media-slot.light{background:linear-gradient(135deg,#eef2ff,#e4f4ef)}
+.media-slot.dark{background:linear-gradient(135deg,#1b2030,#151720);color:white}
+.media-slot:before{content:"";position:absolute;inset:18px;border:1px dashed rgba(17,19,24,.22);border-radius:18px}
+.media-slot.dark:before{border-color:rgba(255,255,255,.25)}
+.media-slot .slot-copy{position:relative;z-index:1}.slot-copy small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;opacity:.65;margin-bottom:8px}.slot-copy strong{font:800 28px "Manrope";letter-spacing:-.03em}
+.project-body{padding:26px}.project-top{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:12px}
+.project-body h3{font:800 26px/1.15 "Manrope";letter-spacing:-.035em;margin:14px 0 10px}
+.project-body p{margin:0;color:var(--muted);line-height:1.7;font-size:14px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}.tag{border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:11px;color:#5d626c}
+.case-btn{margin-top:18px;border:0;background:none;padding:0;font-weight:700;cursor:pointer;color:var(--ink)}
+
+.up-psf{display:grid;grid-template-columns:1.05fr .95fr;min-height:430px}
+.up-psf img{width:100%;height:100%;object-fit:cover;min-height:430px}
+.up-copy{padding:34px;display:flex;flex-direction:column;justify-content:center}
+.up-copy h3{font:800 34px/1.08 "Manrope";letter-spacing:-.045em;margin:12px 0}
+.up-copy p{color:var(--muted);line-height:1.7}
+.small-projects{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.small-card{display:grid;grid-template-columns:.8fr 1.2fr;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.small-card img{width:100%;height:100%;min-height:210px;object-fit:cover}
+.small-card div{padding:22px}.small-card h4{font:800 20px "Manrope";margin:8px 0}.small-card p{color:var(--muted);font-size:13px;line-height:1.6;margin:0}
+
+.experience{display:grid;grid-template-columns:.75fr 1.25fr;gap:48px}
+.exp-title h3{font:800 32px "Manrope";letter-spacing:-.04em;margin:10px 0}.exp-title .date{color:var(--blue);font-size:12px;font-weight:700}.exp-title p{color:var(--muted);line-height:1.7}
+.exp-list{border-top:1px solid var(--ink)}
+.exp-row{display:grid;grid-template-columns:180px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.exp-row strong{font:700 14px "Manrope"}.exp-row span{color:var(--muted);font-size:14px;line-height:1.65}
+
+.cap-list{border-top:1px solid var(--ink)}
+.cap-row{display:grid;grid-template-columns:80px 260px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
+.cap-row .n{color:var(--blue);font:700 11px "Manrope"}.cap-row h4{font:800 22px "Manrope";margin:0}.cap-row p{margin:0;color:var(--muted);line-height:1.7;font-size:14px}
+
+.background-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.bg-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:26px}
+.bg-card small{color:var(--blue);font-weight:700}.bg-card h4{font:800 22px "Manrope";margin:10px 0}.bg-card p{color:var(--muted);margin:0;line-height:1.65;font-size:14px}
+
+.contact{padding:92px 0 110px}.contact-box{background:var(--ink);color:white;border-radius:34px;padding:48px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.contact-box h2{font:800 clamp(42px,6vw,76px)/.98 "Manrope";letter-spacing:-.055em;margin:10px 0 18px}.contact-box p{margin:0;color:#b9bdc7;line-height:1.65}
+.contact-box .btn{border-color:#fff;color:#fff}.contact-box .btn.primary{background:#fff;color:var(--ink)}
+footer{padding:0 0 42px;color:#777b84;font-size:12px}
+
+.reveal{opacity:0;transform:translateY(16px);transition:.6s ease}.reveal.show{opacity:1;transform:none}
+dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;background:var(--paper);color:var(--ink);box-shadow:0 28px 100px rgba(0,0,0,.24)}dialog::backdrop{background:rgba(17,19,24,.58);backdrop-filter:blur(5px)}.modal{padding:30px}.modal-top{display:flex;justify-content:space-between;gap:20px}.close{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:white;cursor:pointer}.modal h3{font:800 34px "Manrope";margin:8px 0}.modal p,.modal li{color:var(--muted);line-height:1.65}.modal ul{padding-left:20px}
+
+@media(max-width:900px){
+  .links{display:none}.hero-grid,.section-head,.experience,.contact-box,.up-psf{grid-template-columns:1fr}.featured-row,.small-projects,.background-grid{grid-template-columns:1fr}
+  .hero{padding-top:70px}.hero-side{margin-top:10px}.media-slot{min-height:280px}.up-psf img{min-height:300px;height:300px}.exp-row{grid-template-columns:140px 1fr}.cap-row{grid-template-columns:50px 210px 1fr}
+}
+@media(max-width:620px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}.availability{display:none}.hero{padding:58px 0}.quick{grid-template-columns:1fr}.section{padding:68px 0}
+  .small-card{grid-template-columns:1fr}.small-card img{height:210px}.exp-row,.cap-row{grid-template-columns:1fr;gap:8px}.contact-box{padding:30px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div><div class="noise"></div><div class="glow" id="glow"></div>
-<nav id="nav"><div class="wrap navin"><a class="brand" href="#home">SUTTHIWIT<span style="color:var(--cyan)">.</span></a><div class="links"><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div><div class="status"><span class="dot"></span>Open to full-time opportunities</div></div></nav>
+<nav>
+  <div class="wrap navin">
+    <a class="brand" href="#top">SUTTHIWIT SRIYOTHA</a>
+    <div class="links"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#capabilities">Capabilities</a><a href="#contact">Contact</a></div>
+    <div class="availability">Open to full-time opportunities</div>
+  </div>
+</nav>
 
-<header class="hero" id="home"><div class="wrap hero-grid">
-<div>
-<div class="kicker reveal">Software Engineering Portfolio</div>
-<h1 class="reveal">Sutthiwit<br><span class="gradient">Sriyotha</span></h1>
-<p class="reveal">Software Engineering graduate with hands-on experience across business analysis, software testing, full-stack development, PostgreSQL, data migration, automation, and enterprise systems.</p>
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow reveal">Software Engineering Portfolio</div>
+      <h1 class="reveal">Building systems<br>that make sense.</h1>
+      <p class="hero-copy reveal">I’m Sutthiwit Sriyotha, a Software Engineering graduate with hands-on experience across business analysis, software testing, full-stack development, PostgreSQL, data migration, automation and enterprise systems.</p>
+      <div class="hero-actions reveal"><a class="btn primary" href="#work">View selected work</a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com">Contact me</a></div>
+    </div>
+    <aside class="hero-side reveal">
+      <p>I work best where product logic, data and implementation meet — understanding the rule, checking the behavior, and helping the system ship with confidence.</p>
+      <div class="quick">
+        <div><strong>BA / QA</strong><span>Requirements, workflows, validation</span></div>
+        <div><strong>Development</strong><span>Next.js, React, NestJS</span></div>
+        <div><strong>Data</strong><span>PostgreSQL, migration, reconciliation</span></div>
+        <div><strong>Delivery</strong><span>Playwright, Vitest, CI/CD</span></div>
+      </div>
+    </aside>
+  </div>
+</header>
 
-<div class="actions reveal"><a class="btn primary" href="#work">Explore my work ↘</a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com">Get in touch</a></div>
-</div>
-<div class="visual reveal" id="heroVisual" style="min-height:430px;display:flex;align-items:center;justify-content:center;overflow:hidden">
-    <div style="padding:38px;width:100%">
-      <div class="eyebrow">Portfolio Visual Slot</div>
-      <h3 style="font-size:34px;letter-spacing:-.04em;margin:12px 0 12px">Your main visual goes here.</h3>
-      <p style="color:var(--muted);line-height:1.7;margin:0">I’ll place the image you send here and tune the crop, contrast, parallax and responsive behavior to fit the final artwork.</p>
-      <div class="tags" style="margin-top:24px"><span class="tag">BA</span><span class="tag">QA</span><span class="tag">Development</span><span class="tag">Data</span></div>
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">01 / Selected Work</div><h2>Projects first.</h2></div>
+      <p>The portfolio starts with the work itself: two enterprise systems from my latest experience, followed by the development projects that built my foundation.</p>
+    </div>
+
+    <div class="work-stack">
+      <div class="featured-row">
+        <article class="project-card reveal">
+          <div class="media-slot light"><div class="slot-copy"><small>Image placeholder</small><strong>JOiNS+ HR Portal</strong></div></div>
+          <div class="project-body">
+            <div class="project-top"><span>Enterprise HR</span><span>2026</span></div>
+            <h3>Leave workflows, approvals & data migration</h3>
+            <p>Worked with leave calculations, approval policies, backdated records, authorization, cancellation rules, reporting, PostgreSQL validation and legacy balance migration.</p>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div>
+            <button class="case-btn" data-case="joins">View case study →</button>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="media-slot dark"><div class="slot-copy"><small>Image placeholder</small><strong>MEGA-T ITSM</strong></div></div>
+          <div class="project-body">
+            <div class="project-top"><span>Enterprise ITSM</span><span>2026</span></div>
+            <h3>Ticket lifecycle, SLA & multi-tenant controls</h3>
+            <p>Worked with ticket workflows, priority handling, SLA calculations, RBAC, tenant isolation, API/database investigation and automated validation.</p>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span><span class="tag">Docker</span></div>
+            <button class="case-btn" data-case="mega">View case study →</button>
+          </div>
+        </article>
+      </div>
+
+      <article class="project-card up-psf reveal">
+        <img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System">
+        <div class="up-copy">
+          <div class="project-top"><span>Internship Project</span><span>2025–2026</span></div>
+          <h3>UP-PSF Digital Assessment System</h3>
+          <p>Paperless assessment workflow built with Next.js and TypeScript, including RBAC, workflow handling and REST API integration. It represents my hands-on development foundation before moving deeper into BA, QA and enterprise systems.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">REST API</span></div>
+        </div>
+      </article>
+
+      <div class="small-projects">
+        <article class="small-card reveal">
+          <img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App">
+          <div><div class="eyebrow">Academic Project</div><h4>Restaurant Management Web App</h4><p>QR ordering, real-time workflow, operational dashboard and export features.</p></div>
+        </article>
+        <article class="small-card reveal">
+          <img src="./assets/images/online-plant-store.png" alt="Online Plant Store">
+          <div><div class="eyebrow">Academic Project</div><h4>TAMROI Online Plant Store</h4><p>User research, Figma prototyping and responsive e-commerce front-end design.</p></div>
+        </article>
+      </div>
     </div>
   </div>
-</div></header>
+</section>
 
-<div class="marquee"><div class="marquee-track">
-<span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">NestJS</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Playwright</span><span class="chip">Vitest</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Business Analysis</span><span class="chip">API Testing</span><span class="chip">Data Migration</span><span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">NestJS</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Playwright</span><span class="chip">Vitest</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Business Analysis</span><span class="chip">API Testing</span><span class="chip">Data Migration</span>
-</div></div>
-
-<section id="experience"><div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">01 / Experience</div><h2>Real systems, real constraints.</h2></div><p>My strongest experience comes from working with enterprise workflows where business rules, permissions, data quality and release confidence matter.</p></div>
-<div class="experience-card reveal">
-<div><div class="date mono">JUN 2026 — SEP 2026</div><h3>BA & QA Tester Intern</h3><div class="company">Double P Enterprise Co., Ltd., Bangkok</div></div>
-<div><p>Worked across JOiNS+ HR Portal and MEGA-T ITSM Platform, translating business rules into testable scenarios, validating APIs and databases, investigating defects, supporting data migration, and contributing to automation and CI/CD-related work.</p><div class="mini-grid" style="margin-top:20px"><div class="mini"><strong>Business Analysis</strong><span>Rules · workflows · edge cases</span></div><div class="mini"><strong>Quality Assurance</strong><span>Functional · API · regression</span></div><div class="mini"><strong>Data</strong><span>PostgreSQL · migration · reconciliation</span></div><div class="mini"><strong>Automation & Delivery</strong><span>Playwright · Vitest · GitHub Actions</span></div></div></div>
-</div>
-</div></section>
-
-<section><div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">02 / Capabilities</div><h2>More than one lane.</h2></div><p>I can move between understanding the business, checking system behavior, reading data, and working with implementation details.</p></div>
-<div class="bento">
-<div class="card c6 reveal"><div class="num">01</div><h3>Business Analysis</h3><p>Translate operational rules into clear system behavior, workflows, permissions, conditions and testable acceptance scenarios.</p><div class="accent" style="background:var(--purple)"></div></div>
-<div class="card c6 reveal"><div class="num">02</div><h3>Software Testing</h3><p>Functional, regression, API and end-to-end testing with emphasis on business rules, RBAC, SLA logic, defects and retesting.</p><div class="accent" style="background:var(--cyan)"></div></div>
-<div class="card c4 reveal"><div class="num">03</div><h3>Database & Migration</h3><p>PostgreSQL queries, data validation, dry runs, reconciliation, duplicate checks and migration integrity.</p></div>
-<div class="card c4 reveal"><div class="num">04</div><h3>Development</h3><p>Hands-on exposure to Next.js, React, NestJS, Prisma, APIs and full-stack business features.</p></div>
-<div class="card c4 reveal"><div class="num">05</div><h3>Automation & CI/CD</h3><p>Playwright, Vitest, GitHub Actions, Docker and practical troubleshooting around deployment workflows.</p></div>
-</div>
-</div></section>
-
-<section class="projects" id="work"><div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">03 / Featured Work</div><h2>Enterprise projects.</h2></div><p>Two systems that best show how I work across product rules, testing, data, implementation detail and delivery.</p></div>
-<div class="project-grid">
-<article class="project reveal"><div class="project-media" style="display:flex;align-items:end;padding:28px;background:linear-gradient(135deg,#eef3ff,#dff8f3);color:#172033"><div><div class="eyebrow" style="color:#5363c9">Image slot</div><strong style="font-size:28px">JOiNS+ HR Portal</strong><div style="font-size:13px;margin-top:8px;opacity:.65">Waiting for the project visual you choose</div></div></div><div class="project-body"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Enterprise HR</span></div><h3>Leave workflows, approvals & data migration</h3><p>Worked with leave calculations, approval policies, backdated records, authorization, cancellation rules, reporting, PostgreSQL validation and legacy balance migration.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div><button class="open-case" data-case="joins">View case study →</button></div></article>
-<article class="project reveal"><div class="project-media" style="display:flex;align-items:end;padding:28px;background:linear-gradient(135deg,#131824,#221b2f);color:#fff"><div><div class="eyebrow" style="color:#ff986f">Image slot</div><strong style="font-size:28px">MEGA-T ITSM</strong><div style="font-size:13px;margin-top:8px;color:#9aa4b6">Waiting for the project visual you choose</div></div></div><div class="project-body"><div class="project-meta"><span>MEGA-T</span><span>Enterprise ITSM</span></div><h3>Ticket lifecycle, SLA & multi-tenant controls</h3><p>Worked with ticket workflows, priority handling, SLA calculations, RBAC, tenant isolation, API/database investigation and automated validation.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span><span class="tag">Docker</span></div><button class="open-case" data-case="mega">View case study →</button></div></article>
-</div>
-
-<div class="section-head reveal" style="margin-top:78px"><div><div class="eyebrow">Earlier Experience & Projects</div><h2 style="font-size:40px">Development foundations that still matter.</h2></div><p>These projects show the development and product foundation behind my current BA, QA and enterprise-system experience.</p></div>
-<div class="academic">
-  <article class="academic-main reveal">
-    <img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System">
-    <div class="academic-copy">
-      <div class="project-meta"><span>Internship Project</span><span>2025–2026</span></div>
-      <h4>UP-PSF Digital Assessment System</h4>
-      <p>Paperless assessment workflow built with Next.js and TypeScript, including RBAC, workflow handling and REST API integration. This project reflects my earlier hands-on development experience before moving deeper into BA and QA work.</p>
-      <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">REST API</span></div>
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">02 / Experience</div><h2>What I’ve done.</h2></div>
+      <p>My latest experience is centered on enterprise HR and ITSM systems where business rules, permissions, data quality and release confidence matter.</p>
     </div>
-  </article>
-  <div class="academic-side">
-    <article class="reveal">
-      <img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App">
-      <div class="academic-copy">
-        <div class="project-meta"><span>Academic Project</span><span>2025</span></div>
-        <h4>Restaurant Management Web App</h4>
-        <p>QR-based ordering with real-time workflow, store dashboard and operational export features.</p>
+    <div class="experience">
+      <div class="exp-title reveal">
+        <div class="date">JUN 2026 — SEP 2026</div>
+        <h3>BA & QA Tester Intern</h3>
+        <p>Double P Enterprise Co., Ltd., Bangkok</p>
       </div>
-    </article>
-    <article class="reveal">
-      <img src="./assets/images/online-plant-store.png" alt="Online Plant Store">
-      <div class="academic-copy">
-        <div class="project-meta"><span>Academic Project</span><span>2024</span></div>
-        <h4>TAMROI Online Plant Store</h4>
-        <p>User research, Figma prototyping and responsive e-commerce front-end design.</p>
+      <div class="exp-list reveal">
+        <div class="exp-row"><strong>Business analysis</strong><span>Translated leave, approval, authorization and SLA rules into clear testable system behavior.</span></div>
+        <div class="exp-row"><strong>Testing</strong><span>Performed functional, regression, API and end-to-end validation across enterprise workflows.</span></div>
+        <div class="exp-row"><strong>Data</strong><span>Queried PostgreSQL, supported migration, reconciliation, duplicate checks and defect investigation.</span></div>
+        <div class="exp-row"><strong>Automation</strong><span>Worked with Playwright, Vitest, GitHub Actions and Docker-related delivery workflows.</span></div>
       </div>
-    </article>
+    </div>
   </div>
-</div>
-</div></section>
+</section>
 
-<section id="skills"><div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">04 / Skills</div><h2>Tools I can work with.</h2></div><p>Grouped by how I actually use them rather than showing a wall of logos.</p></div>
-<div class="skills-grid">
-<div class="skill-group reveal"><h4>Analysis & QA</h4><p>Requirements Analysis<br>Test Scenario Design<br>Functional / Regression<br>API / E2E Testing<br>Defect Investigation</p></div>
-<div class="skill-group reveal"><h4>Frontend / Backend</h4><p>TypeScript<br>Next.js / React<br>NestJS / Node.js<br>REST APIs<br>Prisma ORM</p></div>
-<div class="skill-group reveal"><h4>Data & Automation</h4><p>PostgreSQL<br>Data Migration<br>Data Reconciliation<br>Playwright<br>Vitest</p></div>
-<div class="skill-group reveal"><h4>Delivery & Tools</h4><p>Git / GitHub<br>GitHub Actions<br>Docker<br>Caddy<br>Figma / Jira</p></div>
-</div>
+<section class="section" id="capabilities">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">03 / Capabilities</div><h2>How I can contribute.</h2></div>
+      <p>Instead of many cards, these are the three areas that best represent the way I work across a product team.</p>
+    </div>
+    <div class="cap-list">
+      <div class="cap-row reveal"><div class="n">01</div><h4>Understand the system</h4><p>Requirements analysis, business rules, workflows, roles, permissions, edge cases and acceptance scenarios.</p></div>
+      <div class="cap-row reveal"><div class="n">02</div><h4>Validate the behavior</h4><p>Functional, regression, API and E2E testing, database validation, defect reproduction and root-cause investigation.</p></div>
+      <div class="cap-row reveal"><div class="n">03</div><h4>Work close to implementation</h4><p>Next.js, React, NestJS, Prisma, PostgreSQL, data migration, Playwright, Vitest, Docker and GitHub Actions.</p></div>
+    </div>
+  </div>
+</section>
 
-<div class="section-head reveal" style="margin-top:85px"><div><div class="eyebrow">05 / Background</div><h2 style="font-size:42px">Experience & education.</h2></div></div>
-<div class="timeline">
-<div class="event reveal"><small class="mono">2026</small><h4>BA & QA Tester — Double P Enterprise</h4><p>Internship experience on enterprise HR and ITSM systems covering business rules, testing, PostgreSQL, migration, automation and delivery support.</p></div>
-<div class="event reveal"><small class="mono">2025–2026</small><h4>Frontend Development — University of Phayao</h4><p>Internship experience on the UP-PSF Digital Assessment System: paperless workflows, frontend implementation, RBAC and REST API integration.</p></div>
-<div class="event reveal"><small class="mono">2024–2025</small><h4>Selected Product Projects</h4><p>Restaurant management and e-commerce projects combining UX, development and system thinking.</p></div>
-<div class="event reveal"><small class="mono">2022–2026</small><h4>B.Eng. Software Engineering — University of Phayao</h4><p>GPA 3.29</p></div>
-</div>
-</div></section>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">04 / Background</div><h2>Experience & education.</h2></div>
+      <p>A concise view of the experience behind the projects, without repeating the whole portfolio again.</p>
+    </div>
+    <div class="background-grid">
+      <div class="bg-card reveal"><small>2025–2026</small><h4>Frontend Development — University of Phayao</h4><p>Internship experience on the UP-PSF Digital Assessment System, covering frontend implementation, RBAC and REST API integration.</p></div>
+      <div class="bg-card reveal"><small>2022–2026</small><h4>B.Eng. Software Engineering — University of Phayao</h4><p>GPA 3.29 · Academic work included product design, web development, databases and software engineering projects.</p></div>
+    </div>
+  </div>
+</section>
 
-<section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Interested in what I can bring to your team?</h2><p>Currently seeking full-time opportunities in Software Engineering, Business Analysis, QA/Testing, and related technology roles.</p></div><div class="contact-links"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me</a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></div></section>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <div><div class="eyebrow" style="color:#9fb1ff">Available for full-time roles</div><h2>Let’s build something useful.</h2><p>Currently seeking full-time opportunities in Software Engineering, Business Analysis, QA/Testing and related technology roles.</p></div>
+      <div class="hero-actions"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me</a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+    </div>
+  </div>
+</section>
 
 <footer><div class="wrap">© 2026 Sutthiwit Sriyotha · Software Engineering Portfolio</div></footer>
 
 <dialog id="caseDialog"><div class="modal"><div class="modal-top"><div><div class="eyebrow" id="modalType">Case study</div><h3 id="modalTitle"></h3></div><button class="close" id="closeDialog">×</button></div><p id="modalIntro"></p><ul id="modalList"></ul><div class="tags" id="modalTags"></div></div></dialog>
 
 <script>
-const nav=document.getElementById('nav'),progress=document.getElementById('progress'),glow=document.getElementById('glow');
-addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>30);const d=document.documentElement.scrollHeight-innerHeight;progress.style.width=(d?scrollY/d*100:0)+'%'},{passive:true});
-if(matchMedia('(pointer:fine)').matches)addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});else glow.style.display='none';
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
-
-
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
 
 const cases={
-joins:{type:'Enterprise HR System',title:'JOiNS+ HR Portal',intro:'An internal HR platform covering leave management, approvals, employee data and recruitment-related workflows.',items:['Designed and tested leave calculations, approval workflows, authorization rules and cancellation policies.','Worked with permission-controlled backdated leave and audit-trail-sensitive business rules.','Performed legacy leave-balance migration with dry runs, reconciliation, duplicate checks and PostgreSQL validation.','Validated holiday recalculation behavior, reporting filters and edge cases.','Added or maintained automated tests and supported CI/CD troubleshooting.'],tags:['Next.js','TypeScript','Prisma','PostgreSQL','Vitest','GitHub Actions','Docker']},
+joins:{type:'Enterprise HR System',title:'JOiNS+ HR Portal',intro:'An internal HR platform covering leave management, approvals, employee data and recruitment-related workflows.',items:['Worked with leave calculations, approval workflows, authorization rules and cancellation policies.','Worked with permission-controlled backdated leave and audit-trail-sensitive business rules.','Performed legacy leave-balance migration with dry runs, reconciliation, duplicate checks and PostgreSQL validation.','Validated holiday recalculation behavior, reporting filters and edge cases.','Added or maintained automated tests and supported CI/CD troubleshooting.'],tags:['Next.js','TypeScript','Prisma','PostgreSQL','Vitest','GitHub Actions','Docker']},
 mega:{type:'Enterprise IT Service Management',title:'MEGA-T ITSM Platform',intro:'A multi-tenant service desk platform for tickets, assignments, SLA tracking, customer communication, contracts and reporting.',items:['Worked with end-to-end ticket lifecycle and priority handling.','Validated Response/Resolution SLA behavior across business-calendar conditions.','Tested layered authorization, RBAC and tenant/project isolation.','Queried PostgreSQL and investigated API payloads, records and logs to reproduce defects and identify root causes.','Used automated tests for API, business rules, permissions, SLA and UI workflows.'],tags:['Next.js','NestJS','PostgreSQL','Playwright','Vitest','Docker','GitHub Actions']}
 };
-const dlg=document.getElementById('caseDialog');document.querySelectorAll('[data-case]').forEach(b=>b.onclick=()=>{const d=cases[b.dataset.case];document.getElementById('modalType').textContent=d.type;document.getElementById('modalTitle').textContent=d.title;document.getElementById('modalIntro').textContent=d.intro;document.getElementById('modalList').innerHTML=d.items.map(x=>'<li>'+x+'</li>').join('');document.getElementById('modalTags').innerHTML=d.tags.map(x=>'<span class="tag">'+x+'</span>').join('');dlg.showModal()});document.getElementById('closeDialog').onclick=()=>dlg.close();dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+const dlg=document.getElementById('caseDialog');
+document.querySelectorAll('[data-case]').forEach(b=>b.onclick=()=>{const d=cases[b.dataset.case];document.getElementById('modalType').textContent=d.type;document.getElementById('modalTitle').textContent=d.title;document.getElementById('modalIntro').textContent=d.intro;document.getElementById('modalList').innerHTML=d.items.map(x=>'<li>'+x+'</li>').join('');document.getElementById('modalTags').innerHTML=d.tags.map(x=>'<span class="tag">'+x+'</span>').join('');dlg.showModal()});
+document.getElementById('closeDialog').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
 </script>
 </body>
 </html>
