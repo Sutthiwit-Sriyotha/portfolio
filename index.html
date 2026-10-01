@@ -21,7 +21,12 @@ html[data-theme="dark"]{
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;transition:background .28s ease,color .28s ease}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;transition:background .28s ease,color .28s ease;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%238b93a5' stroke-opacity='.08'%3E%3Cpath d='M0 70h140M70 0v140'/%3E%3Ccircle cx='70' cy='70' r='28'/%3E%3C/g%3E%3C/svg%3E") center/140px 140px repeat}
+.progress{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--green));z-index:100;box-shadow:0 0 18px color-mix(in srgb,var(--blue) 35%,transparent)}
+.cursor-glow{position:fixed;width:360px;height:360px;border-radius:50%;pointer-events:none;z-index:-1;transform:translate(-50%,-50%);background:radial-gradient(circle,color-mix(in srgb,var(--blue) 14%,transparent),transparent 68%);filter:blur(10px);opacity:.9}
+
 a{color:inherit}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
 nav{position:sticky;top:0;z-index:40;background:var(--nav);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:background .28s ease,border-color .28s ease}
 .navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
@@ -51,7 +56,9 @@ h1{font:800 clamp(56px,8.5vw,118px)/.92 "Manrope";letter-spacing:-.07em;margin:1
 .section-head p{margin:4px 0 0;color:var(--muted);line-height:1.7;max-width:560px}
 
 .work-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.project-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;min-height:100%}
+.project-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;min-height:100%;transform-style:preserve-3d;transition:transform .18s ease,border-color .2s ease,box-shadow .2s ease}
+.project-card:hover{border-color:color-mix(in srgb,var(--blue) 38%,var(--line));box-shadow:0 24px 70px rgba(0,0,0,.12)}
+.project-card .project-body,.project-card .project-media-uniform{transform:translateZ(10px)}
 .project-media-uniform{height:300px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--slot-light-1),var(--slot-light-2));display:flex;align-items:flex-end;padding:26px}
 .project-media-uniform.dark{background:linear-gradient(135deg,#1b2030,#151720);color:white}
 .project-media-uniform:before{content:"";position:absolute;inset:18px;border:1px dashed rgba(17,19,24,.22);border-radius:18px}
@@ -78,7 +85,8 @@ h1{font:800 clamp(56px,8.5vw,118px)/.92 "Manrope";letter-spacing:-.07em;margin:1
 .bg-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:26px}
 .bg-card small{color:var(--blue);font-weight:700}.bg-card h4{font:800 22px "Manrope";margin:10px 0}.bg-card p{color:var(--muted);margin:0;line-height:1.65;font-size:14px}
 
-.tool-ribbon{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.tool-pill{display:inline-flex;align-items:center;gap:9px;padding:9px 12px;border:1px solid var(--line);background:var(--paper);border-radius:12px;font-size:12px;font-weight:700;color:var(--ink)}.tool-pill svg{width:16px;height:16px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.contact{padding:92px 0 110px}.contact-box{background:var(--contact);color:white;border-radius:34px;padding:48px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.tool-ribbon{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.tool-pill{display:inline-flex;align-items:center;gap:9px;padding:9px 12px;border:1px solid var(--line);background:var(--paper);border-radius:12px;font-size:12px;font-weight:700;color:var(--ink);transition:.18s ease}
+.tool-pill:hover{transform:translateY(-2px) rotate(-.4deg);border-color:var(--blue)}.tool-pill svg{width:16px;height:16px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.contact{padding:92px 0 110px}.contact-box{background:var(--contact);color:white;border-radius:34px;padding:48px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
 .contact-box h2{font:800 clamp(42px,6vw,76px)/.98 "Manrope";letter-spacing:-.055em;margin:10px 0 18px}.contact-box p{margin:0;color:#b9bdc7;line-height:1.65}
 .contact-box .btn{border-color:#fff;color:#fff}.contact-box .btn.primary{background:#fff;color:#111318}
 footer{padding:0 0 42px;color:#777b84;font-size:12px}
@@ -100,6 +108,8 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
 </style>
 </head>
 <body>
+<div class="progress" id="scrollProgress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 <nav>
   <div class="wrap navin">
     <a class="brand" href="#top">SUTTHIWIT SRIYOTHA</a>
@@ -108,7 +118,13 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
   </div>
 </nav>
 
-<header class="hero" id="top">
+<header class="hero" id="top" style="position:relative">
+  <svg aria-hidden="true" viewBox="0 0 220 220" style="position:absolute;right:-30px;top:40px;width:220px;height:220px;opacity:.16;pointer-events:none">
+    <defs><linearGradient id="orb" x1="0" x2="1"><stop stop-color="#315efb"/><stop offset="1" stop-color="#1d8f72"/></linearGradient></defs>
+    <circle cx="110" cy="110" r="82" fill="none" stroke="url(#orb)" stroke-width="2"/>
+    <circle cx="110" cy="110" r="48" fill="none" stroke="url(#orb)" stroke-width="1.5" stroke-dasharray="8 10"/>
+    <path d="M30 110h160M110 30v160" stroke="url(#orb)" stroke-width="1"/>
+  </svg>
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow reveal">Software Engineering Portfolio</div>
@@ -128,7 +144,11 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
   </div>
 </header>
 
-<section class="section" id="work">
+<section class="section" id="work" style="position:relative">
+  <svg aria-hidden="true" viewBox="0 0 180 180" style="position:absolute;left:-35px;top:90px;width:180px;height:180px;opacity:.09;pointer-events:none">
+    <path d="M20 90h140M90 20v140M42 42l96 96M138 42l-96 96" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <circle cx="90" cy="90" r="56" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  </svg>
   <div class="wrap">
     <div class="section-head reveal">
       <div><div class="eyebrow">01 / Selected Work</div><h2>Projects first.</h2></div>
@@ -267,6 +287,21 @@ dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:24px;padding:0;
 <dialog id="caseDialog"><div class="modal"><div class="modal-top"><div><div class="eyebrow" id="modalType">Case study</div><h3 id="modalTitle"></h3></div><button class="close" id="closeDialog">×</button></div><p id="modalIntro"></p><ul id="modalList"></ul><div class="tags" id="modalTags"></div></div></dialog>
 
 <script>
+const progress=document.getElementById('scrollProgress');
+const cursorGlow=document.getElementById('cursorGlow');
+addEventListener('scroll',()=>{const d=document.documentElement.scrollHeight-innerHeight;progress.style.width=(d?scrollY/d*100:0)+'%'},{passive:true});
+if(matchMedia('(pointer:fine)').matches){
+  addEventListener('pointermove',e=>{cursorGlow.style.left=e.clientX+'px';cursorGlow.style.top=e.clientY+'px'},{passive:true});
+  document.querySelectorAll('.project-card').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(900px) rotateX(${-y*3.5}deg) rotateY(${x*4.5}deg) translateY(-2px)`;
+    });
+    card.addEventListener('pointerleave',()=>card.style.transform='');
+  });
+}else{cursorGlow.style.display='none'}
 const root=document.documentElement,themeToggle=document.getElementById('themeToggle');
 const savedTheme=localStorage.getItem('portfolio-theme');
 const preferredDark=matchMedia('(prefers-color-scheme: dark)').matches;
