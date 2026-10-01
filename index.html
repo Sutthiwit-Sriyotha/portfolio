@@ -1,941 +1,155 @@
-<!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sutthiwit Sriyotha — Software Engineering Portfolio</title>
-    <script src="https://cdn.tailwindcss.com">
-    // Scroll progress
-    const progress = document.getElementById('scroll-progress');
-    const updateProgress = () => {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-    };
-    window.addEventListener('scroll', updateProgress, { passive:true });
-    updateProgress();
-
-    // Cursor spotlight
-    const glow = document.getElementById('mouse-glow');
-    if (window.matchMedia('(pointer:fine)').matches) {
-        window.addEventListener('pointermove', e => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        }, { passive:true });
-    } else {
-        glow.style.display = 'none';
-    }
-
-    // Rotating expertise text
-    const roleRotator = document.getElementById('role-rotator');
-    const roles = ['Software Engineering', 'Business Analysis', 'Quality Assurance', 'Full-stack Development', 'Data & Automation'];
-    let roleIndex = 0;
-    setInterval(() => {
-        if (!roleRotator) return;
-        roleRotator.animate(
-            [{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-8px)'}],
-            {duration:220,fill:'forwards'}
-        ).onfinish = () => {
-            roleIndex = (roleIndex + 1) % roles.length;
-            roleRotator.textContent = roles[roleIndex];
-            roleRotator.animate(
-                [{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],
-                {duration:260,fill:'forwards'}
-            );
-        };
-    }, 2200);
-
-    // Gentle 3D tilt on featured cards
-    document.querySelectorAll('[data-tilt]').forEach(card => {
-        card.addEventListener('pointermove', e => {
-            if (!window.matchMedia('(pointer:fine)').matches) return;
-            const r = card.getBoundingClientRect();
-            const x = (e.clientX - r.left) / r.width - .5;
-            const y = (e.clientY - r.top) / r.height - .5;
-            card.style.transform = `perspective(900px) rotateX(${-y*3}deg) rotateY(${x*4}deg) translateY(-4px)`;
-        });
-        card.addEventListener('pointerleave', () => card.style.transform = '');
-    });
-
-    // Interactive light inside stat cards
-    document.querySelectorAll('.stat-card').forEach(card => {
-        card.addEventListener('pointermove', e => {
-            const r = card.getBoundingClientRect();
-            card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
-            card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
-        });
-    });
-
-    // Visual parallax for generated portfolio artwork
-    const conceptStage = document.getElementById('concept-stage');
-    const conceptVisual = document.getElementById('concept-visual');
-    if (conceptStage && conceptVisual && window.matchMedia('(pointer:fine)').matches) {
-        conceptStage.addEventListener('pointermove', e => {
-            const r = conceptStage.getBoundingClientRect();
-            const x = (e.clientX - r.left) / r.width - .5;
-            const y = (e.clientY - r.top) / r.height - .5;
-            conceptVisual.style.transform = `scale(1.035) translate(${x*8}px,${y*8}px)`;
-        });
-        conceptStage.addEventListener('pointerleave', () => {
-            conceptVisual.style.transform = '';
-        });
-    }
-</script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg:       #0d0f14;
-            --surface:  #13161e;
-            --border:   #1f2330;
-            --muted:    #3a3f52;
-            --text-dim: #7a8099;
-            --text:     #e2e6f0;
-            --accent:   #6c63ff;
-            --accent2:  #00d4aa;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-        body::before {
-            content: '';
-            position: fixed; inset: 0;
-            background-image:
-                linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none; z-index: 0;
-        }
-        /* NAV */
-        #navbar {
-            position: fixed; width: 100%; z-index: 100;
-            background: transparent;
-            transition: background 0.4s, border-color 0.4s;
-            border-bottom: 1px solid transparent;
-        }
-        #navbar.scrolled {
-            background: rgba(13,15,20,0.92);
-            backdrop-filter: blur(16px);
-            border-color: var(--border);
-        }
-        .nav-link {
-            position: relative; font-size: 0.75rem; letter-spacing: 0.1em;
-            color: var(--text-dim); text-decoration: none; transition: color 0.3s; padding-bottom: 2px;
-        }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: 0; left: 0;
-            width: 0; height: 1px; background: var(--accent);
-            transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
-        }
-        .nav-link:hover { color: var(--text); }
-        .nav-link:hover::after { width: 100%; }
-        /* Cursor blink */
-        .cursor {
-            display: inline-block; width: 3px; height: 1em;
-            background: var(--accent2); vertical-align: text-bottom;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-        /* Hero animations */
-        .hero-word {
-            display: inline-block; opacity: 0; transform: translateY(30px);
-            animation: wordUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-        .fade-up {
-            opacity: 0; transform: translateY(20px);
-            animation: wordUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-        @keyframes wordUp { to { opacity: 1; transform: translateY(0); } }
-        /* Scroll reveal */
-        .reveal {
-            opacity: 0; transform: translateY(36px);
-            transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .rd1 { transition-delay: 0.08s; } .rd2 { transition-delay: 0.16s; }
-        .rd3 { transition-delay: 0.24s; } .rd4 { transition-delay: 0.32s; }
-        /* Pills */
-        .pill {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 4px 12px; border-radius: 999px; font-size: 0.68rem; font-weight: 500;
-            border: 1px solid var(--border); color: var(--text-dim); background: var(--surface);
-            transition: border-color 0.3s, color 0.3s;
-        }
-        .pill:hover { border-color: var(--accent); color: var(--text); }
-        .pill-p { border-color: rgba(108,99,255,0.4); color: #a89fff; background: rgba(108,99,255,0.08); }
-        .pill-g { border-color: rgba(0,212,170,0.35); color: #00d4aa; background: rgba(0,212,170,0.07); }
-        /* Card */
-        .card {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-            transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
-        }
-        .card:hover {
-            border-color: rgba(108,99,255,0.45); transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(108,99,255,0.12);
-        }
-        /* Project image */
-        .proj-wrap { overflow: hidden; border-radius: 8px; }
-        .proj-wrap img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
-            filter: brightness(0.9) saturate(0.9);
-        }
-        .card:hover .proj-wrap img { transform: scale(1.04); filter: brightness(1) saturate(1); }
-        /* Buttons */
-        .btn-p {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 28px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
-            color: #fff; border-radius: 6px; text-decoration: none; overflow: hidden;
-            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
-            transition: box-shadow 0.35s, transform 0.25s;
-        }
-        .btn-p:hover { box-shadow: 0 8px 32px rgba(108,99,255,0.45); transform: translateY(-2px); }
-        .btn-o {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 11px 26px; font-size: 0.8rem; font-weight: 500;
-            color: var(--text-dim); border: 1px solid var(--border);
-            border-radius: 6px; text-decoration: none;
-            transition: border-color 0.3s, color 0.3s, background 0.3s;
-        }
-        .btn-o:hover { border-color: var(--accent); color: var(--text); background: rgba(108,99,255,0.07); }
-        /* Skill bar */
-        .bar-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
-        .bar-fill {
-            height: 100%; border-radius: 2px; width: 0;
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
-        }
-        /* Section label */
-        .sec-lbl {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em;
-            text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
-        }
-        .sec-lbl::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-        /* Gradient text */
-        .grad { background: linear-gradient(135deg,#a89fff 0%,#00d4aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        /* Orb */
-        .orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
-        /* Timeline */
-        .tl-line { position: absolute; left: 7px; top: 28px; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
-        .tl-dot { width: 15px; height: 15px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); flex-shrink: 0; margin-top: 4px; }
-        /* Status dot */
-        .sdot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); animation: pdot 2s ease-in-out infinite; }
-        @keyframes pdot { 0%,100%{box-shadow:0 0 0 0 rgba(0,212,170,0.5)} 50%{box-shadow:0 0 0 5px rgba(0,212,170,0)} }
-        /* Input */
-        .inp {
-            width: 100%; background: var(--surface); border: 1px solid var(--border);
-            border-radius: 6px; padding: 12px 16px; font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem; color: var(--text); outline: none; transition: border-color 0.3s;
-        }
-        .inp:focus { border-color: var(--accent); }
-        .inp::placeholder { color: var(--muted); }
-        /* Mobile menu */
-        #mobile-menu { display: none; background: rgba(13,15,20,0.97); border-top: 1px solid var(--border); padding: 20px 24px; flex-direction: column; gap: 18px; }
-        #mobile-menu.open { display: flex; }
-        @keyframes scrollPulse { 0%,100%{opacity:0.2} 50%{opacity:1} }
-    
-        /* Modern interaction layer */
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; height: 2px; width: 0;
-            background: linear-gradient(90deg,var(--accent),var(--accent2));
-            z-index: 999; box-shadow: 0 0 16px rgba(108,99,255,.55);
-        }
-        #mouse-glow {
-            position: fixed; width: 420px; height: 420px; border-radius: 50%;
-            pointer-events: none; z-index: 1; opacity: .22;
-            background: radial-gradient(circle,rgba(108,99,255,.28),rgba(0,212,170,.08) 38%,transparent 70%);
-            transform: translate(-50%,-50%); filter: blur(18px);
-            transition: opacity .3s ease;
-        }
-        .stat-card {
-            position: relative; overflow: hidden; padding: 16px 12px;
-            border: 1px solid rgba(255,255,255,.07); border-radius: 14px;
-            background: linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
-            backdrop-filter: blur(12px); text-align: left;
-        }
-        .stat-card::before {
-            content:""; position:absolute; inset:0; opacity:0;
-            background: radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(108,99,255,.18),transparent 50%);
-            transition: opacity .3s;
-        }
-        .stat-card:hover::before { opacity:1; }
-        .stat-card strong { display:block; font-size:1rem; color:var(--text); position:relative; }
-        .stat-card span { display:block; margin-top:3px; font-size:.62rem; color:var(--text-dim); position:relative; }
-        .card[data-tilt] { transform-style: preserve-3d; will-change: transform; }
-        .card[data-tilt]:hover { box-shadow: 0 24px 70px rgba(108,99,255,.15); }
-        .marquee-shell {
-            overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
-            background:rgba(19,22,30,.45); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-        }
-        .marquee-track {
-            display:flex; width:max-content; gap:12px; padding:14px 0;
-            animation: marquee 24s linear infinite;
-        }
-        .marquee-shell:hover .marquee-track { animation-play-state:paused; }
-        .marquee-item {
-            white-space:nowrap; border:1px solid var(--border); background:rgba(13,15,20,.7);
-            color:var(--text-dim); border-radius:999px; padding:7px 14px; font-size:.7rem;
-        }
-        @keyframes marquee { to { transform:translateX(-50%); } }
-        .experience-banner {
-            border:1px solid rgba(108,99,255,.3);
-            background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.06));
-            box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
-            #mouse-glow { display:none; }
-        }
-    
-        .concept-frame {
-            position: relative;
-            border: 1px solid rgba(255,255,255,.08);
-            border-radius: 24px;
-            overflow: hidden;
-            background: linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
-            box-shadow: 0 30px 100px rgba(0,0,0,.35);
-        }
-        .concept-frame::after {
-            content:""; position:absolute; inset:0; pointer-events:none;
-            background: linear-gradient(115deg,transparent 25%,rgba(255,255,255,.08) 45%,transparent 65%);
-            transform: translateX(-120%);
-            animation: sheen 7s ease-in-out infinite;
-        }
-        .concept-visual {
-            display:block; width:100%; height:auto;
-            transform: scale(1.015);
-            transition: transform .8s cubic-bezier(.22,1,.36,1), filter .5s ease;
-            filter: saturate(.95) contrast(1.02);
-        }
-        .concept-frame:hover .concept-visual { transform: scale(1.035); filter: saturate(1.05) contrast(1.04); }
-        .float-badge {
-            position:absolute; z-index:3; padding:9px 13px; border-radius:999px;
-            font-size:.66rem; letter-spacing:.04em; color:var(--text);
-            border:1px solid rgba(255,255,255,.11);
-            background:rgba(13,15,20,.72); backdrop-filter:blur(12px);
-            box-shadow:0 14px 36px rgba(0,0,0,.22);
-            animation: badgeFloat 5.5s ease-in-out infinite;
-        }
-        .float-badge.b2 { animation-delay:-1.8s; }
-        .float-badge.b3 { animation-delay:-3.3s; }
-        .visual-grid {
-            display:grid; grid-template-columns: 1.2fr .8fr; gap:18px;
-        }
-        .visual-crop {
-            position:relative; min-height:230px; overflow:hidden; border-radius:20px;
-            border:1px solid rgba(255,255,255,.08); background:var(--surface);
-        }
-        .visual-crop img {
-            position:absolute; width:190%; max-width:none; transition: transform .8s cubic-bezier(.22,1,.36,1);
-        }
-        .visual-crop.joins img { left:-2%; top:-46%; }
-        .visual-crop.mega img { right:-4%; top:-44%; }
-        .visual-crop:hover img { transform:scale(1.035); }
-        .visual-overlay {
-            position:absolute; inset:auto 0 0 0; padding:22px 20px 18px;
-            background:linear-gradient(to top,rgba(7,9,14,.96),rgba(7,9,14,.72),transparent);
-        }
-        @keyframes badgeFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-        @keyframes sheen { 0%,62%{transform:translateX(-120%)} 82%,100%{transform:translateX(120%)} }
-        @media (max-width: 900px) {
-            .visual-grid { grid-template-columns:1fr; }
-            .float-badge { display:none; }
-            .visual-crop { min-height:210px; }
-        }
-    </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Sutthiwit Sriyotha — Software Engineering portfolio spanning business analysis, QA, development, databases, automation, and enterprise systems."/>
+<title>Sutthiwit Sriyotha — Software Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080a0f;--surface:#0f131c;--surface2:#141925;--line:#222a3a;
+  --text:#f4f7fb;--muted:#9aa4b6;--purple:#8b7cff;--cyan:#45e0c2;--orange:#ff875f;
+  --max:1180px;--radius:24px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;overflow-x:hidden}
+a{color:inherit}.mono{font-family:"JetBrains Mono",monospace}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+.progress{position:fixed;z-index:1000;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.26;background-image:radial-gradient(rgba(255,255,255,.055) .7px,transparent .7px);background-size:14px 14px;mask-image:linear-gradient(to bottom,black,transparent 72%)}
+.glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(139,124,255,.15),transparent 68%);transform:translate(-50%,-50%);filter:blur(12px)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:.3s}
+nav.scrolled{background:rgba(8,10,15,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+.navin{display:flex;align-items:center;justify-content:space-between}.brand{text-decoration:none;font-weight:800;letter-spacing:-.04em}
+.links{display:flex;gap:28px;align-items:center}.links a{text-decoration:none;color:var(--muted);font-size:13px}.links a:hover{color:white}
+.status{display:flex;align-items:center;gap:8px;border:1px solid rgba(69,224,194,.25);padding:7px 11px;border-radius:999px;font-size:12px;color:#bdf8ec;background:rgba(69,224,194,.06)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 70px;z-index:2}
+.hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:54px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:10px;color:#c8c1ff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px}
+.kicker:before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+h1{font-size:clamp(48px,7.5vw,96px);line-height:.95;letter-spacing:-.065em;margin:0 0 24px}
+.gradient{background:linear-gradient(100deg,#fff 0%,#bfb7ff 42%,#63e6cd 100%);-webkit-background-clip:text;color:transparent}
+.hero p{font-size:17px;line-height:1.7;color:var(--muted);max-width:620px}
+.role-line{margin-top:18px;color:#d7dbea;font-size:15px}.role{color:var(--cyan)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:12px;text-decoration:none;font-weight:700;font-size:13px;border:1px solid var(--line);transition:.25s}
+.btn.primary{background:white;color:#0b0d12;border-color:white}.btn:hover{transform:translateY(-2px)}
+.visual{position:relative;border-radius:30px;padding:14px;background:linear-gradient(145deg,rgba(139,124,255,.16),rgba(69,224,194,.05));border:1px solid rgba(255,255,255,.09);box-shadow:0 35px 120px rgba(0,0,0,.45);transform-style:preserve-3d}
+.visual img{width:100%;display:block;border-radius:20px;transform:translateZ(24px)}
+.float{position:absolute;padding:9px 12px;border-radius:999px;background:rgba(12,15,22,.76);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);font-size:11px;box-shadow:0 14px 30px rgba(0,0,0,.25);animation:float 5s ease-in-out infinite}
+.f1{left:-24px;top:18%}.f2{right:-18px;top:12%;animation-delay:-1.6s}.f3{right:10%;bottom:-15px;animation-delay:-3s}@keyframes float{50%{transform:translateY(-9px)}}
+.marquee{border-block:1px solid var(--line);overflow:hidden;position:relative;z-index:2;background:#0b0e14}.marquee-track{display:flex;width:max-content;gap:11px;padding:14px 0;animation:marq 28s linear infinite}.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:#aeb7c8;font-size:12px;background:#0f131c}@keyframes marq{to{transform:translateX(-50%)}}
+section{position:relative;z-index:2;padding:110px 0}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}.eyebrow{color:#a99fff;font:500 12px "JetBrains Mono";letter-spacing:.12em;text-transform:uppercase}.section-head h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.05em;margin:8px 0 0}.section-head p{color:var(--muted);max-width:440px;line-height:1.6}
+.experience-card{display:grid;grid-template-columns:.75fr 1.25fr;gap:30px;padding:32px;border:1px solid rgba(139,124,255,.23);border-radius:var(--radius);background:linear-gradient(135deg,rgba(139,124,255,.11),rgba(69,224,194,.035))}
+.experience-card h3{font-size:26px;margin:6px 0}.company{color:#d8dcec}.date{color:var(--cyan);font-size:12px}.experience-card p{color:var(--muted);line-height:1.7;margin:0}
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.mini{padding:18px;border-radius:16px;border:1px solid var(--line);background:rgba(8,10,15,.45)}.mini strong{font-size:14px}.mini span{display:block;color:var(--muted);font-size:12px;margin-top:6px}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.bento .card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:26px;min-height:210px;overflow:hidden;position:relative;transition:.3s}
+.bento .card:hover{border-color:#39445e;transform:translateY(-4px)}.c6{grid-column:span 6}.c4{grid-column:span 4}.c8{grid-column:span 8}
+.card .num{font:500 11px "JetBrains Mono";color:#6f7990}.card h3{font-size:22px;margin:24px 0 10px}.card p{color:var(--muted);line-height:1.65;font-size:14px}.card .accent{position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;bottom:-65px;filter:blur(8px);opacity:.22}
+.projects{background:#0a0d13}.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.project{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:var(--surface);transition:.35s}.project:hover{transform:translateY(-5px);border-color:#3b4660}.project-media{height:320px;overflow:hidden;position:relative;background:#0b1018}.project-media img{width:100%;height:100%;object-fit:cover;transition:.6s}.project:hover .project-media img{transform:scale(1.035)}.project-body{padding:26px}.project-meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}.project h3{font-size:27px;margin:13px 0 10px}.project p{color:var(--muted);line-height:1.65}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.tag{font-size:11px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:#b7c0d1}.open-case{margin-top:22px;background:transparent;color:white;border:0;padding:0;font-weight:700;cursor:pointer}
+.academic{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.academic article{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface)}.academic img{width:100%;height:185px;object-fit:cover}.academic div{padding:18px}.academic h4{margin:0 0 8px}.academic p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.skill-group{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface)}.skill-group h4{margin:0 0 14px;font-size:13px;color:#dfe4ef}.skill-group p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.timeline{border-left:1px solid var(--line);margin-left:8px;padding-left:30px;display:grid;gap:28px}.event{position:relative}.event:before{content:"";position:absolute;left:-36px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--purple)}.event h4{margin:0 0 6px}.event small{color:var(--cyan)}.event p{color:var(--muted);line-height:1.6;margin:9px 0 0}
+.contact-card{padding:42px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,#111625,#0c1117);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.contact-card h2{font-size:clamp(32px,5vw,58px);margin:0 0 12px;letter-spacing:-.05em}.contact-card p{color:var(--muted);margin:0}.contact-links{display:flex;gap:10px;flex-wrap:wrap}
+footer{padding:30px 0 50px;color:#677186;font-size:12px}
+.reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.75,.2,1)}.reveal.show{opacity:1;transform:none}
+dialog{width:min(760px,calc(100% - 30px));border:1px solid #31394c;border-radius:24px;background:#0d1119;color:white;padding:0;box-shadow:0 40px 140px #000}dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(7px)}.modal{padding:30px}.modal-top{display:flex;justify-content:space-between;gap:20px}.close{border:1px solid var(--line);background:#121722;color:white;border-radius:10px;width:36px;height:36px;cursor:pointer}.modal h3{font-size:34px;margin:5px 0 10px}.modal p,.modal li{color:var(--muted);line-height:1.65}.modal ul{padding-left:20px}
+@media(max-width:900px){.links{display:none}.hero-grid,.experience-card,.contact-card{grid-template-columns:1fr}.hero{padding-top:130px}.visual{margin-top:10px}.f1,.f2,.f3{display:none}.c6,.c4,.c8{grid-column:span 12}.project-grid,.skills-grid{grid-template-columns:1fr 1fr}.academic{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.project-media{height:260px}}
+@media(max-width:600px){.wrap{width:min(100% - 28px,var(--max))}.hero{min-height:auto}.project-grid,.skills-grid,.mini-grid{grid-template-columns:1fr}h1{font-size:52px}.contact-card{padding:28px}.project-media{height:220px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.glow{display:none}}
+</style>
 </head>
 <body>
-<div id="scroll-progress"></div>
-<div id="mouse-glow"></div>
+<div class="progress" id="progress"></div><div class="noise"></div><div class="glow" id="glow"></div>
+<nav id="nav"><div class="wrap navin"><a class="brand" href="#home">SUTTHIWIT<span style="color:var(--cyan)">.</span></a><div class="links"><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div><div class="status"><span class="dot"></span>Open to opportunities</div></div></nav>
 
-<!-- NAV -->
-<nav id="navbar">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-            <a href="#home" class="mono text-sm font-medium" style="color:var(--accent2)">&lt;SW /&gt;</a>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#about"   class="nav-link">About</a>
-                <a href="#work"    class="nav-link">Projects</a>
-                <a href="#skills"  class="nav-link">Skills</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full" style="background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.25)">
-                <div class="sdot"></div>
-                <span class="text-xs" style="color:var(--accent2)">Open to Opportunities</span>
-            </div>
-            <button id="menu-btn" class="md:hidden p-1" aria-label="menu">
-                <div id="bar1" class="w-5 h-px mb-1.5 transition-all duration-300" style="background:var(--text)"></div>
-                <div id="bar2" class="w-5 h-px mb-1.5 transition-all duration-300" style="background:var(--text)"></div>
-                <div id="bar3" class="w-3 h-px ml-auto transition-all duration-300" style="background:var(--text)"></div>
-            </button>
-        </div>
-    </div>
-    <div id="mobile-menu">
-        <a href="#about"   class="nav-link py-1" onclick="closeMM()">About</a>
-        <a href="#work"    class="nav-link py-1" onclick="closeMM()">Projects</a>
-        <a href="#skills"  class="nav-link py-1" onclick="closeMM()">Skills</a>
-        <a href="#contact" class="nav-link py-1" onclick="closeMM()">Contact</a>
-    </div>
-</nav>
+<header class="hero" id="home"><div class="wrap hero-grid">
+<div>
+<div class="kicker reveal">Software Engineering Portfolio</div>
+<h1 class="reveal">Sutthiwit<br><span class="gradient">Sriyotha</span></h1>
+<p class="reveal">Software Engineering graduate with hands-on experience across business analysis, software testing, full-stack development, PostgreSQL, data migration, automation, and enterprise systems.</p>
+<div class="role-line reveal">I work across <span class="role" id="role">Business Analysis</span></div>
+<div class="actions reveal"><a class="btn primary" href="#work">Explore my work ↘</a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com">Get in touch</a></div>
+</div>
+<div class="visual reveal" id="heroVisual"><img src="./assets/portfolio-concept.svg" alt="Visual overview of business analysis, testing, development, data and deployment work"><span class="float f1">BA · Requirements</span><span class="float f2">QA · Automation</span><span class="float f3">PostgreSQL · Migration</span></div>
+</div></header>
 
-<!-- HERO -->
-<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="orb" style="width:500px;height:500px;background:rgba(108,99,255,0.12);top:-100px;left:-150px;"></div>
-    <div class="orb" style="width:400px;height:400px;background:rgba(0,212,170,0.08);bottom:-80px;right:-100px;"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <div class="fade-up mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full"
-             style="background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.3);animation-delay:0.1s">
-            <div class="sdot"></div>
-            <span class="mono text-xs" style="color:#a89fff">Software Engineering · Development · Testing · Data</span>
-        </div>
-        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4">
-            <span class="hero-word" style="animation-delay:0.2s">Hi, I'm </span>
-            <span class="hero-word grad" style="animation-delay:0.32s">Sutthiwit</span><br/>
-            <span class="hero-word" style="color:var(--text-dim);font-weight:300;font-size:0.75em;animation-delay:0.44s">Software </span>
-            <span class="hero-word" style="font-weight:300;font-size:0.75em;animation-delay:0.54s">Engineer</span>
-            <span class="cursor" style="font-size:0.7em"></span>
-        </h1>
-        <p class="fade-up max-w-xl mx-auto text-sm leading-relaxed mb-10"
-           style="color:var(--text-dim);animation-delay:0.7s">
-            Software Engineering graduate with hands-on experience across full-stack development, software testing, database work, data migration, and enterprise web applications.
-        </p>
-        <div class="fade-up flex flex-wrap items-center justify-center gap-4" style="animation-delay:0.85s">
-            <a href="#work" class="btn-p">View Projects ↓</a>
-            <a href="mailto:sutthiwitsriyotha@gmail.com" class="btn-o">✉ Get in Touch</a>
-        </div>
-        <div class="fade-up mt-14 flex flex-wrap justify-center gap-2" style="animation-delay:1s">
-            <span class="pill pill-p">TypeScript</span><span class="pill pill-p">Next.js</span>
-            <span class="pill pill-p">React.js</span><span class="pill pill-p">Node.js</span>
-            <span class="pill pill-p">NestJS</span><span class="pill">Tailwind CSS</span>
-            <span class="pill">MongoDB</span><span class="pill">Docker</span>
-        </div>
-    </div>
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite"></div>
-    </div>
-</section>
+<div class="marquee"><div class="marquee-track">
+<span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">NestJS</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Playwright</span><span class="chip">Vitest</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Business Analysis</span><span class="chip">API Testing</span><span class="chip">Data Migration</span><span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">NestJS</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Playwright</span><span class="chip">Vitest</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Business Analysis</span><span class="chip">API Testing</span><span class="chip">Data Migration</span>
+</div></div>
 
+<section id="experience"><div class="wrap">
+<div class="section-head reveal"><div><div class="eyebrow">01 / Experience</div><h2>Real systems, real constraints.</h2></div><p>My strongest experience comes from working with enterprise workflows where business rules, permissions, data quality and release confidence matter.</p></div>
+<div class="experience-card reveal">
+<div><div class="date mono">JUN 2026 — SEP 2026</div><h3>BA & QA Tester Intern</h3><div class="company">Double P Enterprise Co., Ltd., Bangkok</div></div>
+<div><p>Worked across JOiNS+ HR Portal and MEGA-T ITSM Platform, translating business rules into testable scenarios, validating APIs and databases, investigating defects, supporting data migration, and contributing to automation and CI/CD-related work.</p><div class="mini-grid" style="margin-top:20px"><div class="mini"><strong>Business Analysis</strong><span>Rules · workflows · edge cases</span></div><div class="mini"><strong>Quality Assurance</strong><span>Functional · API · regression</span></div><div class="mini"><strong>Data</strong><span>PostgreSQL · migration · reconciliation</span></div><div class="mini"><strong>Automation & Delivery</strong><span>Playwright · Vitest · GitHub Actions</span></div></div></div>
+</div>
+</div></section>
 
-<div class="marquee-shell relative z-10">
-    <div class="marquee-track" aria-label="Technology stack">
-        <span class="marquee-item">TypeScript</span><span class="marquee-item">Next.js</span><span class="marquee-item">React</span>
-        <span class="marquee-item">NestJS</span><span class="marquee-item">PostgreSQL</span><span class="marquee-item">Prisma</span>
-        <span class="marquee-item">Playwright</span><span class="marquee-item">Vitest</span><span class="marquee-item">Docker</span>
-        <span class="marquee-item">GitHub Actions</span><span class="marquee-item">API Testing</span><span class="marquee-item">Data Migration</span>
-        <span class="marquee-item">TypeScript</span><span class="marquee-item">Next.js</span><span class="marquee-item">React</span>
-        <span class="marquee-item">NestJS</span><span class="marquee-item">PostgreSQL</span><span class="marquee-item">Prisma</span>
-        <span class="marquee-item">Playwright</span><span class="marquee-item">Vitest</span><span class="marquee-item">Docker</span>
-        <span class="marquee-item">GitHub Actions</span><span class="marquee-item">API Testing</span><span class="marquee-item">Data Migration</span>
-    </div>
+<section><div class="wrap">
+<div class="section-head reveal"><div><div class="eyebrow">02 / Capabilities</div><h2>More than one lane.</h2></div><p>I can move between understanding the business, checking system behavior, reading data, and working with implementation details.</p></div>
+<div class="bento">
+<div class="card c6 reveal"><div class="num">01</div><h3>Business Analysis</h3><p>Translate operational rules into clear system behavior, workflows, permissions, conditions and testable acceptance scenarios.</p><div class="accent" style="background:var(--purple)"></div></div>
+<div class="card c6 reveal"><div class="num">02</div><h3>Software Testing</h3><p>Functional, regression, API and end-to-end testing with emphasis on business rules, RBAC, SLA logic, defects and retesting.</p><div class="accent" style="background:var(--cyan)"></div></div>
+<div class="card c4 reveal"><div class="num">03</div><h3>Database & Migration</h3><p>PostgreSQL queries, data validation, dry runs, reconciliation, duplicate checks and migration integrity.</p></div>
+<div class="card c4 reveal"><div class="num">04</div><h3>Development</h3><p>Hands-on exposure to Next.js, React, NestJS, Prisma, APIs and full-stack business features.</p></div>
+<div class="card c4 reveal"><div class="num">05</div><h3>Automation & CI/CD</h3><p>Playwright, Vitest, GitHub Actions, Docker and practical troubleshooting around deployment workflows.</p></div>
+</div>
+</div></section>
+
+<section class="projects" id="work"><div class="wrap">
+<div class="section-head reveal"><div><div class="eyebrow">03 / Featured Work</div><h2>Enterprise projects.</h2></div><p>Two systems that best show how I work across product rules, testing, data, implementation detail and delivery.</p></div>
+<div class="project-grid">
+<article class="project reveal"><div class="project-media"><img src="./assets/portfolio-concept.svg" alt="JOiNS+ HR Portal concept"></div><div class="project-body"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Enterprise HR</span></div><h3>Leave workflows, approvals & data migration</h3><p>Worked with leave calculations, approval policies, backdated records, authorization, cancellation rules, reporting, PostgreSQL validation and legacy balance migration.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Vitest</span><span class="tag">GitHub Actions</span></div><button class="open-case" data-case="joins">View case study →</button></div></article>
+<article class="project reveal"><div class="project-media"><img src="./assets/portfolio-concept.svg" alt="MEGA-T ITSM concept" style="object-position:right"></div><div class="project-body"><div class="project-meta"><span>MEGA-T</span><span>Enterprise ITSM</span></div><h3>Ticket lifecycle, SLA & multi-tenant controls</h3><p>Worked with ticket workflows, priority handling, SLA calculations, RBAC, tenant isolation, API/database investigation and automated validation.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span><span class="tag">Playwright</span><span class="tag">Docker</span></div><button class="open-case" data-case="mega">View case study →</button></div></article>
 </div>
 
+<div class="section-head reveal" style="margin-top:70px"><div><div class="eyebrow">Earlier Work</div><h2 style="font-size:36px">Development foundations.</h2></div></div>
+<div class="academic">
+<article class="reveal"><img src="./UP-PSF_Digital_Assessment_System.png" alt="UP-PSF Digital Assessment System"><div><h4>UP-PSF Digital Assessment System</h4><p>Paperless assessment workflow with Next.js, TypeScript, RBAC and REST API integration.</p></div></article>
+<article class="reveal"><img src="./Restaurant_Management_Web_App.png" alt="Restaurant Management Web App"><div><h4>Restaurant Management Web App</h4><p>QR-based ordering, operational dashboard, real-time workflow and export features.</p></div></article>
+<article class="reveal"><img src="./Online_Plant_Store.png" alt="Online Plant Store"><div><h4>TAMROI Online Plant Store</h4><p>User research, Figma prototyping and responsive e-commerce front-end design.</p></div></article>
+</div>
+</div></section>
 
-<section class="relative py-10 overflow-hidden">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-        <div class="concept-frame reveal" id="concept-stage">
-            <img src="./assets/portfolio-concept.svg" alt="Interactive visual overview of Sutthiwit's software engineering experience" class="concept-visual" id="concept-visual"/>
-            <span class="float-badge" style="left:5%;top:8%">Business Analysis</span>
-            <span class="float-badge b2" style="right:6%;top:12%">QA & Automation</span>
-            <span class="float-badge b3" style="left:42%;bottom:7%">Data Migration · PostgreSQL</span>
-        </div>
-    </div>
-</section>
+<section id="skills"><div class="wrap">
+<div class="section-head reveal"><div><div class="eyebrow">04 / Skills</div><h2>Tools I can work with.</h2></div><p>Grouped by how I actually use them rather than showing a wall of logos.</p></div>
+<div class="skills-grid">
+<div class="skill-group reveal"><h4>Analysis & QA</h4><p>Requirements Analysis<br>Test Scenario Design<br>Functional / Regression<br>API / E2E Testing<br>Defect Investigation</p></div>
+<div class="skill-group reveal"><h4>Frontend / Backend</h4><p>TypeScript<br>Next.js / React<br>NestJS / Node.js<br>REST APIs<br>Prisma ORM</p></div>
+<div class="skill-group reveal"><h4>Data & Automation</h4><p>PostgreSQL<br>Data Migration<br>Data Reconciliation<br>Playwright<br>Vitest</p></div>
+<div class="skill-group reveal"><h4>Delivery & Tools</h4><p>Git / GitHub<br>GitHub Actions<br>Docker<br>Caddy<br>Figma / Jira</p></div>
+</div>
 
-<!-- ABOUT -->
-<section id="about" class="relative py-28 overflow-hidden">
-    <div class="orb" style="width:350px;height:350px;background:rgba(0,212,170,0.06);top:50px;right:-80px;"></div>
-    <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8">
-        <div class="reveal mb-14">
-            <div class="sec-lbl">About Me</div>
-            <h2 class="text-3xl md:text-4xl font-bold">What I Build & Work With</h2>
-        </div>
-        <div class="grid md:grid-cols-5 gap-12 items-start">
-            <!-- Avatar side -->
-            <div class="md:col-span-2 reveal rd1">
-                <div class="relative">
-                    <div class="aspect-square rounded-2xl overflow-hidden" style="background:var(--surface);border:1px solid var(--border)">
-                        <div class="w-full h-full flex items-center justify-center" style="background:linear-gradient(135deg,rgba(108,99,255,0.15),rgba(0,212,170,0.1))">
-                            <div class="w-28 h-28 rounded-full flex items-center justify-center text-4xl font-bold" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff">SW</div>
-                        </div>
-                    </div>
-                    <div class="absolute -bottom-4 -right-4 px-4 py-2 rounded-xl text-xs font-semibold" style="background:var(--surface);border:1px solid var(--border);color:var(--accent2)">GPA 3.29 ⭐</div>
-                </div>
-                <div class="mt-10 space-y-3">
-                    <a href="mailto:sutthiwitsriyotha@gmail.com" class="flex items-center gap-3 text-sm transition-colors hover:text-white" style="color:var(--text-dim)">
-                        ✉ sutthiwitsriyotha@gmail.com
-                    </a>
-                    <a href="tel:+66934918615" class="flex items-center gap-3 text-sm transition-colors hover:text-white" style="color:var(--text-dim)">
-                        ☎ 093-491-8615
-                    </a>
-                    <a href="https://github.com/Sutthiwit-Sriyotha" target="_blank" class="flex items-center gap-3 text-sm transition-colors hover:text-white" style="color:var(--text-dim)">
-                        ⌥ SutthiwitSriyotha
-                    </a>
-                </div>
-            </div>
-            <!-- Text side -->
-            <div class="md:col-span-3 reveal rd2">
-                <div class="mono text-xs mb-6 px-4 py-3 rounded-lg" style="background:var(--surface);border:1px solid var(--border);color:var(--text-dim);line-height:1.8">
-                    <span style="color:var(--accent2)">const</span> <span style="color:#a89fff">developer</span> = {<br/>
-                    &nbsp;&nbsp;<span style="color:var(--accent2)">name:</span> <span style="color:#ffd700">"Sutthiwit Sriyotha"</span>,<br/>
-                    &nbsp;&nbsp;<span style="color:var(--accent2)">university:</span> <span style="color:#ffd700">"University of Phayao"</span>,<br/>
-                    &nbsp;&nbsp;<span style="color:var(--accent2)">major:</span> <span style="color:#ffd700">"Software Engineering"</span>,<br/>
-                    &nbsp;&nbsp;<span style="color:var(--accent2)">focus:</span> <span style="color:#00d4aa">"Development · Testing · Enterprise Systems"</span><br/>
-                    }
-                </div>
-                <div class="space-y-4 text-sm leading-relaxed" style="color:var(--text-dim)">
-                    <p>นักศึกษาวิศวกรรมซอฟต์แวร์ ชั้นปีที่ 4 มหาวิทยาลัยพะเยา สนใจการพัฒนา Web Application แบบ Full-Stack ตั้งแต่ออกแบบ UI/UX ด้วย Figma จนถึงเขียน Backend API ด้วย NestJS</p>
-                    <p>ผ่านการฝึกงานจริงที่ Division of Educational Services มหาวิทยาลัยพะเยา พัฒนาระบบ UP-PSF Digital Assessment System แบบ Paperless ในกระบวนการ Agile Scrum</p>
-                    <p>กำลังมองหาโอกาสฝึกงาน <span style="color:var(--text)">ตั้งแต่ 8 มิถุนายน – 25 กันยายน 2026</span> เพื่อเติบโตในสายงานพัฒนาซอฟต์แวร์</p>
-                </div>
-                <div class="mt-8 p-5 rounded-xl" style="background:var(--surface);border:1px solid var(--border)">
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background:rgba(108,99,255,0.15)">🎓</div>
-                        <div>
-                            <p class="font-semibold text-sm">Bachelor of Engineering (Software Engineering)</p>
-                            <p class="text-xs mt-1" style="color:var(--text-dim)">University of Phayao · 2022 – 2026</p>
-                            <div class="flex items-center gap-2 mt-2">
-                                <span class="pill pill-g text-xs">GPA 3.29</span>
-                                <span class="pill text-xs">Graduating 2026</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="section-head reveal" style="margin-top:85px"><div><div class="eyebrow">05 / Timeline</div><h2 style="font-size:42px">How I got here.</h2></div></div>
+<div class="timeline">
+<div class="event reveal"><small class="mono">2026</small><h4>BA & QA Tester Intern — Double P Enterprise</h4><p>Enterprise HR and ITSM systems: business rules, testing, PostgreSQL, migration, automation and delivery support.</p></div>
+<div class="event reveal"><small class="mono">2025–2026</small><h4>Frontend Developer Intern — University of Phayao</h4><p>UP-PSF Digital Assessment System: paperless workflow, frontend implementation, RBAC and API integration.</p></div>
+<div class="event reveal"><small class="mono">2024–2025</small><h4>Academic Product Projects</h4><p>Restaurant management and e-commerce projects combining UX, development and system thinking.</p></div>
+<div class="event reveal"><small class="mono">2022–2026</small><h4>B.Eng. Software Engineering — University of Phayao</h4><p>GPA 3.29</p></div>
+</div>
+</div></section>
 
-<!-- PROJECTS -->
-<section id="work" class="relative py-28 overflow-hidden" style="background:rgba(19,22,30,0.6);">
-    <div class="orb" style="width:400px;height:400px;background:rgba(108,99,255,0.07);bottom:-60px;left:-100px;"></div>
-    <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-        <div class="reveal flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-            <div>
-                <div class="sec-lbl">Projects</div>
-                <h2 class="text-3xl md:text-4xl font-bold">Selected Works</h2>
-            </div>
-            <p class="text-sm max-w-xs" style="color:var(--text-dim)">ผลงานจากประสบการณ์ทำงานจริง การฝึกงาน และ Academic Projects ปี 2024–2026</p>
-        </div>
+<section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Interested in what I can bring to your team?</h2><p>Open to Software Engineering, BA, QA/Testing and related technology roles.</p></div><div class="contact-links"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me</a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></div></section>
 
+<footer><div class="wrap">© 2026 Sutthiwit Sriyotha · Software Engineering Portfolio</div></footer>
 
-        <!-- Enterprise Experience -->
-        <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <div class="card reveal rd1 p-6" data-tilt>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="pill pill-p text-xs">Enterprise · 2026</span>
-                    <span class="pill text-xs">HR Platform</span>
-                </div>
-                <h3 class="text-xl font-bold mb-3">JOiNS+ HR Portal</h3>
-                <p class="text-sm leading-relaxed mb-5" style="color:var(--text-dim)">
-                    Internal HR platform covering leave management, approvals, employee data, and recruitment workflows.
-                </p>
-                <ul class="text-xs leading-relaxed space-y-2 mb-5" style="color:var(--text-dim)">
-                    <li>• Delivered full-stack leave-management features across UI, API, business logic, Prisma migrations, and PostgreSQL.</li>
-                    <li>• Built approval policies, permission-controlled backdated leave, audit trails, and configurable cancellation rules.</li>
-                    <li>• Performed legacy data migration with dry runs, transactional/idempotent imports, reconciliation, and PostgreSQL validation.</li>
-                    <li>• Added automated tests and improved Docker deployment on a Windows self-hosted GitHub Actions runner.</li>
-                </ul>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs">Next.js</span><span class="pill text-xs">TypeScript</span>
-                    <span class="pill text-xs">Prisma</span><span class="pill text-xs">PostgreSQL</span>
-                    <span class="pill text-xs">Vitest</span><span class="pill text-xs">Docker</span>
-                </div>
-            </div>
-
-            <div class="card reveal rd2 p-6" data-tilt>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="pill pill-g text-xs">Enterprise · 2026</span>
-                    <span class="pill text-xs">ITSM Platform</span>
-                </div>
-                <h3 class="text-xl font-bold mb-3">MEGA-T — IT Service Management Platform</h3>
-                <p class="text-sm leading-relaxed mb-5" style="color:var(--text-dim)">
-                    Multi-tenant service desk platform for ticket intake, assignment, SLA tracking, customer communication, contracts, and reporting.
-                </p>
-                <ul class="text-xs leading-relaxed space-y-2 mb-5" style="color:var(--text-dim)">
-                    <li>• Developed end-to-end ticket lifecycle workflows from intake and priority assessment through resolution and closure.</li>
-                    <li>• Implemented SLA logic, layered authorization, tenant/project data isolation, and customer portal workflows.</li>
-                    <li>• Worked with PostgreSQL queries, API payloads, server logs, and automated tests for defect investigation and validation.</li>
-                    <li>• Supported containerized CI/CD and production deployment using Docker, GitHub Actions, and Caddy.</li>
-                </ul>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs">Next.js</span><span class="pill text-xs">NestJS</span>
-                    <span class="pill text-xs">PostgreSQL</span><span class="pill text-xs">Playwright</span>
-                    <span class="pill text-xs">Vitest</span><span class="pill text-xs">GitHub Actions</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- UP-PSF Featured -->
-        <div class="card reveal p-6 mb-6">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="proj-wrap" style="aspect-ratio:16/10;">
-                    <img src="./UP-PSF_Digital_Assessment_System.png"
-                         class="w-full h-full object-cover"
-                         alt="UP-PSF Digital Assessment System"
-                         id="img-uppsf"/>
-                </div>
-                <div>
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="pill pill-p text-xs">Internship · Nov 2025 – Feb 2026</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">UP-PSF Digital Assessment System</h3>
-                    <p class="text-sm leading-relaxed mb-4" style="color:var(--text-dim)">
-                        ระบบประเมินอาจารย์แบบ Paperless สำหรับมหาวิทยาลัยพะเยา ในตำแหน่ง Frontend Developer Intern ที่ Division of Educational Services รองรับ Role-Based Access Control, Status-Driven Workflow และ Document Routing
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-5">
-                        <span class="pill text-xs">Next.js</span><span class="pill text-xs">TypeScript</span>
-                        <span class="pill text-xs">Tailwind CSS</span><span class="pill text-xs">NestJS API</span>
-                        <span class="pill text-xs">MinIO</span><span class="pill text-xs">Agile Scrum</span>
-                    </div>
-                    <div class="space-y-1.5 text-xs" style="color:var(--text-dim)">
-                        <div class="flex items-start gap-2"><span style="color:var(--accent2)">✓</span><span>ออกแบบ Status-driven workflow สำหรับ Document routing และ Task assignment</span></div>
-                        <div class="flex items-start gap-2"><span style="color:var(--accent2)">✓</span><span>สร้างระบบ RBAC แบบ Dynamic รองรับ Multi-role assignments</span></div>
-                        <div class="flex items-start gap-2"><span style="color:var(--accent2)">✓</span><span>Integrate Front-end กับ NestJS REST APIs และ Secure file upload ด้วย MinIO</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6">
-            <!-- Restaurant -->
-            <div class="card reveal rd1 p-6 flex flex-col">
-                <div class="proj-wrap mb-5" style="aspect-ratio:16/10;">
-                    <img src="./Restaurant_Management_Web_App.png"
-                         class="w-full h-full object-cover" alt="Restaurant Management Web App" id="img-restaurant"/>
-                </div>
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="pill text-xs">Academic Project</span><span class="pill text-xs">2025</span>
-                </div>
-                <h3 class="text-lg font-bold mb-2">Restaurant Management Web App</h3>
-                <p class="text-sm leading-relaxed flex-grow mb-4" style="color:var(--text-dim)">
-                    ระบบจัดการร้านอาหาร "ร้านลุงแชมป์ข้าวแกง" แบบ QR-Based มี Real-time Order Tracking, Dashboard สำหรับ Payment Confirmation และ Export ยอดขายเป็น Excel
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs">Full-Stack</span><span class="pill text-xs">MongoDB</span>
-                    <span class="pill text-xs">QR System</span><span class="pill text-xs">Excel Export</span>
-                </div>
-            </div>
-            <!-- Plant Store -->
-            <div class="card reveal rd2 p-6 flex flex-col">
-                <div class="proj-wrap mb-5" style="aspect-ratio:16/10;">
-                    <img src="./Online_Plant_Store.png"
-                         class="w-full h-full object-cover" alt="TAMROI Online Plant Store" id="img-plant"/>
-                </div>
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="pill text-xs">Academic Project</span><span class="pill text-xs">2024</span>
-                </div>
-                <h3 class="text-lg font-bold mb-2">TAMROI — Online Plant Store</h3>
-                <p class="text-sm leading-relaxed flex-grow mb-4" style="color:var(--text-dim)">
-                    ร้านค้าออนไลน์สำหรับขายต้นไม้ "Tamroi Tree Tam" เริ่มจาก User Interview, Wireframe และ High-fidelity Prototype ด้วย Figma จนถึง Responsive Front-end
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs">UX Research</span><span class="pill text-xs">Figma</span>
-                    <span class="pill text-xs">Responsive UI</span><span class="pill text-xs">E-Commerce</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="relative pb-20 overflow-hidden" style="background:rgba(19,22,30,.6)">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-        <div class="visual-grid">
-            <div class="visual-crop joins reveal rd1">
-                <img src="./assets/portfolio-concept.svg" alt="JOiNS+ HR Portal visual concept"/>
-                <div class="visual-overlay">
-                    <span class="pill pill-p text-xs mb-2">JOiNS+ HR Portal</span>
-                    <p class="text-xs leading-relaxed" style="color:var(--text-dim)">Leave management · Approval workflow · Data migration · PostgreSQL</p>
-                </div>
-            </div>
-            <div class="visual-crop mega reveal rd2">
-                <img src="./assets/portfolio-concept.svg" alt="MEGA-T ITSM visual concept"/>
-                <div class="visual-overlay">
-                    <span class="pill pill-g text-xs mb-2">MEGA-T ITSM</span>
-                    <p class="text-xs leading-relaxed" style="color:var(--text-dim)">Ticket lifecycle · SLA · RBAC · Multi-tenant · Testing</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="relative py-28 overflow-hidden">
-    <div class="orb" style="width:450px;height:450px;background:rgba(0,212,170,0.06);top:-50px;right:-120px;"></div>
-    <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8">
-        <div class="reveal mb-14">
-            <div class="sec-lbl">Skills &amp; Tools</div>
-            <h2 class="text-3xl md:text-4xl font-bold">Technical Expertise</h2>
-        </div>
-        
-        <!-- Icon Skills Grid -->
-        <div class="grid md:grid-cols-3 gap-6">
-            <!-- Frontend -->
-            <div class="card reveal rd1 p-6">
-                <h3 class="text-sm font-semibold uppercase tracking-widest mb-8 text-center" style="color:var(--text-dim)">Frontend</h3>
-                <div class="grid grid-cols-3 gap-y-6 gap-x-4">
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">TypeScript</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js" class="w-10 h-10 invert opacity-90 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Next.js</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">React.js</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Tailwind</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">HTML5</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">CSS3</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Backend & DB -->
-            <div class="card reveal rd2 p-6">
-                <h3 class="text-sm font-semibold uppercase tracking-widest mb-8 text-center" style="color:var(--text-dim)">Backend &amp; DB</h3>
-                <div class="grid grid-cols-3 gap-y-6 gap-x-4">
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Node.js</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="NestJS" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">NestJS</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg" alt="Prisma" class="w-10 h-10 invert opacity-90 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Prisma</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">MongoDB</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">MySQL</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="Redis" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Redis</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tools & Infra -->
-            <div class="card reveal rd3 p-6">
-                <h3 class="text-sm font-semibold uppercase tracking-widest mb-8 text-center" style="color:var(--text-dim)">Tools &amp; Infra</h3>
-                <div class="grid grid-cols-3 gap-y-6 gap-x-4">
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Docker</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Git</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" class="w-10 h-10 invert opacity-90 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">GitHub</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Figma</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">Jira</span>
-                    </div>
-                    <!-- Empty slot for grid balance if needed, or add one more tool -->
-                    <div class="flex flex-col items-center gap-2 group cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg" alt="NPM" class="w-10 h-10 group-hover:scale-110 transition-transform duration-300"/>
-                        <span class="text-[0.65rem] font-medium" style="color:var(--text-dim)">NPM</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Timeline -->
-        <div class="mt-20">
-            <div class="reveal mb-10"><h3 class="text-xl font-bold">Experience Timeline</h3></div>
-            <div class="relative pl-8 space-y-10">
-                <div class="tl-line"></div>
-
-                <div class="reveal rd1 relative flex gap-5">
-                    <div class="tl-dot flex-shrink-0"></div>
-                    <div class="card experience-banner p-5 flex-grow" data-tilt>
-                        <div class="flex flex-wrap items-center gap-3 mb-2">
-                            <span class="font-semibold text-sm">BA & QA Tester Intern</span>
-                            <span class="pill pill-p text-xs">Jun 2026 – Sep 2026</span>
-                        </div>
-                        <p class="text-xs mb-3" style="color:var(--text-dim)">Double P Enterprise Co., Ltd. — JOiNS+ HR Portal & MEGA-T ITSM Platform</p>
-                        <p class="text-xs leading-relaxed" style="color:var(--text-dim)">ทำงานกับ Full-stack features, business rules, PostgreSQL queries, data migration, API/database validation, automated testing และ CI/CD บนระบบองค์กรจริง</p>
-                    </div>
-                </div>
-                <div class="reveal rd1 relative flex gap-5">
-                    <div class="tl-dot flex-shrink-0"></div>
-                    <div class="card p-5 flex-grow">
-                        <div class="flex flex-wrap items-center gap-3 mb-2">
-                            <span class="font-semibold text-sm">Frontend Developer Intern</span>
-                            <span class="pill pill-p text-xs">Nov 2025 – Feb 2026</span>
-                        </div>
-                        <p class="text-xs mb-3" style="color:var(--text-dim)">Division of Educational Services, University of Phayao — UP-PSF Digital Assessment System</p>
-                        <p class="text-xs leading-relaxed" style="color:var(--text-dim)">พัฒนาระบบ Paperless ด้วย Next.js, TypeScript, Tailwind CSS ใน Agile Scrum รวมถึง RBAC, Workflow System และ Integrate กับ NestJS REST APIs + MinIO</p>
-                    </div>
-                </div>
-                <div class="reveal rd2 relative flex gap-5">
-                    <div class="tl-dot flex-shrink-0" style="border-color:var(--accent2)"></div>
-                    <div class="card p-5 flex-grow">
-                        <div class="flex flex-wrap items-center gap-3 mb-2">
-                            <span class="font-semibold text-sm">Restaurant Management Web App</span>
-                            <span class="pill pill-g text-xs">Academic · 2025</span>
-                        </div>
-                        <p class="text-xs leading-relaxed" style="color:var(--text-dim)">Full-Stack QR-Based Restaurant System — Real-time order tracking, Store dashboard + Excel export ด้วย MongoDB</p>
-                    </div>
-                </div>
-                <div class="reveal rd3 relative flex gap-5">
-                    <div class="tl-dot flex-shrink-0" style="border-color:var(--accent2)"></div>
-                    <div class="card p-5 flex-grow">
-                        <div class="flex flex-wrap items-center gap-3 mb-2">
-                            <span class="font-semibold text-sm">TAMROI Online Plant Store</span>
-                            <span class="pill pill-g text-xs">Academic · 2024</span>
-                        </div>
-                        <p class="text-xs leading-relaxed" style="color:var(--text-dim)">User Research → Figma Prototype → Responsive Front-end — ดำเนิน User Interview และออกแบบ High-fidelity Prototype</p>
-                    </div>
-                </div>
-                <div class="reveal rd4 relative flex gap-5">
-                    <div class="tl-dot flex-shrink-0" style="border-color:var(--muted)"></div>
-                    <div class="p-5">
-                        <div class="flex flex-wrap items-center gap-3 mb-1">
-                            <span class="font-semibold text-sm">เริ่มศึกษา Software Engineering</span>
-                            <span class="pill text-xs">2022</span>
-                        </div>
-                        <p class="text-xs" style="color:var(--text-dim)">University of Phayao — ปัจจุบัน GPA 3.29</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="relative py-28 overflow-hidden" style="background:rgba(19,22,30,0.7);">
-    <div class="orb" style="width:500px;height:500px;background:rgba(108,99,255,0.1);top:-80px;right:-150px;"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8">
-        <div class="reveal text-center mb-14">
-            <div class="sec-lbl justify-center">Contact</div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-3">Let's Work Together</h2>
-            <p class="text-sm max-w-lg mx-auto" style="color:var(--text-dim)">
-                เปิดรับโอกาสทำงานด้าน Software Engineering, QA/Testing, Full-stack และงานที่เกี่ยวข้องกับระบบองค์กร<br/>หากสนใจพูดคุย สามารถติดต่อได้เลยครับ
-            </p>
-        </div>
-        <div class="grid md:grid-cols-5 gap-8">
-            <div class="md:col-span-2 reveal rd1 space-y-4">
-                <div class="card p-5">
-                    <p class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-dim)">Email</p>
-                    <a href="mailto:sutthiwitsriyotha@gmail.com" class="text-sm transition-colors hover:text-white" style="color:var(--accent)">sutthiwitsriyotha@gmail.com</a>
-                </div>
-                <div class="card p-5">
-                    <p class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-dim)">Phone</p>
-                    <a href="tel:+66934918615" class="text-sm transition-colors hover:text-white" style="color:var(--accent)">093-491-8615</a>
-                </div>
-                <div class="card p-5">
-                    <p class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-dim)">GitHub</p>
-                    <a href="https://github.com/Sutthiwit-Sriyotha" target="_blank" class="text-sm transition-colors hover:text-white" style="color:var(--accent)">Sutthiwit-Sriyotha</a>
-                </div>
-                <div class="card p-5 flex items-center gap-3">
-                    <div class="sdot"></div>
-                    <div>
-                        <p class="text-xs font-semibold" style="color:var(--accent2)">Open to Opportunities</p>
-                        <p class="text-xs mt-0.5" style="color:var(--text-dim)">Software Engineering · QA · Full-stack</p>
-                    </div>
-                </div>
-            </div>
-            <div class="md:col-span-3 reveal rd2">
-                <div class="card p-6 space-y-4">
-                    <h3 class="font-semibold text-sm mb-2">ส่งข้อความ</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="ชื่อของคุณ" class="inp col-span-2 md:col-span-1"/>
-                        <input type="email" placeholder="อีเมล" class="inp col-span-2 md:col-span-1"/>
-                    </div>
-                    <input type="text" placeholder="เรื่อง" class="inp"/>
-                    <textarea placeholder="ข้อความ..." rows="4" class="inp resize-none"></textarea>
-                    <a href="mailto:sutthiwitsriyotha@gmail.com" class="btn-p w-full justify-center" style="display:flex">ส่งข้อความ →</a>
-                    <p class="text-xs text-center" style="color:var(--muted)">หรือส่ง Email โดยตรงที่ sutthiwitsriyotha@gmail.com</p>
-                </div>
-            </div>
-        </div>
-        <div class="mt-16 pt-8 text-center text-xs" style="border-top:1px solid var(--border);color:var(--muted)">
-            <p>© 2026 Sutthiwit Sriyotha — Software Engineering, University of Phayao</p>
-            <p class="mt-1 mono" style="color:var(--border)">Built with HTML · Tailwind CSS · ♥</p>
-        </div>
-    </div>
-</section>
+<dialog id="caseDialog"><div class="modal"><div class="modal-top"><div><div class="eyebrow" id="modalType">Case study</div><h3 id="modalTitle"></h3></div><button class="close" id="closeDialog">×</button></div><p id="modalIntro"></p><ul id="modalList"></ul><div class="tags" id="modalTags"></div></div></dialog>
 
 <script>
-    // Navbar scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+const nav=document.getElementById('nav'),progress=document.getElementById('progress'),glow=document.getElementById('glow');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>30);const d=document.documentElement.scrollHeight-innerHeight;progress.style.width=(d?scrollY/d*100:0)+'%'},{passive:true});
+if(matchMedia('(pointer:fine)').matches)addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});else glow.style.display='none';
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+const roles=['Business Analysis','Quality Assurance','Full-stack Development','Database & Migration','Automation & Delivery'];let ri=0,r=document.getElementById('role');setInterval(()=>{r.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-6px)'}],{duration:180,fill:'forwards'}).onfinish=()=>{ri=(ri+1)%roles.length;r.textContent=roles[ri];r.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:220,fill:'forwards'})}},2200);
+const hv=document.getElementById('heroVisual');if(hv&&matchMedia('(pointer:fine)').matches){hv.addEventListener('pointermove',e=>{const b=hv.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;hv.style.transform=`perspective(1000px) rotateX(${-y*4}deg) rotateY(${x*5}deg)`});hv.addEventListener('pointerleave',()=>hv.style.transform='')}
 
-    // Mobile menu
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const b1 = document.getElementById('bar1'), b2 = document.getElementById('bar2'), b3 = document.getElementById('bar3');
-    let open = false;
-    menuBtn.addEventListener('click', () => {
-        open = !open;
-        mobileMenu.classList.toggle('open', open);
-        b1.style.transform = open ? 'translateY(6px) rotate(45deg)' : '';
-        b2.style.opacity = open ? '0' : '1';
-        b3.style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
-        b3.style.width = open ? '20px' : '12px';
-    });
-    function closeMM() {
-        open = false; mobileMenu.classList.remove('open');
-        b1.style.transform = ''; b2.style.opacity = '1';
-        b3.style.transform = ''; b3.style.width = '12px';
-    }
-
-    // Scroll reveal
-    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-    // Skill bars
-    const barObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.style.width = e.target.getAttribute('data-w') + '%'; barObs.unobserve(e.target); } }), { threshold: 0.3 });
-    document.querySelectorAll('.bar-fill').forEach(el => barObs.observe(el));
-
-    // Try to load uploaded screenshots as project images
-    // (will gracefully keep Unsplash fallbacks if local paths unavailable)
-    const imgMap = {
-        'img-uppsf':      '/mnt/user-data/uploads/UP-PSF_Digital_Assessment_System.png',
-        'img-restaurant': '/mnt/user-data/uploads/Restaurant_Management_Web_App.png',
-        'img-plant':      '/mnt/user-data/uploads/Online_Plant_Store_.png'
-    };
-    Object.entries(imgMap).forEach(([id, src]) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const test = new Image();
-        test.onload = () => { el.src = src; };
-        test.src = src;
-    });
+const cases={
+joins:{type:'Enterprise HR System',title:'JOiNS+ HR Portal',intro:'An internal HR platform covering leave management, approvals, employee data and recruitment-related workflows.',items:['Designed and tested leave calculations, approval workflows, authorization rules and cancellation policies.','Worked with permission-controlled backdated leave and audit-trail-sensitive business rules.','Performed legacy leave-balance migration with dry runs, reconciliation, duplicate checks and PostgreSQL validation.','Validated holiday recalculation behavior, reporting filters and edge cases.','Added or maintained automated tests and supported CI/CD troubleshooting.'],tags:['Next.js','TypeScript','Prisma','PostgreSQL','Vitest','GitHub Actions','Docker']},
+mega:{type:'Enterprise IT Service Management',title:'MEGA-T ITSM Platform',intro:'A multi-tenant service desk platform for tickets, assignments, SLA tracking, customer communication, contracts and reporting.',items:['Worked with end-to-end ticket lifecycle and priority handling.','Validated Response/Resolution SLA behavior across business-calendar conditions.','Tested layered authorization, RBAC and tenant/project isolation.','Queried PostgreSQL and investigated API payloads, records and logs to reproduce defects and identify root causes.','Used automated tests for API, business rules, permissions, SLA and UI workflows.'],tags:['Next.js','NestJS','PostgreSQL','Playwright','Vitest','Docker','GitHub Actions']}
+};
+const dlg=document.getElementById('caseDialog');document.querySelectorAll('[data-case]').forEach(b=>b.onclick=()=>{const d=cases[b.dataset.case];document.getElementById('modalType').textContent=d.type;document.getElementById('modalTitle').textContent=d.title;document.getElementById('modalIntro').textContent=d.intro;document.getElementById('modalList').innerHTML=d.items.map(x=>'<li>'+x+'</li>').join('');document.getElementById('modalTags').innerHTML=d.tags.map(x=>'<span class="tag">'+x+'</span>').join('');dlg.showModal()});document.getElementById('closeDialog').onclick=()=>dlg.close();dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
 </script>
 </body>
 </html>
