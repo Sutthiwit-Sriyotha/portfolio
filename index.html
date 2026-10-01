@@ -337,10 +337,22 @@ section{padding:82px 0}
 .contact-links{justify-content:flex-end}
 .contact-links .btn{font-size:11px;min-height:43px}
 footer{padding:24px 0 36px}
-dialog#caseDialog{width:min(900px,calc(100% - 30px));max-width:900px;max-height:min(88dvh,960px);overflow:auto;padding:0;overscroll-behavior:contain;border:1px solid var(--line);border-radius:22px;background:var(--surface);color:var(--text)}
+dialog#caseDialog{width:min(900px,calc(100% - 30px));max-width:900px;max-height:min(88dvh,960px);overflow:hidden;padding:0;overscroll-behavior:contain;border:1px solid var(--line);border-radius:22px;background:var(--surface);color:var(--text);color-scheme:dark}
 #caseDialog::backdrop{background:rgba(2,4,10,.82);backdrop-filter:blur(7px)}
 body.dialog-open{overflow:hidden}
-.case-dialog{min-width:0}
+.case-dialog{min-width:0;display:flex;flex-direction:column;max-height:min(88dvh,960px);overflow:hidden}
+.case-dialog-head,.case-dialog-footer{flex:0 0 auto;position:relative;z-index:2}
+.case-dialog-head{box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.case-dialog-footer{background:var(--surface);box-shadow:0 -9px 23px rgba(0,0,0,.10)}
+.case-dialog-content{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#555475 transparent}
+.case-dialog-content::-webkit-scrollbar{width:8px}
+.case-dialog-content::-webkit-scrollbar-track{background:transparent}
+.case-dialog-content::-webkit-scrollbar-thumb{background:#48445f;border:1px solid var(--surface);border-radius:999px}
+.case-dialog-content::-webkit-scrollbar-thumb:hover{background:var(--purple)}
+html[data-theme="light"] #caseDialog{color-scheme:light}
+html[data-theme="light"] .case-dialog-content{scrollbar-color:#a9a2c8 transparent}
+html[data-theme="light"] .case-dialog-content::-webkit-scrollbar-thumb{background:#aca7c3;border-color:var(--surface)}
+html[data-theme="light"] .case-dialog-content::-webkit-scrollbar-thumb:hover{background:var(--purple)}
 .case-dialog-head{display:flex;align-items:start;justify-content:space-between;gap:20px;padding:25px 29px 21px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--purple) 11%,var(--surface)),var(--surface))}
 .case-dialog-head h2{font-size:clamp(23px,3vw,36px);letter-spacing:-.04em;line-height:1.22;margin:6px 0 5px}
 .case-dialog-head p{color:var(--muted);font-size:12px;margin:0}
@@ -662,7 +674,7 @@ fillList('modalApproach',data.approach);fillList('modalOutcome',data.outcome);
 document.getElementById('modalTags').replaceChildren(...data.tools.map(tool=>{const tag=document.createElement('span');tag.className='tag';tag.textContent=tool;return tag;}));
 const visual=document.getElementById('caseVisual'),privacy=document.getElementById('casePrivacy');visual.replaceChildren();visual.hidden=!data.image;privacy.hidden=!data.private;
 if(data.image){const title=document.createElement('div');title.className='case-label';title.textContent='PROJECT SCREENSHOT';const link=document.createElement('a');link.href=data.image;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Open full-size '+data.title+' screenshot');const img=document.createElement('img');img.src=data.image;img.alt=data.imageAlt;img.loading='lazy';link.append(img);const note=document.createElement('p');note.className='case-image-note';note.textContent='Open the screenshot to view it at full size ↗';visual.append(title,link,note);}else privacy.textContent='Internal project screenshots, documents, and test artifacts are not published to protect company information.';
-document.body.classList.add('dialog-open');dlg.showModal();closeDialogBtn.focus();
+document.getElementById('caseDialog').querySelector('.case-dialog-content').scrollTop=0;document.body.classList.add('dialog-open');dlg.showModal();closeDialogBtn.focus();
 }));
 function closeCase(){dlg.close();}
 closeDialogBtn.addEventListener('click',closeCase);doneDialogBtn.addEventListener('click',closeCase);
