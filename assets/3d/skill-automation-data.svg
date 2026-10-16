@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="3D style automation and data skills icon">
+<defs><linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f1724"/><stop offset="1" stop-color="#121c2d"/></linearGradient><linearGradient id="ac" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#49decb"/><stop offset="1" stop-color="#9d8dff"/></linearGradient><filter id="sc"><feDropShadow dx="0" dy="20" stdDeviation="18" flood-opacity=".32"/></filter></defs>
+<rect width="640" height="420" rx="34" fill="url(#c)"/>
+<g filter="url(#sc)">
+ <ellipse cx="212" cy="150" rx="76" ry="24" fill="#1e4a5a" stroke="#49decb"/>
+ <path d="M136 150v116c0 14 34 25 76 25s76-11 76-25V150" fill="#183644" stroke="#49decb"/>
+ <ellipse cx="212" cy="266" rx="76" ry="25" fill="#183644" stroke="#49decb"/>
+</g>
+<g>
+ <rect x="360" y="108" width="150" height="114" rx="18" fill="#1a2236" stroke="#5a6682"/>
+ <rect x="382" y="135" width="108" height="11" rx="5" fill="#9d8dff"/><rect x="382" y="163" width="72" height="9" rx="4" fill="#75829b"/>
+ <path d="M382 194h20l14-18 19 28 21-36 34 26" stroke="url(#ac)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+ <circle cx="432" cy="292" r="47" fill="#191f31" stroke="#9d8dff"/>
+ <path d="M432 258v68M398 292h68" stroke="#c9c3ff" stroke-width="5" stroke-linecap="round"/>
+</g>
+<path d="M288 210 C325 210 333 175 360 170" stroke="url(#ac)" stroke-width="5" fill="none" stroke-linecap="round"/>
+<text x="144" y="362" fill="#e9ecf8" font-family="Inter,Arial" font-size="20" font-weight="700">Playwright · API · PostgreSQL</text>
+</svg>
