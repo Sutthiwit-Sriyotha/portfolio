@@ -507,24 +507,29 @@ section{padding:65px 0}
   #caseDialog #modalTags{justify-content:flex-start;margin-left:0}
 }
 
-/* === PORTFOLIO MOTION V1 === */
+/* === PORTFOLIO MOTION V2 · SCROLL FLOAT === */
 @media (prefers-reduced-motion:no-preference){
-  .hero-inline-art{will-change:transform}
-  .featured-project,.secondary-project,.experience-entry,.tool-group,.tool-tile{
-    transition:transform .32s cubic-bezier(.2,.75,.2,1),border-color .32s ease,box-shadow .32s ease;
+  .experience-list,.featured-grid,.secondary-grid{perspective:1200px}
+  .experience-entry,.featured-project,.secondary-project{
+    will-change:transform,opacity;
+    transform-style:preserve-3d;
+    backface-visibility:hidden;
+    transition:border-color .3s ease,box-shadow .3s ease,background-color .3s ease;
   }
-  .featured-project:hover,.secondary-project:hover,.experience-entry:hover{
-    transform:translateY(-5px);
+  .experience-entry:hover,.featured-project:hover,.secondary-project:hover{
+    border-color:color-mix(in srgb,var(--purple) 52%,var(--line));
+    box-shadow:0 24px 70px rgba(0,0,0,.18);
   }
-  .tool-tile:hover{transform:translateY(-4px) scale(1.018)}
   .featured-media,.secondary-media{overflow:hidden}
   .featured-media img,.secondary-media img{
-    transition:transform .7s cubic-bezier(.2,.75,.2,1);
     will-change:transform;
+    transition:filter .35s ease;
   }
   .featured-project:hover .featured-media img,
-  .secondary-project:hover .secondary-media img{transform:scale(1.035)}
-  .experience-highlights span,.tag,.hero-points span{will-change:transform,opacity}
+  .secondary-project:hover .secondary-media img{filter:saturate(1.06) contrast(1.02)}
+  .experience-highlights span,.tag,.hero-points span,.tool-tile{
+    will-change:transform,opacity;
+  }
   .open-case span[aria-hidden="true"],.btn span[aria-hidden="true"]{
     display:inline-block;
     transition:transform .25s ease;
@@ -532,6 +537,13 @@ section{padding:65px 0}
   .open-case:hover span[aria-hidden="true"]{transform:translate(3px,-3px)}
   .btn:hover span[aria-hidden="true"]{transform:translateX(3px)}
   .case-dialog-content{transform-origin:50% 10%}
+  .scroll-float-hint{
+    position:absolute;
+    width:1px;height:1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    white-space:nowrap;
+  }
 }
 
 </style>
@@ -814,12 +826,7 @@ if(data.image){const title=document.createElement('div');title.className='case-l
 document.getElementById('caseDialog').querySelector('.case-dialog-content').scrollTop=0;document.body.classList.add('dialog-open');dlg.showModal();closeDialogBtn.focus();
 }));
 function closeCase(){dlg.close();}
-closeDialogBtn.addEventListener('click',closeCase);doneDialogBtn.addEventListener('click',closeCase);
-dlg.addEventListener('click',event=>{if(event.target===dlg)closeCase();});
-dlg.addEventListener('close',()=>{document.body.classList.remove('dialog-open');if(caseInvoker){caseInvoker.focus();caseInvoker=null;}});
-</script>
-
-<!-- === PORTFOLIO MOTION V1 === -->
+closeDialogBtn.addEventListener('click',closeCase<!-- === PORTFOLIO MOTION V2 · SCROLL FLOAT === -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
@@ -829,7 +836,7 @@ dlg.addEventListener('close',()=>{document.body.classList.remove('dialog-open');
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Hero: subtle ambient motion only; existing pointer tilt remains in control of #heroVisual.
+  // Hero ambient movement. Pointer tilt from the original site remains intact.
   const heroArt=document.querySelector('.hero-inline-art');
   if(heroArt){
     gsap.to(heroArt,{y:-7,duration:4.2,repeat:-1,yoyo:true,ease:'sine.inOut'});
@@ -843,60 +850,125 @@ dlg.addEventListener('close',()=>{document.body.classList.remove('dialog-open');
     if(el) gsap.to(el,{y,x,duration,repeat:-1,yoyo:true,ease:'sine.inOut',delay:index*.12});
   });
 
-  // Section headings get a slightly stronger entrance than the base reveal animation.
-  gsap.utils.toArray('.section-head h2,.secondary-heading h3,.tools-heading h3').forEach(el=>{
-    gsap.from(el,{
-      y:18,opacity:.25,duration:.75,ease:'power2.out',
-      scrollTrigger:{trigger:el,start:'top 88%',once:true}
-    });
+  // Higgsfield-inspired scroll choreography:
+  // work cards physically rise into place as the visitor scrolls.
+  const floatCards=[
+    ...gsap.utils.toArray('.experience-entry').map((el,i)=>({el,y:88,x:i%2?12:-12,scale:.975,rx:3.5})),
+    ...gsap.utils.toArray('.featured-project').map((el,i)=>({el,y:112,x:i%2?28:-28,scale:.965,rx:4.5})),
+    ...gsap.utils.toArray('.secondary-project').map((el,i)=>({el,y:92,x:i%2?18:-18,scale:.972,rx:3.5}))
+  ];
+
+  floatCards.forEach(({el,y,x,scale,rx})=>{
+    // Existing IntersectionObserver can safely leave these visible;
+    // GSAP now owns the actual scroll-linked entrance.
+    el.classList.add('show');
+
+    gsap.fromTo(el,
+      {
+        y,
+        x,
+        opacity:.18,
+        scale,
+        rotateX:rx,
+        transformOrigin:'50% 100%'
+      },
+      {
+        y:0,
+        x:0,
+        opacity:1,
+        scale:1,
+        rotateX:0,
+        ease:'none',
+        scrollTrigger:{
+          trigger:el,
+          start:'top 96%',
+          end:'top 63%',
+          scrub:.7,
+          invalidateOnRefresh:true
+        }
+      }
+    );
   });
 
-  // Stagger small proof points so the page feels alive without becoming distracting.
+  // Heading movement is lighter so cards remain the focus.
+  gsap.utils.toArray('.section-head h2,.secondary-heading h3,.tools-heading h3').forEach(el=>{
+    gsap.fromTo(el,
+      {y:26,opacity:.3},
+      {y:0,opacity:1,ease:'none',
+       scrollTrigger:{trigger:el,start:'top 94%',end:'top 76%',scrub:.45}
+      }
+    );
+  });
+
+  // Details rise in after their parent card starts entering.
   ScrollTrigger.batch('.experience-highlights span,.tag,.competency-line span,.tool-tile',{
-    start:'top 92%',
+    start:'top 93%',
     once:true,
     onEnter:batch=>gsap.fromTo(batch,
-      {y:10,opacity:0},
-      {y:0,opacity:1,duration:.42,stagger:.035,ease:'power2.out',overwrite:'auto'}
+      {y:14,opacity:0},
+      {y:0,opacity:1,duration:.48,stagger:.04,ease:'power2.out',overwrite:'auto'}
     )
   });
 
-  // Gentle parallax on real project screenshots.
+  // Real screenshots travel slightly against scroll for depth.
   gsap.utils.toArray('.secondary-media img').forEach(img=>{
-    gsap.fromTo(img,{yPercent:-2},{yPercent:3,ease:'none',
+    gsap.fromTo(img,
+      {yPercent:-3,scale:1.025},
+      {yPercent:4,scale:1.025,ease:'none',
+       scrollTrigger:{
+         trigger:img.closest('.secondary-project')||img,
+         start:'top bottom',
+         end:'bottom top',
+         scrub:.8
+       }
+      }
+    );
+  });
+
+  // Featured placeholder scenes get a small depth drift too.
+  gsap.utils.toArray('.featured-media .placeholder-scene').forEach(scene=>{
+    gsap.fromTo(scene,{y:10},{y:-10,ease:'none',
       scrollTrigger:{
-        trigger:img.closest('.secondary-project')||img,
+        trigger:scene.closest('.featured-project')||scene,
         start:'top bottom',
         end:'bottom top',
-        scrub:.7
+        scrub:.9
       }
     });
   });
 
-  // Experience order numbers drift in from the side as each entry appears.
+  // Experience dates/order arrive with the card, then settle.
   gsap.utils.toArray('.experience-entry').forEach(entry=>{
-    const order=entry.querySelector('.experience-order');
-    if(order){
-      gsap.from(order,{
-        x:16,opacity:0,duration:.65,ease:'power2.out',
-        scrollTrigger:{trigger:entry,start:'top 84%',once:true}
+    const aside=entry.querySelector('.experience-aside');
+    if(aside){
+      gsap.from(aside,{
+        x:-18,opacity:0,duration:.55,ease:'power2.out',
+        scrollTrigger:{trigger:entry,start:'top 80%',once:true}
       });
     }
   });
 
-  // Case-study modal: crisp scale/fade on open.
+  // Case-study modal retains a crisp cinematic open.
   const dialog=document.getElementById('caseDialog');
   const animateDialog=()=>{
     if(!dialog || !dialog.open) return;
     const panel=dialog.querySelector('.case-dialog-content');
     if(panel){
       gsap.fromTo(panel,
-        {y:18,opacity:0,scale:.985},
-        {y:0,opacity:1,scale:1,duration:.36,ease:'power3.out',clearProps:'transform'}
+        {y:22,opacity:0,scale:.982},
+        {y:0,opacity:1,scale:1,duration:.38,ease:'power3.out',clearProps:'transform'}
       );
     }
   };
   document.querySelectorAll('.open-case,.case-media-trigger').forEach(btn=>{
+    btn.addEventListener('click',()=>requestAnimationFrame(animateDialog));
+  });
+
+  addEventListener('load',()=>ScrollTrigger.refresh(),{once:true});
+})();
+</script>
+
+media-trigger').forEach(btn=>{
     btn.addEventListener('click',()=>requestAnimationFrame(animateDialog));
   });
 
