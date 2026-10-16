@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" role="img" aria-label="3D style enterprise HR workflow illustration">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#14172a"/><stop offset="1" stop-color="#0d1720"/></linearGradient>
+<linearGradient id="p" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9afff"/><stop offset="1" stop-color="#7766ee"/></linearGradient>
+<linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#78f1d9"/><stop offset="1" stop-color="#37c6b1"/></linearGradient>
+<filter id="sh"><feDropShadow dx="0" dy="22" stdDeviation="20" flood-opacity=".35"/></filter>
+</defs>
+<rect width="900" height="540" rx="36" fill="url(#bg)"/>
+<circle cx="740" cy="110" r="110" fill="#49decb" opacity=".05"/><circle cx="160" cy="440" r="125" fill="#9d8dff" opacity=".05"/>
+<g filter="url(#sh)">
+<path d="M122 128 454 78l295 96-327 66z" fill="#1a2135" stroke="#4c5772" stroke-width="2"/>
+<path d="M122 128v250l300 96V240z" fill="#121a29" stroke="#4c5772" stroke-width="2"/>
+<path d="M422 240v234l327-88V174z" fill="#0f1723" stroke="#4c5772" stroke-width="2"/>
+</g>
+<g>
+<rect x="170" y="172" width="196" height="92" rx="16" fill="#242743" stroke="#6f65a4"/>
+<text x="191" y="201" fill="#aeb6cb" font-family="Inter,Arial" font-size="14">LEAVE REQUEST</text>
+<rect x="191" y="218" width="102" height="12" rx="6" fill="url(#p)"/><rect x="191" y="240" width="138" height="8" rx="4" fill="#657188"/>
+<rect x="170" y="286" width="196" height="88" rx="16" fill="#172a30" stroke="#3a776f"/>
+<text x="191" y="315" fill="#bde7de" font-family="Inter,Arial" font-size="14">APPROVAL ROUTE</text>
+<circle cx="211" cy="341" r="12" fill="#49decb"/><circle cx="267" cy="341" r="12" fill="#49decb"/><circle cx="323" cy="341" r="12" fill="#9d8dff"/>
+<path d="M223 341h32M279 341h32" stroke="#688078" stroke-width="5" stroke-linecap="round"/>
+<rect x="473" y="156" width="205" height="104" rx="16" fill="#171e31" stroke="#55617d"/>
+<text x="495" y="186" fill="#b6bfd2" font-family="Inter,Arial" font-size="14">BUSINESS RULES</text>
+<text x="495" y="220" fill="#fff" font-family="Inter,Arial" font-size="24" font-weight="700">Balance + Policy</text>
+<rect x="495" y="235" width="120" height="8" rx="4" fill="#717c94"/>
+<g transform="translate(520 314)">
+<ellipse cx="0" cy="0" rx="55" ry="17" fill="#1c4655" stroke="#49decb"/>
+<path d="M-55 0v72c0 10 24 18 55 18s55-8 55-18V0" fill="#173642" stroke="#49decb"/>
+<ellipse cx="0" cy="72" rx="55" ry="18" fill="#173642" stroke="#49decb"/>
+</g>
+<text x="592" y="343" fill="#fff" font-family="Inter,Arial" font-size="19" font-weight="700">Reconciliation</text>
+<rect x="593" y="358" width="96" height="8" rx="4" fill="#69778f"/>
+<rect x="593" y="379" width="68" height="8" rx="4" fill="#69778f"/>
+</g>
+<path d="M366 330 C404 330 425 315 461 315" stroke="url(#c)" stroke-width="5" fill="none" stroke-linecap="round"/>
+<text x="157" y="486" fill="#c5cad8" font-family="Inter,Arial" font-size="18">Requirements → Approval rules → Data validation</text>
+</svg>

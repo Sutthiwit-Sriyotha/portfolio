@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="3D style BA and QA workflow illustration">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101827"/><stop offset="1" stop-color="#0a111d"/></linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9d8dff" stop-opacity=".32"/><stop offset="1" stop-color="#49decb" stop-opacity=".12"/></linearGradient>
+  <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7ef4dc"/><stop offset="1" stop-color="#35cbb4"/></linearGradient>
+  <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c4baff"/><stop offset="1" stop-color="#8373ff"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#000" flood-opacity=".38"/></filter>
+</defs>
+<rect width="900" height="600" rx="42" fill="url(#bg)"/>
+<circle cx="715" cy="112" r="92" fill="#49decb" opacity=".05"/><circle cx="180" cy="485" r="120" fill="#9d8dff" opacity=".06"/>
+<g filter="url(#shadow)">
+  <path d="M160 152 440 95l255 105-276 66z" fill="#151f31" stroke="#3e4a66" stroke-width="2"/>
+  <path d="M160 152v250l259 96V266z" fill="#111a29" stroke="#3e4a66" stroke-width="2"/>
+  <path d="M419 266v232l276-86V200z" fill="#0f1825" stroke="#3e4a66" stroke-width="2"/>
+</g>
+<g>
+  <rect x="215" y="205" width="172" height="118" rx="16" fill="url(#glass)" stroke="#6f64a8"/>
+  <text x="238" y="238" fill="#c7cade" font-family="Inter,Arial" font-size="15">01 / DISCOVER</text>
+  <text x="238" y="272" fill="#fff" font-family="Inter,Arial" font-weight="700" font-size="24">Requirement</text>
+  <rect x="238" y="289" width="95" height="9" rx="5" fill="#9d8dff"/><rect x="238" y="307" width="118" height="7" rx="4" fill="#6f7890"/>
+  <rect x="430" y="174" width="180" height="126" rx="16" fill="#14272e" stroke="#3b756d"/>
+  <text x="452" y="208" fill="#b8e5dd" font-family="Inter,Arial" font-size="15">02 / VALIDATE</text>
+  <text x="452" y="242" fill="#fff" font-family="Inter,Arial" font-weight="700" font-size="24">Test Cases</text>
+  <circle cx="460" cy="266" r="8" fill="#49decb"/><path d="m456 266 3 3 6-7" fill="none" stroke="#0b1717" stroke-width="2"/>
+  <rect x="478" y="260" width="102" height="8" rx="4" fill="#718096"/>
+  <rect x="473" y="350" width="152" height="98" rx="16" fill="#171f31" stroke="#53627f"/>
+  <text x="494" y="381" fill="#b8bfd2" font-family="Inter,Arial" font-size="14">03 / VERIFY</text>
+  <ellipse cx="520" cy="410" rx="34" ry="12" fill="#1f4960" stroke="#49decb"/>
+  <path d="M486 410v36c0 7 15 12 34 12s34-5 34-12v-36" fill="#173847" stroke="#49decb"/>
+  <ellipse cx="520" cy="446" rx="34" ry="12" fill="#173847" stroke="#49decb"/>
+  <text x="563" y="424" fill="#fff" font-family="Inter,Arial" font-weight="700" font-size="18">PostgreSQL</text>
+</g>
+<g fill="none" stroke-linecap="round">
+ <path d="M386 263 C410 250 418 236 430 225" stroke="url(#purple)" stroke-width="5"/>
+ <path d="M520 300 C535 320 535 330 535 350" stroke="url(#cyan)" stroke-width="5"/>
+</g>
+<g>
+  <circle cx="720" cy="330" r="46" fill="#171e32" stroke="#8d81ff"/>
+  <path d="M699 330h42M720 309v42" stroke="#c8c1ff" stroke-width="4" stroke-linecap="round"/>
+  <text x="679" y="400" fill="#9ca8be" font-family="Inter,Arial" font-size="15">Defect → Retest</text>
+</g>
+</svg>
