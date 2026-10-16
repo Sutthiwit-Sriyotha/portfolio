@@ -86,7 +86,7 @@ export function TiltCard({project,onOpen}:{project:Project,onOpen:(p:Project)=>v
  return <article ref={ref} onPointerMove={onMove} onPointerLeave={()=>{if(ref.current){ref.current.style.setProperty('--tiltx','0deg');ref.current.style.setProperty('--tilty','0deg');ref.current.style.setProperty('--px','0px');ref.current.style.setProperty('--py','0px')}}} className="project-card" data-float-card>
   <button className="project-image-button" type="button" onClick={()=>onOpen(project)} aria-label={`Open ${project.title} 3D project gallery`}>
    <div className="image-layer layer-shadow"/><div className="image-layer layer-back"/><div className="image-layer layer-mid"/>
-   {project.slug==='ticket-system'?<TicketConcept/>:<Image src={asset(project.thumbnail)} alt={`${project.title} — ${project.previewType==='concept'?'illustrative concept graphic':'project image'}`} fill sizes="(max-width: 800px) 100vw, 48vw" className="project-art"/>}
+   <Image src={asset(project.thumbnail)} alt={`${project.title} — ${project.previewType==='concept'?'illustrative concept graphic':'project image'}`} fill sizes="(max-width: 800px) 100vw, 48vw" className="project-art"/>
    <span className="image-overlay-label">{project.previewType==='concept'?'CONCEPT VISUAL · NOT A PRODUCT SCREENSHOT':'PROJECT IMAGE'}</span>
    <span className="image-launch"><MoveUpRight size={17}/></span>
   </button>
