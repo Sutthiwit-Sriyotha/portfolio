@@ -537,6 +537,47 @@ section{padding:65px 0}
   .case-dialog-content{transform-origin:50% 10%}
 }
 
+
+/* === 3D VISUAL SYSTEM V1 === */
+.experience-main{position:relative}
+.experience-visual{
+  float:right;width:min(245px,34%);margin:14px 0 12px 24px;
+  border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--surface2) 78%,transparent),color-mix(in srgb,var(--bg) 86%,transparent));
+  box-shadow:0 18px 55px rgba(0,0,0,.16);
+}
+.experience-visual img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.skill-visual-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 6px;
+}
+.skill-visual-card{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:18px;
+  background:var(--surface);min-height:165px;
+}
+.skill-visual-card img{display:block;width:100%;height:100%;min-height:165px;object-fit:cover}
+.skill-visual-card::after{
+  content:"";position:absolute;inset:auto 0 0;height:42%;
+  background:linear-gradient(transparent,color-mix(in srgb,var(--bg) 80%,transparent));
+  pointer-events:none;
+}
+.skill-visual-card span{
+  position:absolute;z-index:2;left:14px;bottom:12px;font:600 10px "JetBrains Mono",monospace;
+  letter-spacing:.08em;color:var(--text);text-transform:uppercase;
+}
+.contact-card{position:relative;overflow:hidden;grid-template-columns:minmax(0,1fr) 170px auto}
+.contact-visual{
+  width:170px;height:170px;object-fit:contain;justify-self:center;
+  filter:drop-shadow(0 20px 36px rgba(73,222,203,.12));
+}
+@media(max-width:900px){
+  .experience-visual{float:none;width:100%;max-width:360px;margin:16px 0}
+  .skill-visual-grid{grid-template-columns:1fr}
+  .skill-visual-card{min-height:210px}
+  .skill-visual-card img{min-height:210px}
+  .contact-card{grid-template-columns:1fr}
+  .contact-visual{width:145px;height:145px;justify-self:start}
+}
+
 </style>
 </head>
 <body>
@@ -633,14 +674,14 @@ section{padding:65px 0}
 <div class="experience-list">
 <article class="experience-entry reveal">
 <div class="experience-aside"><span class="experience-date mono">JUN – SEP 2026</span><span class="experience-order">01</span></div>
-<div class="experience-main"><div class="experience-title"><div><h3>BA &amp; QA Tester Intern</h3><p class="experience-company">Double P Enterprise Co., Ltd. <span>· Bangkok</span></p></div><span class="experience-category">Enterprise HR &amp; ITSM</span></div>
+<div class="experience-main"><div class="experience-title"><div><h3>BA &amp; QA Tester Intern</h3><p class="experience-company">Double P Enterprise Co., Ltd. <span>· Bangkok</span></p></div><span class="experience-category">Enterprise HR &amp; ITSM</span></div><figure class="experience-visual visual-qa" aria-label="BA and QA workflow visual"><img src="./assets/3d/ba-qa-workflow.svg" alt="3D-style BA and QA workflow showing requirements, test cases, defects, retesting, API and database validation" loading="lazy" decoding="async"></figure>
 <p>Gathered requirements, documented SRS, contributed to UI and workflow design, and wrote test cases. Performed manual, API, database, and regression testing; investigated defects and developed or maintained automated tests for JOiNS+ and MEGA-T.</p>
 <div class="experience-highlights"><span>Requirements &amp; SRS</span><span>Test case design</span><span>API &amp; database validation</span><span>Automation</span></div>
 <div class="experience-worklinks"><a href="#project-joins">JOiNS+ <span aria-hidden="true">↗</span></a><a href="#project-mega">MEGA-T <span aria-hidden="true">↗</span></a></div></div>
 </article>
 <article class="experience-entry reveal">
 <div class="experience-aside"><span class="experience-date mono">NOV 2025 – FEB 2026</span><span class="experience-order">02</span></div>
-<div class="experience-main"><div class="experience-title"><div><h3>Software Developer Intern</h3><p class="experience-company">Division of Educational Services <span>· University of Phayao</span></p></div><span class="experience-category">University digital system</span></div>
+<div class="experience-main"><div class="experience-title"><div><h3>Software Developer Intern</h3><p class="experience-company">Division of Educational Services <span>· University of Phayao</span></p></div><span class="experience-category">University digital system</span></div><figure class="experience-visual visual-dev" aria-label="Software development visual"><img src="./assets/3d/frontend-dev-scene.svg" alt="3D-style front-end development scene with responsive UI, RBAC, REST API and UAT elements" loading="lazy" decoding="async"></figure>
 <p>Developed responsive UI and assessment forms for UP-PSF using Next.js and TypeScript. Implemented role-based access, integrated REST APIs and secure file uploads, and supported cross-browser testing and UAT.</p>
 <div class="experience-highlights"><span>Next.js &amp; TypeScript</span><span>RBAC</span><span>REST API &amp; MinIO</span><span>UAT</span></div>
 <div class="experience-worklinks"><a href="#project-uppsf">UP-PSF case study <span aria-hidden="true">↗</span></a></div></div>
@@ -699,6 +740,11 @@ section{padding:65px 0}
 <div class="competency-line"><strong>Quality Assurance</strong><div><span>Test case design</span><span>Manual &amp; regression testing</span><span>API &amp; E2E testing</span><span>Defect investigation</span></div></div>
 <div class="competency-line"><strong>Data &amp; Automation</strong><div><span>Database validation</span><span>Data reconciliation</span><span>RBAC &amp; SLA validation</span><span>Playwright &amp; Vitest</span></div></div>
 </div>
+<div class="skill-visual-grid" aria-label="3D visual summaries of core skills">
+  <div class="skill-visual-card"><img src="./assets/3d/skill-ba.svg" alt="3D-style business analysis visual for requirements, SRS and user flow" loading="lazy" decoding="async"><span>Business Analysis</span></div>
+  <div class="skill-visual-card"><img src="./assets/3d/skill-qa.svg" alt="3D-style QA visual for testing, defects, retesting and verification" loading="lazy" decoding="async"><span>Quality Assurance</span></div>
+  <div class="skill-visual-card"><img src="./assets/3d/skill-automation-data.svg" alt="3D-style automation and data visual for Playwright, API and PostgreSQL" loading="lazy" decoding="async"><span>Automation &amp; Data</span></div>
+</div>
 <div class="tools-heading reveal"><h3>Tools &amp; technologies</h3><p>Grouped by workflow, with hands-on development skills retained.</p></div>
 <div class="tools-categories"><div class="tool-group reveal"><div class="tool-group-head"><span class="tool-group-no mono">01</span><div><h3>Analysis & Planning</h3><p>Requirements analysis, documentation, project planning, and interface design.</p></div></div><div class="tool-tiles"><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira logo" loading="lazy" decoding="async"></div><span>Jira</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma logo" loading="lazy" decoding="async"></div><span>Figma</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://raw.githubusercontent.com/taigaio/taiga-front/main/app/images/favicon.png" alt="Taiga logo" loading="lazy" decoding="async"></div><span>Taiga</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.simpleicons.org/diagramsdotnet/F08705" alt="draw.io logo" loading="lazy" decoding="async"></div><span>draw.io</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.simpleicons.org/obsidian/7C3AED" alt="Obsidian logo" loading="lazy" decoding="async"></div><span>Obsidian</span></div></div></div>
 <div class="tool-group reveal"><div class="tool-group-head"><span class="tool-group-no mono">02</span><div><h3>Languages & UI</h3><p>Programming languages, web technologies, and user interface styling.</p></div></div><div class="tool-tiles"><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python logo" loading="lazy" decoding="async"></div><span>Python</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript logo" loading="lazy" decoding="async"></div><span>JavaScript</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript logo" loading="lazy" decoding="async"></div><span>TypeScript</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5 logo" loading="lazy" decoding="async"></div><span>HTML5</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3 logo" loading="lazy" decoding="async"></div><span>CSS3</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS logo" loading="lazy" decoding="async"></div><span>Tailwind CSS</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/materialui/materialui-original.svg" alt="MUI logo" loading="lazy" decoding="async"></div><span>MUI</span></div></div></div>
@@ -711,7 +757,7 @@ section{padding:65px 0}
 <div class="experience-card reveal"><div><div class="date mono">2022 — 2026</div><h3>B.Eng. Software Engineering</h3><div class="company">University of Phayao</div></div><div><p>GPA: 3.29 · Coursework and projects covered software engineering, web development, databases, system design, UX/UI, and collaborative product development.</p></div></div>
 </div></section>
 
-<section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Let's work together.</h2><p>Open to BA / QA Tester opportunities. My software engineering background supports collaboration with developers and technical problem-solving.</p></div><div class="contact-links"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me <span aria-hidden="true">↗</span></a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com?subject=Resume%20request">Request Resume <span aria-hidden="true">↗</span></a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></div></div></section>
+<section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Let's work together.</h2><p>Open to BA / QA Tester opportunities. My software engineering background supports collaboration with developers and technical problem-solving.</p></div><img class="contact-visual" src="./assets/3d/contact-orb.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><div class="contact-links"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me <span aria-hidden="true">↗</span></a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com?subject=Resume%20request">Request Resume <span aria-hidden="true">↗</span></a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></div></div></section>
 
 <footer><div class="wrap">© 2026 Sutthiwit Sriyotha · BA / QA Tester Portfolio</div></footer>
 
@@ -1000,6 +1046,41 @@ dlg.addEventListener('close',()=>{document.body.classList.remove('dialog-open');
   document.querySelectorAll('.open-case,.case-media-trigger').forEach(btn=>{
     btn.addEventListener('click',()=>requestAnimationFrame(animateDialog));
   });
+
+
+  // 3D VISUALS — separate foreground movement from the surrounding content.
+  gsap.utils.toArray('.experience-visual').forEach((visual,i)=>{
+    gsap.fromTo(visual,
+      {y:42,x:i%2?16:-16,opacity:0,rotateY:i%2?-4:4,scale:.95},
+      {y:0,x:0,opacity:1,rotateY:0,scale:1,duration:.8,ease:'power3.out',
+       scrollTrigger:{trigger:visual,start:'top 88%',once:true}}
+    );
+    gsap.to(visual.querySelector('img'),{
+      yPercent:-3,duration:4.5+i*.6,repeat:-1,yoyo:true,ease:'sine.inOut'
+    });
+  });
+
+  gsap.utils.toArray('.skill-visual-card').forEach((card,i)=>{
+    gsap.fromTo(card,
+      {y:55,opacity:0,scale:.95,rotateX:4},
+      {y:0,opacity:1,scale:1,rotateX:0,duration:.72,delay:i*.08,ease:'power3.out',
+       scrollTrigger:{trigger:card,start:'top 90%',once:true}}
+    );
+    const img=card.querySelector('img');
+    if(img){
+      gsap.to(img,{yPercent:-2.5,duration:3.8+i*.45,repeat:-1,yoyo:true,ease:'sine.inOut'});
+    }
+  });
+
+  const contactVisual=document.querySelector('.contact-visual');
+  if(contactVisual){
+    gsap.fromTo(contactVisual,
+      {y:34,opacity:0,scale:.84,rotate:-8},
+      {y:0,opacity:1,scale:1,rotate:0,duration:.8,ease:'back.out(1.45)',
+       scrollTrigger:{trigger:contactVisual,start:'top 88%',once:true}}
+    );
+    gsap.to(contactVisual,{y:-9,rotate:2,duration:4.4,repeat:-1,yoyo:true,ease:'sine.inOut'});
+  }
 
   addEventListener('load',()=>ScrollTrigger.refresh(),{once:true});
 })();
