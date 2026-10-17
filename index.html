@@ -1404,6 +1404,19 @@ section{padding:65px 0}
   justify-self:stretch!important;
  }
 }
+
+/* Simple override: make all five project images larger, keep everything else unchanged. */
+@media(min-width:931px){
+  .portfolio-bento .bento-project-grid>article.featured-project,
+  .portfolio-bento .bento-project-grid>article.secondary-project,
+  .portfolio-bento .bento-project-grid>#project-tamroi{
+    grid-template-columns:68% minmax(0,32%)!important;
+  }
+  .portfolio-bento .bento-project-grid>article:nth-child(even).featured-project,
+  .portfolio-bento .bento-project-grid>article:nth-child(even).secondary-project{
+    grid-template-columns:minmax(0,32%) 68%!important;
+  }
+}
 </style>
 </head>
 <body>
