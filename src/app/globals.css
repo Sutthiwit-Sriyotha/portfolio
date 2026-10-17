@@ -19,3 +19,34 @@
 .ticket-ui-header>span+span{font-size:10px;color:#8796bb;display:flex;align-items:center;gap:8px}.ticket-ui-dot{display:block;width:7px;height:7px;border-radius:50%;background:#55e2c9}
 .ticket-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:23px;height:100%}.ticket-columns>div>b{font-size:10px;letter-spacing:.08em;color:#bdc9e4}.ticket-columns small{background:#52617d52;color:#b5c3de;padding:3px 5px;border-radius:5px;font-size:8px}.ticket-ui-card{background:#252f4a;border:1px solid #7384aa4d;border-radius:13px;padding:16px 11px;margin-top:12px;display:flex;flex-direction:column;gap:12px;text-align:left;box-shadow:0 10px 22px #0005;transform:translateZ(12px);min-height:97px}.ticket-ui-card>span{font-size:8px;color:#98d3ff}.ticket-ui-card strong{font-size:13px;color:#f4f4fa}.ticket-ui-card i{font-size:9px;color:#a1b0d2;font-style:normal}.ticket-ui-card.accent{border-color:#a78bfa91;background:#343055}.ticket-ui-card.done{border-color:#4be0bd55;background:#173c43}.ticket-ui-bottom{font-size:8px;color:#9aa8c6;letter-spacing:.13em;margin-top:15px;text-align:right}
 @media(max-width:600px){.process-ribbon{gap:20px}.process-ribbon>span{font-size:11px}.process-ribbon small{font-size:9px}.ticket-concept{padding:11px}.ticket-ui-header{font-size:11px;padding-bottom:8px}.ticket-ui-header>span+span{font-size:7px}.ticket-columns{margin-top:10px;gap:5px}.ticket-columns>div>b{font-size:7px}.ticket-ui-card{padding:7px 5px;gap:6px;margin-top:7px;min-height:60px;border-radius:8px}.ticket-ui-card>span{font-size:6px}.ticket-ui-card strong{font-size:9px}.ticket-ui-card i{font-size:7px}.ticket-ui-bottom{font-size:7px;margin-top:7px}}
+
+/* Project presentation: consistent real screenshot crop, separated featured and secondary rows */
+.project-group{min-width:0}
+.project-group-secondary{margin-top:66px}
+.project-group-head{display:flex;justify-content:space-between;gap:24px;align-items:center;border-top:1px solid #ffffff36;padding:18px 2px 25px;color:var(--muted);font-size:11px;letter-spacing:.12em}
+.project-group-head span:first-child{font-weight:700;color:var(--cyan)}
+.projects-grid-featured,.projects-grid-secondary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 28px;perspective:none;align-items:start}
+.projects-grid-featured .project-card:nth-child(2),
+.projects-grid-secondary .project-card:nth-child(2){margin-top:0}
+.projects-grid-featured .project-card:nth-child(3){grid-column:1/-1;width:min(100%,800px);justify-self:center}
+.projects-grid-secondary .project-card:nth-child(3){grid-column:auto;width:auto}
+.project-card{width:100%;min-width:0;transform-style:flat}
+.project-image-button{height:auto;aspect-ratio:16/10;isolation:isolate;box-sizing:border-box;transform:perspective(1300px) rotateX(var(--tiltx)) rotateY(var(--tilty));background:#111a2b;overflow:hidden;border-radius:22px}
+.project-art{object-fit:contain!important;object-position:center;background:#111a2b;transform:none!important;transition:filter .35s ease!important}
+.project-card:hover .project-art{transform:none!important;filter:saturate(1.06)}
+.project-image-button::after{background:linear-gradient(0deg,#0b0d15b0,transparent 28%);z-index:1}
+.image-overlay-label{z-index:2;max-width:calc(100% - 92px);line-height:1.45}
+.project-info{padding:22px 4px 0;overflow-wrap:anywhere}
+.project-title-row h3{font-size:clamp(25px,2.65vw,40px);line-height:1.13}
+.project-group-secondary .project-image-button{aspect-ratio:16/9}
+.project-group-secondary .project-title-row h3{font-size:clamp(24px,2.35vw,36px)}
+.project-group-secondary .project-info>p{min-height:0}
+@media(max-width:800px){
+ .projects-grid-featured,.projects-grid-secondary{grid-template-columns:1fr;gap:30px}
+ .projects-grid-featured .project-card:nth-child(3){grid-column:auto;width:100%}
+ .project-group-secondary{margin-top:45px}
+ .project-group-head{align-items:flex-start;flex-direction:column;gap:6px}
+ .project-image-button{height:auto;aspect-ratio:16/10}
+ .project-group-secondary .project-image-button{aspect-ratio:16/10}
+}
+@media(prefers-reduced-motion:reduce){.project-image-button{transform:none!important}.project-art{transform:none!important}}
