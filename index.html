@@ -1439,6 +1439,43 @@ section{padding:65px 0}
     object-position:center!important;
   }
 }
+
+/* Project 02 + 04: fill available width proportionally; no distortion, no crop. */
+.portfolio-bento #project-mega .featured-media,
+.portfolio-bento #project-restaurant .secondary-media{
+  aspect-ratio:auto!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
+.portfolio-bento #project-mega .browser-frame,
+.portfolio-bento #project-mega .browser-canvas,
+.portfolio-bento #project-restaurant .browser-frame,
+.portfolio-bento #project-restaurant .browser-canvas{
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  overflow:visible!important;
+}
+.portfolio-bento #project-mega .browser-canvas>img,
+.portfolio-bento #project-restaurant .browser-canvas>img{
+  position:relative!important;
+  inset:auto!important;
+  left:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+  margin:0!important;
+}
 </style>
 </head>
 <body>
