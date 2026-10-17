@@ -1417,6 +1417,28 @@ section{padding:65px 0}
     grid-template-columns:minmax(0,32%) 68%!important;
   }
 }
+
+/* Only projects 02 and 04: enlarge the visible artwork to match the other project previews. */
+@media(min-width:931px){
+  .portfolio-bento #project-mega .browser-canvas,
+  .portfolio-bento #project-restaurant .browser-canvas{
+    overflow:hidden!important;
+  }
+
+  .portfolio-bento #project-mega .browser-canvas>img,
+  .portfolio-bento #project-restaurant .browser-canvas>img{
+    width:118%!important;
+    height:118%!important;
+    max-width:none!important;
+    max-height:none!important;
+    left:-9%!important;
+    top:-9%!important;
+    right:auto!important;
+    bottom:auto!important;
+    object-fit:cover!important;
+    object-position:center!important;
+  }
+}
 </style>
 </head>
 <body>
