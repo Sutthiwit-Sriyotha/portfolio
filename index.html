@@ -1244,6 +1244,26 @@ section{padding:65px 0}
   height:auto!important;min-height:0!important;max-height:none!important;
  }
 }
+
+/* Fixed visual DISPLAY size, not only column size: equal 16:9 visual surfaces. */
+.portfolio-bento .bento-project-grid>article .featured-media,
+.portfolio-bento .bento-project-grid>article .secondary-media,
+.portfolio-bento .bento-project-grid>#project-tamroi .secondary-media{
+ display:block!important;width:100%!important;aspect-ratio:16/9!important;
+ height:auto!important;min-height:0!important;overflow:visible!important;
+}
+.portfolio-bento .bento-project-grid>article .browser-frame,
+.portfolio-bento .bento-project-grid>article .browser-canvas{
+ position:relative!important;display:block!important;width:100%!important;height:100%!important;
+ aspect-ratio:16/9!important;overflow:visible!important;
+}
+.portfolio-bento .bento-project-grid>article .browser-canvas>img,
+.portfolio-bento #project-joins .browser-canvas>img.mockup-image,
+.portfolio-bento #project-mega .browser-canvas>img.mockup-image{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+ max-width:100%!important;max-height:100%!important;object-fit:cover!important;
+ object-position:center center!important;display:block!important;
+}
 </style>
 </head>
 <body>
