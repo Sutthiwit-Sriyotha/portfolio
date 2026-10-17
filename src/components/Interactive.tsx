@@ -85,7 +85,7 @@ export function TiltCard({project,onOpen}:{project:Project,onOpen:(p:Project)=>v
  };
  return <article ref={ref} onPointerMove={onMove} onPointerLeave={()=>{if(ref.current){ref.current.style.setProperty('--tiltx','0deg');ref.current.style.setProperty('--tilty','0deg');ref.current.style.setProperty('--px','0px');ref.current.style.setProperty('--py','0px')}}} className="project-card" data-float-card>
   <button className="project-image-button" type="button" onClick={()=>onOpen(project)} aria-label={`Open ${project.title} 3D project gallery`}>
-   <div className="image-layer layer-shadow"/><div className="image-layer layer-back"/><div className="image-layer layer-mid"/>
+   
    <Image src={asset(project.thumbnail)} alt={`${project.title} — ${project.previewType==='concept'?'illustrative concept graphic':'project image'}`} fill sizes="(max-width: 800px) 100vw, 48vw" className="project-art"/>
    <span className="image-overlay-label">{project.previewType==='concept'?'CONCEPT VISUAL · NOT A PRODUCT SCREENSHOT':'PROJECT IMAGE'}</span>
    <span className="image-launch"><MoveUpRight size={17}/></span>
@@ -121,6 +121,6 @@ export function LayeredProjectGallery({project,onClose}:{project:Project,onClose
  </motion.div>
 }
 
-export function ProjectsGrid(){const[selected,setSelected]=useState<Project|null>(null);return <><div className="projects-grid">{projects.map(project=><TiltCard key={project.slug} project={project} onOpen={setSelected}/>)}</div><AnimatePresence>{selected&&<LayeredProjectGallery key={selected.slug} project={selected} onClose={()=>setSelected(null)}/>}</AnimatePresence></>}
+export function ProjectsGrid(){const[selected,setSelected]=useState<Project|null>(null);return <><div className="project-group"><div className="project-group-head"><span>FEATURED · BA / QA & DEVELOPMENT</span><span>Internship project experience</span></div><div className="projects-grid projects-grid-featured">{projects.slice(0,3).map(project=><TiltCard key={project.slug} project={project} onOpen={setSelected}/>)}</div></div><div className="project-group project-group-secondary"><div className="project-group-head"><span>OTHER PROJECTS · DEVELOPMENT & UX/UI</span><span>Academic & personal work</span></div><div className="projects-grid projects-grid-secondary">{projects.slice(3).map(project=><TiltCard key={project.slug} project={project} onOpen={setSelected}/>)}</div></div><AnimatePresence>{selected&&<LayeredProjectGallery key={selected.slug} project={selected} onClose={()=>setSelected(null)}/>}</AnimatePresence></>}
 
 export function ContactButton(){const ref=useRef<HTMLAnchorElement>(null);const reduce=useReducedMotion();return <a ref={ref} href="mailto:sutthiwitsriyotha@gmail.com" className="magnetic-btn" onPointerMove={e=>{if(reduce||!ref.current||window.matchMedia('(pointer:coarse)').matches)return;const r=ref.current.getBoundingClientRect();ref.current.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.08}px,${(e.clientY-r.top-r.height/2)*.08}px)`}} onPointerLeave={()=>{if(ref.current)ref.current.style.transform='translate(0,0)'}}>Let&apos;s connect <ArrowUpRight size={23}/></a>}
