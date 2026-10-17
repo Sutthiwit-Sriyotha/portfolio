@@ -1026,6 +1026,127 @@ section{padding:65px 0}
  .portfolio-bento .bento-project-grid>article .featured-media .concept-caption{right:18px!important;bottom:39px!important;font-size:8px!important}
 }
 
+
+/* === FREEFORM PROJECT EDITORIAL · RESTORES DARK PORTFOLIO THEME === */
+.portfolio-bento{background:var(--bg)!important;color:var(--text)!important;padding:110px 0 125px!important;overflow:hidden}
+.portfolio-bento .section-head{max-width:none!important;margin-bottom:56px!important}
+.portfolio-bento .section-head h2{color:var(--text)!important;font-size:clamp(40px,5vw,69px)!important}
+.portfolio-bento .section-head p{color:var(--muted)!important}
+.portfolio-bento .section-head .eyebrow,.portfolio-bento .bento-intro span:first-child{color:var(--cyan)!important}
+.portfolio-bento .bento-intro{border-color:var(--line)!important;color:var(--muted)!important}
+.portfolio-bento .bento-project-grid{display:flex!important;flex-direction:column!important;gap:clamp(65px,9vw,140px)!important}
+.portfolio-bento .bento-project-grid>article.featured-project,
+.portfolio-bento .bento-project-grid>article.secondary-project{
+ position:relative;display:grid!important;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr)!important;
+ align-items:center!important;gap:clamp(24px,4vw,66px)!important;
+ width:100%!important;max-width:none!important;min-height:470px!important;
+ padding:28px 0!important;background:transparent!important;color:var(--text)!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;
+ translate:none!important;
+}
+.portfolio-bento .bento-project-grid>article:nth-child(even){
+ grid-template-columns:minmax(300px,.75fr) minmax(0,1.25fr)!important;
+}
+.portfolio-bento .bento-project-grid>article:nth-child(even) .featured-media,
+.portfolio-bento .bento-project-grid>article:nth-child(even) .secondary-media{order:2!important}
+.portfolio-bento .bento-project-grid>article:nth-child(even) .featured-copy,
+.portfolio-bento .bento-project-grid>article:nth-child(even) .secondary-copy{order:1!important}
+.portfolio-bento .bento-project-grid>article .featured-media,
+.portfolio-bento .bento-project-grid>article .secondary-media,
+.portfolio-bento .bento-project-grid>#project-tamroi .secondary-media{
+ order:1!important;position:relative!important;
+ width:100%!important;height:clamp(310px,37vw,490px)!important;min-height:0!important;
+ padding:0!important;border:0!important;border-radius:0!important;
+ background:transparent!important;overflow:visible!important;box-shadow:none!important;
+}
+.portfolio-bento .bento-project-grid>article .browser-frame{
+ width:100%!important;max-width:none!important;height:100%!important;min-height:0!important;
+ background:transparent!important;border:0!important;border-radius:0!important;
+ box-shadow:none!important;overflow:visible!important;transform:none!important;
+}
+.portfolio-bento .bento-project-grid>article .browser-chrome{display:none!important}
+.portfolio-bento .bento-project-grid>article .browser-canvas{
+ position:relative!important;display:block!important;flex:1 1 100%!important;
+ width:100%!important;height:100%!important;min-height:100%!important;
+ background:transparent!important;overflow:visible!important;border-radius:0!important;
+}
+.portfolio-bento .bento-project-grid>article .browser-canvas>img,
+.portfolio-bento #project-joins .browser-canvas>img.mockup-image,
+.portfolio-bento #project-mega .browser-canvas>img.mockup-image{
+ position:absolute!important;inset:0!important;display:block!important;
+ width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;
+ object-fit:contain!important;object-position:center!important;
+ padding:0!important;margin:0!important;border:0!important;border-radius:0!important;
+ box-shadow:none!important;background:transparent!important;filter:drop-shadow(0 30px 28px rgba(0,0,0,.24))!important;
+ transform:none!important;
+}
+.portfolio-bento .bento-project-grid>article:nth-child(1) .featured-media::before,
+.portfolio-bento .bento-project-grid>article .featured-media::after{display:none!important}
+.portfolio-bento .bento-project-grid>article .featured-copy,
+.portfolio-bento .bento-project-grid>article .secondary-copy,
+.portfolio-bento .bento-project-grid>#project-tamroi .secondary-copy{
+ order:2!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+ text-align:left!important;justify-content:center!important;gap:14px!important;
+ padding:20px 0!important;background:transparent!important;
+}
+.portfolio-bento .bento-project-grid>article .featured-copy h3,
+.portfolio-bento .bento-project-grid>article .secondary-copy h3{
+ max-width:18ch!important;font-size:clamp(30px,3.5vw,49px)!important;line-height:1.09!important;
+ color:var(--text)!important;text-align:left!important;
+}
+.portfolio-bento .bento-project-grid>article .project-meta,
+.portfolio-bento .bento-project-grid>article .project-type{color:var(--cyan)!important}
+.portfolio-bento .bento-project-grid>article .featured-role,
+.portfolio-bento .bento-project-grid>article .secondary-role,
+.portfolio-bento .bento-project-grid>article .featured-overview,
+.portfolio-bento .bento-project-grid>article .secondary-copy>p,
+.portfolio-bento .bento-project-grid>article .project-meta span{color:var(--muted)!important;text-align:left!important}
+.portfolio-bento .bento-project-grid>article .tags{display:flex!important;flex-wrap:wrap}
+.portfolio-bento .bento-project-grid>article .open-case{
+ align-self:flex-start!important;margin:6px 0 0!important;background:var(--surface2)!important;
+ color:var(--text)!important;border:1px solid var(--line)!important;border-radius:12px!important;
+ padding:13px 18px!important;
+}
+.portfolio-bento .bento-project-grid>article .open-case:hover{border-color:var(--cyan)!important;background:var(--surface)!important}
+.portfolio-bento .bento-project-grid>article .featured-media .media-topline,
+.portfolio-bento .bento-project-grid>article .secondary-media .secondary-index{display:none!important}
+.portfolio-bento .bento-project-grid>article .concept-caption{
+ position:absolute!important;z-index:7!important;left:16px!important;right:auto!important;
+ bottom:1px!important;max-width:90%!important;text-align:left!important;
+ font-size:10px!important;
+}
+.portfolio-bento .bento-project-grid>article::before{
+ content:"";position:absolute;z-index:-1;inset:8% -7% 9% -7%;pointer-events:none;
+ background:radial-gradient(ellipse at 30% 50%,rgba(113,91,233,.12),transparent 59%);
+}
+.portfolio-bento .bento-project-grid>article:nth-child(2n)::before{
+ background:radial-gradient(ellipse at 70% 40%,rgba(58,205,196,.10),transparent 60%);
+}
+@media(max-width:930px){
+ .portfolio-bento .bento-project-grid>article.featured-project,
+ .portfolio-bento .bento-project-grid>article.secondary-project,
+ .portfolio-bento .bento-project-grid>article:nth-child(even){
+  display:flex!important;flex-direction:column!important;gap:9px!important;min-height:0!important;padding:0!important;
+ }
+ .portfolio-bento .bento-project-grid>article .featured-media,
+ .portfolio-bento .bento-project-grid>article .secondary-media,
+ .portfolio-bento .bento-project-grid>article:nth-child(even) .featured-media,
+ .portfolio-bento .bento-project-grid>article:nth-child(even) .secondary-media{order:1!important;height:clamp(235px,57vw,500px)!important}
+ .portfolio-bento .bento-project-grid>article .featured-copy,
+ .portfolio-bento .bento-project-grid>article .secondary-copy,
+ .portfolio-bento .bento-project-grid>article:nth-child(even) .featured-copy,
+ .portfolio-bento .bento-project-grid>article:nth-child(even) .secondary-copy{order:2!important;padding:18px 5px!important}
+}
+@media(max-width:570px){
+ .portfolio-bento{padding:70px 0!important}
+ .portfolio-bento .bento-project-grid{gap:55px!important}
+ .portfolio-bento .bento-project-grid>article .featured-media,
+ .portfolio-bento .bento-project-grid>article .secondary-media{height:240px!important}
+ .portfolio-bento .bento-project-grid>article .featured-copy h3,
+ .portfolio-bento .bento-project-grid>article .secondary-copy h3{font-size:32px!important}
+ .portfolio-bento .bento-project-grid>article .concept-caption{font-size:8px!important;bottom:0!important}
+}
+
 </style>
 </head>
 <body>
