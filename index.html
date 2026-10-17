@@ -1171,6 +1171,41 @@ section{padding:65px 0}
   width:100%!important;min-width:0!important;box-sizing:border-box!important;
  }
 }
+
+/* Definitive project columns: image uses same 58% width on both sides. */
+@media(min-width:931px){
+ .portfolio-bento .bento-project-grid>article.featured-project,
+ .portfolio-bento .bento-project-grid>article.secondary-project,
+ .portfolio-bento .bento-project-grid>article:nth-child(even).featured-project,
+ .portfolio-bento .bento-project-grid>article:nth-child(even).secondary-project,
+ .portfolio-bento .bento-project-grid>#project-tamroi{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.38fr) minmax(0,1fr)!important;
+  align-items:center!important;
+  column-gap:clamp(28px,3vw,52px)!important;
+ }
+ .portfolio-bento .bento-project-grid>article:nth-child(even).featured-project,
+ .portfolio-bento .bento-project-grid>article:nth-child(even).secondary-project{
+  grid-template-columns:minmax(0,1fr) minmax(0,1.38fr)!important;
+ }
+ .portfolio-bento .bento-project-grid>article .featured-media,
+ .portfolio-bento .bento-project-grid>article .secondary-media{
+  grid-column:1!important;grid-row:1!important;justify-self:stretch!important;
+  height:clamp(330px,36vw,540px)!important;
+ }
+ .portfolio-bento .bento-project-grid>article .featured-copy,
+ .portfolio-bento .bento-project-grid>article .secondary-copy{
+  grid-column:2!important;grid-row:1!important;min-width:0!important;
+ }
+ .portfolio-bento .bento-project-grid>article:nth-child(even) .featured-media,
+ .portfolio-bento .bento-project-grid>article:nth-child(even) .secondary-media{grid-column:2!important;grid-row:1!important}
+ .portfolio-bento .bento-project-grid>article:nth-child(even) .featured-copy,
+ .portfolio-bento .bento-project-grid>article:nth-child(even) .secondary-copy{grid-column:1!important;grid-row:1!important}
+ .portfolio-bento .bento-project-grid>article .browser-canvas{height:100%!important;min-height:0!important}
+ .portfolio-bento .bento-project-grid>article .browser-canvas>img{
+  object-fit:contain!important;width:100%!important;height:100%!important;
+ }
+}
 </style>
 </head>
 <body>
