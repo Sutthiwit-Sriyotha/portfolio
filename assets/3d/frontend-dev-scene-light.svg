@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="3D style front-end development scene">
+<defs>
+ <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fafc"/><stop offset="1" stop-color="#eef2f7"/></linearGradient>
+ <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f0f3f9"/><stop offset="1" stop-color="#151c2f"/></linearGradient>
+ <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9d8dff"/><stop offset="1" stop-color="#49decb"/></linearGradient>
+ <filter id="s2"><feDropShadow dx="0" dy="25" stdDeviation="22" flood-opacity=".16"/></filter>
+</defs>
+<rect width="900" height="600" rx="42" fill="url(#bg2)"/>
+<g filter="url(#s2)">
+ <path d="M160 110h520l65 56v304H225l-65-56z" fill="#f8fafc" stroke="#aab6c7" stroke-width="2"/>
+ <path d="M160 110h520v304H160z" fill="url(#screen)" stroke="#9facbd" stroke-width="2"/>
+</g>
+<circle cx="190" cy="140" r="7" fill="#ff827d"/><circle cx="215" cy="140" r="7" fill="#f7c66b"/><circle cx="240" cy="140" r="7" fill="#49decb"/>
+<rect x="195" y="190" width="128" height="180" rx="14" fill="#f8fafc" stroke="#38445d"/>
+<rect x="218" y="218" width="72" height="12" rx="6" fill="#9d8dff"/><rect x="218" y="248" width="82" height="9" rx="4" fill="#56627b"/><rect x="218" y="272" width="68" height="9" rx="4" fill="#56627b"/>
+<rect x="354" y="190" width="280" height="86" rx="14" fill="#f1f4f9" stroke="#a6b2c3"/>
+<text x="377" y="222" fill="#667085" font-family="Inter,Arial" font-size="14">UP-PSF / ASSESSMENT FORM</text>
+<rect x="377" y="238" width="160" height="12" rx="6" fill="#49decb"/>
+<rect x="354" y="298" width="132" height="72" rx="14" fill="#f2f5f9" stroke="#a6b2c3"/>
+<text x="373" y="330" fill="#111827" font-family="Inter,Arial" font-weight="700" font-size="18">RBAC</text>
+<rect x="374" y="342" width="74" height="8" rx="4" fill="#64748b"/>
+<rect x="502" y="298" width="132" height="72" rx="14" fill="#f2f5f9" stroke="#a6b2c3"/>
+<text x="521" y="330" fill="#111827" font-family="Inter,Arial" font-weight="700" font-size="18">REST API</text>
+<rect x="521" y="342" width="84" height="8" rx="4" fill="#64748b"/>
+<g transform="translate(690 355)">
+ <path d="M0 0 95 35 0 70-95 35z" fill="#e5f5f3" stroke="#49decb"/>
+ <path d="M0 70v46L95 81V35z" fill="#e7f4f2" stroke="#49decb"/>
+ <path d="M0 70v46L-95 81V35z" fill="#edf2f7" stroke="#49decb"/>
+ <text x="-40" y="42" fill="#14534b" font-family="Inter,Arial" font-size="14">UAT</text>
+</g>
+<path d="M634 333 C666 330 670 349 682 360" stroke="url(#accent)" stroke-width="5" fill="none" stroke-linecap="round"/>
+<text x="205" y="505" fill="#c3c9d8" font-family="Inter,Arial" font-size="20">Next.js · TypeScript · RBAC · API · UAT</text>
+</svg>

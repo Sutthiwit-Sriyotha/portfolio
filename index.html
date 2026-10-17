@@ -675,6 +675,16 @@ html[data-theme="light"] .placeholder-browser{
 html[data-theme="light"] .contact-card{
   background:linear-gradient(135deg,var(--surface2),var(--surface))!important;
 }
+
+html[data-theme="light"] .experience-visual,
+html[data-theme="light"] .skill-visual-card{
+  background:#fff!important;
+  border-color:var(--line)!important;
+  box-shadow:0 16px 42px rgba(31,41,55,.08)!important;
+}
+html[data-theme="light"] .skill-visual-card::after{
+  background:linear-gradient(transparent,rgba(255,255,255,.92))!important;
+}
 </style>
 </head>
 <body>
@@ -701,65 +711,7 @@ html[data-theme="light"] .contact-card{
 <div class="hero-availability reveal"><span class="dot" aria-hidden="true"></span>Open to BA / QA Tester opportunities</div>
 </div>
 <div class="visual reveal" id="heroVisual">
-<svg class="hero-inline-art hero-system-art" role="img" aria-label="Illustration of the BA and QA workflow, from requirements and SRS to test cases, API checks, and verified delivery." xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" preserveAspectRatio="xMidYMid meet">
-<defs>
-<linearGradient id="hero-frame" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#192037"/><stop offset=".52" stop-color="#101727"/><stop offset="1" stop-color="#101c27"/></linearGradient>
-<linearGradient id="hero-accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9d8dff"/><stop offset="1" stop-color="#49decb"/></linearGradient>
-<linearGradient id="hero-chart" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a295ff" stop-opacity=".24"/><stop offset="1" stop-color="#49decb" stop-opacity=".01"/></linearGradient>
-<filter id="hero-soft-shadow"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#000" flood-opacity=".24"/></filter>
-</defs>
-<rect width="1100" height="780" rx="35" fill="#0c111c"/>
-<rect x="2" y="2" width="1096" height="776" rx="34" fill="url(#hero-frame)" stroke="#39415a" stroke-width="3"/>
-<rect x="0" y="0" width="1100" height="78" rx="35" fill="#1a2235"/>
-<path d="M0 52H1100V78H0Z" fill="#1a2235"/><path d="M0 78H1100" stroke="#343d57" stroke-width="2"/>
-<circle cx="37" cy="40" r="8" fill="#ff8a88"/><circle cx="65" cy="40" r="8" fill="#ffce7e"/><circle cx="93" cy="40" r="8" fill="#49decb"/>
-<text x="143" y="47" font-family="Inter,Arial,sans-serif" font-size="24" fill="#e9eafa" font-weight="700" letter-spacing="1.6">WORKFLOW / BA + QA</text>
-<rect x="887" y="23" width="178" height="34" rx="17" fill="#17392f" stroke="#286658"/>
-<circle cx="912" cy="40" r="6" fill="#45e0c2"/><text x="928" y="46" font-family="Inter,Arial,sans-serif" font-size="18" fill="#98f1dc" font-weight="600">IN PROGRESS</text>
-<text x="49" y="132" font-family="Inter,Arial,sans-serif" font-size="20" letter-spacing="2" font-weight="700" fill="#8e9ab5">PROCESS OVERVIEW</text>
-<rect x="39" y="161" width="428" height="144" rx="20" fill="#222341" stroke="#544a87" stroke-width="2"/>
-<rect x="57" y="180" width="46" height="46" rx="13" fill="#2d2b51" stroke="#6e62b1" stroke-width="1.5"/><g fill="none" stroke="#e0dcff" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"><rect x="69" y="190" width="22" height="26" rx="3"/><path d="M75 197h10m-10 6h10m-10 6h6"/></g>
-<text x="121" y="205" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#f4f3ff">01  Discover</text>
-<text x="121" y="238" font-family="Inter,Arial,sans-serif" font-size="19" fill="#adb0d0">Requirements · SRS · UI flows</text>
-<rect x="121" y="257" width="112" height="26" rx="13" fill="#353159"/><text x="141" y="276" font-family="Inter,Arial,sans-serif" font-size="14" fill="#c6bfff" font-weight="600">ANALYSIS</text>
-<path d="M252 305V330" stroke="#5b527f" stroke-width="3" stroke-dasharray="5 6" stroke-linecap="round"/>
-<rect x="39" y="331" width="428" height="144" rx="20" fill="#182a35" stroke="#306769" stroke-width="2"/>
-<rect x="57" y="350" width="46" height="46" rx="13" fill="#1d3b42" stroke="#398b83" stroke-width="1.5"/><g fill="none" stroke="#a8fff0" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"><rect x="69" y="360" width="22" height="26" rx="3"/><path d="m74 373 5 5 9-11"/></g>
-<text x="121" y="375" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#edfffb">02  Validate</text>
-<text x="121" y="408" font-family="Inter,Arial,sans-serif" font-size="19" fill="#a8d0ca">Test cases · API · Regression</text>
-<rect x="121" y="427" width="94" height="26" rx="13" fill="#245349"/><text x="141" y="446" font-family="Inter,Arial,sans-serif" font-size="14" fill="#a7f8e6" font-weight="600">TESTING</text>
-<path d="M252 475V500" stroke="#47706f" stroke-width="3" stroke-dasharray="5 6" stroke-linecap="round"/>
-<rect x="39" y="501" width="428" height="144" rx="20" fill="#1f273a" stroke="#445571" stroke-width="2"/>
-<rect x="57" y="520" width="46" height="46" rx="13" fill="#273955" stroke="#6483b2" stroke-width="1.5"/><g fill="none" stroke="#cce4ff" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"><rect x="69" y="530" width="22" height="26" rx="3"/><path d="m74 541 5 5 9-11m-14 17h12"/></g>
-<text x="121" y="545" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#f3f5ff">03  Deliver</text>
-<text x="121" y="578" font-family="Inter,Arial,sans-serif" font-size="19" fill="#b7c2d7">Database · Automation · CI/CD</text>
-<rect x="121" y="597" width="114" height="26" rx="13" fill="#2b3b59"/><text x="140" y="616" font-family="Inter,Arial,sans-serif" font-size="14" fill="#c2daff" font-weight="600">VALIDATION</text>
-<g filter="url(#hero-soft-shadow)">
-<rect x="492" y="160" width="570" height="485" rx="22" fill="#111826" stroke="#414860" stroke-width="2"/>
-<rect x="492" y="160" width="570" height="59" rx="22" fill="#242940"/><path d="M492 196H1062V219H492Z" fill="#242940"/>
-<text x="517" y="198" font-family="Inter,Arial,sans-serif" font-size="21" fill="#e0e5f5" font-weight="700">Test execution</text>
-<rect x="909" y="174" width="123" height="31" rx="15" fill="#25463e"/><circle cx="927" cy="190" r="5" fill="#5be9c7"/><text x="942" y="197" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" fill="#aaf8e6">VERIFIED</text>
-<rect x="516" y="241" width="236" height="122" rx="15" fill="#1c2437" stroke="#303a52"/>
-<text x="535" y="269" font-family="Inter,Arial,sans-serif" font-size="16" fill="#adb8d0">Test scenarios</text>
-<text x="535" y="327" font-family="Inter,Arial,sans-serif" font-size="46" font-weight="800" fill="#f4f5ff">QA</text>
-<rect x="626" y="307" width="99" height="25" rx="12" fill="#383159"/><text x="646" y="325" font-family="Inter,Arial,sans-serif" font-size="13" fill="#c5bcff" font-weight="700">TEST PLAN</text>
-<rect x="770" y="241" width="267" height="122" rx="15" fill="#1c2437" stroke="#303a52"/>
-<text x="788" y="269" font-family="Inter,Arial,sans-serif" font-size="16" fill="#adb8d0">Validation flow</text>
-<path d="M794 324H1014" stroke="#39445f" stroke-width="2" stroke-linecap="round"/>
-<path d="M794 319L832 297L869 307L910 282L955 294L1014 274" stroke="url(#hero-accent)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="832" cy="297" r="4.5" fill="#9d8dff"/><circle cx="910" cy="282" r="4.5" fill="#9d8dff"/><circle cx="1014" cy="274" r="4.5" fill="#45e0c2"/>
-<rect x="516" y="380" width="521" height="235" rx="15" fill="#1c2437" stroke="#303a52"/>
-<text x="537" y="414" font-family="Inter,Arial,sans-serif" font-size="18" fill="#e9ecf8" font-weight="700">Quality checks</text>
-<path d="M538 436H1015" stroke="#323b51"/>
-<g font-family="Inter,Arial,sans-serif" font-size="18" fill="#c1c9dd">
-<circle cx="552" cy="472" r="12" fill="#21584d"/><path d="m545 472 5 5 9-11" fill="none" stroke="#6af6d5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><text x="579" y="478">Requirements coverage</text>
-<circle cx="552" cy="519" r="12" fill="#21584d"/><path d="m545 519 5 5 9-11" fill="none" stroke="#6af6d5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><text x="579" y="525">API &amp; business rules</text>
-<circle cx="552" cy="566" r="12" fill="#21584d"/><path d="m545 566 5 5 9-11" fill="none" stroke="#6af6d5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><text x="579" y="572">Data integrity</text>
-</g></g>
-<path d="M40 687H1060" stroke="#303a50" stroke-width="2"/>
-<circle cx="54" cy="718" r="6" fill="#9d8dff"/><text x="72" y="726" font-family="Inter,Arial,sans-serif" font-size="21" font-weight="600" fill="#c7cade">From requirements to reliable releases.</text>
-<text x="1055" y="725" text-anchor="end" font-family="Inter,Arial,sans-serif" font-size="16" fill="#6f8b9a" letter-spacing=".8">ANALYZE / TEST / VERIFY</text>
-</svg>
+<img class="hero-inline-art hero-system-art theme-aware-art" src="./assets/3d/hero-system-dark.svg" data-dark-src="./assets/3d/hero-system-dark.svg" data-light-src="./assets/3d/hero-system-light.svg" alt="Illustration of the BA and QA workflow, from requirements and SRS to test cases, API checks, and verified delivery." decoding="async">
 <span class="hero-float hero-float-ba"><span class="hero-float-dot" aria-hidden="true"></span>BA · Requirements</span>
 <span class="hero-float hero-float-qa"><span class="hero-float-dot" aria-hidden="true"></span>QA · Automation</span>
 <span class="hero-float hero-float-data"><span class="hero-float-dot" aria-hidden="true"></span>PostgreSQL · Migration</span>
@@ -771,14 +723,14 @@ html[data-theme="light"] .contact-card{
 <div class="experience-list">
 <article class="experience-entry reveal">
 <div class="experience-aside"><span class="experience-date mono">JUN – SEP 2026</span><span class="experience-order">01</span></div>
-<div class="experience-main"><div class="experience-title"><div><h3>BA &amp; QA Tester Intern</h3><p class="experience-company">Double P Enterprise Co., Ltd. <span>· Bangkok</span></p></div><span class="experience-category">Enterprise HR &amp; ITSM</span></div><figure class="experience-visual visual-qa" aria-label="BA and QA workflow visual"><img src="./assets/3d/ba-qa-workflow.svg" alt="3D-style BA and QA workflow showing requirements, test cases, defects, retesting, API and database validation" loading="lazy" decoding="async"></figure>
+<div class="experience-main"><div class="experience-title"><div><h3>BA &amp; QA Tester Intern</h3><p class="experience-company">Double P Enterprise Co., Ltd. <span>· Bangkok</span></p></div><span class="experience-category">Enterprise HR &amp; ITSM</span></div><figure class="experience-visual visual-qa" aria-label="BA and QA workflow visual"><img class="theme-aware-art" src="./assets/3d/ba-qa-workflow.svg" data-dark-src="./assets/3d/ba-qa-workflow.svg" data-light-src="./assets/3d/ba-qa-workflow-light.svg" alt="3D-style BA and QA workflow showing requirements, test cases, defects, retesting, API and database validation" loading="lazy" decoding="async"></figure>
 <p>Gathered requirements, documented SRS, contributed to UI and workflow design, and wrote test cases. Performed manual, API, database, and regression testing; investigated defects and developed or maintained automated tests for JOiNS+ and MEGA-T.</p>
 <div class="experience-highlights"><span>Requirements &amp; SRS</span><span>Test case design</span><span>API &amp; database validation</span><span>Automation</span></div>
 <div class="experience-worklinks"><a href="#project-joins">JOiNS+ <span aria-hidden="true">↗</span></a><a href="#project-mega">MEGA-T <span aria-hidden="true">↗</span></a></div></div>
 </article>
 <article class="experience-entry reveal">
 <div class="experience-aside"><span class="experience-date mono">NOV 2025 – FEB 2026</span><span class="experience-order">02</span></div>
-<div class="experience-main"><div class="experience-title"><div><h3>Software Developer Intern</h3><p class="experience-company">Division of Educational Services <span>· University of Phayao</span></p></div><span class="experience-category">University digital system</span></div><figure class="experience-visual visual-dev" aria-label="Software development visual"><img src="./assets/3d/frontend-dev-scene.svg" alt="3D-style front-end development scene with responsive UI, RBAC, REST API and UAT elements" loading="lazy" decoding="async"></figure>
+<div class="experience-main"><div class="experience-title"><div><h3>Software Developer Intern</h3><p class="experience-company">Division of Educational Services <span>· University of Phayao</span></p></div><span class="experience-category">University digital system</span></div><figure class="experience-visual visual-dev" aria-label="Software development visual"><img class="theme-aware-art" src="./assets/3d/frontend-dev-scene.svg" data-dark-src="./assets/3d/frontend-dev-scene.svg" data-light-src="./assets/3d/frontend-dev-scene-light.svg" alt="3D-style front-end development scene with responsive UI, RBAC, REST API and UAT elements" loading="lazy" decoding="async"></figure>
 <p>Developed responsive UI and assessment forms for UP-PSF using Next.js and TypeScript. Implemented role-based access, integrated REST APIs and secure file uploads, and supported cross-browser testing and UAT.</p>
 <div class="experience-highlights"><span>Next.js &amp; TypeScript</span><span>RBAC</span><span>REST API &amp; MinIO</span><span>UAT</span></div>
 <div class="experience-worklinks"><a href="#project-uppsf">UP-PSF case study <span aria-hidden="true">↗</span></a></div></div>
@@ -822,9 +774,9 @@ html[data-theme="light"] .contact-card{
 <div class="competency-line"><strong>Data &amp; Automation</strong><div><span>Database validation</span><span>Data reconciliation</span><span>RBAC &amp; SLA validation</span><span>Playwright &amp; Vitest</span></div></div>
 </div>
 <div class="skill-visual-grid" aria-label="3D visual summaries of core skills">
-  <div class="skill-visual-card"><img src="./assets/3d/skill-ba.svg" alt="3D-style business analysis visual for requirements, SRS and user flow" loading="lazy" decoding="async"><span>Business Analysis</span></div>
-  <div class="skill-visual-card"><img src="./assets/3d/skill-qa.svg" alt="3D-style QA visual for testing, defects, retesting and verification" loading="lazy" decoding="async"><span>Quality Assurance</span></div>
-  <div class="skill-visual-card"><img src="./assets/3d/skill-automation-data.svg" alt="3D-style automation and data visual for Playwright, API and PostgreSQL" loading="lazy" decoding="async"><span>Automation &amp; Data</span></div>
+  <div class="skill-visual-card"><img class="theme-aware-art" src="./assets/3d/skill-ba.svg" data-dark-src="./assets/3d/skill-ba.svg" data-light-src="./assets/3d/skill-ba-light.svg" alt="3D-style business analysis visual for requirements, SRS and user flow" loading="lazy" decoding="async"><span>Business Analysis</span></div>
+  <div class="skill-visual-card"><img class="theme-aware-art" src="./assets/3d/skill-qa.svg" data-dark-src="./assets/3d/skill-qa.svg" data-light-src="./assets/3d/skill-qa-light.svg" alt="3D-style QA visual for testing, defects, retesting and verification" loading="lazy" decoding="async"><span>Quality Assurance</span></div>
+  <div class="skill-visual-card"><img class="theme-aware-art" src="./assets/3d/skill-automation-data.svg" data-dark-src="./assets/3d/skill-automation-data.svg" data-light-src="./assets/3d/skill-automation-data-light.svg" alt="3D-style automation and data visual for Playwright, API and PostgreSQL" loading="lazy" decoding="async"><span>Automation &amp; Data</span></div>
 </div>
 <div class="tools-heading reveal"><h3>Tools &amp; technologies</h3><p>Grouped by workflow, with hands-on development skills retained.</p></div>
 <div class="tools-categories"><div class="tool-group reveal"><div class="tool-group-head"><span class="tool-group-no mono">01</span><div><h3>Analysis & Planning</h3><p>Requirements analysis, documentation, project planning, and interface design.</p></div></div><div class="tool-tiles"><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira logo" loading="lazy" decoding="async"></div><span>Jira</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma logo" loading="lazy" decoding="async"></div><span>Figma</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://raw.githubusercontent.com/taigaio/taiga-front/main/app/images/favicon.png" alt="Taiga logo" loading="lazy" decoding="async"></div><span>Taiga</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.simpleicons.org/diagramsdotnet/F08705" alt="draw.io logo" loading="lazy" decoding="async"></div><span>draw.io</span></div><div class="tool-tile"><div class="tool-logo"><img src="https://cdn.simpleicons.org/obsidian/7C3AED" alt="Obsidian logo" loading="lazy" decoding="async"></div><span>Obsidian</span></div></div></div>
@@ -856,7 +808,18 @@ html[data-theme="light"] .contact-card{
 const root=document.documentElement;
 const themeToggle=document.getElementById('themeToggle');
 root.dataset.theme=localStorage.getItem('portfolio-theme')||'dark';
-themeToggle.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('portfolio-theme',root.dataset.theme);});
+function syncThemeArt(){
+  document.querySelectorAll('img[data-dark-src][data-light-src]').forEach(img=>{
+    const next=root.dataset.theme==='light'?img.dataset.lightSrc:img.dataset.darkSrc;
+    if(img.getAttribute('src')!==next) img.setAttribute('src',next);
+  });
+}
+syncThemeArt();
+themeToggle.addEventListener('click',()=>{
+  root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';
+  localStorage.setItem('portfolio-theme',root.dataset.theme);
+  syncThemeArt();
+});
 const nav=document.getElementById('nav'),progress=document.getElementById('progress'),glow=document.getElementById('glow');
 const menuToggle=document.getElementById('navMenuToggle'),navLinks=document.getElementById('navLinks');
 function closeMenu(){nav.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open navigation menu');}
