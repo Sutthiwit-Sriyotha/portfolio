@@ -747,6 +747,81 @@ section{padding:65px 0}
  .featured-media .project-inline-art,.secondary-media img{transform:none!important;transition:none!important}
 }
 
+
+/* === UNIFIED STICKY + HORIZONTAL PORTFOLIO GALLERY === */
+.portfolio-horizontal{padding:100px 0 55px;background:radial-gradient(circle at 65% 30%,rgba(99,84,190,.08),transparent 60%),var(--bg)}
+.portfolio-horizontal .section-head{margin-bottom:30px}
+.hshowcase{--offset:0px;position:relative;min-height:700px}
+.hshowcase-sticky{position:sticky;top:74px;height:calc(100svh - 92px);min-height:610px;max-height:860px;display:flex;flex-direction:column;justify-content:center;gap:18px;overflow:hidden}
+.hshowcase-bar{display:flex;align-items:end;justify-content:space-between;gap:20px}
+.hshowcase-bar>div:first-child{display:grid;gap:5px}
+.hshowcase-eyebrow{font:600 10px "JetBrains Mono",monospace;letter-spacing:.13em;color:var(--cyan)}
+.hshowcase-bar strong{font-size:clamp(22px,3vw,42px);letter-spacing:-.05em}
+.hshowcase-counter{font:600 22px "JetBrains Mono",monospace;color:var(--text)}
+.hshowcase-counter span+span{font-size:14px;color:var(--muted)}
+.hshowcase-viewport{width:100%;max-width:100vw;overflow:visible;outline-offset:-4px}
+.hshowcase-track{display:flex;gap:clamp(18px,2.6vw,34px);align-items:stretch;width:max-content;padding:12px max(26px,calc((100vw - 1240px)/2)) 22px;transform:translate3d(calc(-1 * var(--offset)),0,0);will-change:transform}
+.hshowcase-track>.featured-project,.hshowcase-track>.secondary-project{
+ display:flex!important;flex-direction:column!important;grid-column:auto!important;
+ width:min(70vw,850px)!important;min-width:0!important;max-width:none!important;
+ min-height:0!important;height:min(62svh,590px);margin:0!important;
+ transform:none!important;opacity:1!important;rotate:none!important;
+ border-radius:26px;border:1px solid var(--line);background:var(--surface);
+ box-shadow:0 18px 60px rgba(0,0,0,.19);overflow:hidden;
+}
+.hshowcase-track>.featured-project .featured-media,
+.hshowcase-track>.secondary-project .secondary-media{
+ position:relative;display:flex;width:100%;height:62%!important;min-height:0!important;
+ flex:0 0 62%;padding:32px 20px 16px!important;align-items:center;justify-content:center;
+ border:0;overflow:hidden;background:radial-gradient(circle at 55% 40%,rgba(148,138,242,.18),transparent 62%),linear-gradient(138deg,#25324b,#0d1e2c);
+}
+.hshowcase-track>.featured-project .project-inline-art,
+.hshowcase-track>.secondary-project .secondary-media img{
+ position:relative!important;inset:auto!important;width:100%!important;height:100%!important;
+ max-width:100%!important;max-height:100%!important;object-fit:contain!important;
+ transform:none!important;rotate:none!important;filter:none!important;
+ box-shadow:none!important;border:none!important;padding:0!important;
+}
+.hshowcase-track .featured-media::before,.hshowcase-track .featured-media::after{display:none}
+.hshowcase-track .media-topline{z-index:3}
+.hshowcase-track .concept-caption{z-index:4}
+.hshowcase-track .featured-copy,.hshowcase-track .secondary-copy{
+ display:flex;flex-direction:column;gap:7px;flex:1;min-width:0;padding:18px 28px 24px!important;justify-content:flex-start!important;
+}
+.hshowcase-track .featured-copy h3,.hshowcase-track .secondary-copy h3{max-width:none;font-size:clamp(24px,2.3vw,35px);line-height:1.18;margin:0}
+.hshowcase-track .featured-role,.hshowcase-track .secondary-role{font-size:12px;margin:0;color:var(--muted)}
+.hshowcase-track .featured-overview,.hshowcase-track .secondary-copy>p{font-size:13px;line-height:1.5;margin:0;max-width:72ch}
+.hshowcase-track .featured-contributions,.hshowcase-track .secondary-contributions,
+.hshowcase-track .featured-copy>.project-label,.hshowcase-track .secondary-copy>.project-label,
+.hshowcase-track .featured-copy .tags,.hshowcase-track .secondary-copy .tags{display:none!important}
+.hshowcase-track .open-case{margin-top:auto;align-self:flex-start;padding:10px 16px}
+.hshowcase-track .secondary-project:nth-child(2),.hshowcase-track .secondary-project:nth-child(3){transform:none!important}
+.hshowcase-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.hshowcase-trackline{height:3px;border-radius:8px;background:var(--line);width:min(58%,650px);overflow:hidden}
+.hshowcase-trackline>div{height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.hshowcase-bottom p{font:500 10px "JetBrains Mono",monospace;letter-spacing:.09em;color:var(--muted);margin:0}
+@media(max-width:800px),(prefers-reduced-motion:reduce){
+ .portfolio-horizontal{padding:70px 0}
+ .hshowcase{min-height:0!important;height:auto!important}
+ .hshowcase-sticky{position:relative;top:auto;height:auto;max-height:none;min-height:0;overflow:visible}
+ .hshowcase-viewport{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+ .hshowcase-track{transform:none!important;will-change:auto;padding:10px 16px 20px}
+ .hshowcase-track>.featured-project,.hshowcase-track>.secondary-project{
+  width:min(86vw,660px)!important;height:560px!important;scroll-snap-align:center;flex-shrink:0
+ }
+ .hshowcase-bottom p{font-size:10px}
+}
+@media(max-width:540px){
+ .hshowcase-bar,.hshowcase-bottom{padding:0 16px}
+ .hshowcase-track>.featured-project,.hshowcase-track>.secondary-project{height:530px!important}
+ .hshowcase-track>.featured-project .featured-media,.hshowcase-track>.secondary-project .secondary-media{height:55%!important;flex-basis:55%;padding:24px 9px 12px!important}
+ .hshowcase-track .featured-copy,.hshowcase-track .secondary-copy{padding:14px 18px 18px!important}
+ .hshowcase-track .featured-copy h3,.hshowcase-track .secondary-copy h3{font-size:23px}
+ .hshowcase-track .featured-overview,.hshowcase-track .secondary-copy>p{font-size:12px}
+ .hshowcase-bottom p{display:none}
+ .hshowcase-trackline{width:100%}
+}
+
 </style>
 </head>
 <body>
@@ -857,10 +932,16 @@ section{padding:65px 0}
 </article>
 </div></div></section>
 
-<section class="projects" id="work"><div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">02 / Selected Projects</div><h2>Work that shows how I think.</h2></div><p>Five projects across BA/QA, software development, and UX. Explore my responsibilities and process in each case study.</p></div>
-<div class="featured-heading reveal"><span>FEATURED · BA / QA</span><span>Enterprise project experience</span></div>
-<div class="featured-grid"><article id="project-joins" class="featured-project reveal">
+<section class="projects portfolio-horizontal" id="work">
+<div class="wrap">
+ <div class="section-head reveal"><div><div class="eyebrow">02 / Selected Projects</div><h2>Work that shows how I think.</h2></div><p>Five projects across BA/QA, software development, and UX. Scroll to explore — each work appears only once.</p></div>
+</div>
+<div class="hshowcase" id="hshowcase">
+ <div class="hshowcase-sticky">
+  <div class="hshowcase-bar wrap"><div><span class="hshowcase-eyebrow">SELECTED WORK / 2025—2026</span><strong>Explore the work</strong></div><div class="hshowcase-counter"><span id="hshowcase-current">01</span><span> / 05</span></div></div>
+  <div class="hshowcase-viewport" tabindex="0" aria-label="Five projects horizontal gallery">
+   <div class="hshowcase-track">
+    <article id="project-joins" class="featured-project reveal">
 <button type="button" class="featured-media joins-media case-media-trigger" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study">
 <div class="media-topline"><span class="media-index">01 / ENTERPRISE HR · FEATURED</span></div>
 <img class="project-inline-art featured-3d-art" src="./assets/3d/joins-hr-visual.svg" alt="3D-style enterprise HR workflow visual showing leave requests, approval routing, business rules and data reconciliation" loading="lazy" decoding="async">
@@ -875,9 +956,8 @@ section{padding:65px 0}
 <span class="concept-caption">Concept visual · Internal screenshots remain private</span>
 </button>
 <div class="featured-copy"><div class="project-meta"><span>MEGA-T ITSM Platform</span><span>Double P Enterprise</span></div><h3>SLA testing, automation &amp; tenant isolation</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Multi-tenant IT service management for tickets, priorities, SLAs, and support workflows.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements, contributed to UI design, and wrote test cases.</li><li>Developed automated UI and API tests for workflows, SLAs, RBAC, and data isolation.</li><li>Investigated defects using API payloads, PostgreSQL records, and server logs.</li></ul>
-<div class="tags"><span class="tag">Playwright</span><span class="tag">Vitest</span><span class="tag">API testing</span><span class="tag">SLA</span><span class="tag">PostgreSQL</span><span class="tag">RBAC</span></div><button type="button" class="open-case" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study">View Case Study <span aria-hidden="true">↗</span></button></div></article></div>
-<div class="secondary-heading reveal"><div><div class="eyebrow">More experience &amp; projects</div><h3>Development &amp; design work.</h3></div><p>Real project screenshots · Select a case study for details.</p></div>
-<div class="secondary-grid"><article id="project-uppsf" class="secondary-project reveal">
+<div class="tags"><span class="tag">Playwright</span><span class="tag">Vitest</span><span class="tag">API testing</span><span class="tag">SLA</span><span class="tag">PostgreSQL</span><span class="tag">RBAC</span></div><button type="button" class="open-case" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
+<article id="project-uppsf" class="secondary-project reveal">
 <button type="button" class="secondary-media case-media-trigger" data-case="uppsf" aria-haspopup="dialog" aria-label="View UP-PSF Digital Assessment System case study"><span class="secondary-index">03 / INTERNSHIP · SOFTWARE DEVELOPMENT</span><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System screenshot" loading="lazy" decoding="async" width="900" height="540"></button>
 <div class="secondary-copy"><div class="project-type">INTERNSHIP · SOFTWARE DEVELOPMENT</div><h3>UP-PSF Digital Assessment System</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> Software Developer Intern · University of Phayao</div><p>Paperless faculty assessment and evaluation workflows.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Built responsive assessment forms with multiple editing modes.</li><li>Implemented role-based UI access, REST API integration, and UAT fixes.</li></ul><div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">MinIO</span></div><button type="button" class="open-case" data-case="uppsf" aria-haspopup="dialog" aria-label="View UP-PSF Digital Assessment System case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-restaurant" class="secondary-project reveal">
@@ -885,10 +965,13 @@ section{padding:65px 0}
 <div class="secondary-copy"><div class="project-type">DEVELOPMENT PROJECT</div><h3>Restaurant Management Web App</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> Full-stack development</div><p>QR ordering and operational workflows for restaurant staff.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Built QR-based ordering and real-time order tracking.</li><li>Developed a store dashboard, payment confirmation, and Excel reporting.</li></ul><div class="tags"><span class="tag">QR ordering</span><span class="tag">Dashboard</span><span class="tag">REST API</span><span class="tag">Excel</span></div><button type="button" class="open-case" data-case="restaurant" aria-haspopup="dialog" aria-label="View Restaurant Management Web App case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-tamroi" class="secondary-project reveal">
 <button type="button" class="secondary-media case-media-trigger" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study"><span class="secondary-index">05 / UX/UI & FRONT-END</span><img src="./assets/images/online-plant-store.png" alt="TAMROI Online Plant Store screenshot" loading="lazy" decoding="async" width="900" height="540"></button>
-<div class="secondary-copy"><div class="project-type">UX/UI & FRONT-END</div><h3>TAMROI Online Plant Store</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> UX/UI & front-end design</div><p>Responsive e-commerce experience for browsing and buying plants.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Conducted user research and created Figma prototypes.</li><li>Worked on responsive shopping interface design.</li></ul><div class="tags"><span class="tag">User research</span><span class="tag">Figma</span><span class="tag">UX/UI</span><span class="tag">Responsive UI</span></div><button type="button" class="open-case" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study">View Case Study <span aria-hidden="true">↗</span></button></div></article></div>
-
-
-</div></section>
+<div class="secondary-copy"><div class="project-type">UX/UI & FRONT-END</div><h3>TAMROI Online Plant Store</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> UX/UI & front-end design</div><p>Responsive e-commerce experience for browsing and buying plants.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Conducted user research and created Figma prototypes.</li><li>Worked on responsive shopping interface design.</li></ul><div class="tags"><span class="tag">User research</span><span class="tag">Figma</span><span class="tag">UX/UI</span><span class="tag">Responsive UI</span></div><button type="button" class="open-case" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
+   </div>
+  </div>
+  <div class="hshowcase-bottom wrap"><div class="hshowcase-trackline"><div id="hshowcase-fill"></div></div><p>SCROLL DOWN TO MOVE SIDEWAYS <span aria-hidden="true">↗</span></p></div>
+ </div>
+</div>
+</section>
 
 <section id="skills"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">03 / Skills &amp; Tools</div><h2>Skills, then tools.</h2></div><p>BA and QA capabilities first, followed by the development and delivery tools I have used.</p></div><div class="competency-groups reveal">
 <div class="competency-line"><strong>Business Analysis</strong><div><span>Requirements gathering</span><span>SRS documentation</span><span>Workflow &amp; UI design</span><span>Acceptance criteria</span></div></div>
@@ -1251,6 +1334,55 @@ dlg.addEventListener('close',()=>{document.body.classList.remove('dialog-open');
 
 
 
+
+
+<!-- Horizontal scroll follows vertical page scroll; one gallery, five cards. -->
+<script>
+(()=>{
+ const root=document.getElementById('hshowcase');
+ if(!root)return;
+ const viewport=root.querySelector('.hshowcase-viewport'),track=root.querySelector('.hshowcase-track');
+ const cards=[...track.querySelectorAll('[id^="project-"]')];
+ const fill=document.getElementById('hshowcase-fill'),current=document.getElementById('hshowcase-current');
+ const media=matchMedia('(max-width:800px), (prefers-reduced-motion:reduce)');
+ let distance=0,scheduled=false;
+ function update(){
+  scheduled=false;
+  const horizontal=media.matches;
+  if(horizontal){
+   root.style.height='auto';root.style.removeProperty('--offset');
+   const max=Math.max(1,viewport.scrollWidth-viewport.clientWidth);
+   const pos=viewport.scrollLeft;
+   if(fill)fill.style.transform='scaleX('+Math.min(1,pos/max)+')';
+   if(current){
+    let idx=0,best=Infinity;
+    for(let i=0;i<cards.length;i++){const d=Math.abs(cards[i].offsetLeft-pos-viewport.clientWidth*.08);if(d<best){idx=i;best=d}}
+    current.textContent=String(idx+1).padStart(2,'0');
+   }
+   return;
+  }
+  const viewHeight=window.innerHeight;
+  const vw=viewport.clientWidth;
+  distance=Math.max(0,track.scrollWidth-vw);
+  const travel=Math.max(1,distance);
+  const stickyHeight=root.querySelector('.hshowcase-sticky').offsetHeight;
+  root.style.height=Math.ceil(stickyHeight+travel+viewHeight*.2)+'px';
+  const bounds=root.getBoundingClientRect();
+  const t=Math.min(1,Math.max(0,-bounds.top/Math.max(1,root.offsetHeight-stickyHeight)));
+  const x=t*distance;
+  root.style.setProperty('--offset',x+'px');
+  if(fill)fill.style.transform='scaleX('+t+')';
+  if(current){let idx=0;for(let i=0;i<cards.length;i++){if(cards[i].offsetLeft-x < vw*.53)idx=i}current.textContent=String(Math.min(5,idx+1)).padStart(2,'0')}
+ }
+ function request(){if(!scheduled){scheduled=true;requestAnimationFrame(update)}}
+ addEventListener('scroll',request,{passive:true});
+ addEventListener('resize',request);
+ viewport.addEventListener('scroll',request,{passive:true});
+ if(media.addEventListener)media.addEventListener('change',request);
+ addEventListener('load',request,{once:true});
+ update();
+})();
+</script>
 
 </body>
 </html>
