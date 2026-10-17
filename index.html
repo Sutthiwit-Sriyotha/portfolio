@@ -882,6 +882,59 @@ section{padding:65px 0}
  border:0!important;box-shadow:none!important;background:transparent!important;
 }
 #project-joins .browser-canvas .concept-caption,#project-mega .browser-canvas .concept-caption{position:absolute;z-index:6}
+
+/* === CONSISTENT WIDE CASE STUDIES: ALL FIVE MATCH PROJECT 05 === */
+.bento-project-grid{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+.bento-project-grid>article.featured-project,.bento-project-grid>article.secondary-project,
+.bento-project-grid>#project-joins,.bento-project-grid>#project-mega,
+.bento-project-grid>#project-uppsf,.bento-project-grid>#project-restaurant,.bento-project-grid>#project-tamroi{
+ grid-column:1/-1!important;display:grid!important;
+ grid-template-columns:minmax(0,1.55fr) minmax(315px,.75fr)!important;
+ min-height:410px!important;transform:none!important;
+}
+.bento-project-grid>article .featured-media,.bento-project-grid>article .secondary-media,
+.bento-project-grid>#project-tamroi .secondary-media{
+ height:100%!important;min-height:410px!important;max-height:none!important;
+ padding:24px!important;align-self:stretch;
+}
+.bento-project-grid>article .browser-frame{height:100%!important;min-height:340px!important;max-width:none!important}
+.bento-project-grid>article .browser-canvas{position:relative!important;flex:1 1 0!important;min-height:0!important;overflow:hidden!important}
+.bento-project-grid>article .browser-canvas>img,
+.bento-project-grid #project-joins .browser-canvas>img.mockup-image,
+.bento-project-grid #project-mega .browser-canvas>img.mockup-image{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+ max-width:100%!important;max-height:100%!important;object-fit:contain!important;
+ object-position:center!important;padding:0!important;margin:0!important;
+ transform:none!important;filter:none!important;
+}
+.bento-project-grid>article .featured-copy,.bento-project-grid>article .secondary-copy,
+.bento-project-grid>#project-tamroi .secondary-copy{
+ padding:32px!important;gap:12px;display:flex!important;justify-content:center!important;
+}
+.bento-project-grid>article .featured-copy h3,.bento-project-grid>article .secondary-copy h3{max-width:none!important}
+.bento-project-grid .featured-media .media-topline,.bento-project-grid .secondary-media .secondary-index{bottom:31px;left:34px}
+.bento-project-grid .featured-media .concept-caption{bottom:31px;right:34px}
+@media(max-width:930px){
+ .bento-project-grid>article.featured-project,.bento-project-grid>article.secondary-project,
+ .bento-project-grid>#project-joins,.bento-project-grid>#project-mega,
+ .bento-project-grid>#project-uppsf,.bento-project-grid>#project-restaurant,.bento-project-grid>#project-tamroi{
+  grid-template-columns:minmax(0,1fr)!important;display:flex!important;flex-direction:column!important;
+  min-height:0!important;
+ }
+ .bento-project-grid>article .featured-media,.bento-project-grid>article .secondary-media,
+ .bento-project-grid>#project-tamroi .secondary-media{height:clamp(260px,54vw,470px)!important;min-height:0!important}
+ .bento-project-grid>article .browser-frame{min-height:0!important}
+ .bento-project-grid>article .featured-copy,.bento-project-grid>article .secondary-copy,
+ .bento-project-grid>#project-tamroi .secondary-copy{padding:24px!important}
+}
+@media(max-width:540px){
+ .bento-project-grid{gap:24px!important}
+ .bento-project-grid>article .featured-media,.bento-project-grid>article .secondary-media,
+ .bento-project-grid>#project-tamroi .secondary-media{height:260px!important;padding:12px!important}
+ .bento-project-grid .featured-media .media-topline,.bento-project-grid .secondary-media .secondary-index{bottom:17px;left:19px}
+ .bento-project-grid .featured-media .concept-caption{bottom:17px;right:19px;max-width:55%}
+}
+
 </style>
 </head>
 <body>
