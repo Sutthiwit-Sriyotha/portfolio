@@ -583,30 +583,6 @@ section{padding:65px 0}
 }
 
 
-/* === STORYBOARD SCROLL MOTION V1 === */
-.scroll-story{margin-top:72px;padding-top:30px;border-top:1px solid var(--line)}
-.scroll-story-heading{display:flex;justify-content:space-between;gap:24px;align-items:end;margin:0 0 28px}
-.scroll-story-heading h3{font-size:clamp(26px,3vw,45px);letter-spacing:-.05em;margin:6px 0}
-.scroll-story-heading p{max-width:380px;color:var(--muted);font-size:13px;line-height:1.7}
-.scroll-story-layout{display:grid;grid-template-columns:minmax(0,1.17fr) minmax(280px,.83fr);gap:clamp(22px,4vw,60px);align-items:start}
-.scroll-story-stage{position:sticky;top:calc(var(--nav-height,76px) + 34px);height:min(56vw,500px);max-height:calc(100dvh - 130px);min-height:310px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(130deg,#1c2239,#0c1b23);isolation:isolate;box-shadow:0 30px 90px rgba(0,0,0,.20)}
-.scroll-story-picture{position:absolute;inset:0;display:block;opacity:0;transform:translate3d(0,28px,0) scale(1.035);filter:blur(6px);transition:opacity .62s ease,transform .85s cubic-bezier(.16,1,.3,1),filter .62s ease;pointer-events:none}
-.scroll-story-picture.is-active{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0);pointer-events:auto}
-.scroll-story-picture img{width:100%;height:100%;object-fit:contain;display:block;padding:16px;box-sizing:border-box}
-.scroll-story-caption{position:absolute;bottom:14px;left:14px;right:14px;border-radius:12px;padding:12px 16px;background:rgba(6,12,23,.83);color:#eef2fd;font-size:12px;z-index:2;backdrop-filter:blur(12px);pointer-events:none}
-.scroll-story-progress{position:absolute;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--purple),var(--cyan));z-index:4}
-.scroll-story-steps{position:relative}
-.scroll-story-step{min-height:78vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:14px;opacity:.50;transition:opacity .4s;scroll-margin-top:120px}
-.scroll-story-step.is-active{opacity:1}
-.scroll-story-step .mono{font-size:11px;color:var(--cyan)}
-.scroll-story-step h4{font-size:clamp(22px,2.8vw,37px);line-height:1.16;letter-spacing:-.04em;margin:0}
-.scroll-story-step p{max-width:360px;font-size:14px;line-height:1.8;color:var(--muted)}
-.scroll-story-step button{background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:13px 19px;cursor:pointer}
-.scroll-story-step button:hover{border-color:var(--cyan)}
-@media(max-width:820px){.scroll-story-layout{display:block}.scroll-story-stage{position:sticky;top:72px;height:44vh;min-height:245px;max-height:390px;z-index:3}.scroll-story-steps{display:grid;grid-template-columns:1fr}.scroll-story-step{min-height:42vh;padding:24px 6px}.scroll-story-heading{display:block}.scroll-story-heading p{margin-top:12px}}
-@media(prefers-reduced-motion:reduce){.scroll-story-picture,.scroll-story-step{transition:none}.scroll-story-picture{transform:none;filter:none}}
-
-
 /* === EDITORIAL PROJECT SHOWCASE · REVIEWED V1 ===
    UX: preserve reading order and legible image previews.
    Visual: one hero panel, subtle stacked cards, strong label hierarchy.
@@ -671,6 +647,23 @@ section{padding:65px 0}
   .featured-media .project-inline-art,.secondary-media img{transition:none!important}
 }
 
+
+/* Distinct visual treatment using the original cards only: no repeated projects. */
+@media(min-width:981px){
+.secondary-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+.secondary-project{border-radius:25px;box-shadow:0 15px 38px rgba(0,0,0,.10)}
+.secondary-project:nth-child(2){transform:translateY(28px)}
+.secondary-project:nth-child(3){transform:translateY(56px)}
+.secondary-media{height:255px;padding:40px 16px 14px}
+.secondary-project:hover{transform:translateY(-5px)}
+}
+.secondary-heading{margin-top:82px}
+.secondary-media img{object-fit:contain!important;max-width:100%;box-sizing:border-box}
+.featured-media{height:320px}
+.featured-copy{padding:30px}
+@media(max-width:980px){.secondary-project:nth-child(2),.secondary-project:nth-child(3){transform:none}.featured-media{height:260px}}
+@media(max-width:670px){.featured-media{height:220px}.secondary-media{height:220px}}
+@media(prefers-reduced-motion:reduce){.secondary-project{transform:none!important}}
 </style>
 </head>
 <body>
@@ -811,23 +804,7 @@ section{padding:65px 0}
 <button type="button" class="secondary-media case-media-trigger" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study"><span class="secondary-index">05 / UX/UI & FRONT-END</span><img src="./assets/images/online-plant-store.png" alt="TAMROI Online Plant Store screenshot" loading="lazy" decoding="async" width="900" height="540"></button>
 <div class="secondary-copy"><div class="project-type">UX/UI & FRONT-END</div><h3>TAMROI Online Plant Store</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> UX/UI & front-end design</div><p>Responsive e-commerce experience for browsing and buying plants.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Conducted user research and created Figma prototypes.</li><li>Worked on responsive shopping interface design.</li></ul><div class="tags"><span class="tag">User research</span><span class="tag">Figma</span><span class="tag">UX/UI</span><span class="tag">Responsive UI</span></div><button type="button" class="open-case" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study">View Case Study <span aria-hidden="true">↗</span></button></div></article></div>
 
-<div class="scroll-story" aria-label="Scroll through development and design work">
- <div class="scroll-story-heading"><div><div class="eyebrow">SCROLL-DRIVEN SHOWCASE</div><h3>Three projects. One moving story.</h3></div><p>Scroll down: the preview changes between three approved academic and university projects. Select a step to open its case study.</p></div>
- <div class="scroll-story-layout">
-  <div class="scroll-story-stage" aria-live="off">
-   <div class="scroll-story-progress" aria-hidden="true"></div>
-   <div class="scroll-story-picture is-active" data-story-image="0"><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System real screenshot" loading="lazy"></div>
-   <div class="scroll-story-picture" data-story-image="1"><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App real screenshot" loading="lazy"></div>
-   <div class="scroll-story-picture" data-story-image="2"><img src="./assets/images/online-plant-store.png" alt="TAMROI Online Plant Store real screenshot" loading="lazy"></div>
-   <div class="scroll-story-caption"><span id="storyLiveCaption">01 / UP-PSF — Development &amp; UAT</span></div>
-  </div>
-  <div class="scroll-story-steps">
-   <article class="scroll-story-step is-active" data-story-step="0"><span class="mono">01 / DEVELOPMENT</span><h4>UP-PSF Digital Assessment System</h4><p>Forms, role-based access, REST API integration, and user acceptance testing.</p><button type="button" data-case="uppsf" aria-haspopup="dialog">Explore UP-PSF ↗</button></article>
-   <article class="scroll-story-step" data-story-step="1"><span class="mono">02 / FULL-STACK WORK</span><h4>Restaurant Management Web App</h4><p>QR-based ordering, restaurant workflow dashboards, and real-time order status.</p><button type="button" data-case="restaurant" aria-haspopup="dialog">Explore Restaurant App ↗</button></article>
-   <article class="scroll-story-step" data-story-step="2"><span class="mono">03 / DESIGN WORK</span><h4>TAMROI Online Plant Store</h4><p>User research, Figma prototypes and responsive e-commerce design.</p><button type="button" data-case="tamroi" aria-haspopup="dialog">Explore TAMROI ↗</button></article>
-  </div>
- </div>
-</div>
+
 </div></section>
 
 <section id="skills"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">03 / Skills &amp; Tools</div><h2>Skills, then tools.</h2></div><p>BA and QA capabilities first, followed by the development and delivery tools I have used.</p></div><div class="competency-groups reveal">
@@ -1190,39 +1167,7 @@ dlg.addEventListener('close',()=>{document.body.classList.remove('dialog-open');
 </script>
 
 
-<!-- === STORYBOARD SCROLL MOTION V1 === -->
-<script>
-(()=>{
- const story=document.querySelector('.scroll-story');
- if(!story)return;
- const steps=[...story.querySelectorAll('[data-story-step]')];
- const pics=[...story.querySelectorAll('[data-story-image]')];
- const progress=story.querySelector('.scroll-story-progress');
- const cap=story.querySelector('#storyLiveCaption');
- const captions=['01 / UP-PSF — Development & UAT','02 / Restaurant Management — Full-stack work','03 / TAMROI — UI/UX design'];
- let active=-1;
- const activate=(i)=>{
-   if(i===active)return;active=i;
-   steps.forEach((el,n)=>el.classList.toggle('is-active',n===i));
-   pics.forEach((el,n)=>el.classList.toggle('is-active',n===i));
-   if(cap)cap.textContent=captions[i];
- };
- activate(0);
- const refresh=()=>{
-   const vh=window.innerHeight;let selected=0;let dist=Infinity;
-   steps.forEach((step,i)=>{const d=Math.abs(step.getBoundingClientRect().top+step.offsetHeight*.45-vh*.57);if(d<dist){dist=d;selected=i}});
-   activate(selected);
-   const region=story.getBoundingClientRect();
-   const denom=Math.max(1,story.offsetHeight-vh);
-   const p=Math.max(0,Math.min(1,-region.top/denom));
-   if(progress)progress.style.transform='scaleX('+p+')';
- };
- let raf=0;
- const request=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;refresh()})};
- addEventListener('scroll',request,{passive:true});addEventListener('resize',request);
- refresh();
-})();
-</script>
+
 
 </body>
 </html>
