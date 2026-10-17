@@ -1476,6 +1476,46 @@ section{padding:65px 0}
   transform:none!important;
   margin:0!important;
 }
+
+/* Emergency visibility fix: projects 02 and 04 render the image directly. */
+.portfolio-bento #project-mega .featured-media,
+.portfolio-bento #project-restaurant .secondary-media{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  overflow:visible!important;
+}
+.portfolio-bento #project-mega .browser-frame,
+.portfolio-bento #project-mega .browser-canvas,
+.portfolio-bento #project-restaurant .browser-frame,
+.portfolio-bento #project-restaurant .browser-canvas{
+  display:contents!important;
+}
+.portfolio-bento #project-mega img.mockup-image,
+.portfolio-bento #project-restaurant .secondary-media img{
+  display:block!important;
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  opacity:1!important;
+}
+.portfolio-bento #project-mega .concept-caption{
+  position:absolute!important;
+  right:16px!important;
+  bottom:12px!important;
+  left:auto!important;
+  z-index:8!important;
+}
 </style>
 </head>
 <body>
