@@ -1928,6 +1928,116 @@ section{padding:65px 0}
   .project-showcase .bento-project-grid>article{position:relative!important;top:auto!important;filter:none!important;transform:none!important}
 }
 
+
+/* === PROJECT SHOWCASE V5 · LAYOUT AND IMAGE FIT HOTFIX === */
+.project-showcase{overflow:visible!important}
+.project-showcase .wrap{width:min(100% - 72px,1180px)!important;margin-inline:auto!important}
+.project-showcase .bento-project-grid{gap:32px!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important}
+.project-showcase .bento-project-grid>article,
+.project-showcase .bento-project-grid>article:nth-child(even),
+.project-showcase .bento-project-grid>#project-tamroi{
+  position:relative!important;top:auto!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  min-width:0!important;width:100%!important;min-height:480px!important;
+  border-radius:28px!important;overflow:hidden!important;
+  transform:none;filter:none;
+}
+.project-showcase .bento-project-grid>article:nth-child(even) .featured-media,
+.project-showcase .bento-project-grid>article:nth-child(even) .secondary-media{order:2!important}
+.project-showcase .bento-project-grid>article:nth-child(even) .featured-copy,
+.project-showcase .bento-project-grid>article:nth-child(even) .secondary-copy{order:1!important}
+.project-showcase .bento-project-grid>article .featured-media,
+.project-showcase .bento-project-grid>article .secondary-media,
+.project-showcase .bento-project-grid>#project-tamroi .secondary-media{
+  width:100%!important;height:100%!important;min-height:440px!important;
+  min-width:0!important;padding:36px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  overflow:hidden!important;order:0;
+}
+.project-showcase .bento-project-grid>article .browser-frame{
+  display:flex!important;position:relative!important;inset:auto!important;
+  width:100%!important;max-width:490px!important;
+  height:auto!important;aspect-ratio:16 / 10!important;
+  flex-direction:column!important;flex-shrink:0!important;
+  transform:none;opacity:1!important;visibility:visible!important;
+  overflow:hidden!important;z-index:2!important;
+}
+.project-showcase .bento-project-grid>article .browser-canvas{
+  display:block!important;position:relative!important;
+  flex:1 1 auto!important;min-height:0!important;min-width:0!important;
+  width:100%!important;height:auto!important;overflow:hidden!important;
+}
+.project-showcase .bento-project-grid>article .browser-canvas>img,
+.project-showcase .bento-project-grid>article .browser-canvas>.project-inline-art,
+.project-showcase .bento-project-grid>article .featured-media img,
+.project-showcase .bento-project-grid>article .secondary-media img{
+  display:block!important;position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
+  object-fit:contain!important;object-position:center!important;
+  opacity:1!important;visibility:visible!important;filter:none!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  transform:none!important;
+}
+.project-showcase .bento-project-grid>article .featured-copy,
+.project-showcase .bento-project-grid>article .secondary-copy,
+.project-showcase .bento-project-grid>#project-tamroi .secondary-copy{
+  min-width:0!important;width:100%!important;padding:clamp(30px,3.6vw,50px)!important;
+  align-items:flex-start!important;text-align:left!important;gap:12px!important;
+}
+.project-showcase .bento-project-grid>article .featured-copy h3,
+.project-showcase .bento-project-grid>article .secondary-copy h3{
+  font-size:clamp(30px,3.4vw,47px)!important;line-height:1.08!important;
+  overflow-wrap:anywhere!important;max-width:100%!important;
+}
+.project-showcase .bento-project-grid>article .featured-copy .tags,
+.project-showcase .bento-project-grid>article .secondary-copy .tags{flex-wrap:wrap!important}
+.project-showcase .bento-project-grid>article .featured-contributions,
+.project-showcase .bento-project-grid>article .secondary-contributions{display:grid!important}
+.project-showcase .bento-project-grid>article .concept-caption{
+  bottom:14px!important;right:14px!important;max-width:min(70%,240px)!important;
+}
+@media(min-width:981px){
+  .project-showcase .bento-project-grid>article:nth-child(even) .featured-media,
+  .project-showcase .bento-project-grid>article:nth-child(even) .secondary-media{order:2!important}
+}
+@media(max-width:980px){
+  .project-showcase .wrap{width:min(100% - 40px,720px)!important}
+  .project-showcase .bento-project-grid>article,
+  .project-showcase .bento-project-grid>article:nth-child(even),
+  .project-showcase .bento-project-grid>#project-tamroi{
+    display:flex!important;flex-direction:column!important;min-height:0!important;
+  }
+  .project-showcase .bento-project-grid>article .featured-media,
+  .project-showcase .bento-project-grid>article .secondary-media,
+  .project-showcase .bento-project-grid>#project-tamroi .secondary-media{
+    order:0!important;width:100%!important;height:360px!important;min-height:0!important;
+    padding:25px!important;
+  }
+  .project-showcase .bento-project-grid>article .featured-copy,
+  .project-showcase .bento-project-grid>article .secondary-copy,
+  .project-showcase .bento-project-grid>#project-tamroi .secondary-copy{
+    order:1!important;padding:32px!important;
+  }
+}
+@media(max-width:620px){
+  .project-showcase .wrap{width:calc(100% - 28px)!important}
+  .project-showcase .bento-project-grid{gap:22px!important}
+  .project-showcase .bento-project-grid>article .featured-media,
+  .project-showcase .bento-project-grid>article .secondary-media,
+  .project-showcase .bento-project-grid>#project-tamroi .secondary-media{
+    height:245px!important;min-height:0!important;padding:14px!important;
+  }
+  .project-showcase .bento-project-grid>article .featured-copy,
+  .project-showcase .bento-project-grid>article .secondary-copy,
+  .project-showcase .bento-project-grid>#project-tamroi .secondary-copy{padding:25px 21px!important}
+  .project-showcase .bento-project-grid>article .featured-copy h3,
+  .project-showcase .bento-project-grid>article .secondary-copy h3{font-size:clamp(26px,8vw,36px)!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .project-showcase .bento-project-grid>article,
+  .project-showcase .bento-project-grid>article .browser-frame{transform:none!important;filter:none!important;opacity:1!important}
+}
+
 </style>
 </head>
 <body>
@@ -2558,6 +2668,61 @@ dlg.addEventListener('close',()=>{document.body.classList.remove('dialog-open');
   }
 
   addEventListener('resize',()=>ScrollTrigger.refresh(),{passive:true});
+})();
+</script>
+
+
+<!-- === PROJECT SHOWCASE V5 · SAFE SCROLL REVEAL === -->
+<script>
+(()=>{
+  const section=document.querySelector('.project-showcase');
+  if(!section)return;
+  const cards=[...section.querySelectorAll('.bento-project-grid>article')];
+  const rail=[...section.querySelectorAll('[data-project-nav]')];
+  const prefersReduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(window.ScrollTrigger){
+    ScrollTrigger.getAll().forEach(st=>{
+      if(st.trigger && section.contains(st.trigger))st.kill();
+    });
+  }
+  if(window.gsap){
+    gsap.killTweensOf(cards);
+    for(const card of cards)gsap.killTweensOf(card.querySelectorAll('.browser-frame,.featured-copy,.secondary-copy,.tag'));
+    gsap.set(cards,{clearProps:'transform,opacity,filter'});
+    gsap.set(section.querySelectorAll('.browser-frame,.featured-copy,.secondary-copy,.tag'),{clearProps:'transform,opacity,filter'});
+  }
+  cards.forEach(card=>{
+    card.classList.add('show');
+    const frame=card.querySelector('.browser-frame');
+    if(!frame)return;
+    const media=frame.closest('.featured-media,.secondary-media');
+    if(!media || prefersReduced || !matchMedia('(pointer:fine)').matches || !window.gsap)return;
+    media.addEventListener('pointermove',e=>{
+      const r=media.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      gsap.to(frame,{rotateY:x*4.5,rotateX:-y*3.5,duration:.4,ease:'power2.out',overwrite:'auto'});
+    },{passive:true});
+    media.addEventListener('pointerleave',()=>gsap.to(frame,{
+      rotateX:0,rotateY:0,duration:.65,ease:'power2.out',overwrite:'auto'
+    }),{passive:true});
+  });
+  if(!('IntersectionObserver' in window))return;
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const index=cards.indexOf(entry.target);
+      rail.forEach(a=>a.classList.toggle('is-active',a.dataset.projectNav===entry.target.id));
+      observer.unobserve(entry.target);
+    });
+  },{rootMargin:'-20% 0px -45% 0px',threshold:0});
+  cards.forEach(card=>observer.observe(card));
+  if(prefersReduced || !window.gsap)return;
+  cards.forEach(card=>{
+    gsap.fromTo(card,{y:35,opacity:.8},{
+      y:0,opacity:1,duration:.85,ease:'power2.out',overwrite:'auto',
+      scrollTrigger:{trigger:card,start:'top 90%',once:true}
+    });
+  });
 })();
 </script>
 
