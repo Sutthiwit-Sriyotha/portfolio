@@ -1206,6 +1206,44 @@ section{padding:65px 0}
   object-fit:contain!important;width:100%!important;height:100%!important;
  }
 }
+
+/* FIX: all five project images have identical displayed width; height follows actual image ratio. */
+@media(min-width:931px){
+ .portfolio-bento .bento-project-grid>article.featured-project,
+ .portfolio-bento .bento-project-grid>article.secondary-project,
+ .portfolio-bento .bento-project-grid>article:nth-child(even).featured-project,
+ .portfolio-bento .bento-project-grid>article:nth-child(even).secondary-project,
+ .portfolio-bento .bento-project-grid>#project-tamroi{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  column-gap:clamp(32px,4vw,70px)!important;
+  min-height:0!important;
+ }
+ .portfolio-bento .bento-project-grid>article .featured-media,
+ .portfolio-bento .bento-project-grid>article .secondary-media{
+  height:auto!important;min-height:0!important;max-height:none!important;
+  width:100%!important;align-self:center!important;
+ }
+}
+.portfolio-bento .bento-project-grid>article .browser-frame,
+.portfolio-bento .bento-project-grid>article .browser-canvas{
+ display:block!important;position:relative!important;width:100%!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ flex:none!important;overflow:visible!important;
+}
+.portfolio-bento .bento-project-grid>article .browser-canvas>img,
+.portfolio-bento #project-joins .browser-canvas>img.mockup-image,
+.portfolio-bento #project-mega .browser-canvas>img.mockup-image{
+ position:relative!important;inset:auto!important;display:block!important;
+ width:100%!important;height:auto!important;max-width:100%!important;max-height:none!important;
+ object-fit:contain!important;object-position:center!important;
+}
+@media(max-width:930px){
+ .portfolio-bento .bento-project-grid>article .featured-media,
+ .portfolio-bento .bento-project-grid>article .secondary-media,
+ .portfolio-bento .bento-project-grid>#project-tamroi .secondary-media{
+  height:auto!important;min-height:0!important;max-height:none!important;
+ }
+}
 </style>
 </head>
 <body>
