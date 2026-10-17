@@ -14,11 +14,8 @@ export const projects: Project[] = [
  description:'Improving leave and recruitment workflows for employees, HR teams and applicants.',
  technologies:['Taiga','Figma','DBeaver','PostgreSQL','SSMS','Docker','Fork'],
  contributions:['Requirement analysis and SRS documentation','User flow and workflow analysis','Test plans, cases and scripts','Functional and regression testing','UI and responsive verification','Bug tracking, retesting and UAT support','Data verification'],
- thumbnail:'/projects/joins-plus/leave-request.webp',
- screenshots:[
- {src:'/projects/joins-plus/leave-request.webp',label:'Leave Request — actual interface from internship report',previewType:'real'},
- {src:'/projects/joins-plus/recruitment-form.webp',label:'Recruitment form — actual interface from internship report',previewType:'real'}
- ],previewType:'real',
+ thumbnail:'/projects/joins-plus/cover.webp',
+ screenshots:[{src:'/projects/joins-plus/cover.webp',label:'Illustrative HR workflow concept — not a company screenshot',previewType:'concept'}],previewType:'concept',
  overview:'A business-analysis and testing internship project covering HR leave requests, approvals and recruitment workflows.',
  goals:['Understand HR user needs and business rules','Translate workflows into testable acceptance conditions','Support reliable UAT and defect follow-up'],
  challenges:['Turning approval and leave rules into precise test cases','Verifying data consistency across workflows','Coordinating requirement changes with users and developers'],
