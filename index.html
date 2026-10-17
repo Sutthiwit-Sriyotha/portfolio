@@ -815,6 +815,56 @@ section{padding:65px 0}
 }
 @media(prefers-reduced-motion:reduce){.bento-project-grid .featured-media .project-inline-art,.bento-project-grid .secondary-media img{transition:none!important}.bento-project-grid>.featured-project,.bento-project-grid>.secondary-project{transition:none!important}}
 
+
+/* Browser mockup presentation across all five unique Bento cards */
+.bento-project-grid .featured-media,.bento-project-grid .secondary-media{
+ padding:22px 21px!important;isolation:isolate;
+ background:radial-gradient(ellipse at 52% 38%,rgba(127,144,220,.28),transparent 60%),linear-gradient(135deg,#18273d,#0c1726);
+}
+.bento-project-grid .browser-frame{
+ position:relative;display:flex;flex-direction:column;width:min(100%,860px);height:100%;min-height:0;
+ background:#0b101c;border-radius:14px;border:1px solid rgba(214,225,255,.32);
+ box-shadow:0 24px 50px rgba(0,0,0,.38),0 3px 12px rgba(0,0,0,.24);
+ overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.bento-project-grid .featured-media:hover .browser-frame,.bento-project-grid .secondary-media:hover .browser-frame{transform:translateY(-5px)}
+.bento-project-grid .browser-chrome{
+ height:35px;min-height:35px;display:flex;align-items:center;gap:12px;padding:0 12px;
+ background:#192235;border-bottom:1px solid rgba(220,228,255,.15);color:#bfcce0;
+}
+.bento-project-grid .browser-dots{display:flex;gap:5px;flex-shrink:0}
+.bento-project-grid .browser-dots i{display:block;width:7px;height:7px;border-radius:50%;background:#fa7777}
+.bento-project-grid .browser-dots i:nth-child(2){background:#eebf6c}
+.bento-project-grid .browser-dots i:nth-child(3){background:#71cba8}
+.bento-project-grid .browser-address{
+ flex:1;min-width:0;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+ border:1px solid rgba(220,228,255,.09);background:#101828;border-radius:5px;
+ padding:4px 8px;font:500 9px "JetBrains Mono",monospace;letter-spacing:.01em;
+}
+.bento-project-grid .browser-window-icon{font-size:14px;opacity:.7}
+.bento-project-grid .browser-canvas{position:relative;flex:1;min-height:0;overflow:hidden;background:#f2f4f7}
+.bento-project-grid .browser-canvas>img{
+ position:relative!important;inset:auto!important;width:100%!important;height:100%!important;
+ object-fit:contain!important;max-width:100%!important;max-height:100%!important;
+ display:block;transform:none!important;filter:none!important;border-radius:0!important;
+ background:#f2f4f7;
+}
+.bento-project-grid #project-joins .browser-canvas,.bento-project-grid #project-mega .browser-canvas{background:#16243b}
+.bento-project-grid #project-joins .browser-canvas>img,.bento-project-grid #project-mega .browser-canvas>img{background:#16243b}
+.bento-project-grid .featured-media .media-topline,.bento-project-grid .featured-media .concept-caption,
+.bento-project-grid .secondary-media .secondary-index{z-index:3}
+.bento-project-grid .featured-media .media-topline,.bento-project-grid .secondary-media .secondary-index{top:auto;bottom:29px;left:33px;right:auto;background:rgba(11,16,28,.78);padding:5px 8px;border-radius:6px}
+.bento-project-grid .featured-media .concept-caption{bottom:29px;right:32px;left:auto;max-width:56%;text-align:right}
+.bento-project-grid .secondary-media .secondary-index{color:#edf3ff}
+@media(max-width:650px){
+ .bento-project-grid .featured-media,.bento-project-grid .secondary-media{padding:14px 12px!important}
+ .bento-project-grid .featured-media .media-topline,.bento-project-grid .secondary-media .secondary-index{bottom:19px;left:17px}
+ .bento-project-grid .featured-media .concept-caption{bottom:19px;right:17px;max-width:49%}
+ .bento-project-grid .browser-chrome{height:31px;min-height:31px;padding:0 8px}
+ .bento-project-grid .browser-address{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.bento-project-grid .browser-frame{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -930,29 +980,29 @@ section{padding:65px 0}
 <div class="bento-intro reveal"><span>SELECTED WORK · 01—05</span><span>Case studies &amp; project highlights <span aria-hidden="true">↘</span></span></div>
 <div class="bento-project-grid">
 <article id="project-joins" class="featured-project reveal">
-<button type="button" class="featured-media joins-media case-media-trigger" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study">
+<button type="button" class="featured-media joins-media case-media-trigger" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">HR workflow · illustrative concept</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas">
 <div class="media-topline"><span class="media-index">01 / ENTERPRISE HR · FEATURED</span></div>
 <img class="project-inline-art featured-3d-art" src="./assets/3d/joins-hr-visual.svg" alt="3D-style enterprise HR workflow visual showing leave requests, approval routing, business rules and data reconciliation" loading="lazy" decoding="async">
 <span class="concept-caption">Concept visual · Internal screenshots remain private</span>
-</button>
+</div></div></button>
 <div class="featured-copy"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Double P Enterprise</span></div><h3>Business rules, approvals &amp; data integrity</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Enterprise HR workflows for leave requests, approvals, and employee records.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements and documented SRS; contributed to UI and workflow design.</li><li>Designed test cases for leave calculations, approval routing, RBAC, and edge cases.</li><li>Validated legacy leave-balance imports and maintained automated regression checks.</li></ul>
 <div class="tags"><span class="tag">Requirements</span><span class="tag">SRS</span><span class="tag">Test cases</span><span class="tag">PostgreSQL</span><span class="tag">Vitest</span><span class="tag">CI/CD</span></div><button type="button" class="open-case" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-mega" class="featured-project reveal">
-<button type="button" class="featured-media mega-media case-media-trigger" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study">
+<button type="button" class="featured-media mega-media case-media-trigger" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">ITSM workflow · illustrative concept</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas">
 <div class="media-topline"><span class="media-index">02 / ENTERPRISE ITSM · FEATURED</span></div>
 <img class="project-inline-art featured-3d-art" src="./assets/3d/mega-itsm-visual.svg" alt="3D-style ITSM workflow visual showing ticket states, SLA timer, RBAC, tenant isolation, API and database verification" loading="lazy" decoding="async">
 <span class="concept-caption">Concept visual · Internal screenshots remain private</span>
-</button>
+</div></div></button>
 <div class="featured-copy"><div class="project-meta"><span>MEGA-T ITSM Platform</span><span>Double P Enterprise</span></div><h3>SLA testing, automation &amp; tenant isolation</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Multi-tenant IT service management for tickets, priorities, SLAs, and support workflows.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements, contributed to UI design, and wrote test cases.</li><li>Developed automated UI and API tests for workflows, SLAs, RBAC, and data isolation.</li><li>Investigated defects using API payloads, PostgreSQL records, and server logs.</li></ul>
 <div class="tags"><span class="tag">Playwright</span><span class="tag">Vitest</span><span class="tag">API testing</span><span class="tag">SLA</span><span class="tag">PostgreSQL</span><span class="tag">RBAC</span></div><button type="button" class="open-case" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-uppsf" class="secondary-project reveal">
-<button type="button" class="secondary-media case-media-trigger" data-case="uppsf" aria-haspopup="dialog" aria-label="View UP-PSF Digital Assessment System case study"><span class="secondary-index">03 / INTERNSHIP · SOFTWARE DEVELOPMENT</span><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System screenshot" loading="lazy" decoding="async" width="900" height="540"></button>
+<button type="button" class="secondary-media case-media-trigger" data-case="uppsf" aria-haspopup="dialog" aria-label="View UP-PSF Digital Assessment System case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">UP-PSF · system preview</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas"><span class="secondary-index">03 / INTERNSHIP · SOFTWARE DEVELOPMENT</span><img src="./assets/images/up-psf-digital-assessment-system.png" alt="UP-PSF Digital Assessment System screenshot" loading="lazy" decoding="async" width="900" height="540"></div></div></button>
 <div class="secondary-copy"><div class="project-type">INTERNSHIP · SOFTWARE DEVELOPMENT</div><h3>UP-PSF Digital Assessment System</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> Software Developer Intern · University of Phayao</div><p>Paperless faculty assessment and evaluation workflows.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Built responsive assessment forms with multiple editing modes.</li><li>Implemented role-based UI access, REST API integration, and UAT fixes.</li></ul><div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">RBAC</span><span class="tag">MinIO</span></div><button type="button" class="open-case" data-case="uppsf" aria-haspopup="dialog" aria-label="View UP-PSF Digital Assessment System case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-restaurant" class="secondary-project reveal">
-<button type="button" class="secondary-media case-media-trigger" data-case="restaurant" aria-haspopup="dialog" aria-label="View Restaurant Management Web App case study"><span class="secondary-index">04 / DEVELOPMENT PROJECT</span><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App screenshot" loading="lazy" decoding="async" width="900" height="540"></button>
+<button type="button" class="secondary-media case-media-trigger" data-case="restaurant" aria-haspopup="dialog" aria-label="View Restaurant Management Web App case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">Restaurant · system preview</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas"><span class="secondary-index">04 / DEVELOPMENT PROJECT</span><img src="./assets/images/restaurant-management-web-app.png" alt="Restaurant Management Web App screenshot" loading="lazy" decoding="async" width="900" height="540"></div></div></button>
 <div class="secondary-copy"><div class="project-type">DEVELOPMENT PROJECT</div><h3>Restaurant Management Web App</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> Full-stack development</div><p>QR ordering and operational workflows for restaurant staff.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Built QR-based ordering and real-time order tracking.</li><li>Developed a store dashboard, payment confirmation, and Excel reporting.</li></ul><div class="tags"><span class="tag">QR ordering</span><span class="tag">Dashboard</span><span class="tag">REST API</span><span class="tag">Excel</span></div><button type="button" class="open-case" data-case="restaurant" aria-haspopup="dialog" aria-label="View Restaurant Management Web App case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-tamroi" class="secondary-project reveal">
-<button type="button" class="secondary-media case-media-trigger" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study"><span class="secondary-index">05 / UX/UI & FRONT-END</span><img src="./assets/images/online-plant-store.png" alt="TAMROI Online Plant Store screenshot" loading="lazy" decoding="async" width="900" height="540"></button>
+<button type="button" class="secondary-media case-media-trigger" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">TAMROI · website preview</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas"><span class="secondary-index">05 / UX/UI & FRONT-END</span><img src="./assets/images/online-plant-store.png" alt="TAMROI Online Plant Store screenshot" loading="lazy" decoding="async" width="900" height="540"></div></div></button>
 <div class="secondary-copy"><div class="project-type">UX/UI & FRONT-END</div><h3>TAMROI Online Plant Store</h3><div class="secondary-role"><span class="project-label">MY ROLE</span> UX/UI & front-end design</div><p>Responsive e-commerce experience for browsing and buying plants.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="secondary-contributions"><li>Conducted user research and created Figma prototypes.</li><li>Worked on responsive shopping interface design.</li></ul><div class="tags"><span class="tag">User research</span><span class="tag">Figma</span><span class="tag">UX/UI</span><span class="tag">Responsive UI</span></div><button type="button" class="open-case" data-case="tamroi" aria-haspopup="dialog" aria-label="View TAMROI Online Plant Store case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 </div>
 </div></section>
