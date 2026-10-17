@@ -865,6 +865,11 @@ section{padding:65px 0}
 }
 @media(prefers-reduced-motion:reduce){.bento-project-grid .browser-frame{transition:none!important}}
 
+
+/* Mockup disclosures: keep labels readable on portfolio thumbnails. */
+#project-joins .concept-caption,#project-mega .concept-caption{font-size:10px;font-weight:700;background:rgba(10,17,32,.93);border-color:rgba(255,255,255,.35);padding:8px 11px;max-width:67%;line-height:1.35}
+#project-joins .browser-canvas>img,#project-mega .browser-canvas>img{object-fit:contain!important;background:#e7ecff!important}
+@media(max-width:650px){#project-joins .concept-caption,#project-mega .concept-caption{font-size:9px;max-width:68%;padding:6px 7px}}
 </style>
 </head>
 <body>
@@ -980,18 +985,18 @@ section{padding:65px 0}
 <div class="bento-intro reveal"><span>SELECTED WORK · 01—05</span><span>Case studies &amp; project highlights <span aria-hidden="true">↘</span></span></div>
 <div class="bento-project-grid">
 <article id="project-joins" class="featured-project reveal">
-<button type="button" class="featured-media joins-media case-media-trigger" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">HR workflow · illustrative concept</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas">
+<button type="button" class="featured-media joins-media case-media-trigger" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">JOiNS+ · illustrative UI mockup</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas">
 <div class="media-topline"><span class="media-index">01 / ENTERPRISE HR · FEATURED</span></div>
-<img class="project-inline-art featured-3d-art" src="./assets/3d/joins-hr-visual.svg" alt="3D-style enterprise HR workflow visual showing leave requests, approval routing, business rules and data reconciliation" loading="lazy" decoding="async">
-<span class="concept-caption">Concept visual · Internal screenshots remain private</span>
+<img class="project-inline-art featured-3d-art" src="./assets/images/joins-leave-management-mockup.webp" alt="Illustrative JOiNS+ HR portal UI mockup for portfolio presentation, not a screenshot of an internal system" loading="lazy" decoding="async">
+<span class="concept-caption">UI Mockup · For Portfolio Illustration Only</span>
 </div></div></button>
 <div class="featured-copy"><div class="project-meta"><span>JOiNS+ HR Portal</span><span>Double P Enterprise</span></div><h3>Business rules, approvals &amp; data integrity</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Enterprise HR workflows for leave requests, approvals, and employee records.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements and documented SRS; contributed to UI and workflow design.</li><li>Designed test cases for leave calculations, approval routing, RBAC, and edge cases.</li><li>Validated legacy leave-balance imports and maintained automated regression checks.</li></ul>
 <div class="tags"><span class="tag">Requirements</span><span class="tag">SRS</span><span class="tag">Test cases</span><span class="tag">PostgreSQL</span><span class="tag">Vitest</span><span class="tag">CI/CD</span></div><button type="button" class="open-case" data-case="joins" aria-haspopup="dialog" aria-label="View JOiNS+ HR Portal case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
 <article id="project-mega" class="featured-project reveal">
-<button type="button" class="featured-media mega-media case-media-trigger" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">ITSM workflow · illustrative concept</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas">
+<button type="button" class="featured-media mega-media case-media-trigger" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study"><div class="browser-frame" aria-hidden="true"><div class="browser-chrome"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-address">MEGA-T · illustrative UI mockup</span><span class="browser-window-icon">↗</span></div><div class="browser-canvas">
 <div class="media-topline"><span class="media-index">02 / ENTERPRISE ITSM · FEATURED</span></div>
-<img class="project-inline-art featured-3d-art" src="./assets/3d/mega-itsm-visual.svg" alt="3D-style ITSM workflow visual showing ticket states, SLA timer, RBAC, tenant isolation, API and database verification" loading="lazy" decoding="async">
-<span class="concept-caption">Concept visual · Internal screenshots remain private</span>
+<img class="project-inline-art featured-3d-art" src="./assets/images/mega-ticket-management-mockup.webp" alt="Illustrative MEGA-T ITSM ticket management UI mockup for portfolio presentation, not a screenshot of an internal system" loading="lazy" decoding="async">
+<span class="concept-caption">UI Mockup · For Portfolio Illustration Only</span>
 </div></div></button>
 <div class="featured-copy"><div class="project-meta"><span>MEGA-T ITSM Platform</span><span>Double P Enterprise</span></div><h3>SLA testing, automation &amp; tenant isolation</h3><p class="featured-role"><span class="project-label">MY ROLE</span>BA / QA Tester</p><p class="featured-overview">Multi-tenant IT service management for tickets, priorities, SLAs, and support workflows.</p><div class="project-label">KEY CONTRIBUTIONS</div><ul class="featured-contributions"><li>Gathered requirements, contributed to UI design, and wrote test cases.</li><li>Developed automated UI and API tests for workflows, SLAs, RBAC, and data isolation.</li><li>Investigated defects using API payloads, PostgreSQL records, and server logs.</li></ul>
 <div class="tags"><span class="tag">Playwright</span><span class="tag">Vitest</span><span class="tag">API testing</span><span class="tag">SLA</span><span class="tag">PostgreSQL</span><span class="tag">RBAC</span></div><button type="button" class="open-case" data-case="mega" aria-haspopup="dialog" aria-label="View MEGA-T ITSM Platform case study">View Case Study <span aria-hidden="true">↗</span></button></div></article>
