@@ -30,7 +30,7 @@
 <rect x="57" y="520" width="46" height="46" rx="13" fill="#e8f1fb" stroke="#7ea0cf" stroke-width="1.5"/><g fill="none" stroke="#315f8c" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"><rect x="69" y="530" width="22" height="26" rx="3"/><path d="m74 541 5 5 9-11m-14 17h12"/></g>
 <text x="121" y="545" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="700" fill="#111827">03  Deliver</text>
 <text x="121" y="578" font-family="Inter,Arial,sans-serif" font-size="19" fill="#5f6b7a">Database · Automation · CI/CD</text>
-<rect x="121" y="597" width="128" height="28" rx="14" fill="#ffffff" stroke="#66768e" stroke-width="1.5"/><text x="136" y="616" font-family="Inter,Arial,sans-serif" font-size="15" fill="#17233b" font-weight="800">VALIDATION</text>
+<rect x="121" y="597" width="128" height="28" rx="14" fill="#17233b" stroke="#17233b" stroke-width="1.5"/><text x="136" y="616" font-family="Inter,Arial,sans-serif" font-size="15" fill="#ffffff" font-weight="800">VALIDATION</text>
 <g filter="url(#hero-soft-shadow)">
 <rect x="492" y="160" width="570" height="485" rx="22" fill="#ffffff" stroke="#b8c3d1" stroke-width="2"/>
 <rect x="492" y="160" width="570" height="59" rx="22" fill="#f2f5f9"/><path d="M492 196H1062V219H492Z" fill="#f2f5f9"/>
