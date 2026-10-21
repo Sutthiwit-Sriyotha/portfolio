@@ -685,6 +685,46 @@ html[data-theme="light"] .skill-visual-card{
 html[data-theme="light"] .skill-visual-card::after{
   background:linear-gradient(transparent,rgba(255,255,255,.92))!important;
 }
+
+/* Contact visibility/accessibility fix */
+#contact .contact-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 180px!important;
+  gap:22px 34px!important;
+  padding:clamp(27px,4vw,50px)!important;
+  align-items:center!important;
+  min-height:0!important;
+}
+#contact .contact-card>div:first-child{grid-column:1;grid-row:1;min-width:0}
+#contact .contact-visual{grid-column:2;grid-row:1;width:min(100%,170px);height:auto;max-height:170px}
+#contact .contact-links{
+  grid-column:1/-1!important;grid-row:2!important;
+  display:flex!important;flex-wrap:wrap!important;align-items:center!important;
+  justify-content:flex-start!important;gap:12px!important;
+  position:relative;z-index:5;
+  visibility:visible!important;opacity:1!important;transform:none!important;
+  padding-top:22px!important;border-top:1px solid var(--line);
+}
+#contact .contact-links>a{
+  visibility:visible!important;opacity:1!important;transform:none!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  min-height:45px!important;padding:11px 16px!important;
+  font-size:13px!important;font-weight:650!important;line-height:1.3!important;
+  white-space:normal;overflow-wrap:anywhere;
+}
+#contact .contact-email-address{
+  color:var(--cyan)!important;text-decoration:none!important;
+  border:1px solid var(--line);border-radius:12px;
+  background:var(--surface2);
+}
+#contact .contact-email-address:hover{text-decoration:underline!important;text-underline-offset:4px}
+@media(max-width:720px){
+ #contact .contact-card{grid-template-columns:minmax(0,1fr)!important}
+ #contact .contact-card>div:first-child{grid-column:1;grid-row:1}
+ #contact .contact-visual{grid-column:1;grid-row:2;width:115px;justify-self:start}
+ #contact .contact-links{grid-column:1!important;grid-row:3!important}
+ #contact .contact-links>a{width:100%;justify-content:flex-start!important}
+}
 </style>
 </head>
 <body>
@@ -790,7 +830,7 @@ html[data-theme="light"] .skill-visual-card::after{
 <div class="experience-card reveal"><div><div class="date mono">2022 — 2026</div><h3>B.Eng. Software Engineering</h3><div class="company">University of Phayao</div></div><div><p>GPA: 3.29 · Coursework and projects covered software engineering, web development, databases, system design, UX/UI, and collaborative product development.</p></div></div>
 </div></section>
 
-<section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Let's work together.</h2><p>Open to BA / QA Tester opportunities. My software engineering background supports collaboration with developers and technical problem-solving.</p></div><img class="contact-visual" src="./assets/3d/contact-orb.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><div class="contact-links"><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me <span aria-hidden="true">↗</span></a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com?subject=Resume%20request">Request Resume <span aria-hidden="true">↗</span></a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></div></div></section>
+<section id="contact"><div class="wrap"><div class="contact-card reveal"><div><div class="eyebrow">Let's connect</div><h2>Let's work together.</h2><p>Open to BA / QA Tester opportunities. My software engineering background supports collaboration with developers and technical problem-solving.</p></div><img class="contact-visual" src="./assets/3d/contact-orb.svg" alt="" aria-hidden="true" loading="lazy" decoding="async"><div class="contact-links"><a class="contact-email-address" href="mailto:sutthiwitsriyotha@gmail.com" aria-label="Send email to sutthiwitsriyotha@gmail.com">sutthiwitsriyotha@gmail.com <span aria-hidden="true">↗</span></a><a class="btn primary" href="mailto:sutthiwitsriyotha@gmail.com">Email me <span aria-hidden="true">↗</span></a><a class="btn" href="mailto:sutthiwitsriyotha@gmail.com?subject=Resume%20request">Request Resume <span aria-hidden="true">↗</span></a><a class="btn" href="https://github.com/Sutthiwit-Sriyotha" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></div></div></section>
 
 <footer><div class="wrap">© 2026 Sutthiwit Sriyotha · BA / QA Tester Portfolio</div></footer>
 
@@ -1058,13 +1098,7 @@ dlg.addEventListener('close',()=>{document.body.classList.remove('dialog-open');
         scrollTrigger:{trigger:contactCard,start:'top 78%',once:true}
       });
     }
-    const buttons=contactCard.querySelectorAll('.contact-links .btn');
-    if(buttons.length){
-      gsap.from(buttons,{
-        y:18,scale:.94,opacity:0,duration:.48,stagger:.1,ease:'back.out(1.5)',
-        scrollTrigger:{trigger:contactCard,start:'top 75%',once:true}
-      });
-    }
+    // Contact links remain visible at all times for accessibility.
   }
 
   // FOOTER — small final lift so the page does not end abruptly.
