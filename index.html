@@ -1048,7 +1048,7 @@ role:'I gathered and documented requirements, prepared SRS documentation, contri
 approach:['Translated leave policies and approval requirements into documented workflows, acceptance conditions, and test scenarios.','Designed test cases for leave-day recalculation, hierarchical approval routing, permissions, cancellation rules, and edge cases.','Validated legacy leave-balance imports with dry runs, PostgreSQL queries, reconciliation, and duplicate checks.','Maintained automated regression checks using Vitest and GitHub Actions to detect database and business-rule impacts.'],
 tools:['Requirements gathering','SRS','UI design','Test cases','PostgreSQL','Prisma','Vitest','GitHub Actions'],
 outcome:['Documented requirements and test cases for HR workflows.','Verified business-rule behavior and the integrity of imported leave-balance data.','Maintained regression coverage for affected rules and database behavior.'],
-private:true
+private:true,image:'./assets/images/JOINS+ Thai Leave Management Dashboard.png',imageAlt:'Illustrative JOiNS+ HR dashboard mockup, not an internal system screenshot',mockup:true
 },
 mega:{
 type:'Featured · Enterprise ITSM · BA / QA',title:'Tag Me In Track Me Out (MEGA-T)',subtitle:'Double P Enterprise · BA / QA Tester Intern',
@@ -1057,7 +1057,7 @@ role:'I helped gather and document requirements, contributed to UI design, prepa
 approach:['Reviewed ticket workflows, business-calendar conditions, SLA rules, roles, and access requirements when preparing test scenarios.','Designed test cases and developed Playwright and Vitest tests for end-to-end workflows, APIs, and SLA calculations.','Validated role-based access control (RBAC), tenant boundaries, and cross-project data isolation.','Used API payloads, PostgreSQL records, and server logs to reproduce defects and investigate their underlying causes.'],
 tools:['Requirements','Test case design','Playwright','Vitest','API testing','PostgreSQL','Prisma','NestJS','Docker'],
 outcome:['Developed automated UI and API test suites for ITSM workflows and SLA conditions.','Verified permission behavior and cross-project data boundaries.','Produced reproducible defect findings supported by API, database, or log evidence.'],
-private:true
+private:true,image:'./assets/images/Thai IT Support Ticket Dashboard.png',imageAlt:'Illustrative MEGA-T IT support ticket dashboard mockup, not an internal system screenshot',mockup:true
 },
 uppsf:{
 type:'Internship · Software development',title:'UP-PSF Digital Assessment System',subtitle:'Division of Educational Services, University of Phayao · Nov 2025 – Feb 2026',
@@ -1100,7 +1100,7 @@ document.getElementById('modalRole').textContent=data.role;
 fillList('modalApproach',data.approach);fillList('modalOutcome',data.outcome);
 document.getElementById('modalTags').replaceChildren(...data.tools.map(tool=>{const tag=document.createElement('span');tag.className='tag';tag.textContent=tool;return tag;}));
 const visual=document.getElementById('caseVisual'),privacy=document.getElementById('casePrivacy');visual.replaceChildren();visual.hidden=!data.image;privacy.hidden=!data.private;
-if(data.image){const title=document.createElement('div');title.className='case-label';title.textContent='PROJECT SCREENSHOT';const link=document.createElement('a');link.href=data.image;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Open full-size '+data.title+' screenshot');const img=document.createElement('img');img.src=data.image;img.alt=data.imageAlt;img.loading='lazy';link.append(img);const note=document.createElement('p');note.className='case-image-note';note.textContent='Open the screenshot to view it at full size ↗';visual.append(title,link,note);}else privacy.textContent='Internal project screenshots, documents, and test artifacts are not published to protect company information.';
+if(data.image){const title=document.createElement('div');title.className='case-label';title.textContent=data.mockup?'UI MOCKUP · PORTFOLIO ILLUSTRATION':'PROJECT SCREENSHOT';const link=document.createElement('a');link.href=data.image;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Open full-size '+data.title+(data.mockup?' mockup':' screenshot'));const img=document.createElement('img');img.src=data.image;img.alt=data.imageAlt;img.loading='lazy';link.append(img);const note=document.createElement('p');note.className='case-image-note';note.textContent=data.mockup?'Conceptual UI mockup for portfolio illustration only — not a real system screenshot. Open full size ↗':'Open the screenshot to view it at full size ↗';visual.append(title,link,note);}if(data.private)privacy.textContent='Actual internal project screenshots, documents, and test artifacts are not published to protect company information.';
 document.getElementById('caseDialog').querySelector('.case-dialog-content').scrollTop=0;document.body.classList.add('dialog-open');dlg.showModal();closeDialogBtn.focus();
 }));
 function closeCase(){dlg.close();}
